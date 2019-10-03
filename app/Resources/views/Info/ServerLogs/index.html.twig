@@ -1,0 +1,102 @@
+{% extends 'SyliusAdminBundle::layout.html.twig' %}
+{% block content %}
+    <div id="content">
+        <div class="ui stackable four column grid">
+            <div class="column">
+                <h1 class="ui header">
+                    <i class="circular exclamation icon"></i>
+                    <div class="content">
+                        Server logs
+                        <div class="sub header">Manage your Server logs</div>
+                    </div>
+                </h1>
+                <div class="ui breadcrumb">
+                    <a href="/admin/" class="section">Administration</a>
+                    <i class="right chevron icon divider"></i>
+                    <div class="active section">Server logs</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui styled fluid accordion">
+            <div class="title active">
+                <i class="dropdown icon"></i>
+                Filters
+            </div>
+            <div class="content active">
+                <form method="POST" action="/admin/server_logs_filter" class="ui loadable form transition visible"
+                      style="display: block !important;">
+                    <div class="two fields">
+
+                        <div class="field"><label for="criteria_search_type">Search</label>
+                            <select id="criteria_search_type" name="type" class=" ui dropdown">
+                                <option value="all">All logs</option>
+                                <option value="Notified">Notified</option>
+                                <option value="CRITICAL">Critical</option>
+                            </select>
+                        </div>
+                        <div class="field"><label for="criteria_search_value">Value</label>
+                            <select id="criteria_search_type" name="value" class=" ui dropdown">
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                        <div class="field"><label for="criteria_search_value">File</label>
+                            <select id="criteria_search_type" name="file" class=" ui dropdown">
+                                <option value="prod">prod.log</option>
+                                <option value="dev">dev.log</option>
+
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="two fields">
+                    </div>
+                    <button class="ui blue labeled icon button" type="submit">
+                        <i class="icon search"></i> Filter
+                    </button>
+                    <a class="ui labeled icon button" href="/admin/server_logs">
+                        <i class="icon remove"></i> Clear filters
+                    </a>
+                    <a class="ui red labeled icon button" href="/admin/server_logs_delete">
+                        <i class="icon trash"></i> Delete logs
+                    </a>
+
+                </form>
+            </div>
+        </div>
+        {% if fewLogs|length > 0 %}
+            <div class="ui segment overflow-x-auto">
+                <table class="ui sortable stackable celled table">
+                    <thead>
+                    <tr>
+                        <th>Server logs</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for log in fewLogs %}
+                        <tr class="item">
+                            <td>
+                                {{ log }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="ui segment overflow-x-auto">
+                <div class="ui icon info message">
+                    <i class="info circle icon"></i>
+                    <div class="content">
+                        <div class="header">
+                            Info
+                        </div>
+                        <p>There are no results to display</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

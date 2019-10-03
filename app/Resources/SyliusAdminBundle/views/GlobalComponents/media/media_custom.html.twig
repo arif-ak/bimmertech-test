@@ -1,0 +1,38 @@
+<div :class="{'once': once, 'error': error}" class="media">
+    <template v-if="option">
+        <h5 class="margin-bottom-1">[[option]]</h5>
+    </template>
+    <template v-else>
+        <h5 class="ui header">[[label]]</h5>
+    </template>
+    <div :class="{'bt-loading': loading}" class="required field"  v-if="media">
+        <div class="controls collection-widget grid-x">
+            <div class="ui grid-margin-x grid-margin-y cell stackable grid-x">
+                <div class="cell large-3" v-for="(media, m) in media">
+                    <div class="ui upload box segment">
+                        <label :for="inputId+m" class="ui icon labeled button">
+                            <i class="cloud upload icon"></i>
+                            <span v-if="!media.name">Choose file</span>
+                            <span v-else>Change file</span>
+                        </label>
+                        <img :src="'/media/image/'+media.name" class="ui small bordered image" v-if="media.name && upload" />
+                        <img :src="media.name" class="ui small bordered image" v-else-if="media.name" />
+                        <div @click="clearMedia()" class="delete" v-if="once && media.name">X</div>
+                        <div class="ui hidden element">
+                            <input v-validate :id="inputId+m" :name="inputId+m" @change="changeImage($event, m)" type="file" />
+                        </div>
+                    </div>
+                    <div @click="delMdia(m)" class="ui red labeled icon button cell" v-if="media.name">
+                        <i class="trash icon"></i>
+                        Delete
+                    </div>
+                </div>
+            </div>
+            {#    <div class="cell medium-2">
+                            <a @click="addMedia($event)" class="ui labeled icon button add-button" v-if="!once">
+                                <i class="plus square outline icon"></i>Add</a>
+                        </div> #}
+        </div>
+    </div>
+    <div class="message help is-danger" v-if="error">[[error]]</div>
+</div>

@@ -1,0 +1,64 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block content %}
+    <h1>FAQ</h1>
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate',  'class': 'ui large form'}}) }}
+    <div class="two fields">
+        <div class="field">
+            {{ form_row(form.search) }}
+        </div>
+    </div>
+    {{ form_errors(form) }}
+    {{ form_end(form) }}
+
+    <div class="">
+        {% if faqs %}
+            {% for slug, item in faqs %}
+                <div class="grid-x">
+                    <div class="cell auto">
+                        {% if slug == 'order' %}
+                            <h2>Your Order</h2>
+                        {% endif %}
+
+                        {% if slug == 'payment' %}
+                            <h2>Payment & Delivery</h2>
+                        {% endif %}
+
+                        {% if slug == 'installation' %}
+                            <h2>Installation & Tech Support</h2>
+                        {% endif %}
+
+                        {% if slug == 'return' %}
+                            <h2>Returns and Refunds</h2>
+                        {% endif %}
+                    </div>
+                </div>
+                {% for faq in item %}
+                    <div class="grid-x">
+                        <div class="cell auto">
+                            {{ faq.question }}
+                        </div>
+                        <div class="cell auto">
+                            {{ faq.answer | raw  }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
+        {% elseif searchResults %}
+            <div class="grid-x row">
+                {% for searchResult in searchResults %}
+                    <div>
+                        <div>
+                            {{ searchResult.question }}
+                        </div>
+
+                        <div>
+                            {{ searchResult.answer | raw }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

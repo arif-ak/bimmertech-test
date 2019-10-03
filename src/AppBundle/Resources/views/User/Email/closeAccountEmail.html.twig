@@ -1,0 +1,9 @@
+{% block subject %}
+    Your BimmerTech customer account has been closed
+{% endblock %}
+
+{% block body %}
+    <p>Hi {{ data.shopUser.Customer.FullName }},</p>
+    <p>Your BimmerTech customer account has been closed. If you would like to place an order at www.bimmer-tech.net in future, you will be required to create a new account.</p>
+    <p>Didn't close your account? Please <a href="{{ app.request.getSchemeAndHttpHost() }}{{ path( 'sylius_shop_contact_request') }}">let us know</a>.</p>
+{% endblock %}

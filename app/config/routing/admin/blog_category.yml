@@ -1,0 +1,14 @@
+app_admin_blog_category:
+    resource: |
+        alias: app.blog_category
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        redirect: index
+        grid: app_admin_blog_category
+        vars:
+            all:
+                header: Blog Category
+                subheader: Manage blog category
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

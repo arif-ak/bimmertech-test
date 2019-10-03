@@ -1,0 +1,62 @@
+.Content_editor {
+    .blocks {
+        width: 75%;
+        float: left;
+        .block {
+            background: linear-gradient(#f1f1f1, #f7f7f7);
+            margin-bottom: 10px;
+            border: 1px solid $base-light-gray-color;
+            padding: 20px;
+            >.field {
+                width: calc(100% - 270px);
+                float: left;
+            }
+            .image-or-video {
+                width: 250px;
+                float: right;
+                .buttons {
+                    display: flex;
+                    justify-content: space-around;
+                }
+            }
+            .mce-tinymce.mce-container.mce-panel {
+                float: left;
+            }
+            &:after {
+                display: block;
+                clear: both;
+                content: "";
+            }
+            .delete {
+                float: left;
+                margin-top: 20px;
+            }
+            #uploadInput {
+                display: none;
+            }
+        }
+    }
+    .menu {
+        width: 25%;
+        float: left;
+        padding-left: 10px;
+        .label {
+            margin-bottom: 10px;
+        }
+        .list {
+            margin-bottom: 5px;
+            padding: 20px;
+            padding-right: 0;
+            cursor: move;
+            border: 1px solid $base-light-gray-color;
+            .delete {
+                margin-top: 10px;
+            }
+        }
+    }
+    &:after {
+        display: block;
+        clear: both;
+        content: "";
+    }
+}

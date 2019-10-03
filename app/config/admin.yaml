@@ -1,0 +1,3 @@
+#orders_board:
+#    path:     /orders/board
+#    defaults: { _controller: AppBundle:Order:board }

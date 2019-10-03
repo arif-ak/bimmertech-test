@@ -1,0 +1,14 @@
+app_admin_user_sale:
+    resource: |
+        alias: app.user_sale
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        redirect: index
+        grid: app_admin_user_sale
+        vars:
+            all:
+                header: User Sales
+                subheader: Manage your Sale persons
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

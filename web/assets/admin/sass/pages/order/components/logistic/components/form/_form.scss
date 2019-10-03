@@ -1,0 +1,124 @@
+.ui.modal.logisticShipmentWarehouse {
+    .ui.cell.selection.dropdown {
+        padding: .58571429em 2.1em .58571429em 1em;
+    }
+
+    .image.content {
+        > .checkbox {
+            margin-left: 1px;
+        }
+
+        .media {
+            .required.field {
+                .add-button {
+                    // margin-top: 20px !important;
+               
+                }
+
+                .error {
+                    bottom: -20px;
+                }
+            }
+        }
+
+        .error {
+            select {
+                border-color: #f5350b !important;
+                background: #FFF6F6;
+                color: #9F3A38;
+            }
+
+            .errorMessageSelect {
+                position: absolute;
+                bottom: -18px;
+                left: 15px;
+                font-size: 12px;
+                color: $base-red-color;
+            }
+        }
+    }
+
+    .actions {
+        .error {
+            float: left;
+            color: $base-red-color;
+        }
+
+        .success {
+            float: left;
+            color: $base-green-color;
+        }
+    }
+
+    .pdf {
+        visibility: hidden;
+        display: block;
+        height: 0px;
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
+
+.ui.modal.logisticShipmentWarehouse, .ui.modal.changeWarehouse, .ui.modal.baseModal {
+    .modal-button {
+        cursor: pointer;
+        display: inline-block;
+        min-height: 1em;
+        outline: 0;
+        border: none;
+        vertical-align: baseline;
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+        padding: 10px;
+        margin-left: 10px;
+        font-size: 10px;
+        margin-right: 0;
+        border-radius: .28571429rem;
+        text-transform: none;
+        text-shadow: none;
+        font-weight: 500;
+        line-height: 1em;
+        font-style: normal;
+        text-align: center;
+        text-decoration: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-transition: opacity .1s ease, background-color .1s ease, color .1s ease, box-shadow .1s ease, background .1s ease;
+        transition: opacity .1s ease, background-color .1s ease, color .1s ease, box-shadow .1s ease, background .1s ease;
+        -webkit-tap-highlight-color: transparent;
+
+        &.black {
+            background: $base-black-color;
+        }
+
+        &.green {
+            background: $secound-green;
+
+            &.disabled {
+                background-color: $base-gray-light-color !important;
+                color: $disabled-btn-text-color !important;
+                opacity: initial !important;
+                box-shadow: none !important;
+                pointer-events: none !important;
+            }
+        }
+
+        &.red {
+            background: #d12d30;
+        }
+
+        &.yellow {
+            background: orange;
+        }
+
+        &.gray {
+            background: darkgray;
+        }
+    }
+}

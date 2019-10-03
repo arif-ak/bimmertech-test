@@ -1,0 +1,15 @@
+app_interested_in_category:
+    resource: |
+        alias: app.interested_in_category
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        form: AppBundle\Form\Type\TaxonProductRelatedType
+        redirect: index
+        grid: app_interested_in_category
+        vars:
+            all:
+                header: Interested In for categories
+                subheader: Manage your Interested In for categories
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

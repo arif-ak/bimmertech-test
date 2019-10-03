@@ -1,0 +1,39 @@
+{% extends 'SyliusAdminBundle::layout.html.twig' %}
+
+{% block title %}Help page SEO{% endblock %}
+
+{% form_theme form '@SyliusAdmin/Form/theme.html.twig' %}
+{% block content %}
+    <h4 class="ui dividing header">Help page SEO</h4>
+
+    <div class="ui one column stackable grid">
+        {{ form_errors(form) }}
+        <div class="column">
+            <div class="ui segment">
+
+                {{ form_start(form,  {'attr': {'class': 'ui loadable form'}}) }}
+                <div class="two fields">
+                    <p> {{ form_row(form.metaTitle) }}</p>
+                    <p> {{ form_row(form.metaDescription) }}</p>
+                    <p>{{ form_row(form.metaKeywords) }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui basic segment">
+        <div class="ui buttons">
+            <button class="ui labeled icon primary button" type="submit" id="sylius_save_changes_button"><i
+                        class="save icon"></i> Save changes
+            </button>
+            <a href="/admin/" class="ui button">Cancel</a>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+{% endblock %}
+
+
+
+
+

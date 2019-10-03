@@ -1,0 +1,25 @@
+sylius_grid:
+  grids:
+    app_admin_contact:
+      driver:
+        name: doctrine/orm
+        options:
+          class: AppBundle\Entity\Contact
+      fields:
+        contactMainTitle:
+          type: twig
+          label: Title
+          options:
+            template: "GridRow/Help/title.html.twig"
+        contactPosition:
+          type: string
+          label: Position
+      actions:
+        main:
+          create:
+            type: create
+        item:
+          update:
+            type: update
+          delete:
+            type: delete

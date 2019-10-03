@@ -1,0 +1,30 @@
+#page {
+  .header {
+      h4 {
+          font-weight: 500;
+          color: #000;
+          line-height: 23px;
+      }
+      .divider {
+          background-color: #1ca3c2;
+          height: 4px;
+          width: calc(100% - 20px);
+          display: flex;
+          margin-left: 20px;
+          box-sizing: border-box;
+      }
+  }
+  position: relative;
+  color: $base-black-color;
+  margin-top: 50px;
+  a {
+    color: $base-blue-color;
+  }
+  .bt {
+    &-popup {
+      display: inline-block;
+      border-bottom: 3px double $base-blue-color;
+      line-height: 10px;
+    }
+  }
+}

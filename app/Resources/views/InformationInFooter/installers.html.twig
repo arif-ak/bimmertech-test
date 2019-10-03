@@ -1,0 +1,104 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+{% set items = installers %}
+
+{% block content %}
+    <div class="grid-x display-flex align-middle breadcrumb margin-vertical-1">
+        <div>
+            <a href="/" class="section">Home</a>
+        </div>
+        <div class="divider display-flex align-middle">
+            <img src="/assets/shop/img/bread_crumb_divider.png">
+        </div>
+        <div class="active section">Find Your Installer</div>
+    </div>
+    {#Installers for twig#}
+    <div id="installer">
+        <div class="header grid-x align-middle">
+            <div class="cell shrink">
+                <h4 class="text-uppercase">
+                    FIND YOUR INSTALLER
+                </h4>
+            </div>
+            <div class="cell large-auto">
+                <span class="divider"></span>
+            </div>
+        </div>
+        <div class="filters">
+            <div class="mc-field-group ui action bt-input">              
+                <i class="bt-icon bt-search" :class="{
+                        {#'space': showRemoveButton == true,#}
+                    }" @click="filtered"></i>
+                <input type="textbox" v-model="query" placeholder="Enter a ZIP Code or City & State" id="pac-input"
+                       class="field pristine touched is-danger" :class="{
+                        'space': showRemoveButton == true,
+                    }">
+                <i class="bt-icon bt-remove" :class="{
+                    'space': showRemoveButton == true,
+                }" @click="removeQuery"></i>
+            </div>
+            <div id="filters_container" class="filters_container">
+{% for installer in items %}
+<div id="{{installer.id}}" class="filter twig ">    
+<div class="divider {{installer.type}}"></div>
+    <div class="content">
+        <div class="left">
+            <div class="name" >{{installer.name}}</div>
+            <div class="address" >{{installer.address}}</div>
+            {# <div v-if="installer.latitude">[[installer.type]]</div> #}
+            <a href="{{installer.link}}" rel="noopener noreferrer" target="_blank">{{installer.link}}</a>
+        </div>
+        <div class="divider"></div>
+        <div class="right">
+            {{ installer.type }}
+                                        Authorized
+                                        Installer
+        </div>
+    </div>
+</div>
+{% endfor %}
+                <div class="filter" :class="{'active': installer.active==true}" :id="installer.id" v-for="installer in activeFilters" @click="showMarker(installer)">
+                    <div class="divider" :class="{
+                        'bronze': installer.type=='bronze',
+                        'silver': installer.type=='silver',
+                        'gold': installer.type=='gold',
+                        'platinum': installer.type=='platinum',
+                    }">
+                    </div>
+                    <div class="content">
+                        <div class="left">
+                            <div class="name" v-if="installer.name">[[installer.name]]</div>
+                            <div class="address" v-if="installer.address" v-html="$options.filters.replaceNRToBR(installer.address)"></div>
+                            
+                            <a target="_blank" rel="noopener noreferrer" :href="installer.link">[[installer.link]]</a>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="right">
+                            [[installer.type]]
+                            Authorized
+                            Installer
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="margin-top-0" v-if="!isInstallerOnLocation">
+                <span>No installers found nearby. Please clear your address and search the map manually to find more installers.</span>
+            </div>
+        </div>
+
+        <div id="map" style="height: 500px; width: 900px;"></div>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcbwcK1JrUiApOa_TJAzV_J8f9m9gQ1FU&libraries=geometry,places"
+                ></script>
+
+        {#roadmap displays the default road map view. This is the default map type.#}
+        {#satellite displays Google Earth satellite images.#}
+        {#hybrid displays a mixture of normal and satellite views.#}
+        {#terrain displays a physical map based on terrain information.#}
+    </div>
+{% endblock %}
+
+{#{% block javascripts %}#}
+    {#{% include '@SyliusUi/_javascripts.html.twig' with {#}
+        {#'path' : 'assets/shop/js/VueBlock/installer.js'#}
+    {#} %}#}
+{#{% endblock %}#}

@@ -1,0 +1,12 @@
+AppBundle\Entity\BuyersGuideOption:
+    type: entity
+    table: app_buyers_guide_option
+    repositoryClass: AppBundle\Repository\BuyersGuideOptionRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string

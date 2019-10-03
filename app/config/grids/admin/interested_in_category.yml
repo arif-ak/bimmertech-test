@@ -1,0 +1,26 @@
+sylius_grid:
+  grids:
+    app_interested_in_category:
+      driver:
+        name: doctrine/orm
+        options:
+          class: AppBundle\Entity\TaxonProductRelated
+      fields:
+        category:
+          type: string
+          label: Category
+      filters:
+        category:
+          type: entity
+          label: Category
+          form_options:
+            class: '%app.model.taxon.class%'
+      actions:
+        main:
+          create:
+            type: create
+        item:
+          update:
+            type: update
+          delete:
+            type: delete

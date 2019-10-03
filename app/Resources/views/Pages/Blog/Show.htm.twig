@@ -1,0 +1,128 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+{% block meta_description %}
+    <meta name="description" content="{{ post.metaDescription }}"/>
+    <meta property="og:description" content="{{ post.metaDescription }}"/>
+{% endblock %}    
+{% block meta_keywords %}
+    <meta name="keywords" content="{{ post.metaKeywords }}"/>{% endblock %}
+{% block meta_image %}
+    {% if  post.blogPostImage|length >0 %}
+        <meta property="og:image" content="{{ post.blogPostImage.first.path|imagine_filter('product_570_367') }}"/>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <script>
+        var slug = "{{ post.slug }}";
+    </script>
+    <div class="grid-x display-flex align-middle breadcrumb margin-vertical-1">
+        <div>
+            <a class="section" href="/">Home</a>
+        </div>
+        <div class="divider display-flex align-middle">
+            <img src="/assets/shop/img/bread_crumb_divider.png"/>
+        </div>
+        <div>
+            <a class="section" href="/blog">Blog</a>
+        </div>
+        <div class="divider display-flex align-middle">
+            <img src="/assets/shop/img/bread_crumb_divider.png"/>
+        </div>
+        <div class="active section">
+            {{ post.title|raw }}</div>
+    </div>
+    <div id="blog">
+        {% if post.content is not null %}
+            <div class="title-block">
+                <div class="title" id="title">
+                    <div class="bt-social">
+                        <a @click="shareFB()" id="shareBtnFB">
+                            <span class="bt-facebook2 bt-icon hvr-grow"></span>
+                        </a>
+                        <a @click="shareTvitter()">
+                            <span class="bt-twitter bt-icon hvr-grow"></span>
+                        </a>
+                        <a @click="shareLinkedIn()">
+                            <span class="bt-linkedin2 bt-icon hvr-grow"></span>
+                        </a>
+                        <a @click="sendMail()">
+                            <span class="bt-mail bt-icon hvr-grow"></span>
+                        </a>
+                    </div>
+                    <h1>{{ post.title|e }}</h1>
+
+                </div>
+                <div class="info">
+                    <div class="author">
+                        {{ post.author|e }}
+                    </div>
+                    <div class="date">
+                        {{ post.createdAt|format_date }}
+                    </div>
+                </div>
+            </div>
+            <div class="section-custom">
+                {{ (post.content|postContent())|raw }}
+            </div>
+            {% if relatedPost|length>0 %}
+                <section-min-header class="relatedHeader" inline-template label="RELATED POSTS">
+                    {% include ':GlobalComponents/MinHeader:minHeader.html.twig' %}
+                </section-min-header>
+            {% endif %}
+            <div class="rowList">
+                <div class="posts">
+                    {% if relatedPost|length>0 %}
+                        {% for post in relatedPost %}
+                            {% if loop.index == 1 %}
+                                <a class="post width-2" href="{{ path('app_blog_show', { slug:  post.slug }) }}">
+                                    <div class="item-content">
+                                        {% for image in post.blogPostImage %}
+                                            {% if image.aspectRatio == "2:1" %}
+                                                <img src="/media/image/{{ image.path }}"/>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if post.title %}
+                                            <div class="text">
+                                                <div class="title">
+                                                    {{ post.title }}</div>
+                                                {#<div class="subTitle">{{ post.title }}</div>#}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </a>
+                            {% else %}
+                                <a class="post width-1" href="{{ path('app_blog_show', { slug:  post.slug }) }}">
+                                    <div class="item-content">
+                                        {% for image in post.blogPostImage %}
+                                            {% if image.aspectRatio == "1:1" %}
+                                                <img src="/media/image/{{ image.path }}"/>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if post.title %}
+                                            <div class="text">
+                                                <div class="title">
+                                                    {{ post.title }}</div>
+                                                {#<div class="subTitle">{{ post.title }}</div>#}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <section-reviews buttonname="Send" placeolder="Write a comment" loadmorelabel="Load more comments..."
+                             inline-template tokenname="access_token_blog" :api="reviewsApi" :id="{{ post.id }}"
+                             header="Comments">
+                {% include ':GlobalComponents/Reviews:reviews.html.twig' %}
+            </section-reviews>
+            <section-swiper :recomended="recomended" inline-template>
+                {% include ':GlobalComponents/Swiper:recomended.html.twig' %}
+            </section-swiper>
+        {% endif %}
+    </div>
+{% endblock %}

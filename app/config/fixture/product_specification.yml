@@ -1,0 +1,31 @@
+sylius_fixtures:
+  suites:
+    productSpesification:
+      fixtures:
+        product_specification:
+          options:
+            custom:
+              -
+                code: 123
+                name: "Region1"
+                type: "textarea"
+                storage_type: "text"
+                position: 1
+              -
+                code: 133
+                name: "Region2"
+                type: "textarea"
+                storage_type: "text"
+                position: 1
+              -
+                code: 134
+                name: "Region3"
+                type: "textarea"
+                storage_type: "text"
+                position: 1
+              -
+                code: 2343
+                name: "Region4"
+                type: "textarea"
+                storage_type: "text"
+                position: 1

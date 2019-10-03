@@ -1,0 +1,9 @@
+<div class="ui tab" data-tab="bestseller">
+    <h3 class="ui dividing header">Flag</h3>
+
+    {{ form_row(form.flagName) }}
+    {{ form_row(form.flagColor) }}
+
+    {{ sonata_block_render_event('sylius.admin.product.' ~ action ~ '.tab_bestseller', {'form': form}) }}
+
+</div>

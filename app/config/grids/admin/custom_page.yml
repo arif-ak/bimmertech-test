@@ -1,0 +1,27 @@
+sylius_grid:
+    grids:
+        app_admin_page:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: AppBundle\Entity\Page
+            sorting:
+                title: asc
+            fields:
+                title:
+                    type: string
+                    label: Title
+                    sortable: ~
+                slug:
+                    type: string
+                    label: Slug
+                    sortable: ~
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

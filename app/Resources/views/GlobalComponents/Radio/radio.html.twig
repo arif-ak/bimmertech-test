@@ -1,0 +1,17 @@
+<div class="radio">
+    <span class="text-header">[[label]]</span>
+    <div class="field" v-for="item in items">
+        <div class="ui radio checkbox bt">
+            <label></label>
+            <input @change="changeSelect" type="radio" :value="item.warrantyId" v-model="content" >
+            <div class="cell name">
+                <span class="text">[[item.name]]</span>
+            </div>
+            <span v-if="item.price>0" class="price">+ 
+                    <section-price :value="item.price" inline-template>
+                        {% include ':GlobalComponents/Price:price.html.twig' %}
+                    </section-price>
+            </span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+app:
+  ui:
+    blog_categories: "Blog Category"
+    blog_posts: "Blog post"
+    blog_post_reviews: "Blog review"
+    blog_products: "Blog interested in"
+    buyers_guide_options: "Buyers guide option"
+    colors: " Flag color"
+    contacts: "Contact"
+    contact_titles: "Contact title"
+    custom_pages: "Custom Page"
+    dealers: "Dealer"
+    drop_downs: "Dropdown"
+    general_options: "General Option"
+    help_question: Help Page
+    help_questions: Help Questions
+    homes: "Home"
+    installers: "Installer"
+    pop_up_options: "Pop-up Option"
+    product_properties: "Product Property"
+    slides: "Slide"
+    sliders: "Slider"
+    taxon_product_recommendeds: "Interested In for categories"
+    user_codings: "User Coding"
+    user_editors: "User Editor"
+    user_logistics: "User Logistic"
+    user_marketings: "User Marketing"
+    user_sales: "User Sales"
+    user_supports: "User Support"
+    warehouses: "Warehouse"
+

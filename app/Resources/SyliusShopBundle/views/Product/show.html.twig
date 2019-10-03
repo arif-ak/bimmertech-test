@@ -1,0 +1,242 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block title %}{{ product.name }} {% endblock %}
+{% block meta_description %}
+    <meta name="description" content="{{ product.metaDescription }}"/>{% endblock %}
+{% block meta_keywords %}
+    <meta name="keywords" content="{{ product.metaKeywords }}"/>{% endblock %}
+
+ {% block meta_image %}
+     <meta property="og:image" content="{{ product.images|length }}"/>
+     {% if  product.images|length >0 %}
+         <meta property="og:image" content="{{ product.images.first.path|imagine_filter('product_570_367') }}"/>
+     {% endif %}
+ {% endblock %}
+
+{% block content %}
+    <script>
+        var product_id = {{ product.id }};
+    </script>
+
+    {% set vincheck = app.session.get('vincheck') %}
+    <div id="product-page" class="product-page">
+
+        {# start share with facebook script #}
+        <div id="fb-root"></div>
+        <script>(function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = 'https://connect.facebook.net/uk_UA/sdk.js#xfbml=1&version=v3.1';
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+        {# end share with facebook script #}
+
+        {% include '@SyliusShop/Product/Show/_breadcrumb.html.twig' %}
+        {#<div class="ui hidden divider"></div>#}
+        {% include '@SyliusShop/Product/Show/_header.html.twig' %}
+        <div class="grid-x large-up-2 margin-top-1">
+            <div class="cell">
+                {{ sonata_block_render_event('sylius.shop.product.show.before_images', {'product': product}) }}
+                {% include '@SyliusShop/Product/Show/_images.html.twig' %}
+                {{ sonata_block_render_event('sylius.shop.product.show.after_images', {'product': product}) }}
+            </div>
+            <div class="cell">
+                <div class="grid-x description large-up-2 grid-padding-x">
+                    <div class="cell">
+                        <div class="bt-label margin-bottom-1">
+                            <div>Features</div>
+                            <div class="bt-line"></div>
+                        </div>
+                        <div class="short-description">
+                            {{ (product.shortDescription|popup(popup_options))|raw }}
+                        </div>
+                        {% if product.properties | length >0 %}
+                        <div class="bt-label margin-bottom-1">
+                            <div>Properties</div>
+                            <div class="bt-line"></div>
+                        </div>
+                            <div class="properties margin-bottom-1 grid-x align-justify">
+                                {% for property in product.properties %}
+                                    {% if property.images | length > 0 %}
+                                        <img class="bt-icon bt-popup"
+                                             src="/media/image/{{ property.images.first.path }}">
+                                    {% endif %}
+                                    <div class="customPopup center hidden popup top transition ui">
+                                        <div class="content">
+                                            <h5>{{ property.name }}</h5>
+                                            <span>{{ property.description }}</span>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {#<div class="grid-x align-justify compare">#}
+                            {#<div class="bt-line"></div>#}
+                            {#<button class="bt-button primary basic js-modal-expert">#}
+                                {#<span>Ask a BMW expert</span>#}
+                            {#</button>#}
+                            {#{% if buyers_guide is not empty %}#}
+                                {#<a href="#scrollToBuyers-guide" class="bt-button primary basic">#}
+                                    {#<button class="bt-button basic">#}
+                                        {#<span>Buyer’s guide</span>#}
+                                    {#</button>#}
+                                {#</a>#}
+                            {#{% endif %}#}
+                        {#</div>#}
+                        <div class="grid-x align-justify compare socialIcons">
+                            <div class="bt-line"></div>
+                            <div class="bt-social">
+                                <a v-show="product" @click="sendMail()">
+                                    <span class="bt-mail bt-icon hvr-grow"></span>
+                                </a>
+                                <a @click="shareTvitter()">
+                                    <span class="bt-twitter bt-icon hvr-grow"></span>
+                                </a>
+                                <a id="shareBtnFB" @click="shareFB()">
+                                    <span class="bt-facebook2 bt-icon hvr-grow"></span>
+                                </a>
+
+                            </div>
+                        </div>
+                        <section-ask inline-template>
+                            {% include ':GlobalComponents/ask:ask.html.twig' %}
+                        </section-ask>
+                    </div>
+                    <div class="cell">
+                        <div class="cell">
+                            {% include '@SyliusShop/Product/Show/_inventory.html.twig' %}
+                        </div>
+                    </div>
+                </div>
+                {{ sonata_block_render_event('sylius.shop.product.show.after_add_to_cart', {'product': product}) }}
+                {{ sonata_block_render_event('sylius.shop.product.show.after_product_header', {'product': product}) }}
+                {{ sonata_block_render_event('sylius.shop.product.show.after_reviews', {'product': product}) }}
+                {{ sonata_block_render_event('sylius.shop.product.show.after_price', {'product': product}) }}
+                {{ sonata_block_render_event('sylius.shop.product.show.after_description', {'product': product}) }}
+                {% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty() %}
+                    {% include '@SyliusShop/Product/Show/_variantsPricing.html.twig' with {
+                        'pricing' : sylius_product_variant_prices(product, sylius.channel)
+                    } %}
+                {% endif %}
+                <div class="ui hidden divider"></div>
+            </div>
+        </div>
+        {{ sonata_block_render_event('sylius.shop.product.show.before_tabs', {'product': product}) }}
+        <div class="bt-menu">
+            <div class="grid-x large-10 align-center grid-margin-x text-uppercase">
+                {% if product.Description %}
+                    <a class="cell shrink item" href="#scrollToDescription">Description</a>
+                {% endif %}
+                {% if product.Installer %}
+                    <a class="cell shrink item" href="#scrollToInstallation">Installation</a>
+                {% endif %}
+                {% if buyers_guide is not empty %}
+                    <a class="cell shrink item" href="#scrollToBuyers-guide">buyer's guide</a>
+                {% endif %}
+                {% if product.attributes | length > 0 %}
+                    <a class="cell shrink item" href="#scrollToAttributes">SPECIFICATION</a>
+                {% endif %}
+                <a class="cell shrink item" href="#scrollToReviews">{{ 'sylius.ui.reviews'|trans }}
+                    ({{ product.acceptedReviews|length }})
+                </a>
+                {% if product.interestingProducts|length >0 %}
+                    <a class="cell shrink item" href="#scrollToSection-recommended">RECOMMENDED</a>
+                {% endif %}
+            </div>
+        </div>
+        {# ******************************************************************************************************************************************************* #}
+        {# start section description #}
+        {# ******************************************************************************************************************************************************* #}
+
+        {% include '@SyliusShop/Product/Show/Tabs/_details.html.twig' %}
+        {# ******************************************************************************************************************************************************* #}
+        {# end section description #}
+        {# ******************************************************************************************************************************************************* #}
+        {#******************************************************************************************************************************************* #}
+        {# start section instalaton #}
+        {# ******************************************************************************************************************************************************* #}
+        {{ sonata_block_render_event('sylius.shop.product.show.before_associations', {'product': product}) }}
+
+        {# ******************************************************************************************************************************************************* #}
+        {# end section instalaton #}
+        {# ******************************************************************************************************************************************************* #}
+
+        {# ******************************************************************************************************************************************************* #}
+        {# start section buyers guide #}
+        {# ******************************************************************************************************************************************************* #}
+        {% include 'SyliusShopBundle:Product/Show/Tabs:_buyersGuide.html.twig' %}
+        {# ******************************************************************************************************************************************************* #}
+        {# end section buyers guide #}
+        {# ******************************************************************************************************************************************************* #}
+
+        {# ******************************************************************************************************************************************************* #}
+        {# start section specification #}
+        {# ******************************************************************************************************************************************************* #}
+        {% if product.attributes | length > 0 %}
+            {% include '@SyliusShop/Product/Show/Tabs/_attributes.html.twig' %}
+        {% endif %}
+        {# ******************************************************************************************************************************************************* #}
+        {# end section specification #}
+        {# ******************************************************************************************************************************************************* #}
+        <section-reviews inline-template buttonname="Submit Review" placeolder="Describe your experience in a few words"
+                         loadmorelabel="Load more reviews..." :api="reviewsApi" :id="product_id"
+                         tokenname="access_token_product" header="Reviews">
+            {% include ':GlobalComponents/Reviews:reviews.html.twig' %}
+        </section-reviews>
+        {# ******************************************************************************************************************************************************* #}
+        {# start section interested in #}
+        {# ******************************************************************************************************************************************************* #}
+        <div id="scrollToSection-recommended"></div>
+        <section-swiper :recomended="recomended" inline-template>
+            {% include ':GlobalComponents/Swiper:recomended.html.twig' %}
+        </section-swiper>
+
+        {# ******************************************************************************************************************************************************* #}
+        {# end section interested in #}
+        {# ******************************************************************************************************************************************************* #}
+        {#  {% include '@SyliusShop/Product/Show/_associations.html.twig' %} #}
+
+    </div>
+{% endblock %}
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script type="text/javascript">
+        // Select all links with hashes
+        $('a[href*="#"]')
+        // Remove links that don't actually link to anything
+            .not('[href="#"]')
+            .not('[href="#0"]')
+            .click(function (event) {
+                // On-page links
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    // Figure out element to scroll to
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']'); // Does a scroll target exist?
+                    if (target.length) {
+                        event.preventDefault(); // Only prevent default if animation is actually gonna happen
+                        $('html, body').animate({
+                            scrollTop: target.offset().top - 80
+                        }, 1000, function () {
+                            // Callback after animation
+                            // Must change focus!
+                            var $target = $(target);
+                            $target.focus();
+                            if ($target.is(":focus")) { // Checking if the target was focused
+                                return false;
+                            } else {
+                                $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+                                $target.focus(); // Set focus again
+                            }
+                            ;
+                        });
+                    }
+                }
+            });
+
+    </script>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% form_theme form 'SyliusUiBundle:Form:imagesThemeColumn.html.twig' %}
+<script>
+    var productInstaller = `{{ product.installer|raw }}`;
+</script>
+<div id="installers" class="ui tab" data-tab="installers">
+    <div :class="{'bt-loading': loading}">
+        <h3 class="ui dividing header">Installation</h3>
+        {{ form_row(form.installer) }}
+        {{ sonata_block_render_event('sylius.admin.product.' ~ action ~ '.tab_installers', {'form': form}) }}
+        <tinymce v-model="productInstaller"></tinymce>
+    </div>
+</div>

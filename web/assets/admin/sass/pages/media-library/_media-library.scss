@@ -1,0 +1,153 @@
+@import "components/folders-tree";
+.MediaLibrary {
+    .content {
+        .left {
+            margin-right: 10px;
+            width: calc(20% - 10px);
+            float: left;
+        }
+        .right {
+            width: 80%;
+            float: left;
+        }
+        .header {
+            .field {
+                &.uploadImage {
+                    .button {
+                        margin-bottom: 0;
+                    }
+                }
+                z-index: 100;
+                .ui.selection.dropdown {
+                    min-width: 100px;
+                }
+            }
+            .ui.toggle.checkbox {
+                margin-top: 30px;
+            }
+        }
+        .pagination {
+            float: left;
+        }
+        .media-library-images-container {
+            float: left;
+            .image {
+                position: relative;
+                margin-bottom: 20px;
+                &.selectMode {
+                    .checkbox {
+                        position: absolute;
+                        right: 5%;
+                        top: 4%;
+                        z-index: 100;
+                    }
+                    .dragable {
+                        &.disable {
+                            label.disabledLabel {
+                                display: block;
+                                
+                            }
+                        }
+                    }
+                }
+                .dragable {
+                    height: 100%;
+                    label.disabledLabel {
+                        display: none;
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        z-index: 10;
+                    }
+                }
+                
+            }
+        }
+        &:after {
+            display: block;
+            clear: both;
+            content: "";
+        }
+    }
+}
+.mediaLibraryImageView {
+    .content {
+        img {
+            width: 100%;
+        }
+    }
+}
+.modal.selectMediaLibraryImage {
+    z-index: 65538;
+}
+.media-library-images-container {
+    width: 100%;
+    .image {
+        width: 20%;
+        float: left;
+        padding: 1%;
+        height: 200px;
+        cursor: pointer;
+        .itemContainer {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            background-color: rgb(240, 240, 240);
+            position: relative;
+            &.sortable-chosen {
+                z-index: 0 !important;
+                // &.sortable-ghost {
+                //     display: none !important;
+                // }
+            }
+            .border {
+                overflow: hidden;
+                max-height: 100%;
+                width: 100%;
+                // border: 1px solid $base-gray-color;
+                img {
+                    width: 100%;
+                    margin-bottom: -12px;
+                }
+                .folder {
+                    background-image: url('/images/mediaLibrary/folder.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    height: 100px;
+                    height: 180px;
+                }
+            }
+            .name {
+                position: absolute;
+                bottom: -20px;
+                left: 0;
+                cursor: default;
+            }
+            
+        }
+        &.active {
+            .itemContainer {
+                border: 2px solid $base-blue-color;
+            }
+        }
+        &:hover {
+            .itemContainer {
+                .border.hover {
+                    margin-top: -5px;
+                    margin-bottom: 5px;
+                    transition: 0.2s;
+                    -webkit-box-shadow: -10px 10px 20px 0px $base-gray-color;
+                    -moz-box-shadow: -10px 10px 20px 0px $base-gray-color;
+                    box-shadow: -10px 10px 20px 0px $base-gray-color;
+                }
+            }
+        }
+    }
+    &:after {
+        display: block;
+        clear: both;
+        content: "";
+    }
+}

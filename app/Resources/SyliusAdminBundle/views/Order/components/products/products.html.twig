@@ -1,0 +1,45 @@
+<div :class="{'bt-loading': loading}" class="cell" id="Products">
+    <div class="cell">
+        <div class="cell segment-wrapper">
+            <div class="grid-x header">
+                <div class="cell medium-6">Item</div>
+                <div class="cell medium-2">Warehouse</div>
+                <div class="cell medium-1">Quantity</div>
+                <div class="cell medium-1">Unit price</div>
+                <div class="cell medium-1">Discount</div>
+                <div class="cell medium-1">Total</div>
+            </div>
+            <div class="ui">
+                <div class="grid-x product" v-for="product in productsData.products" v-ret-state:product="product">
+                    <div class="cell medium-6">
+                        <popup-ret-ref :access="access" :value="product"></popup-ret-ref>
+                        <div class="product-image">
+                            <img :alt="product.name" :data-src="product.image" class="ui bordered image" src="" v-img-loader/>
+                        </div>
+                        <div class="content">
+                            <div :title="product.name" class="product-name">[[product.name]]</div>
+                            <div class="drop-down sylius-product-drop-downs header sub" v-d-down="{ product: [product.savePrice,product.drop_down] }"></div>
+                        </div>
+                    </div>
+                    <div class="cell medium-2">[[product.warehouse_name]]</div>
+                    <div class="cell medium-1">[[product.quantity]]</div>
+                    <div class="cell medium-1 new-dollar-sign">[[product.unit_price]]</div>
+                    <div class="cell medium-1">[[product.discount]]</div>
+                    <div class="cell medium-1 new-dollar-sign">[[product.total]]</div>
+                </div>
+                <div class="grid-x subtotal align-right">
+                    <div class="cell medium-1">Subtotal:</div>
+                    <div class="cell medium-1 new-dollar-sign">[[productsData.total]]</div>
+                </div>
+                <div class="grid-x discount align-right">
+                    <div class="cell medium-1">Discount:</div>
+                    <div class="cell medium-1">[[productsData.discount]]</div>
+                </div>
+                <div class="grid-x total align-right">
+                    <div class="cell medium-1">Total Price:</div>
+                    <div class="cell medium-1 new-dollar-sign">[[productsData.total]]</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+sylius_grid:
+  grids:
+    app_admin_blog_post_products:
+      driver:
+        name: doctrine/orm
+        options:
+          class: AppBundle\Entity\BlogPostProduct
+      fields:
+        blogPost:
+          type: string
+          label: Blog Post
+      actions:
+        main:
+          create:
+            type: create
+        item:
+          update:
+            type: update
+          delete:
+            type: delete

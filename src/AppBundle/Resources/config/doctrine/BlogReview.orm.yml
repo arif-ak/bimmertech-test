@@ -1,0 +1,47 @@
+AppBundle\Entity\BlogReview:
+  type: entity
+  table: app_blog_review
+  repositoryClass: AppBundle\Repository\BlogReviewRepository
+  id:
+      id:
+          type: integer
+          generator:
+              strategy: AUTO
+  fields:
+      title:
+          type: string
+          column: title
+          nullable: true
+      rating:
+          type: integer
+          nullable: true
+      comment:
+          type: text
+          nullable: true
+      status:
+          type: string
+          nullable: true
+      createdAt:
+          type: datetime
+          nullable: true
+      updatedAt:
+          type: datetime
+          nullable: true
+
+  manyToOne:
+    reviewSubject:
+      targetEntity: AppBundle\Entity\BlogPost
+      invesedBy: postReviews
+      joinColumn:
+        name: blog_post_id
+        onDelete: CASCADE
+    author:
+      targetEntity: AppBundle\Entity\Customer
+      joinColumn:
+        name: customer_id
+
+  oneToMany:
+    reviewLike:
+      targetEntity: AppBundle\Entity\BlogReviewLike
+      mappedBy: review
+      cascade: [ persist, remove ]

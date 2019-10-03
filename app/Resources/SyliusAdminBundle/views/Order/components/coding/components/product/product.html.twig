@@ -1,0 +1,6 @@
+<div @dblclick="show=true">
+    <span v-if="!show">[[product.coding.status]] </span>
+    <select v-else v-model="selectedStatus" @change="onChange()" required="required" class="ui fluid dropdown">
+        <option v-for="status in statuses" :value="status.value">[[status.value]]</option>
+    </select>
+</div>

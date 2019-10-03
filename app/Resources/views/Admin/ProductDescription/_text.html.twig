@@ -1,0 +1,13 @@
+<div class="ui grid">
+    <div class="one column row">
+        <div class="column">
+            {{ form_start(form) }}
+            {{ form_row(form.type) }}
+            {{ form_row(form.header) }}
+            {{ form_row(form.subHeader) }}
+            {{ form_row(form.description) }}
+            {{ form_end(form, {'render_rest': false}) }}
+            {{ include(':Admin/ProductDescription:_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>

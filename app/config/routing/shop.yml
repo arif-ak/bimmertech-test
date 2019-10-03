@@ -1,0 +1,6 @@
+app_shop_elastic_search:
+  resource: 'shop/shop_elastic_search.yml'
+
+app_shop_product:
+  resource: 'shop/product.yml'
+

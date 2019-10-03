@@ -1,0 +1,15 @@
+AppBundle\Entity\ContactTitle:
+    type: entity
+    table: app_contact_title
+    repositoryClass: AppBundle\Repository\ContactTitleRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+        popup:
+            type: string
+            nullable: true

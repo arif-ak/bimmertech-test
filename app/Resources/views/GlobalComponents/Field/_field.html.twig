@@ -1,0 +1,28 @@
+<div :class="classObj" class="field">
+    <div class="relative">
+        <label :class="{'required': requiredClass}" :for="idField" v-if="label">[[label]]</label>
+        <div :id="idField" class="ui cell selection dropdown" v-if="optionsField">
+            <input  @change="handleInput($event)" type="hidden" v-model="content">
+            <i class="chevron down icon"></i>
+            <div class="default text">[[placeholder]]</div>
+            <div class="menu">
+                <div :data-value="option.val" class="item" v-for="option in optionsField">[[option.label]]</div>
+            </div>
+        </div>
+        <textarea :id="idField" :placeholder="placeholder" @blur="$emit('blur');" @input="handleInput($event)" rows="4" v-else-if="textarea" v-model="content"></textarea>
+        <flat-pickr class="input field" v-else-if="calendar" v-model="content"></flat-pickr>
+        <input 
+        v-validate
+        :data-vv-as="inputPrettyName" 
+        :data-vv-name="inputName" 
+        :disabled="disabled" 
+        :id="idField"         
+        :max="max" 
+        :name="inputName" 
+        :min="min"        
+        :placeholder="placeholder" 
+        :required="required" 
+        :type="inputType" @blur="$emit('blur');" @input="handleInput($event)" v-else v-model="content" >
+<div class="message help is-danger" v-if="errss || errorClass">[[errss]][[(errorClass !='' && errorClass != false) ? errorClass : '']]</div>
+    </div>
+</div>

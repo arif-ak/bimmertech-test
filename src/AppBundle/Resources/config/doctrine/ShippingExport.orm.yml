@@ -1,0 +1,21 @@
+AppBundle\Entity\ShippingExport:
+    type: mappedSuperclass
+    table: bitbag_shipping_export
+
+    oneToOne:
+        shipment:
+            targetEntity: AppBundle\Entity\Shipment
+            joinColumn:
+                name: shipment_id
+                referencedColumnName: id
+                onDelete: CASCADE
+            cascade: ['ALL']
+
+#    manyToOne:
+#        shippingGateway:
+#            targetEntity: AppBundle\Entity\ShippingGateway
+#            joinColumn:
+#                name: shipping_gateway_id
+#                referencedColumnName: id
+#                onDelete: SET NULL
+#            cascade: ['persist']

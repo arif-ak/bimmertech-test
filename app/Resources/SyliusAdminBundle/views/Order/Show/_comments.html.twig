@@ -1,0 +1,12 @@
+{% if order.notes is not empty  %}
+    <div class="cell custumer-comments">
+        <div class="cell">
+            <h4 class="ui top attached header">
+                {{ 'sylius.ui.customer_order_comments'|trans }}
+            </h4>
+            <div class="ui" id="sylius-order-comments">
+                {{ order.notes }}
+            </div>
+        </div>
+    </div>
+{% endif %}

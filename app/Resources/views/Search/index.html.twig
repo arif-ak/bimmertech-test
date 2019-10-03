@@ -1,0 +1,79 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+{% block content %}
+    <script>
+        var searchText = "{{ query }}";
+    </script>
+    <div id="searchPage" :class="{ 'bt-loading': loading }">
+        <div class="grid-x display-flex align-middle breadcrumb margin-vertical-1">
+            <div>
+                <a href="/" class="section">Home</a>
+            </div>
+            <div class="divider display-flex align-middle">
+                <img src="/assets/shop/img/bread_crumb_divider.png"/></div>
+            <div class="active section">Search</div>
+        </div>
+        <transition mode="fade">
+            <div class="not-found" v-if="!loading && (productList.length == 0) && (posts.length == 0)">
+                <h1 class="ui center aligned header">Sorry, we could not find any content for ‘{{ query }}’!</h1>
+                <p class="text-center text">
+                    Here are a few tips...</br>
+                    </br>
+                    Remember to check your spelling.</br>
+                    Try searching one or two words.</br>
+                    Keep your search term simple for a wider search results.</br>
+                </p>
+                <p class="text-center text-assistance"> Need assistance? <a href="{{ path('sylius_shop_contact_request') }}">Contact Us</a></p>
+            </div>
+        </transition>
+        <section-min-header class="product-min-header" inline-template label="Products" v-if="productList.length > 0">
+            {% include ':GlobalComponents/MinHeader:minHeader.html.twig' %}
+        </section-min-header>
+        <section-product-list :value="filteredProductList" inline-template v-if="productList.length > 0">
+            {% include ':GlobalComponents/ProductList:list.html.twig' %}
+        </section-product-list>
+        <transition name="fade">
+            <div class="load-more-container" v-if="!loadMoreProducts && productList.length>8">
+                <span @click="loadMoreProducts=true" class="load-more">Load more products...</span>
+            </div>
+        </transition>
+        <section-min-header class="popst-min-header" inline-template label="Posts" v-if="filteredPosts.length > 0">
+            {% include ':GlobalComponents/MinHeader:minHeader.html.twig' %}
+        </section-min-header>
+        <div class="rowList" v-if="filteredPosts.length > 0">
+            <section-posts-row :posts="posts" :postskey="postsKey" inline-template v-for="(posts, postsKey) in filteredPosts">
+                {% include ':GlobalComponents/postsRow:postsRow.html.twig' %}
+            </section-posts-row>
+        </div>
+        <transition name="fade">
+            <div class="load-more-container" v-if="!loadMorePosts && posts.length > 9">
+                <span @click="loadMorePosts=true" class="load-more">Load more posts...</span>
+            </div>
+        </transition>
+    </div>
+{% endblock %}
+{#<div class="ui stackable grid">#}
+{#<div class="four wide column">#}
+{#</div>#}
+{#<div class="twelve wide column">#}
+{#{% import '@SyliusUi/Macro/messages.html.twig' as messages %}#}
+{#{% import '@SyliusUi/Macro/pagination.html.twig' as pagination %}#}
+{#{% include '@SyliusShop/Product/Index/_pagination.html.twig' %}#}
+{#{% include '@SyliusShop/Product/Index/_sorting.html.twig' %}#}
+{#<div class="ui clearing hidden divider"></div>#}
+{#{{ sonata_block_render_event('sylius.shop.product.index.before_list', {'products':  resources.items}) }}#}
+{#{% if resources.items|length > 0 %}#}
+{#<div class="ui three column stackable grid" id="products">#}
+{#{% for product in resources.items %}#}
+{#<div class="column">#}
+{#{% include '@SyliusShop/Product/_box.html.twig' %}#}
+{#</div>#}
+{#{% endfor %}#}
+{#</div>#}
+{#<div class="ui hidden divider"></div>#}
+{#{{ sonata_block_render_event('sylius.shop.product.index.before_pagination', {'products': resources.items}) }}#}
+{#{{ pagination.simple(resources.items) }}#}
+{#{% else %}#}
+{#{{ messages.info('sylius.ui.no_results_to_display') }}#}
+{#{% endif %}#}
+{#</div>#}
+{#</div>#}

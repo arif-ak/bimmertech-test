@@ -1,0 +1,24 @@
+
+<h1>Сoding board</h1>
+
+<table class="ui celled compact small table fixed">
+    <thead>
+    <tr>
+        <th class="six wide sylius-table-column-item">{{ 'sylius.ui.order_item_product'|trans }}</th>
+        <th class="center aligned sylius-table-column-quantity">{{ 'Quantity'}}</th>
+        <th class="center aligned sylius-table-column-subtotal">{{ 'Status' }}</th>
+        <th class="center aligned sylius-table-column-subtotal">Actions</th>
+
+    </thead>
+    <tbody>
+    <section-product :radio="radio" :vin="warehouse.vin" :p="p" :product="product" v-for="(product, p) in warehouse.products" inline-template>
+        {% include '@SyliusAdmin/Order/components/logistic/components/warehouse/components/product/product.html.twig' %}
+    </section-product>
+    <section-product :radio="radio" :vin="warehouse.vin" :p="p" :product="product" v-for="(product, p) in warehouse.products" inline-template>
+        {% include '@SyliusAdmin/Order/components/logistic/components/warehouse/components/product/product.html.twig' %}
+    </section-product>
+    {% for item in order.items %}
+        {% include ':Order/Coding:_ithem.html.twig' %}
+    {% endfor %}
+    </tbody>
+</table>

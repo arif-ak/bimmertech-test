@@ -1,0 +1,30 @@
+<div class="block">
+    <div class="header"></div>
+    <div class="field">
+        <section-field type="text" label="Header" v-model="content.header" inline-template>
+            {% include ':GlobalComponents/Field:_field.html.twig' %}
+        </section-field>
+        <section-field type="text" label="Sub Header" v-model="content.subHeader" inline-template>
+            {% include ':GlobalComponents/Field:_field.html.twig' %}
+        </section-field>
+        <section-field type="text" label="Video" v-model="content.video" inline-template>
+            {% include ':GlobalComponents/Field:_field.html.twig' %}
+        </section-field>
+        <section-field :select="true" label="Position" placeholder="Position" :options="positions" v-model="content.position" inline-template>
+            {% include ':GlobalComponents/Field:_field.html.twig' %}
+        </section-field>
+    </div>
+    <div class="image-or-video">
+        <div class="buttons">
+            <div>Image</div>
+            <div>Video</div>
+        </div>
+        
+        <section-media aspect-ratio="custom" @change="$emit('change')" label="Image" once v-model="content.image" inline-template>
+            {% include '@SyliusAdmin/GlobalComponents/media/media.html.twig' %}
+        </section-media>
+    </div>
+    {# <vue-editor v-model="content.description"></vue-editor> #}
+    <tinymce v-model="content.description"></tinymce>
+    <div @click="deleteBlock()" class="delete ui red labeled icon button"><i class="trash icon"></i>Delete</div>
+</div>

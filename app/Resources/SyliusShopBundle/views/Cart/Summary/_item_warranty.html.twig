@@ -1,0 +1,50 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+{% set product = item.product %}
+{% set product_variant = item.variant %}
+{# <div class="grid-x"> #}
+<div class="ui form margin-top-1">
+    <div class="grouped fields">
+        <span class="text-header">Secure Your Protection Plan</span>
+        {% for key, warranty in warrantyMapping[item.parent.product.id] %}
+            <div class="field">
+                <div class="ui radio checkbox bt">
+                    <label></label>
+                    {% if key == 0 %}
+                        <input type="radio" name="{{ item.id }}" tabindex="{{ key }}" checked="checked">
+                            {% else %}
+                            <input type="radio" name="{{ item.id }}" tabindex="{{ key }}">
+                            {% endif %}
+                            <div class="cell name">
+                                <span class="text">
+                                    {{ warranty.name }}</span>
+                            </div>
+                            <span class="price">
+                                +
+                                <span class="dollar-sign">&#36;</span>
+                                {{- (warranty.price.price/100)|number_format(2, '.',' ') -}}</span>
+                            {#  <span class="checkmark"></span> #}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {# <label class="item cell" data-value="{{ item.id }}" data-price="{{- (warranty.price.price/100)|number_format(2, '.',' ') -}}" data-text="{{ warranty.name }}">
+                        
+                            <input type="radio" name="{{ warranty.name }}" value=" {{ item.id }}" required="required" data-option="{{ warranty.name }}" class="ui test checkbox">
+                            <span class="checkmark"></span>
+                        </label> #}
+        {#<div>#}
+        {#{% for warranty in warrantyMapping[item.parent.product.id] %}#}
+        {#<p>#}
+        {#<input type="radio" name="{{ warranty.name }}" value=" {{ item.id }}">{{ warranty.name }} +#}
+        {#${{- (warranty.price.price/100)|number_format(2, '.',' ') -}}#}
+        {#</p>#}
+        {#{{ item.id }}#}
+        {#{% if item.product.id == warranty.base_id %}#}
+        {#checked#}
+        {#{% endif %}#}
+        {#<div>{{ warranty.name }}11</div>#}
+        {#<div>{{ warranty.price }}</div>#}
+        {#<div>{{ warranty.id }}</div>#}
+        {#{% endfor %}#}
+        {#</div>#}

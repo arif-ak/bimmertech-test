@@ -1,0 +1,40 @@
+#Sitemap {
+    .min-header {
+        margin-top: 40px;
+    }
+    >.list {
+        a {
+            color: $base-blue-color;
+        }
+        >.item {
+            margin-left: 10px;
+            &::before {
+                display: none;
+            }
+        }
+        h5,
+        h5>a {
+            font-size: 21px;
+            font-weight: 500;
+        }
+        .item {
+            font-size: 15px;
+            .title {
+                font-weight: 500;
+            }
+            .list.hyphen {
+                .item {
+                    &::before {
+                        display: block;
+                        content: '';
+                        width: 8px;
+                        height: 2px;
+                        background: $base-blue-color;
+                        top: 42%;
+                        margin-left: -15px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+.swiper-slide {
+  .bt-card {
+    .image {
+      max-height: 220px;
+    }
+  }
+}
+#taxons {
+  margin: 30px auto;
+  .flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .custom-button {
+      min-width: 250px;
+    }
+  }
+  .seo-text {
+    font-size: 15px;
+    margin-top: 40px;
+    p {
+      line-height: 1.4;
+    }
+  }
+}
+

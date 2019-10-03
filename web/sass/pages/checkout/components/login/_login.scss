@@ -1,0 +1,203 @@
+.block-email {
+    .bt-letter-check {
+        @include bt-icon-size(38px, 34px);
+    }
+
+    .input-wrapper {
+        position: relative;
+
+        &::before,
+        &::after {
+            content: ' ';
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: 12px;
+            transform: translateY(-50%);
+            visibility: hidden;
+            @extend .bt-icon;
+            transition: all .3s ease;
+        }
+
+        // &::after {
+        //     @extend .bt-error;
+        // }
+        &.valid {
+            &::before {
+                visibility: visible;
+                background-color: $base-green-color;
+                @extend .bt-valid;
+            }
+        }
+
+        &.error {
+            border: 1px solid $base-red-color !important;
+            border-radius: 20px;
+
+            input[type="email"] {
+                border: none;
+            }
+
+            &.confirm::before {
+                visibility: visible;
+                background-color: $base-red-color;
+                @extend .bt-not-valid;
+            }
+
+            // &::after {
+            //     visibility: visible;
+            //     background-color: $base-red-color;
+            // }
+        }
+    }
+
+    &-header {
+        font-size: 21px;
+        font-weight: 500;
+        line-height: 26px;
+        margin-bottom: 23px;
+        position: relative;
+        height: 35px;
+
+        >div {
+            position: absolute;
+
+            &.bt-confirmation {
+                left: calc(50% - 25px);
+            }
+        }
+    }
+
+    &.emails-match {
+        &-error {
+            .input[type="email"] {
+                color: $base-red-color;
+                border-color: $base-red-color;
+                box-shadow: 0px 6px 11px 1px hsla(0, 75%, 44%, 0.16);
+            }
+        }
+    }
+
+    .message {
+        font-size: 12px;
+        margin-top: 10px;
+        margin-left: 17px;
+
+        .error {
+            color: $base-red-color;
+        }
+
+        .blue {
+            color: $base-blue-color;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    }
+
+    #sylius-api-login {
+        .required.field {
+            label {
+                position: relative;
+
+                span {
+                    position: absolute;
+
+                    &.success-message {
+                        font-weight: 500;
+                    }
+                }
+
+                &::after {
+                    visibility: hidden;
+                }
+            }
+
+            >.success-message {
+
+                font-weight: 500;
+                font-size: 12px;
+                color: $base-green-color;
+                margin-top: 10px;
+                margin-left: 17px;
+            }
+        }
+
+
+
+    }
+}
+
+.block-email+.inactive {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    &::before {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        background: rgba(254, 254, 254, 0.8);
+        width: 105%;
+        height: 100%;
+        z-index: 100;
+    }
+}
+
+.fadeTop-enter-active {
+    animation: fadeTop-in .3s reverse;
+}
+
+.fadeTop-leave-active {
+    animation: fadeTop-in .3s;
+}
+
+@keyframes fadeTop-in {
+    0% {
+        margin-top: 0px;
+        margin-bottom: 1em;
+        opacity: 1;
+    }
+
+    100% {
+        margin-top: -40px;
+        margin-bottom: -1em;
+        opacity: 0;
+    }
+}
+
+.fadeRight-enter-active {
+    animation: fadeRight-in .3s;
+}
+
+.fadeRight-leave-active {
+    animation: fadeRight-out .3s;
+}
+
+@keyframes fadeRight-in {
+    0% {
+        margin-left: -40px;
+        margin-right: 0px;
+        opacity: 0;
+    }
+
+    100% {
+        margin-left: 0px;
+        margin-right: -40px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeRight-out {
+    0% {
+        margin-left: 0px;
+        margin-right: 40px;
+        opacity: 1;
+    }
+
+    100% {
+        margin-left: 40px;
+        margin-right: 0px;
+        opacity: 0;
+    }
+}

@@ -1,0 +1,34 @@
+{#<i class="close icon"></i>#}
+{#<div class="header">#}
+    {#Add description#}
+{#</div>#}
+
+{#<div class="image content">#}
+
+    {#<div class="ui medium image">#}
+
+    {#</div>#}
+    {#<div class="description">#}
+
+    {#</div>#}
+{#</div>#}
+{#<div class="actions">#}
+    {#<div class="ui black deny button">#}
+        {#Nope#}
+    {#</div>#}
+    {#<div class="ui positive right labeled icon button">#}
+        {#Yep, that's me#}
+        {#<i class="checkmark icon"></i>#}
+    {#</div>#}
+{#</div>#}
+
+
+{{ form_start(addForm, {'action': path('app_product_description_add',{'product': product.id } ), 'method': 'POST' }) }}
+    {{ form_row(addForm.images) }}
+    {{ form_row(addForm.type) }}
+    {{ form_row(addForm.header) }}
+    {{ form_row(addForm.subHeader) }}
+    {{ form_row(addForm.description) }}
+<button type="submit" value="save"></button>
+{{ form_end(addForm) }}
+

@@ -1,0 +1,11 @@
+{% block subject %}
+    New blog comment on {{ data.blog.Title }}
+{% endblock %}
+
+{% block body %}
+
+    <p>A comment has been left by {{ data.user.Customer.FullName }}
+        ({{data.user.Customer.Email }}) at {{ app.request.getSchemeAndHttpHost() }}{{ path( 'app_blog_show',{ slug:data.blog.Slug }) }}.
+    </p>
+
+{% endblock %}

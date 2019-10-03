@@ -1,0 +1,41 @@
+<div class="cell">
+    <div class="ui top attached header">[[warehouse.name]]</div>
+    <div class="ui">
+        <div class="grid-x" :class="{'display-none': !warehouse.order_item_units.length>0 && !warehouse.products}">
+            <section-product :product="product" :access="warehouse.logistic_board_access" :key="product.id" :vin="warehouse.vin" inline-template v-for="product in warehouse.products">
+                {% include 'SyliusAdminBundle:Order/components/logistic/components/warehouse/components/product:product.html.twig' %}
+            </section-product>
+            <div class="bottom_buttons">
+                <div :class="{'disabled': !warehouse.order_item_units.length>0 || !warehouse.logistic_board_access}" @click="shipment(warehouse.order_item_units, true)" class="ui mini green button" tabindex="0">
+                    <div class="visible content">Prepare label</div>
+                </div>
+                <div :class="{'disabled': !warehouse.shipments.length>0 || !warehouse.logistic_board_access}" @click="editTrackingNumber(warehouse.shipments)" class="ui mini yellow button" tabindex="0">
+                    <div class="visible content">Edit</div>
+                </div>
+                <div :class="{'disabled': !warehouse.order_item_units.length>0 || !warehouse.logistic_board_access}" @click="changeWarehouse(warehouse.order_item_units)" class="ui mini yellow button" tabindex="0">
+                    <div class="visible content">Change warehouse</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x" v-if="!!warehouse.product_usb_coding">
+            <h5 class="product-usb-header">
+                USB Coding
+            </h5>
+            <section-product-usb-coding :product="product" :access="access" inline-template v-for="product in warehouse.product_usb_coding">
+                {% include '@SyliusAdmin/Order/components/logistic/components/warehouse/components/productUsb/productUsb.html.twig' %}
+            </section-product-usb-coding>
+            <div class="bottom_buttons">
+                <div :class="{'disabled':!warehouse.order_item_usb_coding_free.length>0 || !warehouse.usb_coding_board_access}" @click="sendViaEmail(warehouse.order_item_usb_coding_free)" class="ui mini green button" tabindex="0">
+                    <div class="visible content">Send via email</div>
+                </div>
+                <div :class="{'disabled': !warehouse.order_item_usb_coding_sent.length>0 || !warehouse.usb_coding_board_access}" @click="sendViaEmail(warehouse.order_item_usb_coding_sent, true)" class="ui mini yellow button" tabindex="0">
+                    <div class="visible content">Edit</div>
+                </div>
+                <div :class="{'disabled':!warehouse.order_item_usb_coding_free.length>0 || !warehouse.usb_coding_board_access}" @click="changeWarehouse(warehouse.order_item_usb_coding_free, true)" class="ui mini yellow button" tabindex="0">
+                    <div class="visible content">Change warehouse</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

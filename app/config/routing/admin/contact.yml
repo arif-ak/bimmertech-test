@@ -1,0 +1,15 @@
+app_admin_contact:
+    resource: |
+        alias: app.contact
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        form: AppBundle\Form\Type\ContactType
+        redirect: index
+        grid: app_admin_contact
+        vars:
+            all:
+                header: Contact
+                subheader: Manage contact
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

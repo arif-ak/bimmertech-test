@@ -1,0 +1,175 @@
+AppBundle\Entity\Product:
+  type: entity
+  table: sylius_product
+  oneToMany:
+    variants:
+      targetEntity: AppBundle\Entity\ProductVariant
+      mappedBy: product
+      cascade: [ persist ]
+    buyersOption:
+      targetEntity: AppBundle\Entity\BuyersGuideProductOption
+      mappedBy: product
+      cascade: [ persist , remove ]
+      orphanRemoval: true
+    buyersRelated:
+      targetEntity: AppBundle\Entity\BuyersGuideProductRelated
+      mappedBy: currentProduct
+      cascade: [persist , remove]
+      orphanRemoval: true
+    buyersImage:
+      targetEntity: AppBundle\Entity\BuyersGuideImage
+      mappedBy: product
+      cascade: [persist , remove]
+      orphanRemoval: true
+    productDescriptions:
+      targetEntity: AppBundle\Entity\ProductDescription
+      mappedBy: product
+      cascade: [persist, remove]
+      orphanRemoval: true
+    productInstallers:
+      targetEntity: AppBundle\Entity\ProductInstaller
+      mappedBy: product
+      cascade: [persist, remove]
+      orphanRemoval: true
+#    blogPostProduct:
+#      targetEntity: AppBundle\Entity\BlogPostProduct
+#      mappedBy: products
+#      cascade: [persist, remove]
+#      orphanRemoval: true
+    productCarModel:
+      targetEntity: AppBundle\Entity\ProductCarModel
+      mappedBy: product
+      cascade: [persist, remove]
+      onDelete: SET NULL
+      orphanRemoval: true
+    slides:
+      targetEntity: AppBundle\Entity\Slide
+      mappedBy: product
+      cascade: [persist, remove]
+
+  oneToOne:
+    savePrice:
+      targetEntity: AppBundle\Entity\SavePrice
+      mappedBy: product
+      orphanRemoval: true
+      cascade:
+      - all
+
+  manyToMany:
+    options:
+      targetEntity: Sylius\Component\Product\Model\ProductOptionInterface
+      joinTable:
+        name: sylius_product_options
+        joinColumns:
+          product_id:
+            referencedColumnName: id
+            nullable: false
+            unique: false
+            onDelete: CASCADE
+        inverseJoinColumns:
+          option_id:
+            referencedColumnName: id
+            nullable: false
+            unique: false
+            onDelete: CASCADE
+
+    blogPostProduct:
+      targetEntity: AppBundle\Entity\BlogPostProduct
+      mappedBy: products
+
+    interestingProducts:
+      targetEntity: AppBundle\Entity\Product
+      joinTable:
+        name: app_interesting_products
+        joinColumns:
+          parent_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          interested_id:
+            referencedColumnName: id
+
+    productDropDowns:
+      targetEntity: AppBundle\Entity\DropDown
+      joinTable:
+        name: product_drop_down
+        joinColumns:
+          product_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          drop_down_id:
+            referencedColumnName: id
+            onDelete: "CASCADE"
+
+    productPopupOption:
+      targetEntity: AppBundle\Entity\PopupOption
+      joinTable:
+        name: product_popup_option
+        joinColumns:
+          product_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          popup_option_id:
+            referencedColumnName: id
+            onDelete: "CASCADE"
+
+
+    properties:
+      targetEntity: AppBundle\Entity\ProductProperty
+      joinTable:
+        name: app_products_properties
+        joinColumns:
+          product_id:
+            referencedColumnName: id
+            onDelete: CASCADE
+        inverseJoinColumns:
+          property_id:
+            onDelete: CASCADE
+            cascade: ['persist' , 'remove']
+            referencedColumnName: id
+
+  manyToOne:
+    flagColor:
+      targetEntity: AppBundle\Entity\Color
+      inversedBy: Product
+
+  fields:
+    taxonDescription:
+      type: text
+      column: taxon_decription
+      nullable: true
+    recomended:
+      type: boolean
+    buyersFooterContent:
+      type: text
+      column: buyers_footer_content
+      nullable: true
+    buyersHeaderContent:
+      type: text
+      column: buyers_header_content
+      nullable: true
+    addonInformation:
+      type: text
+      column: addon_information
+      nullable: true
+    type:
+      type: text
+      nullable: true
+    description:
+      type: text
+      nullable: true
+    installer:
+      type: text
+      nullable: true
+    flagName:
+      type: string
+      nullable: true
+
+  associationOverrides:
+    mainTaxon:
+      targetEntity: AppBundle\Entity\Taxon
+      inversedBy: products
+      joinColumn:
+        name: main_taxon_id
+        referencedColumnName: id
+        nullable: true
+

@@ -1,0 +1,23 @@
+[26-Nov-2018 17:25:00 UTC] PHP Warning:  require(/home/shoptest/public_html/bin/../vendor/autoload.php): failed to open stream: No such file or directory in /home/shoptest/public_html/bin/console on line 16
+[26-Nov-2018 17:25:00 UTC] PHP Fatal error:  require(): Failed opening required '/home/shoptest/public_html/bin/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php71/root/usr/share/pear') in /home/shoptest/public_html/bin/console on line 16
+[26-Nov-2018 17:25:36 UTC] PHP Warning:  require(/home/shoptest/public_html/bin/../vendor/autoload.php): failed to open stream: No such file or directory in /home/shoptest/public_html/bin/console on line 16
+[26-Nov-2018 17:25:36 UTC] PHP Fatal error:  require(): Failed opening required '/home/shoptest/public_html/bin/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php71/root/usr/share/pear') in /home/shoptest/public_html/bin/console on line 16
+[26-Nov-2018 17:26:28 UTC] PHP Warning:  require(/home/shoptest/public_html/bin/../vendor/autoload.php): failed to open stream: No such file or directory in /home/shoptest/public_html/bin/console on line 16
+[26-Nov-2018 17:26:28 UTC] PHP Fatal error:  require(): Failed opening required '/home/shoptest/public_html/bin/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php71/root/usr/share/pear') in /home/shoptest/public_html/bin/console on line 16
+[22-Jan-2019 13:24:43 UTC] PHP Fatal error:  Uncaught Symfony\Component\Debug\Exception\ClassNotFoundException: Attempted to load class "Application" from namespace "JMS\JobQueueBundle\Console".
+Did you forget a "use" statement for e.g. "PhpSpec\Console\Application", "Behat\Testwork\Cli\Application", "Symfony\Component\Console\Application" or "Symfony\Bundle\FrameworkBundle\Console\Application"? in /home/shoptest/public_html/bin/console:28
+Stack trace:
+#0 {main}
+  thrown in /home/shoptest/public_html/bin/console on line 28
+[22-Jan-2019 13:26:24 UTC] PHP Fatal error:  Uncaught Symfony\Component\Debug\Exception\ClassNotFoundException: Attempted to load class "JMSJobQueueBundle" from namespace "JMS\JobQueueBundle".
+Did you forget a "use" statement for another namespace? in /home/shoptest/public_html/app/AppKernel.php:46
+Stack trace:
+#0 /home/shoptest/public_html/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php(488): AppKernel->registerBundles()
+#1 /home/shoptest/public_html/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php(132): Symfony\Component\HttpKernel\Kernel->initializeBundles()
+#2 /home/shoptest/public_html/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Console/Application.php(64): Symfony\Component\HttpKernel\Kernel->boot()
+#3 /home/shoptest/public_html/vendor/symfony/symfony/src/Symfony/Component/Console/Application.php(148): Symfony\Bundle\FrameworkBundle\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 /home/shoptest/public_html/bin in /home/shoptest/public_html/app/AppKernel.php on line 46
+[13-May-2019 19:49:31 UTC] PHP Fatal error:  Uncaught Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException: The service "app.command.send_email_command" has a dependency on a non-existent parameter "host". Did you mean one of these: "database_host", "mailer_host", "elastic_host", "doctrine_cache.couchbase.hostnames", "doctrine_cache.memcache.host", "doctrine_cache.memcached.host", "doctrine_cache.predis.host", "doctrine_cache.redis.host", "doctrine_cache.riak.host", "doctrine.orm.cache.memcache_host", "doctrine.orm.cache.memcached_host", "doctrine.orm.cache.redis_host", "kernel.trusted_hosts", "router.request_context.host", "swiftmailer.mailer.default.transport.smtp.host"? in /home/shoptest/public_html/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/ParameterBag/ParameterBag.php:102
+Stack trace:
+#0 /home/shoptest/public_html/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/ParameterBag/EnvPlaceholderParameterBag.php(57): Symfony\Component\DependencyInjection\ParameterBag\ParameterBag->get('host')
+#1 in /home/shoptest/public_html/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/ParameterBag/ParameterBag.php on line 102

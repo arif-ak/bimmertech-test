@@ -1,0 +1,96 @@
+.checkout-steps {
+    .divider {
+        width: calc(100% - 15px);
+        background-color: rgb(28, 163, 194);
+        height: 4px;
+        display: flex;
+        margin-left: 15px;
+    }
+    .bt-section-name {
+        padding-left: 0;
+        display: block;
+        &::after {
+            display: block;
+            clear: both;
+            content: '';
+        }
+        &::before {
+            display: none;
+        }
+    }
+    .ui {
+        &.bt-steps {
+            padding-top: 15px;
+            border: none;
+            .silverDivider {
+                float: left;
+                width: 80px;
+                height: 1px;
+                background-color: $disable-color;
+                margin-top: 15px;
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            .step {
+                border: none;
+                float: left;
+                padding: 0;
+                &::after,
+                &.active::after {
+                    display: none;
+                }
+                &.active.step:hover {
+                    background: none;
+                }
+                &:first-child {
+                    .title {
+                        &::after {
+                            position: relative;
+                        }
+                    }
+                }
+                .title {
+                    text-transform: uppercase;
+                    line-height: 2rem;
+                    font-weight: bold;
+                    font-family: $body-font-family;
+                    font-size: 28px;
+                    // &::after {
+                    //     content: '';
+                    //     display: inline;
+                    //     position: absolute;
+                    //     width: 45%;
+                    //     height: 1px;
+                    //     background-color: $disable-color;
+                    //     border-width: 1px;
+                    //     -webkit-transform: none;
+                    //     transform: none;
+                    //     top: 50%;
+                    //     right: 75%;
+                    // }
+                }
+                .addressStep {
+                    .title {
+                        &::after {
+                            right: 80%;
+                        }
+                    }
+                }
+                &.active {
+                    background: none;
+                    .title {
+                        color: $base-black-color;
+                        &::after {
+                            background-color: $base-blue-color;
+                        }
+                    }
+                }
+                &.completed {
+                    .title {
+                        color: rgba(40,40,40,.3);
+                    }
+                }
+            }
+        }
+    }
+}

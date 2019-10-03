@@ -1,0 +1,19 @@
+<div class="ui mini modal deleteAccount">
+    <div class="header">
+        Delete Your Account
+    </div>
+    <div class="content">
+        <p>Are you sure you want to delete your account
+        </p>
+    </div>
+    <div class="actions">
+        <div class="ui negative button">
+            No
+        </div>
+        <div class="ui positive button form-button">
+            <form class="form" action="{{ path('app_account_deactivate') }}" method="post">
+                <button type="submit" name="deactivate" value="submit">Yes</button>
+            </form>
+        </div>
+    </div>
+</div>

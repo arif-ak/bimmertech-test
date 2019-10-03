@@ -1,0 +1,67 @@
+.min-header {
+    margin-bottom: 30px;
+    .cell.shrink {
+        display: flex;
+        align-items: center;
+        h1 {
+            font-size: 1.75rem;
+            @include respond-to(mobile) {
+                font-size: 1.75rem;
+            }
+            @include respond-to(mobileRotate) {
+                font-size: 1.75rem;
+            }
+            @include respond-to(tablet) {
+                font-size: 1.75rem;
+            }
+            @include respond-to(smallscreen) {
+                font-size: 1.75rem;
+            }
+            @include respond-to(mediumscreen) {
+                font-size: 1.75rem;
+            }
+            @include respond-to(largescreen) {
+                font-size: 1.75rem;
+            }
+        }
+        h1, h4, h6, h3 {
+            float: left;
+            margin-bottom: 0
+        }
+        h1, h4, h3 {
+            font-weight: 500;
+            color: #000;
+            line-height: 23px;
+        }
+        h3 {
+            font-size: 50px;
+            letter-spacing: -2px;
+        }
+        h6 {
+            margin-left: 15px;
+            font-size: 14px;
+            .bold {
+                font-weight: 500;
+            }
+        }
+    }
+
+    .divider {
+        background-color: #1ca3c2;
+        height: 4px;
+        width: calc(100% - 20px);
+        display: flex;
+        margin-left: 20px;
+        box-sizing: border-box;
+        @include respond-to(mobile) {
+            width: 100%;
+            margin-left: 0;
+            margin-top: 10px;
+        }
+        @include respond-to(mobileRotate) {
+            width: 100%;
+            margin-left: 0;
+            margin-top: 10px;
+        }
+    }
+}

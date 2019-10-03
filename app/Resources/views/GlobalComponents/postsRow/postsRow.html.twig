@@ -1,0 +1,34 @@
+<div class="posts">
+    <a v-if="!turnSlider" :href="'/blog/item/'+post.slug" class="post width-1" :class="{
+        'width-2': postskey%2==0 && postKey%3==0 || postskey%2!=0 && postKey%3==2
+    }" v-for="(post, postKey) in posts">
+        <div class="item-content">
+            <img v-if="postskey%2==0 && postKey%3==0 || postskey%2!=0 && postKey%3==2" :alt="post.title" src="" :data-src="post.thumbnail.twoToOne" style="height: 180px;" v-img-loader/>
+            <img v-else src="" :data-src="post.thumbnail.oneToOne" :alt="post.title" style="height: 180px;" v-img-loader/>
+            <div class="text">
+                {# <div class="title">[[post.sub_header]]</div> #}
+                <div class="subTitle">[[post.title]]</div>
+            </div>
+        </div>
+    </a>
+    <section-swiper :posts="posts" v-if="turnSlider && posts.length>0" inline-template>
+        <div class="bt-section-recommended small-12">
+            <div :id="swiperId" class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div v-for="(post, postKey) in posts" class="swiper-slide">
+                        <div class="bt-card">
+                            <a :href="'/blog/item/'+post.slug" class="dimmable image">
+                                <div class="bt-card-shadow">
+                                    <img src="" :data-src="post.thumbnail.oneToOne" style="height: 180px; object-fit: cover; border: none;" :alt="post.title" class="image" v-img-loader/>
+                                </div>
+                                <h5 class="header transition sylius-product-name">[[post.title]]</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-prev arrow-prev"></div>
+                <div class="swiper-button-next arrow-next"></div>
+            </div>
+        </div>
+    </section-swiper>
+</div>

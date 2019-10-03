@@ -1,0 +1,65 @@
+    $mobile: 100px;
+    $mobileRotate: 568px;
+    $tablet: 769px;
+    $small: 1024px;
+    $medium: 1385px;
+    $large: 1680px;
+
+    @mixin respond-to($media) {
+        @if $media==mobile {
+            @media screen and (min-width: $mobile) and (max-width: $mobileRotate - 1) {
+                @content;
+            }
+        }
+        @else if $media==mobileRotate {
+            @media screen and (min-width: $mobileRotate) and (max-width: $tablet - 1) {
+                @content;
+            }
+        }
+        @else if $media==tablet {
+            @media screen and (min-width: $tablet) and (max-width: $small - 1) {
+                @content;
+            }
+        }
+        @else if $media==smallscreen {
+            @media screen and (min-width: $small) and (max-width: $medium - 1) {
+                @content;
+            }
+        }
+        @else if $media==mediumscreen {
+            @media screen and (min-width: $medium) and (max-width: $large - 1) {
+                @content;
+            }
+        }
+        @else if $media==largescreen {
+            @media screen and (min-width: $large) {
+                @content;
+            }
+        }
+    }
+
+    @mixin respond-height-to($min, $max) {
+        @media screen and (min-height: $min + 'px') and (max-height: $max+ 'px') {
+            @content;
+        }
+    }
+    
+    // Icon Size
+    @mixin bt-icon-size($value1, $value2) {
+        width: $value1;
+        height: $value2;
+    }
+
+    @mixin bt-padding($top, $right, $bottom, $left) {
+        padding-top: $top;
+        padding-right: $right;
+        padding-bottom: $bottom;
+        padding-left: $left;
+    }
+
+    @mixin bt-margin($top, $right, $bottom, $left) {
+        margin-top: $top;
+        margin-right: $right;
+        margin-bottom: $bottom;
+        margin-left: $left;
+    }

@@ -1,0 +1,10 @@
+AppBundle\Entity\UserLogistic:
+    type: entity
+    table: sylius_admin_user_logistic
+    manyToOne:
+        warehouse:
+            targetEntity: AppBundle\Entity\Warehouse
+            inversedBy: userLogistic
+            joinColumn:
+                name: warehouse_id
+                referencedColumnName: id

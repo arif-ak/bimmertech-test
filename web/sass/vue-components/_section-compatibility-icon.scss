@@ -1,0 +1,18 @@
+.compatibility-icon {
+    display: inline-block;
+    &.bt-no {
+        background: $icon-red-color;
+    }
+    &.bt-yes {
+        background: $icon-green-color;
+    }
+    &.bt-maybe {
+        background: $icon-blue-color;
+    }
+    &.bt-attention {
+        background: $icon-yellow-color;
+    }
+    &.round {
+        background: black!important;
+    }
+}

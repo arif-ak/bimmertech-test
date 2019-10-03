@@ -1,0 +1,43 @@
+AppBundle\Entity\PageDescription:
+  type: entity
+  table: app_page_description
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    header:
+      type: string
+      nullable: true
+    subHeader:
+        type: string
+        nullable: true
+        column: sub_header
+    content:
+      type: text
+      nullable: true
+    video:
+      type: text
+      nullable: true
+    type:
+        type: string
+
+  manyToOne:
+    page:
+      targetEntity: AppBundle\Entity\Page
+      inversedBy: pageDescriptions
+      joinColumn:
+        name: page_id
+        referencedColumnName: id
+
+  oneToMany:
+      images:
+          targetEntity: AppBundle\Entity\PageDescriptionImage
+          mappedBy: owner
+          orphanRemoval: true
+          cascade:
+            - all
+

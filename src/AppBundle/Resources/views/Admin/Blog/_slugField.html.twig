@@ -1,0 +1,20 @@
+{% macro slugGenerator(form) %}
+    <div class="
+{% if form.slug %}required {% endif %}field
+{% if form.slug.vars.errors|length > 0 %} error{% endif %}
+ ui loadable form">
+        {{ form_label(form.slug) }}
+        {% if form.slug.vars.value == null %}
+            {{ form_widget(form.slug, {'attr': {'data-url': path('api_blog_slug_generator')}}) }}
+        {% else %}
+            <div class="ui action input">
+                {{ form_widget(form.slug, {'attr': {'readonly': 'readonly', 'data-url': path('api_blog_slug_generator')}}) }}
+                <span class="ui icon button toggle-page-slug-modification">
+            <i class="lock icon"></i>
+        </span>
+            </div>
+        {% endif %}
+        {{ form_errors(form.slug) }}
+    </div>
+{% endmacro %}
+toggle-page-slug-modification

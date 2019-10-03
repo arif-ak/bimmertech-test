@@ -1,0 +1,21 @@
+<section-swiper inline-template>
+    <div class="bt-section-recommended small-12">
+        <section-min-header inline-template label="You might be interested in">
+            {% include ':GlobalComponents/MinHeader:minHeader.html.twig' %}
+        </section-min-header>
+        <!-- Swiper -->
+        <div :id="swiperId" class="swiper-container">
+            <div class="swiper-wrapper">
+                {% for product in products %}
+                    <div class="swiper-slide">
+                        {% include ':GlobalComponents/Swiper:item.html.twig' %}
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev arrow-prev"></div>
+            <div class="swiper-button-next arrow-next"></div>
+        </div>
+    </div>
+</section-swiper>
+

@@ -1,0 +1,95 @@
+<div class="ui modal logisticShipmentWarehouse">
+    <i class="close icon"></i>
+    <div class="header">
+        <span>[[header]]</span>
+    </div>
+    {# <div :class="{'bt-loading': loading}"> #}
+
+    <div class="grid-x padding-horizontal-2 margin-vertical-1">
+        <form class="ui loadable form w100">
+            <div :class="{'error': errors.selected_items}" class="ui celled relaxed item-list">
+                <div class="item">
+                    <div class="ui master checkbox">
+                        <input type="checkbox" />
+                        <label>Select all</label>
+                    </div>
+                    <div class="list grid-y">
+                        <div class="item " v-for="item in order_item_units">
+                            <div class="ui child checkbox" v-return :data-returned="item.is_returned">
+                                <input :name="item.product_name" :value="item.id" type="checkbox" v-model="selected_items" />
+                                <label>[[item.product_name]]</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="errorMessageSelect message help is-danger" v-show="errors.selected_items">[[errors.selected_items]]</div>
+        </form>
+    </div>
+    <div class="grid-x padding-horizontal-2 margin-vertical-1">
+        <section-media :error="errors.media" @change="changeImage" @delete="deleteImage" inline-template label="Shipping Images" name="images" required v-model="images">
+            {% include '@SyliusAdmin/GlobalComponents/media/media_custom.html.twig' %}
+        </section-media>
+    </div>
+    <div class="fields ui form padding-horizontal-2 margin-top-2">
+        <template v-if="!isDHL && !isOther">
+            <div class="three fields">
+                <section-field :error="errors.method" :options="filteredShipMethods" :select="true" inline-template label="Shipping method" name="method" placeholder="Method" required v-model.number="method">
+                    {% include ':GlobalComponents/Field:_field.html.twig' %}
+                </section-field>
+            </div>
+        </template>
+        <div class="three fields" v-show="isDHL">
+            <section-field :error="errors.method" :options="filteredShipMethods" :select="true" inline-template label="Shipping method" name="method" placeholder="Method" required v-model.number="method">
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <section-field :error="errors.weight" inline-template label="Weight" max="300" min="0" name="weight" placeholder="0.5" required type="number" v-model="weight">
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <section-field :error="errors.number_of_pieces" inline-template label="Number of pieces" max="99" min="1" name="number_of_pieces" placeholder="1" required type="number" v-model="number_of_pieces">
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+        </div>
+        <div class="three fields" v-show="isOther">
+            <section-field :error="errors.method" :options="filteredShipMethods" :select="true" inline-template label="Shipping method" name="method" placeholder="Method" required v-model.number="method">
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <section-field :error="errors.shippingMethodName" inline-template label="Shipping method name" name="shippingMethodName" required type="text" v-model="shippingMethodName">
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <section-field :error="errors.tracking_number" inline-template label="Tracking number" name="tracking_number" required type="text" v-model="tracking_number">
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+        </div>
+        <div class="three fields" v-show="isDHL">
+            <section-field :error="errors.length" inline-template label="Length" min="0" placeholder="10" required type="number" v-model="length">
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <section-field :error="errors.height" inline-template label="Height" min="0" placeholder="10" required type="number" v-model="height">
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <section-field :error="errors.width" inline-template label="Width" min="0" placeholder="10" required type="number" v-model="width">
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+        </div>
+        <div class="three fields" v-show="isDHL">
+            <section-field :error="errors.insured_amount" inline-template label="Insurance amount" name="insured_amount" placeholder="0.0" required type="text" v-model="insured_amount">
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <section-field :error="errors.tracking_number" disabled="true" inline-template label="Tracking number" type="text" v-model="tracking_number">
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+        </div>
+
+    </div>
+    <div class="actions">
+        <div class="error" v-if="errors.server">[[errors.server]]</div>
+        <div class="success" v-if="success">[[success]]</div>
+        <a :href="documentUrl" class="ui yellow deny modal-button" target="_blank" v-if="documentUrl">Open pdf</a>
+        <input @click="deleteShipment()" class="ui red positive right button margin-right-1" type="submit" v-if="!create" value="Delete" />
+        <div class="ui black deny button modal-button">Back</div>
+        <input @click.prevent="createShipment()" class="ui green approve right modal-button" type="submit" v-if="create && !documentUrl" value="Save" />
+        <input @click="updateShipment()" class="ui green positive approve right modal-button" type="submit" v-if="!create" value="Save" /></div>
+    <div class="serverTwig" v-html="errors.serverTwig" v-if="errors.serverTwig"></div>
+    {# </div> #}
+</div>

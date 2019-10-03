@@ -1,0 +1,27 @@
+{% extends '@SyliusShop/Account/layout.html.twig' %}
+
+{% block breadcrumb %}
+    <div class="ui breadcrumb">
+        <a href="{{ path('sylius_shop_homepage') }}" class="section">{{ 'sylius.ui.home'|trans }}</a>
+        <div class="divider"> /</div>
+        <div class="active section">Delete account</div>
+    </div>
+{% endblock %}
+
+{% block subcontent %}
+    <h1 class="ui dividing header">
+        {{ 'sylius.ui.my_account'|trans }}
+        <div class="sub header">{{ 'sylius.ui.manage_your_personal_information_and_preferences'|trans }}</div>
+    </h1>
+
+    <div class="large-12" id="customer-information">
+        <h3>If you want to delete account, please put button "Delete account"</h3>
+        <button class="ui button" onclick="account_delete()">Delete account</button>
+    </div>
+
+    {% include 'SyliusShopBundle:Account/Delete:_modalDelete.html.twig' %}
+
+{% endblock %}
+
+
+

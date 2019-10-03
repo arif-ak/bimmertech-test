@@ -1,0 +1,25 @@
+AppBundle\Entity\DropDown:
+    type: entity
+    table: app_drop_down
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        code:
+            type: string
+            unique: true
+        name:
+            type: string
+        type:
+            type: string
+            nullable: true
+    oneToMany:
+        dropDownOptions:
+            targetEntity: AppBundle\Entity\DropDownOption
+            mappedBy: dropDown
+            orderBy: { position: 'ASC' }
+            cascade: ['persist' , 'remove']
+            onDelete: "CASCADE"
+            orphanRemoval: true

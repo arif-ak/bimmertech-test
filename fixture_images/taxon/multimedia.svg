@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><svg id="Group_3" data-name="Group 3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 37.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #1ca3c2;
+      }
+    </style>
+  </defs>
+  <path id="Path_189" data-name="Path 189" class="cls-1" d="M47,28.5H1a.789.789,0,0,1-.8-.8V.7A.849.849,0,0,1,1,0H47a.789.789,0,0,1,.8.8v27A.773.773,0,0,1,47,28.5ZM1.8,27H46.3V1.5H1.8Z"/>
+  <path id="Path_190" data-name="Path 190" class="cls-1" d="M20,21.5a.6.6,0,0,1-.4-.1.842.842,0,0,1-.4-.7V8.7a.755.755,0,0,1,.4-.7,1.1,1.1,0,0,1,.8,0l10,6a.822.822,0,0,1,.4.6.622.622,0,0,1-.4.6l-10,6A.373.373,0,0,1,20,21.5Zm.8-11.4v9.4l7.8-4.7Z"/>
+  <rect id="Rectangle_132" data-name="Rectangle 132" class="cls-1" width="30" height="1.5" transform="translate(18 33)"/>
+  <path id="Path_191" data-name="Path 191" class="cls-1" d="M13,37.5a3.8,3.8,0,0,1-3.8-3.8A3.714,3.714,0,0,1,13,30a3.8,3.8,0,0,1,3.8,3.8A3.714,3.714,0,0,1,13,37.5Zm0-6a2.326,2.326,0,0,0-2.3,2.3,2.3,2.3,0,0,0,4.6,0A2.326,2.326,0,0,0,13,31.5Z"/>
+  <rect id="Rectangle_133" data-name="Rectangle 133" class="cls-1" width="8" height="1.5" transform="translate(0 33)"/>
+</svg>

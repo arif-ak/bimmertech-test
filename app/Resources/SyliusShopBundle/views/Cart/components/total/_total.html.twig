@@ -1,0 +1,20 @@
+<div>
+    <div class="item-sub margin-bottom-1">
+        <span>Order subtotal:</span>
+        <section-price :value="subtotal" class="right aligned" id="sylius-cart-grand-subtotal" inline-template>
+            {% include ':GlobalComponents/Price:price.html.twig' %}
+        </section-price>
+    </div>
+    <div class="item">
+        <span>Order total:</span>
+        <section-price :value="total" class="right aligned" id="sylius-cart-grand-total" inline-template v-if="total">
+            {% include ':GlobalComponents/Price:price.html.twig' %}
+        </section-price>
+    </div>
+    <span class="item-shipping">Free worldwide shipping</span>
+    <a href="/checkout/address" class="button">
+        <button class="bt-button primary" id="clearCart" type="submit">
+            <span>Checkout</span>
+        </button>
+    </a>
+</div>

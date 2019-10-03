@@ -1,0 +1,7 @@
+sylius_fixtures:
+    suites:
+        car_model:
+            fixtures:
+                car_model:
+                    options:
+                      load: true

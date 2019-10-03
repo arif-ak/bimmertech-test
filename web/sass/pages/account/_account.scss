@@ -1,0 +1,569 @@
+%tracking {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+}
+
+.change-password {
+    .field {
+        margin-bottom: 10px !important;
+    }
+}
+
+#account {
+    .stackable {
+        .navigation {
+            width: 17%;
+
+            .menu {
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+
+                &::after {
+                    display: none;
+                }
+
+                .item {
+                    display: flex;
+                    align-items: center;
+                    text-transform: uppercase;
+                    padding: 0;
+                    height: 37px;
+                    color: $base-blue-color;
+                    border-radius: 0;
+                    border-top: 1px solid rgba(34, 36, 38, 0.1);
+                    font-size: 14px;
+
+                    &.selected {
+                        color: $base-black-color;
+                        font-weight: 600;
+                    }
+
+                    &:before {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .content {
+            width: 83%;
+
+            @import "components/info";
+
+            #Password,
+            #Close,
+            #Info {
+                width: 70%;
+                margin-left: 60px;
+
+                .ui.form {
+                    border: none;
+                    padding: 20px;
+
+                    .block-header {
+                        margin-left: 20px;
+                    }
+
+                    .field > label {
+                        font-weight: 400;
+                        font-size: 12px;
+                        color: $base-black-color;
+
+                        &.required:after {
+                            color: $base-red-color;
+                        }
+                    }
+                }
+
+                .customButton.button {
+                    width: 280px;
+                    margin: 0 auto;
+                }
+            }
+
+            // @import "components/password";
+            #Password,
+            #Close {
+                .field {
+                    width: 330px;
+                    margin: 0 auto;
+                }
+            }
+
+            #Instruction,
+            #Orders {
+                .returned {
+                    &.item_name,
+                    &.item_count,
+                    &.dropdown,
+                    &.addon {
+                        color: $disable-color !important;
+
+                        &::after {
+                            background: $disable-color !important;
+                        }
+
+                        .tracking, .links a {
+                            color: $disable-color !important;
+                            pointer-events: none !important;
+                        }
+                    }
+                }
+
+                .bt {
+                    &-icons-wrapper {
+                        position: absolute;
+                        width: 30px;
+                        height: 16px;
+                        left: -45px;
+                    }
+
+                    &-returned,
+                    &-refunded {
+                        cursor: pointer;
+                        position: absolute;
+                        width: 17px;
+                        height: 15px;
+                        background-color: gray;
+                    }
+
+                    &-returned {
+                        left: 6px;
+                        top: 0px;
+                        background: $return-icon;
+                    }
+
+                    &-refunded {
+                        background: $refund-icon;
+                        left: 6px;
+                        top: 1px;
+                    }
+                }
+
+                .table {
+                    .table_head {
+                        height: 40px;
+                        margin-bottom: 5px;
+                        text-align: center;
+                        color: $base-black-color;
+                        background: $base-light-gray-color;
+                        display: flex;
+                        align-items: center;
+                        font-size: 12px;
+                        padding-left: 15px;
+                        padding-right: 40px;
+                        font-weight: 500;
+                    }
+
+                    .table_content {
+                        padding: 23px 40px;
+                        border: 1px solid $base-light-gray-color;
+
+                        &.product_list {
+                            > .item {
+                                margin-left: 5%;
+                            }
+                        }
+
+                        > .item {
+                            position: relative;
+
+                            .item_count {
+                                position: absolute;
+                                left: -13px;
+                                font-weight: 500;
+                                font-size: 14px;
+                                top: 0;
+
+                                &.item_count_10 {
+                                    left: -22px;
+                                }
+                            }
+
+                            .item_name {
+                                .name {
+                                    position: relative;
+                                    font-weight: 500;
+                                }
+                            }
+                        }
+                    }
+
+                    &.table_items {
+                        flex: 1 1 100%;
+
+                        .table_head {
+                            > .item {
+                                float: left;
+
+                                &.Item {
+                                    width: calc(56% - 85px);
+                                    text-align: left;
+                                    margin-left: 50px;
+                                }
+                            }
+
+                            .itemsContainer {
+                                display: flex;
+                                justify-content: space-between;
+                                width: 42%;
+
+                                > .item {
+                                    width: 120px;
+                                }
+                            }
+                        }
+
+                        .table_content {
+                            a {
+                                color: $base-blue-color;
+                                line-height: 1.3;
+                            }
+
+                            > .item {
+                                .item_name {
+                                    text-align: left;
+
+                                    .name {
+                                        width: 58%;
+                                        float: left;
+                                    }
+
+                                    .links {
+                                        float: left;
+                                        display: flex;
+                                        justify-content: space-between;
+                                        width: 42%;
+
+                                        > .item {
+                                            width: 120px;
+                                            text-align: center;
+                                        }
+                                    }
+
+                                    .tracking {
+                                        @extend %tracking;
+                                    }
+
+                                    &::after {
+                                        display: block;
+                                        clear: both;
+                                        content: '';
+                                    }
+                                }
+
+                                .dropdowns {
+                                    margin-top: 10px;
+                                    margin-left: 10px;
+                                    color: $base-gray-color;
+
+                                    .dropdown {
+                                        position: relative;
+                                        font-size: 12px;
+                                        line-height: 1.4;
+
+                                        &::after {
+                                            display: block;
+                                            content: '';
+                                            position: absolute;
+                                            top: 50%;
+                                            left: -8px;
+                                            width: 3px;
+                                            height: 3px;
+                                            -webkit-transform: translateY(-50%);
+                                            transform: translateY(-50%);
+                                            border-radius: 50%;
+                                            background: $base-black-color;
+                                        }
+                                    }
+                                }
+
+                                .addons {
+                                    margin-top: 15px;
+
+                                    .bt-label {
+                                        font-size: 12px;
+                                        line-height: 1.2;
+                                        align-items: center;
+                                        margin-bottom: 5px;
+
+                                        .bt-line {
+                                            margin-left: 10px;
+                                        }
+                                    }
+
+                                    .addon {
+                                        position: relative;
+                                        margin-left: 25px;
+                                        line-height: 1.9;
+                                        float: left;
+                                        display: flex;
+                                        justify-content: space-between;
+                                        width: calc(100% - 25px);
+                                        align-items: center;
+
+                                        .name {
+                                            width: 58%;
+                                            float: left;
+                                        }
+
+                                        .links {
+                                            float: left;
+                                            display: flex;
+                                            justify-content: space-between;
+                                            width: 44%;
+
+                                            > .item {
+                                                width: 120px;
+                                                text-align: center;
+                                            }
+                                        }
+
+                                        .tracking {
+                                            @extend %tracking;
+                                        }
+
+                                        &.included {
+                                            color: $base-gray-color;
+
+                                            &::after {
+                                                background: $base-gray-color;
+                                            }
+
+                                            .item {
+                                                &.price {
+                                                    text-align: center;
+                                                }
+                                            }
+                                        }
+
+                                        &::after {
+                                            display: block;
+                                            content: '';
+                                            position: absolute;
+                                            top: 50%;
+                                            left: -8px;
+                                            width: 3px;
+                                            height: 3px;
+                                            -webkit-transform: translateY(-50%);
+                                            transform: translateY(-50%);
+                                            border-radius: 50%;
+                                            background: $base-black-color;
+                                        }
+
+                                        .item {
+                                            &.name {
+                                                width: 62%;
+                                            }
+
+                                            &.price {
+                                                width: 10%;
+                                                text-align: center;
+                                            }
+                                        }
+                                    }
+
+                                    &::after {
+                                        display: block;
+                                        clear: both;
+                                        content: "";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            #Instruction {
+                display: flex;
+                flex-wrap: wrap-reverse;
+
+                a {
+                    &.item {
+                        cursor: initial;
+
+                        &.has-url {
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                .table {
+                    .table_head {
+                        > :first-child {
+                            font-size: 14px;
+                            font-weight: 400;
+                        }
+                    }
+                }
+            }
+
+            #Orders {
+                .table {
+                    .table_head {
+                        margin-bottom: 0;
+                    }
+
+                    .table_head,
+                    .table_content {
+                        padding-left: 30px;
+                        padding-right: 30px;
+
+                        &::after {
+                            display: block;
+                            clear: both;
+                            content: '';
+                        }
+                    }
+
+                    &.table_order_data {
+                        margin-bottom: 5px;
+
+                        .table_head,
+                        .table_content {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            > .item {
+                                text-align: center;
+
+                                &.order_id {
+                                    width: 12%;
+                                }
+
+                                &.date {
+                                    width: 19%;
+                                }
+
+                                &.order_status {
+                                    width: 18%;
+                                }
+
+                                &.payment_status {
+                                    width: 17%;
+
+                                    &.awaiting-payment {
+                                        cursor: pointer;
+                                        color: $base-red-color;
+                                        &:hover {
+                                            text-decoration: underline;
+                                        }
+                                    }
+                                }
+
+                                &.shipping_status {
+                                    width: 24%;
+                                }
+
+                                &.total_amount {
+                                    width: 10%;
+                                }
+                            }
+                        }
+
+                        .table_content {
+                            padding-top: 0;
+                            padding-bottom: 0;
+                            height: 40px;
+                        }
+                    }
+
+                    &.table_items {
+                        margin-bottom: 30px;
+
+                        .table_head {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            > .item {
+                                text-align: center;
+
+                                &.order_id {
+                                    width: 12%;
+                                }
+
+                                &.date {
+                                    width: 19%;
+                                }
+
+                                &.order_status {
+                                    width: 18%;
+                                }
+
+                                &.payment_status {
+                                    width: 17%;
+                                }
+
+                                &.shipping_status {
+                                    width: 24%;
+                                }
+
+                                &.total_amount {
+                                    width: 10%;
+                                }
+                            }
+                        }
+
+                        .table_content {
+                            > .item {
+                                .item_name {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    width: 100%;
+
+                                    > .item {
+                                        &.name {
+                                            width: 27.5%;
+                                        }
+
+                                        &.unit-price {
+                                            width: 19%;
+                                            text-align: center;
+                                        }
+
+                                        &.quantity {
+                                            width: 17%;
+                                            text-align: center;
+                                        }
+
+                                        &.tracking_number {
+                                            width: 26%;
+                                            text-align: center;
+                                        }
+
+                                        &.price {
+                                            width: 10%;
+                                            text-align: center;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .block-header {
+                font-size: 21px;
+                font-weight: 500;
+                line-height: 26px;
+                margin-bottom: 23px;
+                position: relative;
+
+                // height: 35px;
+                span.red {
+                    color: $base-red-color;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}

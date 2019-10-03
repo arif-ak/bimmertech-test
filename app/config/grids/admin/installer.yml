@@ -1,0 +1,26 @@
+sylius_grid:
+    grids:
+        app_installer:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: AppBundle\Entity\Installer
+            fields:
+                name:
+                    type: string
+                    label: Name
+                address:
+                    type: string
+                    label: Address
+                type:
+                    type: string
+                    label: Type
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

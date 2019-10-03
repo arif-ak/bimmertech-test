@@ -1,0 +1,36 @@
+AppBundle\Entity\BuyersGuideProductOption:
+    type: entity
+    table: app_buyers_guide_product_option
+    repositoryClass: AppBundle\Repository\BuyersGuideProductOptionRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        type:
+            type: string
+            nullable: true
+        value:
+            type: string
+            nullable: true
+        position:
+            type: integer
+            nullable: true
+        path:
+            type: string
+            nullable: true
+    manyToOne:
+        option:
+            targetEntity: AppBundle\Entity\BuyersGuideOption
+            inversedBy: buyersOption
+        product:
+            targetEntity: AppBundle\Entity\Product
+            inversedBy: product
+#    oneToMany:
+#        images:
+#            targetEntity: AppBundle\Entity\BuyersGuideImage
+#            mappedBy: owner
+#            orphanRemoval: true
+#            cascade:
+#                - all

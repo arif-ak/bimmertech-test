@@ -1,0 +1,60 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Sylius\Component\Core\Model\Customer as BaseCustomer;
+
+class Customer extends BaseCustomer
+{
+    protected $userSale;
+
+
+
+//    /**
+//     * Set userSale
+//     *
+//     * @param \AppBundle\Entity\UserSale $userSale
+//     *
+//     * @return Customer
+//     */
+//    public function setUserSale(\AppBundle\Entity\UserSale $userSale = null)
+//    {
+//        $this->userSale = $userSale;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get userSale
+//     *
+//     * @return \AppBundle\Entity\UserSale
+//     */
+//    public function getUserSale()
+//    {
+//        return $this->userSale;
+//    }
+//
+//    /**
+//     * Add order
+//     *
+//     * @param \Sylius\Component\Core\Model\Order $order
+//     *
+//     * @return Customer
+//     */
+//    public function addOrder(\Sylius\Component\Core\Model\Order $order)
+//    {
+//        $this->orders[] = $order;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Remove order
+//     *
+//     * @param \Sylius\Component\Core\Model\Order $order
+//     */
+//    public function removeOrder(\Sylius\Component\Core\Model\Order $order)
+//    {
+//        $this->orders->removeElement($order);
+//    }
+}

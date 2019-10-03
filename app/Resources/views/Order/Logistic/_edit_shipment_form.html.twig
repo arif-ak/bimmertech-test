@@ -1,0 +1,42 @@
+{% set item = form.vars.value %}
+
+{#<div class="column"><h4>{{ form_label( form.warehouse) }}</h4>#}
+    {#{{ form_row( form.warehouse, { 'label': false}) }}#}
+{#</div>#}
+
+{% if form.shipMethod is not null %}
+    <div class="column"><h4>{{ form_label( form.shipMethod) }}</h4>
+        {{ form_row( form.shipMethod, { 'label': false}) }}</div>
+{% endif %}
+
+<div class="column"><h4>{{ form_label( form.dhlNumberOfPieces) }}</h4>
+    {{ form_row( form.dhlNumberOfPieces, { 'label': false}) }}</div>
+
+<div class="column"><h4>{{ form_label( form.dhlWeight) }}</h4>
+    {{ form_row( form.dhlWeight, { 'label': false}) }}</div>
+
+<div class="column"><h4>{{ form_label( form.dhlInsuredAmount) }}</h4>
+    {{ form_row( form.dhlInsuredAmount, { 'label': false}) }}</div>
+
+<div class="column"><h4>
+        {{ form_label( form.tracking) }}
+    </h4>
+    <div class="admin_tracking">
+        {#{% if  variant.imageRequired == true and item.images.count<1 %}#}
+        {#{{ form_row( form.tracking, { 'label': false, 'attr':{ 'disabled':true, 'placeholder':'First please add a photo' } }) }}#}
+        {#{% else %}#}
+        {{ form_row( form.tracking, { 'label': false, }) }}
+        {#{% endif %}#}
+        {#{% form_theme form '@SyliusAdmin/Form/imagesTheme2.html.twig' %}#}
+    </div>
+</div>
+
+{#<div class="">#}
+    {#<h4>{{ form_label( form.images) }}</h4>#}
+
+    {#<br>#}
+    {#{{ form_row(form.images, {'label': false}) }}#}
+
+    {#{{ sonata_block_render_event('sylius.admin.product.create.tab_media', {'form': form}) }}#}
+{#</div>#}
+

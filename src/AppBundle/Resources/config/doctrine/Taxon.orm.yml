@@ -1,0 +1,64 @@
+AppBundle\Entity\Taxon:
+  type: entity
+  table: sylius_taxon
+  fields:
+    enabled:
+      type: boolean
+      nullable: true
+    price:
+      type: integer
+      nullable: true
+    productName:
+      type: string
+      nullable: true
+    shortDescription:
+      type: text
+      nullable: true
+    metaTitle:
+      type: string
+      nullable: true
+    metaKeywords:
+      type: string
+      nullable: true
+    metaDescription:
+      type: text
+      nullable: true
+    seoText:
+      type: text
+      nullable: true
+    isContainer:
+      type: boolean
+      column: is_container
+    teaser:
+      type: text
+      nullable: true
+
+  oneToOne:
+    bestseller:
+      targetEntity: AppBundle\Entity\TaxonBestseller
+      mappedBy: taxon
+      cascade:
+      - all
+    productRelated:
+      targetEntity: AppBundle\Entity\TaxonProductRelated
+      mappedBy: category
+
+  oneToMany:
+    products:
+      targetEntity: AppBundle\Entity\Product
+      mappedBy: mainTaxon
+      orphanRemoval: true
+      cascade:
+      - all
+
+  manyToMany:
+    popupOption:
+      targetEntity: AppBundle\Entity\PopupOption
+      joinTable:
+        name: taxon_popup_option
+        joinColumns:
+          taxon_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          popup_option_id:
+            referencedColumnName: id

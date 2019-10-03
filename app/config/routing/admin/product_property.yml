@@ -1,0 +1,14 @@
+app_admin_product_property:
+    resource: |
+      alias: app.product_property
+      section: admin
+      templates: SyliusAdminBundle:Crud
+      grid: app_admin_product_property
+      except: ['show']
+      vars:
+          all:
+              header: Product Property
+              subheader: Manage your Product Property
+          index:
+              icon: 'file image outline'
+    type: sylius.resource

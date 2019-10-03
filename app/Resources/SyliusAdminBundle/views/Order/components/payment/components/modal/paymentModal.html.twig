@@ -1,0 +1,93 @@
+<div class="ui bt modal orderPayment">
+    <i class="close icon"></i>
+    <div class="header">
+        <span>Refund / Return</span>
+    </div>
+    <div class="container">
+        <template>
+            <div class="grid-x">
+                <div class="cell large-auto content ui form">
+                    <div class="header refunded">
+                        <span>Refund product(s)</span>
+                    </div>
+                    <div :class="{'disabled': isEdit}" class="ui celled relaxed item-list">
+                        <div class="item">
+                            <div :class="{'disabled': isEdit}" class="ui master checkbox">
+                                <input :disabled="isEdit" type="checkbox"/>
+                                <label>Select all</label>
+                            </div>
+                            <div class="list grid-y">
+                                <template v-if="isEdit">
+                                    <div class="item" v-for="item in editData.items">
+                                        <div :data-select="item.select" class="ui child checkbox" v-check-ret-ref>
+                                            <input :disabled="isEdit" :name="!!item.product_name ? item.product_name : item.name" :value="item.id" type="checkbox" v-model="selected_items_ref"/>
+                                            <label>[[(!!item.product_name ? item.product_name : item.name)]]</label>
+                                        </div>
+                                    </div>
+                                </template>
+                                <template v-else>
+                                    <div class="item" v-for="item in paymentItems">
+                                        <div :data-balance="item.rest_of_balance" class="ui child checkbox" v-check-ret-ref>
+                                            <input :name="!!item.product_name ? item.product_name : item.name" :value="item.id" type="checkbox" v-model="selected_items_ref"/>
+                                            <label>[[(!!item.product_name ? item.product_name : item.name)]]</label>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cell shrink arrow-btn padding-horizontal-1">
+                    <button @click="fromRefToRetArrow()" class="ui icon mini button green">
+                        <i class="big long arrow alternate right icon"></i>
+                    </button>
+                </div>
+                <div class="cell large-auto content ui form">
+                    <div class="header returned">
+                        <span>Return product(s)</span>
+                    </div>
+                    <div class="ui celled relaxed item-list">
+                        <div class="item">
+                            <div class="ui master checkbox">
+                                <input type="checkbox"/>
+                                <label>Select all</label>
+                            </div>
+                            <div class="list grid-y">
+                                <div class="item" v-for="item in paymentItems">
+                                    <div :data-edit="isEdit" :data-returned="item.is_returned" class="ui child checkbox" v-check-ret-ref>
+                                        <input :name="!!item.product_name ? item.product_name : item.name" :value="item.id" type="checkbox" v-model="selected_items_ret"/>
+                                        <label>[[(!!item.product_name ? item.product_name : item.name)]]</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <div class="margin-vertical-1">
+            <label class="ui">Refund</label>
+            <div class="grid-x align-middle group-refund-inputs">
+                <div :class="{'disabled': (isEdit && percent >= 0 || !isEdit && !selected)}" class="ui input percent">
+                    <input data-vv-as="percent" max="100" min="0" name="percent" step="0.01" type="number" v-model.number.lazy="percent" v-on:input="doReCalc('percent', $event.target.value)" v-validate="'max_value:100'"/>
+                </div>
+                <span>=</span>
+                <div :class="{'disabled': (isEdit && amount >= 0 || !isEdit && !selected)}" class="ui input amount">
+                    <input :max="maxAmountValue" data-vv-as="amount" name="amount" step="0.01" type="number" v-model.number.lazy="amount" v-on:input="doReCalc('amount', $event.target.value)" v-validate="{ max_value: maxAmountValue }"/>
+                </div>
+                <span class="message help is-danger" v-show="errs.has('amount')">[[ errs.first('amount') ]]</span>
+                <span class="message help is-danger" v-show="errs.has('percent')">[[ errs.first('percent') ]]</span>
+            </div>
+        </div>
+        <div class="ui grid-x cell margin-vertical-1 input reason">
+            <label class="ui" for="reason">Reason</label>
+            <input class="cell" data-vv-as="reason" name="reason" placeholder="Reason" type="text" v-model="reason" v-validate="'required|min:3'"/>
+            <span class="message help is-danger" v-show="errs.has('reason')">[[ errs.first('reason') ]]</span>
+        </div>
+    </div>
+    <div class="actions">
+        <span v-show="loading" class="loading-text">Please wait...</span>
+        <div class="ui mini black deny button">Back</div>
+        <input :class="{'disabled':!access.order_refund}" :disabled="saveBtn" @click.prevent="createRefund" class="ui green mini button" type="button" value="Save"/>
+    </div>
+</div>

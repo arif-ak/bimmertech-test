@@ -1,0 +1,48 @@
+{% import '@SyliusUi/Macro/flags.html.twig' as flags %}
+{% set subHeaderStyle = 'grid-x grid-margin-y table align-middle' %}
+{% set cellStyle = 'medium-2' %}
+<div class="ui header cell">
+    <i class="circular cart icon"></i>
+    <div class="content">
+        <h1>
+            {{ 'sylius.ui.order'|trans }}
+            #{{ order.number }}</h1>
+    </div>
+    <div class="sub header">
+        <div class="ui horizontal divided list margin-bottom-2">
+            <div class="item">
+                {{ order.checkoutCompletedAt|format_datetime }}
+            </div>
+            <div class="item" id="sylius-order-state">
+                {% include [('@SyliusAdmin/Order/Label/State' ~ '/' ~ order.state ~ '.html.twig'), '@SyliusUi/Label/_default.html.twig'] with {'value': ('sylius.ui.' ~ order.state)|trans} %}
+            </div>
+        </div>
+        {% if not order.vatNumber is empty %}
+            <div>
+                EU VAT Number:
+                {{ order.vatNumber }}
+            </div>
+        {% endif %}
+        <div class="grid-x rnw grid-margin-x">
+            {% include '@SyliusAdmin/Order/Show/_customer.html.twig' %}
+            {% if app.request.attributes.get('_route') == "sylius_admin_order_show" %}
+                <section-statuses :access="access" inline-template>
+                    {% include 'SyliusAdminBundle:Order/components/status:status.html.twig' %}
+                </section-statuses>
+            {% endif %}
+            <div class="ui cell large-3">
+                <h4 class="ui top attached styled header">
+                    {{ 'sylius.ui.shipping_address'|trans }}
+                </h4>
+                <div class="ui attached segment" id="shipping-address">
+                    {% if not order.shippingAddress is empty %}
+                        {% include '@SyliusAdmin/Common/_address.html.twig' with {'address': order.shippingAddress} %}
+                    {% endif %}
+                </div>
+            </div>
+            <section-payment @change="sendHistory" :access="access" :balance-map="balanceMap" :order-balance="orderBalance" :payment-items="paymentItems" :refunds="refunds" inline-template>
+                {% include 'SyliusAdminBundle:Order/components/payment:payment.html.twig' %}
+            </section-payment>
+        </div>
+    </div>
+</div>

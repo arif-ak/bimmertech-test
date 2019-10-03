@@ -1,0 +1,167 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Sylius\Component\Core\Model\Order as BaseOrder;
+
+/**
+ * Class Order
+ * @package AppBundle\Entity
+ */
+class Order extends BaseOrder
+{
+    /**
+     * Order constructor.
+     * @param string $source
+     */
+    public function __construct($source = OrderSourceInerface::SOURCE_WEBSITE)
+    {
+        parent::__construct();
+        $this->source = $source;
+    }
+
+    /**
+     * @var string
+     */
+    private $vin;
+
+    /**
+     * @var string
+     */
+    private $source;
+
+    /**
+     * @var \AppBundle\Entity\UserSale
+     */
+    private $userSale;
+
+    /**
+     * @var \AppBundle\Entity\Warehouse
+     */
+    private $warehouse;
+
+    /**
+     * @var string
+     */
+    private $vatNumber;
+
+    /**
+     * Set vin
+     *
+     * @param string $vin
+     *
+     * @return Order
+     */
+    public function setVin($vin)
+    {
+        $this->vin = $vin;
+
+        return $this;
+    }
+
+    /**
+     * Get vin
+     *
+     * @return string
+     */
+    public function getVin()
+    {
+        return $this->vin;
+    }
+
+    /**
+     * Set source
+     *
+     * @param string $source
+     *
+     * @return Order
+     */
+    public function setSource($source)
+    {
+        $this->source = $source;
+
+        return $this;
+    }
+
+    /**
+     * Get source
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
+
+    /**
+     * Set userSale
+     *
+     * @param UserSale $userSale
+     *
+     * @return Order
+     */
+    public function setUserSale(UserSale $userSale = null)
+    {
+        $this->userSale = $userSale;
+
+        return $this;
+    }
+
+    /**
+     * Get userSale
+     *
+     * @return UserSale
+     */
+    public function getUserSale()
+    {
+        return $this->userSale;
+    }
+
+    /**
+     * Set warehouse
+     *
+     * @param Warehouse $warehouse
+     *
+     * @return Order
+     */
+    public function setWarehouse(Warehouse $warehouse = null)
+    {
+        $this->warehouse = $warehouse;
+
+        return $this;
+    }
+
+    /**
+     * Get warehouse
+     *
+     * @return Warehouse
+     */
+    public function getWarehouse()
+    {
+        return $this->warehouse;
+    }
+
+    /**
+     * Set vatNumber
+     *
+     * @param string $vatNumber
+     *
+     * @return Order
+     */
+    public function setVatNumber($vatNumber)
+    {
+        $this->vatNumber = $vatNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get vatNumber
+     *
+     * @return string
+     */
+    public function getVatNumber()
+    {
+        return $this->vatNumber;
+    }
+}

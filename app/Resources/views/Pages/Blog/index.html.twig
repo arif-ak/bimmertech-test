@@ -1,0 +1,71 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+{% block content %}
+    <div id="blogs">
+        <div class="grid-x display-flex align-middle breadcrumb margin-vertical-1">
+            <div>
+                <a class="section" href="/">Home</a>
+            </div>
+            <div class="divider display-flex align-middle">
+                <img src="/assets/shop/img/bread_crumb_divider.png"></div>
+            <div class="active section">
+                {{ 'sylius.ui.blog'|trans }}</div>
+        </div>
+        <h3>BIMMERTECH BLOG</h3>
+        <h5>dedicated to BMW technology retrofis.</h5>
+        
+        <div class="postLatest segment margin-vertical-3">
+            <section-min-header inline-template label="LATEST POSTS">
+
+                {% if latest|length >0 %}
+
+                <div class="min-header header grid-x align-middle">
+                    <div class="cell shrink">
+                        <h4 class="text-uppercase" id="title">
+                            LATEST POSTS
+                        </h4>
+                    </div>
+                    <div class="cell large-auto medium-auto">
+                        <span class="divider"></span>
+                    </div>
+                </div>
+            </section-min-header>
+
+            {% set i = 3 %}
+            
+            <div class="rowList">
+                <div class="posts">
+                    {% for postKey,post in latest %}
+                        {% if postKey < 9 %}
+                            {% include 'Pages/Blog/postsRow/postsRow.html.twig' %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="flex">
+                <transition name="fade">
+                    <section-button v-if="!loadMore && latestPosts.length>9" @click="loadMore = true"
+                                    label="Load more posts" inline-template>
+                        {% include ':GlobalComponents/Field:_button.html.twig' %}
+                    </section-button>
+                </transition>
+            </div>
+
+            {% endif %}
+        </div>
+
+        <div class="postCategory segment margin-vertical-3" v-for="(category, categoryKey) in filteredCategories">
+            <section-min-header :label="category.label" inline-template v-if="category.data.length>0">
+                {% include ':GlobalComponents/MinHeader:minHeader.html.twig' %}
+            </section-min-header>
+            <div class="rowList" v-if="category.data.length>0">
+                <section-posts-row :posts="posts" :postskey="postsKey" inline-template
+                                   v-for="(posts, postsKey) in category.data">
+                    {% include ':GlobalComponents/postsRow:postsRow.html.twig' %}
+                </section-posts-row>
+            </div>
+        </div>
+        <section-swiper :recomended="recomended" inline-template>
+            {% include ':GlobalComponents/Swiper:recomended.html.twig' %}
+        </section-swiper>
+    </div>
+{% endblock %}

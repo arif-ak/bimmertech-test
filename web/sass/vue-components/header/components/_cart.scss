@@ -1,0 +1,121 @@
+#sylius-cart-button {
+    .bt-cart-total {
+        @include respond-to(mobile) {
+            display: none;
+        }
+        @include respond-to(mobileRotate) {
+            display: none;
+        }
+        @include respond-to(tablet) {
+            display: none;
+        }
+    }
+}
+#sylius-cart-popup {
+    > .grid-x {
+        margin-left: 30px;
+        margin-right: 30px;
+
+        &.empty {
+            margin-left: 30px;
+        }
+
+        .list {
+            .productList {
+                overflow-x: auto;
+                max-height: 320px;
+                padding: 0 5px;
+                padding-left: 65px;
+            }
+
+            .productList > .item,
+            > .item {
+                font-size: 14px;
+                width: 390px;
+
+                .price {
+                    text-align: right;
+                    width: calc(100% - 290px);
+                }
+
+                .item-addon {
+                    width: 365px;
+
+                    .price {
+                        width: calc(100% - 285px);
+                    }
+                }
+
+                .count {
+                    text-align: center;
+                }
+
+                &.header {
+                    margin-bottom: 15px;
+                    margin-left: 65px;
+                }
+
+                &.product {
+                    position: relative;
+                    color: $base-black-color;
+                    border-bottom: 1px solid $disable-color;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+
+                    &:last-child {
+                        border: none;
+                    }
+
+                    img {
+                        position: absolute;
+                        left: -60px;
+                        top: 3px;
+                        width: 50px;
+                        height: 25px;
+
+                        // background: silver;
+                   
+                    }
+
+                    .remove {
+                        position: absolute;
+                        right: 3px;
+                        top: 8px;
+                        cursor: pointer;
+
+                        @extend .bt-remove;
+                    }
+
+                    .item-addon {
+                        color: $base-gray-color;
+                    }
+                }
+            }
+        }
+
+        .actions {
+            .total {
+                width: 220px;
+                float: right;
+                padding-right: 35px;
+            }
+        }
+
+        .links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: 24px;
+
+            .cart-link {
+                color: $base-blue-color;
+                margin-right: 10px;
+                font-size: 14px;
+            }
+
+            .checkout-link {
+                font-size: 14px;
+            }
+        }
+    }
+}

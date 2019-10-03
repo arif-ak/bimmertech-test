@@ -1,0 +1,77 @@
+{#{% if active is not defined or active == 'address' %}#}
+{#{% set steps = {'address': 'active', 'taxes_select': 'disabled', 'select_payment': 'disabled', 'complete': 'disabled'} %}#}
+{#{% elseif active == 'taxes_select' %}#}
+{#{% set steps = {'address': 'completed', 'taxes_select': 'active', 'select_payment': 'disabled', 'complete': 'disabled'} %}#}
+{#{% elseif active == 'select_payment' %}#}
+{#{% set steps = {'address': 'completed','taxes_select': 'completed',  'select_payment': 'active', 'complete': 'disabled'} %}#}
+{#{% else %}#}
+{#{% set steps = {'address': 'completed', 'taxes_select': 'completed', 'select_payment': 'completed', 'complete': 'active'} %}#}
+{#{% endif %}#}
+{% if active is not defined or active == 'address'%}
+    {% set steps = {
+        'cart': 'completed',
+        'address': 'active',
+        'taxes_select': 'disabled',
+        'select_payment': 'disabled',
+        'complete': 'disabled'
+    } %}
+{% elseif active=='cart' %}
+    {% set steps = {
+        'cart': 'active',
+        'address': 'disabled',
+        'taxes_select': 'disabled',
+        'select_payment': 'disabled',
+        'complete': 'disabled'
+    } %}
+{% elseif active == 'taxes_select' %}
+    {% set steps = {
+        'cart': 'completed',
+        'address': 'completed',
+        'taxes_select': 'active',
+        'select_payment': 'disabled',
+        'complete': 'disabled'
+    } %}
+{% elseif active == 'select_payment' %}
+    {% set steps = {
+        'cart': 'completed',
+        'address': 'completed',
+        'taxes_select': 'completed',
+        'select_payment': 'active',
+        'complete': 'disabled'
+    } %}
+{% else %}
+    {% set steps = {
+        'cart': 'completed',
+        'address': 'completed',
+        'address': 'completed',
+        'taxes_select': 'completed',
+        'select_payment': 'completed',
+        'complete': 'active'
+    } %}
+{% endif %}
+
+
+<div class="checkout-steps margin-vertical-2 grid-x align-middle">
+    <div class="ui cell shrink steps bt-steps bt-section-name">
+        <a id="cart_step" class="{{ steps['cart'] }} step" href="{{ path('sylius_shop_cart_summary') }}">
+            <div class="content cartStep">
+                <div class="title">Your Cart</div>
+            </div>
+        </a>
+        <div class="silverDivider"></div>
+        <a id="details_step" class="{{ steps['address'] }} step" href="{{ path('sylius_shop_checkout_address') }}">
+            <div class="content addressStep">
+                <div class="title">Your Details</div>
+            </div>
+        </a>
+        <div class="silverDivider"></div>
+
+
+            <a id="payment_step" class="{{ steps['select_payment'] }} step" >
+                <div class="content paymentStep">
+                    <div class="title">{{ 'sylius.ui.payment'|trans }}</div>
+                </div>
+            </a>
+    </div>
+    <div class="cell large-auto"><span class="divider"></span></div>
+</div>

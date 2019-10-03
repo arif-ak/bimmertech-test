@@ -1,0 +1,20 @@
+
+    <span>
+        <p v-if="compatibility==null">
+            You need to
+            <span class="vin-check-message-blue" @click="openVincheck()">identify your car</span>
+            to check compatibility
+        </p>
+        <p v-else-if="compatibility=='No'">
+            Not compatible with your
+            [[vincheck]]
+        </p>
+        <p v-else-if="compatibility=='Yes'">
+            Compatible with your
+            [[vincheck]]
+        </p>
+        <p v-else-if="compatibility=='Not sure'">
+            Compatibility with this product can only be confirmed after
+            <span class="vin-check-message-blue" @click="openVincheck()">entering your VIN</span>
+        </p>
+    </span>

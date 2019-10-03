@@ -1,0 +1,35 @@
+AppBundle\Entity\OrderItemUnitRefund:
+  type: entity
+  table: app_order_item_unit_refund
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    totalReturnedMoney:
+      type: integer
+      nullable: true
+    percentOfRefund:
+      type: decimal
+      precision: 10
+      scale: 2
+      nullable: true
+    createdAt:
+      type: datetime
+      column: created_at
+      nullable: true
+
+  manyToOne:
+    orderRefund:
+      targetEntity: AppBundle\Entity\OrderRefund
+      inversedBy: orderRefund
+      joinColumn:
+        name: order_refund_id
+        referencedColumnName: id
+    orderItemUnit:
+      targetEntity: AppBundle\Entity\OrderItemUnit
+      inversedBy: orderItemUnit
+      joinColumn:
+        name: order_item_unit_id
+        referencedColumnName: id

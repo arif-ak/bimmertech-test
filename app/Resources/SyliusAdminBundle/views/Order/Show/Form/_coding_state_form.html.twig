@@ -1,0 +1,20 @@
+{% if orderCodingStateForm is defined %}
+    <div class="grid-x grid-padding-x order-coding-state">
+        <div class="cell medium-4">
+            <b>Coding state:</b>
+        </div>
+        <div class="cell medium-4">
+            {{ order.codingStatus }}</div>
+        <div class="cell medium-4">
+            {% if isAdmin or isShowCodingBoard %}
+                <button class="ui mini button" onclick="edit_order_state_show('coding')">edit</button>
+            {% endif %}
+        </div>
+    </div>
+    {{ form_start(orderCodingStateForm, {'action': path('app_order_coding_edit', { 'id': order.id }), 'method': 'POST' }) }}
+    <div class="order-coding-state-edit">
+        {{ form_row(orderCodingStateForm.codingStatus) }}
+        {{ form_widget(orderCodingStateForm.save, { 'label': 'Save' }) }}
+    </div>
+    {{ form_end(orderCodingStateForm) }}
+{% endif %}

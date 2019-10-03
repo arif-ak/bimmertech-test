@@ -1,0 +1,55 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block content %}
+    {% set path = '//placehold.it/50x50' %}
+
+    {% if  dealer %}
+        {% if dealer.images.first %}
+            {% set path ='/media/image/'~ dealer.images.first.path %}
+        {% else %}
+            {% set path = '//placehold.it/50x50' %}
+        {% endif %}
+
+    {% endif %}
+
+    <div class="grid-x display-flex align-middle breadcrumb margin-vertical-1">
+        <div>
+            <a href="/" class="section">Home</a>
+        </div>
+        <div class="divider display-flex align-middle">
+            <img src="/assets/shop/img/bread_crumb_divider.png">
+        </div>
+        <div class="active section">
+            {{ 'sylius.ui.for_dealer'|trans }}</div>
+    </div>
+
+    <div id="dealeshipPlatform">
+        <div class="header grid-x align-middle">
+            <div class="cell shrink">
+                <h4 class="text-uppercase" id="title">
+                    {{ (dealer is not null) ? dealer.name : '' }}
+                </h4>
+            </div>
+            <div class="cell large-auto">
+                <span class="divider"></span>
+            </div>
+        </div>
+        <div class="grid-x large-up-2 margin-top-1">
+            <div class="cell"><img src="{{ path }}" alt=""/></div>
+            <div class="cell">
+                <div class="content">
+                    <p>{{ (dealer is not null) ? dealer.content : '' }}</p>
+                    <div class="button"><a href="{{ (dealer is not null) ? dealer.linkForButton : '' }}">
+                            <button type="submit" class="bt-button primary"><span>Dealer Login</span></button>
+                        </a></div>
+                    <p class="applicationForm">
+                        {{ (dealer is not null) ? dealer.otherContent|raw : '' }}
+                        {# If you own a shop or are a highly skilled technician and would like to become a BimmerTech partner,
+                        <a>click here</a> <wbr>
+                        to fill in an application form. #}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

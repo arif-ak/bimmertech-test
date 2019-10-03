@@ -1,0 +1,10 @@
+AppBundle\Entity\UserSale:
+    type: entity
+    table: sylius_admin_user_sale
+    oneToMany:
+        customers:
+            targetEntity: AppBundle\Entity\Customer
+            mappedBy: userSale
+        orders:
+            targetEntity: AppBundle\Entity\Order
+            mappedBy: userSale

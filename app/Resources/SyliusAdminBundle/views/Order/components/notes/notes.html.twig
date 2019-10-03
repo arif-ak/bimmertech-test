@@ -1,0 +1,37 @@
+<div class="cell notes">
+    <div class="cell">
+        <h4 :class="{'single': !notes.length>0}" class="ui top attached header">
+            Notes
+        </h4>
+        <div class="ui" v-if="notes.length>0">
+            <div class="grid-x note" v-for="note in notes">
+                <div class="cell large-2">[[note.author]]</div>
+                <div class="cell large-auto">[[note.message]]</div>
+                <div class="cell large-1">[[note.date]]</div>
+            </div>
+        </div>
+        <div class="action">
+            <div class="block-button">
+                <button @click="addNoteModal()" :class="{'disabled':!access.add_note}" class="ui mini button summaryEditBtn green">Add note</button>
+            </div>
+        </div>
+        <div class="ui bt modal addNote">
+            <i class="close icon"></i>
+            <div class="header">
+                <span>Add note</span>
+            </div>
+            <div class="container">
+                <div class="ui form">
+                    <div class="field">
+                        <textarea rows="4" v-model="note"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <span v-show="loading" class="loading-text">Please wait...</span>
+                <div class="ui mini black deny button">Back</div>
+                <input :class="{'disabled': loading }" class="ui green mini approve button" type="submit" value="Save" />
+            </div>
+        </div>
+    </div>
+</div>

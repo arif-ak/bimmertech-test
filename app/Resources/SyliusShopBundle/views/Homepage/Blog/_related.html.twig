@@ -1,0 +1,27 @@
+<div class="small-12 bt-blog">
+    <a href="{{ path('webburza_article_frontend_index') }}">
+        <div class="header grid-x align-middle">
+            <div class="cell shrink">
+                <h2 class="text-uppercase">blog</h2>
+            </div>
+            <div class="cell shrink text-uppercase subheader">
+                BMW upgrade
+                <br>
+                <b>tips & tricks</b>
+            </div>
+            <div class="cell large-auto">
+                <span class="divider"></span>
+            </div>
+        </div>
+    </a>
+    <div class="grid-x bt-blog-container grid-margin-x align-justify">
+        {% for key, article in articles %}
+        
+            {% include 'SyliusShopBundle:Homepage/Blog/:_card.html.twig' %}
+            {% if 0 == loop.index % 4 %}
+            </div>
+            <div class="row">
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

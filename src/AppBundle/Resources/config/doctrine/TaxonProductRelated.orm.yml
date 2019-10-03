@@ -1,0 +1,28 @@
+AppBundle\Entity\TaxonProductRelated:
+  type: entity
+  table: app_taxon_product_related
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  oneToOne:
+    category:
+      targetEntity: AppBundle\Entity\Taxon
+      inversedBy: productRelated
+      joinColumn:
+        name: taxon_id
+        referencedColumnName: id
+  manyToMany:
+    products:
+      targetEntity: AppBundle\Entity\Product
+      inversedBy: categoryProduct
+      joinTable:
+        name: app_taxon_inteteresting_products
+        joinColumns:
+          taxon_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          product_id:
+            referencedColumnName: id

@@ -1,0 +1,18 @@
+<div class="" id="sylius-product-selecting-variant-{{ product.id }}">
+    {# {{ form_start(form, {'action': path('api_add_to_cart_ajax', {'productId': product.id}), 'attr': {'id': 'sylius-product-adding-to-cart-slider-' ~product.id , 'class': 'ui loadable form', 'novalidate': 'novalidate', 'data-redirect': '/' }}) }} #}
+    {% if not product.simple %}
+        {% if product.variantSelectionMethodChoice %}
+            {% include '@SyliusShop/Product/Show/_variants.html.twig' %}
+        {% else %}
+            {% include '@SyliusShop/Product/Show/_options.html.twig' %}
+        {% endif %}
+    {% endif %}
+    {# {{ form_errors(form) }} #}
+
+{#     {{ form_row(form._token) }} #}
+    <input type="hidden" name="sylius_add_to_cart[_token]" value="{{ csrf_token(product.id) }}"/>
+    <button class="bt-button primary hvr-ripple-out" id="add_to_cart_slider_{{ product.variants.first.id }}" @click="addToCartSlider({{ product.variants.first.id }}, this)">
+        <span>{{ 'sylius.ui.add_to_cart'|trans }}</span>
+    </button>
+    {# {{ form_end(form, {'render_rest': false}) }} #}
+</div>

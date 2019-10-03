@@ -1,0 +1,12 @@
+{% block subject %}
+    Installation instructions for BimmerTech order #{{ items[0]['item'].Order.Number }}
+{% endblock %}
+
+{% block body %}
+    <p>Hi {{ items[0]['item'].Order.Customer.FullName }},</p>
+    <p>Installation instructions for your BimmerTech product are ready.</p>
+
+    <p>To download them, please <a href="{{ app.request.getSchemeAndHttpHost() }}/#">click here</a> to log in to your customer account at www.bimmer-tech.net and navigate to the <i>Orders tab</i>.</p>
+    <p>If you have any questions about installation, please contact our technical support team at support@bimmer-tech.net.</p>
+
+{% endblock %}

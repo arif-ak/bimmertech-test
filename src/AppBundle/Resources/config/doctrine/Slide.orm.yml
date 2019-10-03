@@ -1,0 +1,47 @@
+AppBundle\Entity\Slide:
+  type: entity
+  repositoryClass: AppBundle\Repository\SlideRepository
+  table: slide
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    code:
+      type: string
+    name:
+      type: string
+    description:
+      type: text
+      nullable: true
+    price:
+      type: string
+      nullable: true
+    url:
+      type: string
+      nullable: true
+    position:
+      type: integer
+    enabled:
+      type: boolean
+
+  manyToOne:
+    slider:
+      targetEntity: AppBundle\Entity\Slider
+      inversedBy: slides
+    product:
+      nullable: true
+      targetEntity: AppBundle\Entity\Product
+      inversedBy: slides
+      joinColumn:
+        name: product_id
+        referencedColumnName: id
+
+  oneToMany:
+    images:
+      targetEntity: AppBundle\Entity\SlideImage
+      mappedBy: owner
+      orphanRemoval: true
+      cascade:
+      - all

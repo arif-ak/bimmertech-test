@@ -1,0 +1,135 @@
+<div class="cell">
+    <div class="ui loadable cart">
+        <div id="sylius-cart-items" class="cell">
+            <div class="header border grid-x align-center-middle text-uppercase">
+                <div class="cell large-6">
+                    Item
+                </div>
+                <div class="cell large-1"></div>
+                <div class="cell sylius-total">
+                    Price
+                </div>
+                <div class="cell sylius-quantity">
+                    Qty
+                </div>
+                <div class=""></div>
+            </div>
+            <div v-for="(item, i) in cartItems" class="item border grid-x align-center-middle">
+                <div class="item-header large-offset-1">
+                    <div class="content">
+                        <div class="sylius-product-name">[[i+1]]. [[item.name]]</div>
+                    </div>
+                </div>
+                <section-compatibility :compatibility="item.compatibility"  inline-template>
+                    {% include '@SyliusShop/Cart/components/items/components/compatibility/_compatibility.html.twig' %}
+                </section-compatibility>
+                <div class="cell text-center sylius-total">
+                    <section-price :value="item.unitPrice * item.quantity" inline-template>
+                        {% include ':GlobalComponents/Price:price.html.twig' %}
+                    </section-price>
+                </div>
+                <div class="cell text-center sylius-quantity">
+                    <span>
+                        <input @input="updateQuantity(item.id, item.quantity)" min="1" required="required" type="number" v-model="cartItems[i].quantity"/>
+                    </span>
+                </div>
+                <div>
+                    <div class="sylius-btn align-center-middle">
+                        <button @click="removeProduct(item.id)" class="ui cursorPointer icon  sylius-cart-remove-button" type="button">
+                            <span class="bt-trash black bt-icon"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="dropDowns addons cell large-11 large-offset-1">
+                    <div class="bt-label" v-for="drDn in item.dropDown">
+                        <div class="content">[[drDn.name]]: [[drDn.selected]]</div>
+                    </div>
+                    <div class="bt-label" v-if="item.savePrice">
+                        <div class="content" v-if="item.savePrice.name"> [[item.savePrice.name]]</div>
+                    </div>
+                </div>
+                <div v-if="item.addons.length>0 || item.warranty.length>0 || item.includedAddons.length>0"
+                     class="addons cell large-11 large-offset-1">
+                    <div class="bt-label">
+                        Add-ons for this product:
+                        <div class="bt-line"></div>
+                    </div>
+                    <div class="item cell grid-x">
+                        <div class="ui form">
+                            <div class="grouped fields">
+                                <div class="grid-x item align-center-middle includedAddon" v-for="includedAddon in item.includedAddons">
+                                    <div class="item-header large-offset-1">
+                                        <div class="content">
+                                            <div class="sylius-product-name">[[includedAddon.name]]</div>
+                                        </div>
+                                    </div>
+                                    <section-compatibility :compatibility="includedAddon.compatibility" inline-template>
+                                        {% include '@SyliusShop/Cart/components/items/components/compatibility/_compatibility.html.twig' %}
+                                    </section-compatibility>
+                                    <div class="cell text-center sylius-total">
+                                        <span>free</span>
+                                    </div>
+                                    <div class="cell text-center sylius-quantity">
+                                        <span>
+                                            <input disabled min="1" required="required" type="number" :value="cartItems[i].quantity"/></span>
+                                    </div>
+                                    <div>
+                                        <div class="sylius-btn align-center-middle">
+                                            <button type="button" class="ui icon  sylius-cart-remove-button">
+                                                <span class="bt-trash black bt-icon"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid-x item align-center-middle" v-for="(addon, a) in item.addons">
+                                    <div class="item-header large-offset-1">
+                                        <div class="content">
+                                            <div class="sylius-product-name">[[addon.name]]</div>
+                                        </div>
+                                    </div>
+                                    <section-compatibility :compatibility="addon.compatibility" inline-template>
+                                        {% include '@SyliusShop/Cart/components/items/components/compatibility/_compatibility.html.twig' %}
+                                    </section-compatibility>
+                                    <div class="cell text-center sylius-total">
+                                        <section-price :value="addon.unitPrice * addon.quantity" inline-template>
+                                            {% include ':GlobalComponents/Price:price.html.twig' %}
+                                        </section-price>
+                                    </div>
+                                    <div class="cell text-center sylius-quantity">
+                                        <span>
+                                            {# <input @input="updateQuantity(addon.id, addon.quantity)" min="1"
+                                                   required="required" type="number"
+                                                   v-model="cartItems[i].addons[a].quantity"/> #}
+                                            <input disabled min="1" required="required" type="number" :value="cartItems[i].addons[a].quantity"/>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="sylius-btn align-center-middle">
+                                            <button @click="removeProduct(addon.id)"
+                                                    class="ui cursorPointer icon  sylius-cart-remove-button"
+                                                    type="button">
+                                                <span class="bt-trash black bt-icon"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="radioContainer" v-if="item.warranty.length>0">
+                                    <section-radio :items="item.warranty"
+                                        @change="changeWarranty(item.id, cartItems[i].selectedWarranty)"
+                                        inline-template label="Secure Your Protection Plan"
+                                        v-model="cartItems[i].selectedWarranty">
+                                        {% include ':GlobalComponents/Radio:radio.html.twig' %}
+                                    </section-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav">
+            <a id="clearCart" @click="clearCart()">Clear cart</a>
+            <a id="backToStore" :href="back_to_store">Back to store</a>
+        </div>
+    </div>
+</div>

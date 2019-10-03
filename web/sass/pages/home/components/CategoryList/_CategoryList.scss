@@ -1,0 +1,40 @@
+#CategoryList {
+    display: none;
+    margin-top: 18px;
+    @include respond-to(mobile) {
+        display: block;
+    }
+    @include respond-to(mobileRotate) {
+        display: block;
+    }
+    .item {
+        float: left;
+        margin: -3px 10px;
+        width: calc(33.32% - 20px);
+        height: 80px;
+        a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-flow: column nowrap;
+            position: relative;
+            height: 100%;
+            .bt-item-icon {
+                max-height: 40px;
+                max-width: 40px;
+                margin-bottom: 5px;
+            }
+            .name {
+                color: $base-blue-color;
+                position: absolute;
+                bottom: 0;
+                font-size: 10px;
+            }
+        }
+    }
+    &:after {
+        display: block;
+        clear: both;
+        content: '';
+    }
+}

@@ -1,0 +1,165 @@
+.product-list {
+  >.cell {
+    width: calc(25% - 1.875rem);
+    @include respond-to(mobile) {
+      width: calc(100% - 1.875rem);
+    }
+    @include respond-to(mobileRotate) {
+      width: calc(50% - 1.875rem);
+    }
+    @include respond-to(tablet) {
+      width: calc(33.333% - 1.875rem);
+    }
+    @include respond-to(tablet) {
+      width: calc(33.333% - 1.875rem);
+    }
+  }
+  .sylius-product-price {
+      .from {
+        text-transform: lowercase;
+      }
+  }
+  .image {
+    position: relative;
+    .bestseller {
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 1;
+      min-width: 50%;
+      padding: 1.5% 3%;
+      font-weight: 500;
+      font-size: 1.4em;
+      color: $base-white-color;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+.preloder {
+  display: flex;
+  align-self: center;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  min-height: 500px;
+
+  &.bt-loading::before {
+      background: transparent;
+  }
+}
+.bt-card {
+  .image {
+    max-height: 220px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px #e0e0e0;
+
+    .sprint {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 1.5% 3%;
+      color: white;
+      font-weight: 500;
+      font-size: 1.4em;
+      max-width: 300px;
+    }
+  }
+
+  .header {
+    &.sylius-product-name {
+      color: $base-blue-color;
+      font-size: $product-font-size;
+      line-height: 1.2;
+
+      a {
+        color: $base-blue-color;
+      }
+
+      .cui.bt-svg-icon .bt-icon{
+        cursor: pointer;
+        width: 28px;
+        height: 28px;
+      }
+
+      .cui.btpopup.top {
+        padding: 10px 15px;
+        width: max-content;
+
+        .content {
+          text-align: center;
+          margin-top: 0;
+          line-height: 1.4;
+
+          >span {
+            cursor: pointer;
+            font-weight: 500;
+            color: $base-blue-color;
+          }
+
+
+          .bt-svg-icon {
+            position: relative;
+            display: flex;
+
+            .bt-icon {
+              transform: translateY(0);
+            }
+
+            &::after {
+              content: "";
+              position: absolute;
+              display: block;
+              width: 24px;
+              height: 24px;
+              top: 50%;
+              left: 0; // transform: translateY(-50%);
+              background-color: $icon-yellow-color;
+              border-radius: 50%;
+              z-index: -1;
+            }
+
+            svg {
+              background-color: $secound-yellow-color;
+              border-radius: 50%;
+              margin-left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  >.content {
+    padding-right: 40px;
+    margin-top: 15px;
+
+    .sylius-product-price {
+      @extend .h5;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }
+
+  .price {
+    @extend .h5;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: $base-yellow-color;
+  }
+
+  .dimmer {
+    .header {
+      padding: 0 10px;
+    }
+  }
+
+  >a>.header {
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding: 15px 20px;
+  }
+}

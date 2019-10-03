@@ -1,0 +1,35 @@
+{#{% set product = form.vars.value.variant.product %}#}
+
+
+<div id="editSnippetBlock" class="ui modal logisticShipment{{ shipmentId }}">
+    <i class="close icon"></i>
+    <div class="header">
+        Edit Shipment
+    </div>
+    <div class="image content">
+        {#<div class="ui small image">#}
+        {#{% if product.imagesByType('thumbnail') is not empty %}#}
+        {#{% set path = product.imagesByType('thumbnail').first.path|imagine_filter(filter|default('sylius_admin_product_thumbnail')) %}#}
+        {#{% elseif product.images.first %}#}
+        {#{% set path = product.images.first.path|imagine_filter(filter|default('sylius_admin_product_thumbnail')) %}#}
+        {#{% else %}#}
+        {#{% set path = '//placehold.it/150x150' %}#}
+        {#{% set path = 'http://placekitten.com/150/150' %}#}
+        {#{% endif %}#}
+        {#<img src="{{ path }}" alt="" class="ui bordered image"/>#}
+        {#</div>#}
+        <div class="description ">
+            {#{{ form_start(form,{'action': path('app_order_item_shipment',{'id':form.vars.value.id}),'method': 'PUT','attr':{'class': 'ui loadable form ui two column stackable grid'}}) }}#}
+            {{ form_start(form,{'action': path('app_order_item_shipment',{'id':shipmentId}),'method': 'PUT','attr':{'class': 'ui loadable form ui two column stackable grid'}}) }}
+            {% include ':Order/Logistic:_edit_shipment_form.html.twig' %}
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black deny button">
+            Back
+        </div>
+        <input type="submit" class="ui green positiveright button" value="Save"/>
+        <i class="checkmark icon"></i>
+        {{ form_end(form) }}
+    </div>
+</div>

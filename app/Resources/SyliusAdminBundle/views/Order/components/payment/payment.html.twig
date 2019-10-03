@@ -1,0 +1,37 @@
+<div :class="{'bt-loading': loading}" class="ui cell large-3" id="Payment">
+    <h3 class="ui top attached styled header">
+        Payment
+    </h3>
+    <div class="ui attached segment general grid-x">
+        <div class="info cell large-4">
+            <div class="header">paypal</div>
+            <div class="description new-dollar-sign">[[orderBalance | price]]</div>
+        </div>
+        <div class="action cell large-8">
+            <div class="block-button">
+                <button :class="{'disabled':!access.order_refund}" :disabled="!paymentItems" @click="refundsModal(true)" class="ui mini button summaryEditBtn yellow">Refund / Return</button>
+            </div>
+        </div>
+    </div>
+    <div class="grid-y refunds">
+        <div :id="refund.id" class="ui attached segment  grid-x" v-for="refund in refunds">
+            <div class="info cell large-4">
+                <div class="header">refund</div>
+                <div class="description">
+                    <span class="new-dollar-sign">[[refund.total | price]]</span>
+                </div>
+            </div>
+            <div class="comment cell large-6">
+                [[refund.comment]]
+            </div>
+            <div class="action cell large-2">
+                <div class="block-button">
+                    <button :class="{'disabled':!access.order_refund_edit}" :value="refund.id" class="ui mini button summaryEditBtn yellow" onclick="emitMoodal(this.value)">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section-payment-modal @change="changeHandle" :access="access" :balance-map="balanceMap" :payment-items="paymentItems" inline-template>
+        {% include '@SyliusAdmin/Order/components/payment/components/modal/paymentModal.html.twig' %}
+    </section-payment-modal>
+</div>

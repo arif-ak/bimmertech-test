@@ -1,0 +1,47 @@
+AppBundle\Entity\OrderRefund:
+  type: entity
+  table: app_order_refund
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    totalReturnedMoney:
+      type: integer
+      nullable: true
+    percentOfRefund:
+      type: decimal
+      precision: 10
+      scale: 2
+      nullable: true
+    comment:
+      type: text
+      nullable: true
+    createdAt:
+      type: datetime
+      column: created_at
+      nullable: true
+
+  manyToOne:
+    order:
+      targetEntity: AppBundle\Entity\Order
+      inversedBy: orderRefund
+      joinColumn:
+        name: order_id
+        referencedColumnName: id
+  oneToMany:
+    orderItemUnitRefund:
+      targetEntity: AppBundle\Entity\OrderItemUnitRefund
+      mappedBy: orderRefund
+      orderBy: { position: 'ASC' }
+      cascade: ['persist' , 'remove']
+      orphanRemoval: true
+      onDelete: "CASCADE"
+
+    orderItemUnitReturn:
+      targetEntity: AppBundle\Entity\OrderItemUnitReturn
+      mappedBy: orderRefund
+      cascade: ['persist' , 'remove']
+      orphanRemoval: true
+      onDelete: "CASCADE"

@@ -1,0 +1,18 @@
+{% block subject %}
+    Activate your BimmerTech customer account
+{% endblock %}
+
+{% block body %}
+    <p>Hi,</p>
+    <p>Thank you for creating a customer account at BimmerTech. Your log-in details are:</p>
+    <p><b> Email address: {{ data.email }}</b></p>
+    <p><b> Password: {{ data.password }}</b></p>
+    <p>To access your account, first we need to confirm that your email address is correct.</p>
+    <p>To confirm your email address and activate your account, please click this link: <a
+                href="{{ data.host ~ data.link }}">{{ data.host ~ data.link }}</a></p>
+    <p>Please change your password after logging into your account.</p>
+    <p>For more information, please consult our <a href="{{ data.host }}{{ path('app_terms_and_condition') }}">Terms of
+            Use</a> and <a href="{{ data.host }}{{ path( 'app_privacy_policy') }}">Privacy Policy</a></p>
+    <p>Didn't sign up for a BimmerTech account? Please <a
+                href="{{ data.host }}{{ path( 'sylius_shop_contact_request') }}">let us know.</a></p>
+{% endblock %}

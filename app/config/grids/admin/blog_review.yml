@@ -1,0 +1,70 @@
+sylius_grid:
+    grids:
+        app_admin_blog_review:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: AppBundle\Entity\BlogReview
+            sorting:
+                createdAt: desc
+            fields:
+                createdAt:
+                    type: datetime
+                    label: Date
+                    path: createdAt
+                    sortable: createdAt
+                    options:
+                        format: d-m-Y H:i:s
+                title:
+                    type: string
+                    label: sylius.ui.title
+                    sortable: ~
+                rating:
+                    type: string
+                    label: sylius.ui.rating
+                    sortable: ~
+                status:
+                    type: twig
+                    label: sylius.ui.status
+                    sortable: ~
+                    options:
+                        template: "@SyliusUi/Grid/Field/state.html.twig"
+                        vars:
+                            labels: "@SyliusAdmin/ProductReview/Label/Status"
+#                reviewSubject:
+#                    type: string
+#                    label: Blog
+#                author:
+#                    type: string
+#                    label: Customer
+            filters:
+                title:
+                    type: string
+                    label: sylius.ui.title
+            actions:
+                item:
+                    update:
+                        type: update
+                    apply:
+                        type: apply
+                        label: sylius.ui.accept
+                        options:
+                            link:
+                                route: app_admin_blog_review_accept
+                                parameters:
+                                    id: resource.id
+                            class: green
+                    reject:
+                        type: reject
+                        label: sylius.ui.reject
+                        icon: remove
+                        options:
+                            link:
+                                route: app_admin_blog_review_reject
+                                parameters:
+                                    id: resource.id
+                    delete:
+                        type: delete
+                bulk:
+                    delete:
+                        type: delete

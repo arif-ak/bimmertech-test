@@ -1,0 +1,22 @@
+#section-context-menu {
+    position: fixed;
+    background: $base-white-color;
+    z-index: 76537;
+    padding: 4px 7px;
+    .list {
+        .item {
+            padding: 5px 10px;
+            cursor: pointer;
+            &:hover {
+                background: $base-light-gray-color;
+            }
+            &.disabled {
+                color: $base-light-gray-color;
+                cursor: default;
+                &:hover {
+                    background: initial;
+                }
+            }
+        }
+    }
+}

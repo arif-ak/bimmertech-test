@@ -1,0 +1,41 @@
+app_admin_api_blog_post_show:
+  path: /api2/blog/post/{id}
+  methods: [GET]
+  defaults:
+    _controller:  app.api.blog_post:getPost
+
+app_admin_api_blog_post_edit:
+  path: /api2/blog/post/{id}
+  methods: [PUT]
+  defaults:
+    _controller:  app.api.blog_post:editPost
+
+app_admin_api_blog_post_create:
+  path: /api2/blog/post
+  methods: [POST]
+  defaults:
+    _controller:  app.api.blog_post:newPost
+
+app_admin_api_blog_check_slug:
+  path: /api2/blog/post/slug/check
+  methods: [GET,POST]
+  defaults:
+    _controller:  app.api.blog_post:checkSlug
+
+app_admin_api_blog_categories:
+  path: /api2/blog/categories
+  methods: [GET]
+  defaults:
+    _controller:  app.api.blog_post:getCategories
+
+app_admin_upload_photo:
+  path: /api2/media/photo/upload
+  methods: [POST]
+  defaults:
+    _controller:  app.controller.media_image_controller:uploadPhoto
+
+app_admin_blog_products:
+  path: /api2/blog/products
+  methods: [GET]
+  defaults:
+    _controller:  app.api.blog_post:getBlogProducts

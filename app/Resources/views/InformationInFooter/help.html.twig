@@ -1,0 +1,171 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block title %}{% if help.metaTitle is defined %} {{ help.metaTitle }} {% endif %}{% endblock %}
+{% block meta_description %}
+    <meta name="description" content="{{ help.metaDescription }}"/>{% endblock %}
+{% block meta_keywords %}
+    <meta name="keywords" content="{{ help.metaKeywords }}"/>{% endblock %}
+
+
+{% block content %}
+    <div class="grid-x display-flex align-middle breadcrumb margin-vertical-1">
+        <div>
+            <a href="/" class="section">Home</a>
+        </div>
+        <div class="divider display-flex align-middle">
+            <img src="/assets/shop/img/bread_crumb_divider.png">
+        </div>
+        <div class="active section">Help</div>
+    </div>
+    <div class="help-page">
+        <div class="min-header header grid-x align-middle">
+            <div class="cell shrink">
+                <h1 class="text-uppercase">HELP</h1>
+            </div>
+            <div class="cell large-auto">
+                <span class="divider"></span>
+            </div>
+        </div>
+        <div class="grid-x help-category-menu large-up-4 text-center">
+            <div class="cell">
+                <a class="cell shrink item" href="#your_order">
+                    <div class="margin-bottom-1 bt-icon primary bt-order"></div>
+                    <span class="help-category-menu-name">Your order</span>
+                </a>
+            </div>
+            <div class="cell">
+                <a class="cell shrink item" href="#payment_delivery">
+                    <div class="margin-bottom-1 bt-icon primary bt-delivery"></div>
+                    <span class="help-category-menu-name">Payment <br>& Delivery</span>
+                </a>
+            </div>
+            <div class="cell">
+                <a class="cell shrink item" href="#installation_tech_support">
+                    <div class="margin-bottom-1 bt-icon primary bt-tech-support"></div>
+                    <span class="help-category-menu-name">Installation<br>& Tech Support</span>
+                </a>
+            </div>
+            <div class="cell">
+                <a class="cell shrink item" href="#returns_and_refunds">
+                    <div class="margin-bottom-1 bt-icon primary bt-return"></div>
+                    <span class="help-category-menu-name">Returns <br>& Refunds</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="help-search-form margin-top-2">
+            <div class="cell grid-x">
+                {#{{ form_label(form.search, 'Find Your Answer', {'label_attr': {'class': 'cell'}}) }}#}
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate',  'class': 'form cell large-5', 'id':'faq-form'}}) }}
+                {{ form_widget(form.Search, {'attr': {  'class': 'help-search-form-button bt-search-custom black bt-icon'}}) }}
+                <span class="input-divider"></span>
+                {{ form_widget(form.search, {'attr': {'placeholder': "Find Your Answer"}}) }}
+                {{ form_errors(form) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+        {#  <div class="search-form">
+    <span class="bt-search-custom bt-icon"></span>
+        <form action="/search-product" method="get">
+            <div class="cell grid-x"><input type="hidden" name="channel" value="">
+                <i class="bt-icon bt-search"></i>
+                <span class="input-divider"></span>
+                <input name="q" type="text" placeholder="Check upgrades for your BMW/MINI" autocomplete="off" class="prompt cell auto"></div>
+        </form>
+        <div class="results"></div>
+    </div> #}
+        <div class="categories">
+            {% if headers %}
+                {% for slug, item in headers %}
+
+                    {% if item.questions|length >0 %}
+                        <div class="category">
+
+                            <div class="scroll_to" id="{{ item.code }}"></div>
+                            <h2 class="category header">{{ item.name }} </h2>
+
+                            <div class="category description">
+                                {% for faq in item.questions %}
+                                    <div class="bt accordion question">
+                                        <div class="title question-name">
+                                            {{ faq.question }}
+                                        </div>
+                                        <div class="content question-answer">
+                                            <p class="transition">{{ faq.answer |raw }}</p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+            {% elseif searchResults %}
+
+                <div class="category description">
+                    {% for searchResult in searchResults %}
+                        <div class="bt accordion question">
+                            <div class="title question-name">
+                                {{ searchResult.question }}
+                            </div>
+                            <div class="content question-answer">
+                                <p class="transition">{{ searchResult.answer |raw }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        //$('#faq_search').val('');
+
+        // Select all links with hashes
+        $('a[href*="#"]')
+        // Remove links that don't actually link to anything
+            .not('[href="#"]')
+            .not('[href="#0"]')
+            .click(function (event) {
+                // On-page links
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    // Figure out element to scroll to
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    // Does a scroll target exist?
+                    if (target.length) {
+                        // Only prevent default if animation is actually gonna happen
+                        event.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: target.offset().top - 30
+                        }, 1000, function () {
+                            // Callback after animation
+                            // Must change focus!
+                            var $target = $(target);
+                            $target.focus();
+                            if ($target.is(":focus")) { // Checking if the target was focused
+                                return false;
+                            } else {
+                                $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+                                $target.focus(); // Set focus again
+                            }
+                            ;
+
+                        });
+                    }
+                }
+            });
+        $(document).ready(function () {
+            if (MainData.getScrollEventState()) {
+                var clickUri = MainData.getScrollEvent('scrollTo');
+                if (clickUri) {
+                    $('a[href="' + clickUri + '"]').trigger('click');
+                    MainData.setScrollEventState(false);
+                }
+            }
+        });
+    </script>
+{% endblock %}

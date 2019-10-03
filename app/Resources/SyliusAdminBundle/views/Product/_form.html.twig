@@ -1,0 +1,14 @@
+{% set menu = knp_menu_get('sylius.admin.product_form', [], {'product': product}) %}
+{{ knp_menu_render(menu, {'template': 'SyliusAdminBundle:Product:_menu.html.twig', 'form': form, 'product': product}) }}
+
+{% if product.slug != null %}
+    {% if product.channels|length>0 %}
+        <div class="ui basic segment">
+            <a href="/products-{{ product.slug }}?_channel_code={{ product.channels.first.code }}" class="ui primary button" target="_blank">
+                Preview
+            </a>
+        </div>
+    {% endif %}
+{% endif %}
+
+

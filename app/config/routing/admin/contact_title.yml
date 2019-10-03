@@ -1,0 +1,14 @@
+app_admin_contact_title:
+    resource: |
+        alias: app.contact_title
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        redirect: index
+        grid: app_contact_title
+        vars:
+            all:
+                header: Contact title
+                subheader: Manage title
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

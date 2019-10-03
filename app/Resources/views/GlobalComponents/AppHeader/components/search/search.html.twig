@@ -1,0 +1,32 @@
+<div class="search-form focus" :class="{'active': resultsShow && results || messageShow, 'focus': resultsShow && results || messageShow}">
+    <form class="search-form-inner" action="{{ path('app_search_elastic_product_paginate') }}" method="get">
+        <div class="cell grid-x">
+            <input type="hidden" name="channel" value="{{ channel }}"/>
+            <i class="bt-icon bt-search"></i>
+            <input @blur="onMessageClose()" @focus="focus($event.target.value)" @input="input($event.target.value)" autocomplete="off" class="prompt cell auto" name="q" placeholder="Check upgrades for your BMW/MINI" type="text" v-model="search"></div>
+        </form>
+        <div :class="{'visible': messageShow, 'hidden': !messageShow}" class="search-results transition" style="display: block !important;" v-if="messageShow">
+            <div class="message">
+                <div>There is no match for your search.</div>
+                <div>Please try another term or phrase.</div>
+            </div>
+        </div>
+        <div :class="{'visible': resultsShow, 'hidden': !resultsShow}" class="search-results transition" style="display: block !important;" v-else-if="results">
+            <div class="content result" v-for="product in results.products">
+                <a class="url" :href="product.url">
+                    <div class="title">[[product.name]]</div>
+                </a>
+                <a class="taxon" :href="product.taxon_url">[[product.taxon]]</a>
+            </div>
+            <div v-if="results.posts.length>0" class="blog search-header">
+                <div class="blog-header">BLOG</div>
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="content result" v-for="post in results.posts">
+                <a class="url" :href="post.slug">
+                    <div class="title">[[post.title]]</div>
+                </a>
+                <a class="taxon" href="/blog">[[post.category]]</a>
+            </div>
+        </div>
+    </div>

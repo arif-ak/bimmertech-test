@@ -1,0 +1,48 @@
+custom-iframe,
+custom-img {
+    display: block;
+    height: 400px;
+    border:1px dotted #CCCCCC;
+    margin-bottom: 2%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 52%;
+
+}
+custom-iframe[position="right"],
+custom-img[position="right"] {
+    margin-left: 2%;
+
+}
+custom-iframe[position="left"],
+custom-img[position="left"] {
+    margin-right: 2%;
+
+}
+custom-iframe {
+    position: relative;
+    background-image: url('/images/editor-video-image.png');
+}
+h2 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+h1 {
+    font-weight: 600;
+    font-size: 36.5px;
+    margin-bottom: 16px;
+    color: #757575;
+    line-height: 1.1
+}
+a {
+    color: #1ca3c2;
+}
+*{
+    line-height: 1.4
+}
+/* custom-iframe[style='float: left;'] {
+    margin-right: 20px;
+}
+custom-iframe[style='float: right;'] {
+    margin-left: 20px;
+} */

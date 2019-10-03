@@ -1,0 +1,47 @@
+<div id="Info">
+    <div class="ui form">
+        <div id="sylius-shipping-address">
+            <div class="two fields">
+                <section-field :error="errors.name" required label="Name" v-model="name" inline-template>
+                    {% include ':GlobalComponents/Field:_field.html.twig' %}
+                </section-field>
+                <section-field :error="errors.surname" required label="Surname" v-model="surname" inline-template>
+                    {% include ':GlobalComponents/Field:_field.html.twig' %}
+                </section-field>
+            </div>
+        </div>
+        <div class="ui">
+            <div class="two fields">
+                <section-field :error="errors.email" required label="Email" v-model="email" inline-template>
+                    {% include ':GlobalComponents/Field:_field.html.twig' %}
+                </section-field>
+                <section-field :error="errors.phone" required label="Phone number" v-model="phone" inline-template>
+                    {% include ':GlobalComponents/Field:_field.html.twig' %}
+                </section-field>
+            </div>
+            <div class="two fields">
+                {# <section-field :error="errors.birthday" required label="Birthday" date v-model="birthday" inline-template>
+                    {% include ':GlobalComponents/Field:_field.html.twig' %}
+                </section-field> #}
+                <section-field :error="errors.vin" required label="Vehicle Identification Number (VIN)" v-model="vin" inline-template>
+                    {% include ':GlobalComponents/Field:_field.html.twig' %}
+                </section-field>
+       {#          <section-field label="Company name" v-model="company" inline-template>
+                    {% include ':GlobalComponents/Field:_field.html.twig' %}
+                </section-field> #}
+            </div>
+{#             <div class="two fields">
+                <section-field label="VAT number" v-model="vat" inline-template>
+                    {% include ':GlobalComponents/Field:_field.html.twig' %}
+                </section-field>
+            </div> #}
+        </div>
+    </div>
+    <div class="button customButton"><button @click="checkFields()" type="submit" class="bt-button primary"><span>Save Changes</span></button></div>
+    <div class="ui bt modal contactDetails">
+        <div class="h5 text-center bt-heading">
+            <div class="message">Your account has been successfully updated.</div>
+            <div class="bt-icon black bt-close"></div>
+        </div>
+    </div>
+</div>

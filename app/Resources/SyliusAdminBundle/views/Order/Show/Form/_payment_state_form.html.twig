@@ -1,0 +1,15 @@
+{% if orderPaymentStateForm is defined %}
+    <div class="order-payment-state">
+        <b>Payment state:</b> {{ order.paymentState }}
+        {% if isAdmin %}
+            <button class="ui mini button" onclick="edit_order_state_show('payment')">edit</button>
+        {% endif %}
+    </div>
+
+    {{ form_start(orderPaymentStateForm, {'action': path('app_order_payment_edit', { 'id': order.id }), 'method': 'POST' }) }}
+    <div class="order-payment-state-edit">
+        {{ form_row(orderPaymentStateForm.paymentState) }}
+        {{ form_widget(orderPaymentStateForm.save, { 'label': 'Save' }) }}
+    </div>
+    {{ form_end(orderPaymentStateForm) }}
+{% endif %}

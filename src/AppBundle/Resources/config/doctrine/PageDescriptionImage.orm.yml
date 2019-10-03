@@ -1,0 +1,12 @@
+AppBundle\Entity\PageDescriptionImage:
+    type: entity
+    table: app_page_description_image
+    manyToOne:
+        owner:
+            targetEntity: AppBundle\Entity\PageDescription
+            inversedBy: images
+            joinColumn:
+                name: owner_id
+                referencedColumnName: id
+                nullable: false
+                onDelete: CASCADE

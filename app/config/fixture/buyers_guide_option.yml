@@ -1,0 +1,7 @@
+sylius_fixtures:
+    suites:
+        buyersGuideOption:
+            fixtures:
+                buyers_guide_option:
+                    options:
+                      load: true

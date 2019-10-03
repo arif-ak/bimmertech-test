@@ -1,0 +1,47 @@
+AppBundle\Entity\ProductVariant:
+    type: entity
+    table: sylius_product_variant
+    repositoryClass: AppBundle\Repository\ProductVariantRepository
+    fields:
+        instructionRequired:
+            type: boolean
+        imageRequired:
+            type: boolean
+        instruction:
+            type: string
+            nullable: true
+        installationTime:
+            type: string
+            nullable: true
+        priority:
+            type: integer
+            nullable: true
+        vincheckserviceId:
+            type: integer
+            nullable: true
+        hasHardware:
+            type: boolean
+            nullable: true
+        hasSoftware:
+            type: boolean
+            nullable: true
+    manyToOne:
+        defaultWarehouse:
+            targetEntity: AppBundle\Entity\Warehouse
+    manyToMany:
+        optionValues:
+            targetEntity: Sylius\Component\Product\Model\ProductOptionValueInterface
+            joinTable:
+                name: sylius_product_variant_option_value
+                joinColumns:
+                    variant_id:
+                        referencedColumnName: id
+                        nullable: false
+                        unique: false
+                        onDelete: CASCADE
+                inverseJoinColumns:
+                    option_value_id:
+                        referencedColumnName: id
+                        nullable: false
+                        unique: false
+                        onDelete: CASCADE

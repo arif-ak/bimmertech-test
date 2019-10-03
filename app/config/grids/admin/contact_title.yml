@@ -1,0 +1,20 @@
+sylius_grid:
+    grids:
+        app_contact_title:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: AppBundle\Entity\ContactTitle
+            fields:
+                name:
+                    type: string
+                    label: Name
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

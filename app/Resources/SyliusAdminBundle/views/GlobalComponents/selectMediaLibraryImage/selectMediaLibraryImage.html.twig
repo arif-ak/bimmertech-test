@@ -1,0 +1,15 @@
+<div id="selectMediaLibraryImage" class="modal selectMediaLibraryImage" v-show="show"  @click.self="show=false">
+    <div class="modalWindow">
+        <i @click="show=false" class="close icon"></i>
+        <div class="content mediaImages ui form">
+            <div v-if="show" class="ui form MediaLibrary">
+                <section-media-library @choose="chooseHandle" choose-mode inline-template>
+                    {% include '@SyliusAdmin/GlobalComponents/MediaLibraryMainContent/MediaLibraryMainContent.html.twig' %}
+                </section-media-library>
+            </div>
+
+            <div v-if="selectedImagePath!==false" @click="select()" class="ui green labeled icon button"><i class="plus icon"></i>Choose</div>
+            <a @click="show=false" class="ui button">Cancel</a>
+        </div>
+    </div>
+</div>

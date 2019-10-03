@@ -1,0 +1,43 @@
+sylius_grid:
+    grids:
+        app_admin_slide:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: AppBundle\Entity\Slide
+            fields:
+                code:
+                    type: string
+                    label: Code
+                name:
+                    type: string
+                    label: Name
+                price:
+                    type: string
+                    label: Price
+                url:
+                    type: string
+                    label: Url
+                position:
+                    type: string
+                    label: Position
+                enabled:
+                    type: twig
+                    label: sylius.ui.enabled
+                    options:
+                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                images:
+                    type: twig
+                    label: Images
+                    options:
+                        template: "Slide/_form.html.twig"
+
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

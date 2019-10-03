@@ -1,0 +1,76 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+{% if taxon is defined %}
+    {% set product = taxon %}
+{% endif %}
+<div class="grid-x product-header grid-margin-x margin-top-2">
+    <div class="cell large-6 display-flex align-middle">
+        <h1 id="sylius-product-name" class="header">
+            {% if taxon is defined %}
+                {{ product.productName }}
+            {% else %}
+                {{ product.name }}
+            {% endif %}
+        </h1>
+    </div>
+    <div class="cell large-3 display-flex align-middle" v-show="product">
+        <div class="grid-x compatibility" :class="{'block': product, 'bt-loading': updateComp}">
+            <div class="mr-10">
+                <div class="bt-round-icon" :class="IconColorClassName">
+                    <section-compatibility-icon class="round" :value="product.compatibility" inline-template>
+                        {% include ':GlobalComponents/Compatibility:compatibilityIcon.html.twig' %}
+                    </section-compatibility-icon>
+                </div>
+            </div>
+            <div class="header-message display-flex align-middle">
+                <section-compatibility-text :value="product.compatibility" inline-template>
+                    {% include ':GlobalComponents/Compatibility:compatibility.html.twig' %}
+                </section-compatibility-text>
+            </div>
+        </div>
+    </div>
+    <div :class="{'block': true}" v-show="product" id="product-price"
+         class="large-3 display-flex align-right align-middle price">
+        {# {{ money.calculatePrice(product|sylius_resolve_variant) }} #}
+        {% if taxon is defined %}
+            <span>from</span>&nbsp;
+            <span class="dollar-sign">&#36;</span>[[priceMacro({{ product.price }})]]
+        {% else %}
+            <span class="dollar-sign">&#36;</span>
+            [[priceMacro(price)]]
+        {% endif %}
+        <br>
+        {% if taxon is not defined %}
+            <div class="bt-addons" v-if="product.savePrice &&  product.savePrice.title">
+                <section-checkbox @change="clacPrice()" v-model="savePrice" inline-template>
+                    <div :id="checkboxId" class="bt checkbox item customCheckbox">
+                        <label>
+                            <span class="name">
+                                {% if product.savePrice %}
+                                    {% if product.savePrice.title %}
+                                        {{ (product.savePrice.title|popup(popup_options, true))|raw }}
+                                    {% endif %}
+                                {% endif %}
+                            </span>
+                        </label>
+                        <input @change="handleInput()" v-model="selected" type="checkbox" :value="value">
+                    </div>
+                </section-checkbox>
+
+                {# <div class="bt checkbox item">
+                    <label>
+                        <span class="name">
+                            {% if product.savePrice %}
+                                {{ (product.savePrice.title|popup(popup_options, true))|raw }}
+                            {% endif %}
+                        </span>
+                    </label>
+                    <input @change="clacPrice()" type="checkbox" v-model="savePrice" name="savePrice">
+                </div> #}
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+<div class="grid-x">
+    {% include '@SyliusShop/Product/Show/_reviews.html.twig' %}
+</div>

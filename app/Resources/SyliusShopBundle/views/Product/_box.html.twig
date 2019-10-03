@@ -1,0 +1,82 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+{{ sonata_block_render_event('sylius.shop.product.index.before_box', {'product': product}) }}
+
+ 
+
+
+
+    <div class="bt-card"
+    id="{{ product.id }}" 
+    data-name="{{ product.name }}"
+    data-compatibility="{{ product.compatibility }}"
+    data-slug="{{ product.slug }}"
+    {% if  product.images|length >0 %}
+    data-imageUrl="{{ product.images.first.path }}"
+    {% endif %}
+    data-price="{{- money.calculatePrice(product|sylius_resolve_variant) -}}" 
+    data-bestseller="{% if product.flagName is not null %} {{- product.flagColor }} {{ product.flagName -}} {% endif %}"
+    >
+
+        <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}" class="image">
+            {% if product.imagesByType('thumbnail')is not empty %}
+                {% set path = product.imagesByType('thumbnail').first.path | imagine_filter(filter | default('sylius_shop_product_thumbnail')) %}
+            {% elseif product.images.first %}
+                {% set path = product.images.first.path | imagine_filter(filter | default('sylius_shop_product_thumbnail')) %}
+            {% else %}
+                {% set path = asset('assets/shop/images/placeholders/260x260.jpg') %}
+            {% endif %}
+            <img src="{{ path }}" alt="{{ product.name }}" class="ui bordered image"/>
+            {% if product.flagName is not null %}
+                <div class="sprint" style="background: {{ product.flagColor }}  ">{{ product.flagName }}</div>
+            {% endif %}
+        </a>
+        <div class="content">
+            <span class="header sylius-product-name" >
+                <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}">{{ product.name }}</a>
+{#                 {% if product.compatibility is not empty %}
+                    <span class="bt-svg-icon">
+                        {% if product.compatibility == 'No' %}
+                            <div class="bt-icon red bt-no"></div>
+                        {% endif %}
+                        {% if product.compatibility == 'Yes' %}
+                            <div class="bt-icon green bt-yes"></div>
+                        {% endif %}
+                        {% if product.compatibility == 'Not sure' %}
+                            <div class="bt-icon blue bt-maybe"></div>
+                        {% endif %}
+                    </span>
+                {% else %} #}
+                    <span :data-compatibility="'{{ product.compatibility }}'" class="bt-svg-icon">
+                        <div class="bt-icon" v-cloak></div>
+                    </span>
+                    <div class="ui popup top left transition hidden">
+                        <div class="content">
+                            <span class="bt-svg-icon">
+                                <div class="bt-icon round bt-attention"></div>
+                            </span>
+                            <span><span>Enter your VIN</span>
+                                to check if your car has it</span>
+                        </div>
+                    </div>
+
+            </span>
+            {% include '@SyliusShop/Product/Show/_reviews.html.twig' %}
+            {% if not product.variants.empty() %}
+                <div class="sylius-product-price">
+                    <span class="dollar-sign">&#36;</span>
+                    {{- money.calculatePrice(product|sylius_resolve_variant) -}}
+                </div>
+            {% endif %}
+        </div>
+        {# <div>#}
+        {#{{ product.shortDescription }}#}
+        {#</div>#}
+
+        {#<form action="{{ path('app_shop_ajax_cart_add_addon', {'productId': product.id}) }}" method="post">#}
+        {#<input type="submit" value="add to cart">#}
+        {#</form> #}
+
+    </div>
+
+
+    {{ sonata_block_render_event('sylius.shop.product.index.after_box', {'product': product}) }}

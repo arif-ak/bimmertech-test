@@ -1,0 +1,39 @@
+.section-custom {
+    line-height: 1.4;
+    font-size: 15px;
+    iframe,
+    img {
+        display: block;
+        box-sizing: border-box;
+        background-image: none !important;
+        width: 52%;
+        padding-bottom: 2%;
+        &[position="right"] {
+            padding-left: 4%;
+        }
+        &[position="left"] {
+            padding-right: 4%;
+        }
+    }
+    h2 {
+        margin-top: -3px;
+        font-size: 18px;
+        font-weight: 500;
+      }
+    h1 {
+        font-weight: 600;
+        font-size: 36.5px;
+        margin-top: -3px;
+        margin-bottom: 16px;
+        color: $base-gray-color;
+        line-height: 1.1
+    }
+    a {
+        color: $base-blue-color;
+    }
+    &:after {
+        display: block;
+        clear: both;
+        content: '';
+    }
+}

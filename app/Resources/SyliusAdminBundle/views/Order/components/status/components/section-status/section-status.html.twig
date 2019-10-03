@@ -1,0 +1,13 @@
+<div class="item grid-x grid-padding-x cell align-middle">    
+    <div class="cell medium-5"><b>[[status.title]]:</b></div>
+    <div class="cell medium-5" :class="status.class">
+        <span v-if="show">[[status.selectedStatus.value]] </span>
+        <select v-else v-model="status.selectedStatus.value" @change="onChange()" required="required" class="ui fluid dropdown">
+            <option v-for="status in status.listOfStatuses" :value="status.value">[[status.value]]</option>
+        </select>
+    </div>
+    <div class="block-button cell medium-2" v-show="status.changeStatusButton">
+        <button @click="saveStatus()" :class="{'disabled': (status.statusType == 'order' && !access.order_status) || (status.statusType == 'shipment' && !access.shipping_status)}" v-show="!show" class="ui mini blue button summaryEditBtn" :disabled="disabled == true">Save</button>
+        <button @click="editStatus()" :class="{'disabled': (status.statusType == 'order' && !access.order_status) || (status.statusType == 'shipment' && !access.shipping_status)}" v-show="show" class="ui mini button summaryEditBtn yellow">Edit</button>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<a href='{{ path('app_blog_show', { id: post.post.id, slug: post.post.slug}) }}'
+   class="post seo width-{{ post.ratio }}">
+    <div class="item-content">
+        <img src=" /media/image/{{ post.image.path }}" alt="{{ post.post.title }}">
+        <div class="text">
+            <div class="subTitle">{{ post.post.title }}</div>
+        </div>
+        
+        <div class="seoText">
+            <div class="before"></div>
+            <div ref="html">{{ post.post.seoText }}</div>
+            <div class="box-shadow"></div>
+        </div>
+    </div>
+</a>

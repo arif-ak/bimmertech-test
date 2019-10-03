@@ -1,0 +1,19 @@
+<div class="grid-x display-flex align-middle breadcrumb">
+    {% if product.mainTaxon is not null %}
+        {% set taxon = product.mainTaxon %}
+        {% set ancestors = taxon.ancestors|reverse %}
+        <div>
+            <a href="/" class="section">{{ 'home'|title }}</a>
+        </div>
+        <div class="divider display-flex align-middle"> <img src="{{ asset('assets/shop/img/bread_crumb_divider.png') }}"> </div>
+        <div>
+            {% if parentTaxon is defined and parentTaxon is not null %}
+            <a href="{{ path('sylius_shop_product_index', {'slug': parentTaxon.slug, '_locale': parentTaxon.translation.locale}) }}" class="section">{{ parentTaxon.name|title }}</a>
+            {% else %}
+            <a href="{{ path('sylius_shop_product_index', {'slug': taxon.slug, '_locale': taxon.translation.locale}) }}" class="section">{{ taxon.name|title }}</a>
+            {% endif %}
+        </div>
+        <div class="divider display-flex align-middle"> <img src="{{ asset('assets/shop/img/bread_crumb_divider.png') }}"> </div>
+    {% endif %}
+    <div class="active section">{{ product.name }}</div>
+</div>

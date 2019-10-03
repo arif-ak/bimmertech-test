@@ -1,0 +1,4 @@
+{# <div id="average-rating" class="ui star mini rating bt-rating disabled" data-rating="{{ product.averageRating|round }}" data-max-rating="5" data-average-rating="{{ product.averageRating|round(2) }}" ></div> #}
+<section-stars disabled value="{{ product.averageRating|round }}" inline-template size="mini">
+    {% include ':GlobalComponents/Stars:stars.html.twig' %}
+</section-stars>

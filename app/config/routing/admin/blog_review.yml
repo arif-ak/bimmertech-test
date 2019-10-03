@@ -1,0 +1,36 @@
+app_admin_blog_review:
+    resource: |
+        alias: app.blog_post_review
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        redirect: index
+        form: AppBundle\Form\Type\BlogReviewType
+        grid: app_admin_blog_review
+        vars:
+            all:
+                header: Blog review
+                subheader: Manage review
+            index:
+                icon: 'file image outline'
+    type: sylius.resource
+
+app_admin_blog_review_accept:
+    path: /blog-review/{id}/accept
+    methods: [GET]
+    defaults:
+        _controller: app.controller.blog_review_controller:apply
+        _sylius:
+            permission: true
+            redirect: referer
+            flash: sylius.review.accept
+
+app_admin_blog_review_reject:
+    path: /blog-review/{id}/reject
+    methods: [GET]
+    defaults:
+        _controller: app.controller.blog_review_controller:reject
+        _sylius:
+            permission: true
+            redirect: referer
+            flash: sylius.review.reject
+

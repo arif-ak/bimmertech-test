@@ -1,0 +1,7 @@
+{% form_theme form 'SyliusUiBundle:Form:imagesTheme.html.twig' %}
+<div class="ui tab" data-tab="interestedInProduct">
+    <h3 class="ui dividing header">Interested In</h3>
+
+    {{ form_row(form.interestingProducts) }}
+    {{ sonata_block_render_event('sylius.admin.product.' ~ action ~ '.tab_interestedInProduct', {'form': form}) }}
+</div>

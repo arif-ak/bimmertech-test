@@ -1,0 +1,147 @@
+sylius_grid:
+  grids:
+    sylius_admin_order:
+      driver:
+        name: doctrine/orm
+        options:
+          class: "%sylius.model.order.class%"
+          repository:
+            method: createListQueryBuilder
+
+      sorting:
+        number: desc
+      fields:
+        channel:
+          enabled: false
+        currencyCode:
+          enabled: false
+
+        number:
+          type: twig
+          label: sylius.ui.number
+          position: 0
+          path: .
+          sortable: ~
+          options:
+            template: "@SyliusAdmin/Order/Grid/Field/number.html.twig"
+        date:
+          type: datetime
+          label: sylius.ui.date
+          position: 1
+          path: checkoutCompletedAt
+          sortable: checkoutCompletedAt
+          options:
+            format: d-m-Y H:i:s
+        customer:
+          type: twig
+          label: sylius.ui.customer
+          position: 2
+          sortable: customer.lastName
+          options:
+            template: "@SyliusAdmin/Order/Grid/Field/customer.html.twig"
+        total:
+          type: twig
+          label: sylius.ui.total
+          position: 3
+          path: .
+          sortable: total
+          options:
+            template: "@SyliusAdmin/Order/Grid/Field/total.html.twig"
+            vars:
+              labels: "@SyliusAdmin/Order/Label/SupportState"
+        state:
+          type: twig
+          label: sylius.ui.state
+          position: 4
+          sortable: ~
+          options:
+            template: "@SyliusAdmin/Order/Grid/Field/state.html.twig"
+            vars:
+              labels: "@SyliusAdmin/Order/Label/State"
+        paymentState:
+          type: twig
+          label: sylius.ui.payment_state
+          position: 5
+          sortable: ~
+          options:
+            template: "@SyliusAdmin/Order/Grid/Field/state.html.twig"
+            vars:
+              labels: "@SyliusAdmin/Order/Label/PaymentState"
+
+        shippingState:
+          type: twig
+          label: sylius.ui.shipping_state
+          position: 6
+          sortable: ~
+          options:
+            template: "@SyliusAdmin/Order/Grid/Field/state.html.twig"
+            vars:
+              labels: "@SyliusAdmin/Order/Label/ShippingState"
+
+        supportStatus:
+          type: twig
+          label: Support Status
+          position: 7
+          sortable: ~
+          options:
+            template: "@SyliusAdmin/Order/Grid/Field/state.html.twig"
+            vars:
+              labels: "@SyliusAdmin/Order/Label/SupportState"
+        codingStatus:
+          type: twig
+          label: Coding Status
+          position: 8
+          sortable: ~
+          options:
+            template: "@SyliusAdmin/Order/Grid/Field/state.html.twig"
+            vars:
+              labels: "@SyliusAdmin/Order/Label/CodingState"
+
+      filters:
+#        order_role:
+#          type: order_role
+#        order_sort_by_statuses:
+#          type: order_sort_by_statuses
+        number:
+          type: string
+          label: sylius.ui.number
+        customer:
+          type: string
+          label: sylius.ui.customer
+          options:
+            fields: [customer.email, customer.firstName, customer.lastName]
+        date:
+          type: date
+          label: sylius.ui.date
+          options:
+            field: checkoutCompletedAt
+            inclusive_to: true
+        channel:
+          enabled: false
+        total:
+          type: string
+          label: sylius.ui.total
+      actions:
+        item:
+          show:
+            enabled: false
+            type: show
+
+        main:
+          my:
+            type: my
+            label: my
+            options:
+              link:
+                route: sylius_admin_role_order_index
+          all:
+            type: all
+            label:  all
+            options:
+              link:
+                route: sylius_admin_order_index
+
+  templates:
+    filter:
+      order_role: ':Grid/Filter:order_role_filter.html.twig'
+      order_sort_by_statuses: ':Grid/Filter:order_sort_by_statuses_filter.html.twig'

@@ -1,0 +1,70 @@
+{% extends "@SyliusShop/layout.html.twig" %}
+
+{% block content %}
+    <div class="ui breadcrumb">
+        <a href="{{ path('sylius_shop_homepage') }}" class="section">{{ 'sylius.ui.home'|trans }}</a>
+        <div class="divider">/</div>
+
+        <a href="{{ path('webburza_article_frontend_index') }}" class="section">
+            {{ 'webburza_article.ui.articles'|trans }}
+        </a>
+        <div class="divider">/</div>
+
+        {% if article.category %}
+            <a href="{{ path('webburza_article_frontend_index_by_category', { categorySlug: article.category.slug }) }}"
+               class="section">
+                {{ article.category.title }}
+            </a>
+            <div class="divider">/</div>
+        {% endif %}
+
+        <div class="active section">{{ article.title }}</div>
+    </div>
+
+    <div class="ui hidden divider"></div>
+
+    <div class="ui stackable grid">
+        <div class="column">
+            <h1 class="ui monster dividing header">{{ article.title }}</h1>
+
+            {% if article.authorPhoto %}
+                <img src="{{ article.authorPhoto }}" width="50px" height="50px">
+            {% endif %}
+            {% if article.author %}
+                {{ article.author }}
+            {% endif %}
+            {% if article.PublishedAt %}
+                <span class="date">
+                            <i class="clock icon"></i>
+                    {{ article.publishedAt | date }}
+                        </span>
+            {% endif %}
+
+
+            {% if article.lead %}
+                <p>{{ article.lead }}</p>
+            {% endif %}
+
+            {% if article.image %}
+                <img class="ui segment fluid image"
+                     src="{{ article.image.path | imagine_filter('webburza_article_cover') }}" alt="">
+            {% endif %}
+
+            <div class="ui segment">
+                {{ article.content | raw }}
+            </div>
+
+            {% if article.products | length %}
+                <h2 class="ui horizontal section divider header">
+                    {{ 'webburza_article.ui.related_products'|trans }}
+                </h2>
+
+                {% include 'SyliusShopBundle:Product:_horizontalList.html.twig' with { products: article.products } %}
+            {% endif %}
+
+            {% if relatedArticles | length %}
+                {% include 'WebburzaSyliusArticleBundle:Frontend/Article:_related.html.twig' with { articles: relatedArticles } %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

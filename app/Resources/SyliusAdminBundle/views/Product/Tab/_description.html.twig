@@ -1,0 +1,12 @@
+{% form_theme form 'SyliusUiBundle:Form:imagesThemeColumn.html.twig' %}
+<script>
+    var productDescription = `{{ product.description|raw }}`;
+</script>
+<div class="ui tab" data-tab="description" id="description">
+    <div :class="{'bt-loading': loading}">
+        <h3 class="ui dividing header">Description</h3>
+        {{ form_row(form.description) }}
+        {{ sonata_block_render_event('sylius.admin.product.' ~ action ~ '.tab_descriptions', {'form': form }) }}
+        <tinymce v-model="productDescription"></tinymce>
+    </div>
+</div>

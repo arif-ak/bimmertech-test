@@ -1,0 +1,7 @@
+{{ form_start(form,{'action': path('app_user_cookie_seting')}) }}
+{{ form_row(form.accept) }}
+
+<p>{{ message|raw }}</p>
+
+<input type="submit" name="save"> save</input>
+{{ form_end(form) }}

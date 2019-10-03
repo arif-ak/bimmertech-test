@@ -1,0 +1,27 @@
+AppBundle\Entity\OrderNote:
+  type: entity
+  table: app_order_note
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    author:
+      type: string
+      length: 500
+      nullable: true
+    message:
+      type: text
+      nullable: true
+    createdAt:
+      type: datetime
+      nullable: true
+
+  manyToOne:
+    order:
+      targetEntity: AppBundle\Entity\Order
+      inversedBy: orderNotes
+      joinColumn:
+        name: order_id
+        referencedColumnName: id

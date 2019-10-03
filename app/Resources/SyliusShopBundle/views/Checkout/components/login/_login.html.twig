@@ -1,0 +1,60 @@
+<div class="cell large-offset-1 large-3 block-email ui loadable form">
+    <div class="block-email-header">
+        <transition name="fadeRight">
+            <div v-if="!audited">Enter your email address to place your order</div>
+        </transition>
+        <transition name="fadeRight">
+            <div class="bt-confirmation" v-if="audited"></div>
+        </transition>
+    </div>
+    <div class="bt ui form check-customer">
+        <div class="one field" id="sylius-api-login">
+            <div :class="{ 'bt-loading': loading }" class="required field">
+                <label class="required">
+                    <transition name="fadeRight">
+                        <span v-if="!audited">Enter your email</span>
+                    </transition>
+                    <transition name="fadeRight">
+                        <span class="success-message" v-if="audited && !isAuth">The confirmation letter is in your inbox.</span>
+                    </transition>
+                </label>
+                <div :class="{ valid: emails.first && !messages.registered && checkEmailRequest, error: messages.registered && !checkEmailRequest }" class="input-wrapper transition">
+                    <input :disabled="isAuth" placeholder="Your email" type="email" v-model="firstEmail"/></div>
+                <div class="firstEmailMessage message" v-if="messages.registered && !messages.closed_account">
+                    <div class="error">This email is already registered.</div>
+                    <div>Please
+                        <span @click="openLogin(firstEmail)" class="blue">Log In</span>
+                        to continue.</div>
+                </div>
+                <div class="firstEmailMessage message" v-if="messages.registered && messages.closed_account">
+                    <div class="error">The email is already registered but the account has been closed.</div>
+                    <div>
+                        To restore the account, please click <span @click.once="restoreFunc" class="blue">here</span>. A confirmation email and a new password will be sent to your inbox.
+                    </div>
+                </div>
+                <transition name="fadeRight">
+                    <span class="success-message" v-if="messages.restored && !isAuth">[[messages.restored]]</span>
+                </transition>
+            </div>
+            <transition name="fadeTop">
+                <div class="required field" v-if="!audited && !messages.registered">
+                    <label class="required">Confirm your email</label>
+                    <div :class="{ valid: isMatch && !messages.registered, error: messages.mutch }" class="input-wrapper transition confirm">
+                        <input :disabled="!emails.first || messages.registered || isAuth" @blur="auditConfirmEmail()" placeholder="Your email" type="email" v-model="confirmEmail"/>
+                    </div>
+                    <div class="firstEmailMessage message" v-if="messages.mutch">
+                        <div class="error">The email confirmation does not match your email address.</div>
+                    </div>
+                </div>
+            </transition>
+            <div class="cell align-center flex-container" style="display: none;">
+                <div class="bt-icon green bt-letter-check mask"></div>
+            </div>
+            <transition name="fadeTop">
+                <div class="cell help-text" v-if="audited && !isAuth">
+                    <span>You can check it out and confirm your email address whenever you feel like it.</span>
+                </div>
+            </transition>
+        </div>
+    </div>
+</div>

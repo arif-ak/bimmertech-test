@@ -1,0 +1,50 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+
+{{ sonata_block_render_event('sylius.shop.product.index.before_box', {'product': product}) }}
+
+<div class="bt-card">
+    <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}" class="dimmable image">
+        <div class="bt-card-shadow">
+
+            {% include '@SyliusShop/Homepage/Product/_mainImage.html.twig' with {
+                'product' : product
+            } %}
+        </div>
+        <div class="ui dimmer">
+            <div class="content">
+                <div class="center">
+                    <h5 class="header">{{ product.name }}
+                    </h5>
+
+                    <div class="price">
+                        <span class="dollar-sign">&#36;</span>
+                        {{- money.calculatePrice(product|sylius_resolve_variant) -}}
+                    </div>
+
+                    {# <div class="ui inverted button">{{ 'sylius.ui.view_more'|trans }}</div> #}
+                </div>
+            </div>
+        </div>
+        <h5 class="header transition sylius-product-name">{{ product.name }}</h5>
+    </a>
+</div>
+{# <div class="content">
+        <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}"
+           class="header sylius-product-name">{{ product.name }}</a>
+        {% if not product.variants.empty() %}
+            <div class="sylius-product-price">{{ money.calculatePrice(product|sylius_resolve_variant) }}</div>
+        {% endif %}
+        {% include '@SyliusShop/Product/Show/_reviews.html.twig' %}
+    </div>
+    <div>
+        {{ product.shortDescription }}
+    </div>
+
+    <form action="{{ path('app_shop_ajax_cart_add_addon', {'productId': product.id}) }}" method="post">
+        <input type="submit" value="add to cart">
+    </form>
+    {% if product.compatibility is not empty %}
+        <div> Compatibility : <b>{{ product.compatibility }}</b></div>
+    {% endif %} #}
+
+{{ sonata_block_render_event('sylius.shop.product.index.after_box', {'product': product}) }}

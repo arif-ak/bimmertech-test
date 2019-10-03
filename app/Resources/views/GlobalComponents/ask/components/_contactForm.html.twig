@@ -1,0 +1,67 @@
+<form class="ui form">
+    <h5 class="dividing header">Write to us</h5>
+    <div class="field" :class="{'err': nameError}">
+        <input maxlength="49" v-model="name" placeholder="Your name" type="text" name="first-name">
+        <section-popup v-if="nameError" on="hover" distance="3" inline-template>
+            <span>
+                <span :id="buttonId" class="bt-icon gray bt-attention popup"></span>
+                <div :id="popupId" class="customPopup ui popup transition">
+                    <div class="content">
+                        <span>[[nameError]]</span>
+                    </div>
+                </div>
+            </span>
+        </section-popup>
+    </div>
+    <div class="field" :class="{'err': emailError}">
+        <input v-model="email" placeholder="Your email address" type="email" name="email">
+        <section-popup v-if="emailError" on="hover" distance="3" inline-template>
+            <span>
+                <span :id="buttonId" class="bt-icon gray bt-attention popup"></span>
+                <div :id="popupId" class="customPopup ui popup transition">
+                    <div class="content">
+                        <span>[[emailError]]</span>
+                    </div>
+                </div>
+            </span>
+        </section-popup>
+    </div>
+    <div class="field" :class="{'err': vinError}">
+        <input maxlength="17" v-model="vin" placeholder="Your Vehicle Identification Number (VIN)" type="text" name="vin">
+        <section-popup on="hover" distance="3" inline-template>
+            <span>
+                <span :id="buttonId" class="bt-icon gray bt-attention popup"></span>
+                <div :id="popupId" class="customPopup ui popup transition">
+                    <div class="content">
+                        <span v-if="vinError">[[vinError]]</span>
+                        <span v-else>Give a full VIN number or the last 7 digits</span>
+                    </div>
+                </div>
+            </span>
+        </section-popup>
+    </div>
+    <div class="field" :class="{'err': messageError}">
+        <textarea maxlength="9999" v-model="message" placeholder="Your message"></textarea>
+        <section-popup v-if="messageError" on="hover" distance="3" inline-template>
+            <span>
+                <span :id="buttonId" class="bt-icon gray bt-attention popup"></span>
+                <div :id="popupId" class="customPopup ui popup transition">
+                    <div class="content">
+                        <span>[[messageError]]</span>
+                    </div>
+                </div>
+            </span>
+        </section-popup>
+    </div>
+    <div class="grid-x footerContent">
+        <div class="message">
+            <span class="wrong" v-if="sendMessage===false">Something went wrong.</span>
+            <span v-if="sendMessage===true"><span class="bt-icon green bt-yes"></span>Inquiry received.</span>
+        </div>
+        <div class="btnBorder" @click="send()">
+            <div :class="{'bt-loading': loading}" class="bt-button primary">
+                <span>Send</span>
+            </div>
+        </div>
+    </div>
+</form>

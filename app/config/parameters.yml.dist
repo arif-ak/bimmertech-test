@@ -1,0 +1,46 @@
+parameters:
+    host: "http://127.0.0.1:8000"
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port: ~
+    database_name: sylius
+    database_user: root
+    database_password: ~
+    # You should uncomment this if you want use pdo_sqlite.
+    # database_path: "%kernel.root_dir%/data.db3"
+
+    mailer_transport: gmail
+    mailer_host: gmail-smtp-msa.l.google.com
+    mailer_user: ~
+    mailer_password: ~
+
+    secret: EDITME
+
+    mailchimp.api_key: efaf82e3233723158056cbbf76504262-us17
+    mailchimp.list_id: d56968ed4e
+    #    vincheck_base_url: 'https://apps.bimmer-tech.net/vincheckservice/web/'
+
+    vincheck_base_url_bopt: 'https://apps.bimmer-tech.net'
+    vincheck_base_url: 'http://vinservice.devtestshop.bimmer-tech.net'
+    vincheck_uri_products: /vincheckservice/web/api/products/get/service
+    vincheck_uri_part: /vincheckservice/web/api/get/response
+    vincheck_uri_manual: /vincheckservice/web/api/products/get/by_params
+    vincheck_uri_product_models: /vincheckservice/web/api/products/%s/model
+
+    vincheck_part_key: wfewffffeee22
+    vincheck_product_key: 5nZ6gVNyDrhgHPH
+
+    elastic_enable: false
+    elastic_host: elasticsearch
+    elastic_port: 9200
+    site_name: Webshop
+    after_ship_key: "1f69c7ec-1037-4737-8b8c-5bec0f9822b4"
+    after_ship_key_0417: "45179fdf-9cab-4404-bef3-bcff06a0296a"
+    after_ship_key_0423: "4d08f4fa-eae4-474b-bc68-31bdbd9f1635"
+    after_ship_key_0425: "11bf213d-8fa8-426f-9a6c-d340d6ba86f3"
+    apilayer_key: "8d8a4f9d2b24c9de415b672cdb62ece4"
+
+    # PayPal API application credential
+    pay_pal_client_id: "AbJVMTPUK_kxdPpOAipw84XBF1ThwbfZrE_sQjFiWIb0-OkgBtjEe_XuxxhAHCbU-uLJq8ZCo1Muida8"
+    pay_pal_client_secret: "ELRxUI_nCoGLw0XF_-DnuX6Q3v6OVBvkw5nJipDMZ2ut8FCpbUA6zPDFqZSdw4TwubDDrv2DTti-CUv2"
+    pay_pal_api_mode: "sandbox"

@@ -1,0 +1,71 @@
+#dealeshipPlatform {
+    margin-top: 50px;
+    .header {
+        h4 {
+            font-weight: 500;
+            color: #000;
+            line-height: 23px;
+        }
+        .divider {
+            background-color: #1ca3c2;
+            height: 4px;
+            width: calc(100% - 20px);
+            display: flex;
+            margin-left: 20px;
+            box-sizing: border-box;
+        }
+    }
+    >.grid-x {
+        margin-top: 40px !important;
+        >.cell {
+            >img {
+                width: 100%;
+                background: silver;
+            }
+            &:first-child {
+                padding-right: 1%;
+            }
+            &:last-child {
+                padding-left: 1%;
+            }
+            .content {
+                .button {
+                    margin-top: 50px;
+                    border-radius: 20px;
+                    border: 1px solid #757575;
+                    padding: 2px;
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+                    max-width: 285px;
+                    position: relative;
+                    button {
+                        margin: 0;
+                        border-radius: 20px;
+                    }
+                    &:after {
+                        display: block;
+                        content: '';
+                        background: $base-light-gray-color;
+                        height: 2px;
+                        width: 86%;
+                        position: absolute;
+                        left: 8%;
+                        bottom: -24px;
+                    }
+                }
+                p {
+                    // letter-spacing: -0.2px;
+                    line-height: 17px;
+                    a {
+                        color: $base-blue-color;
+                        cursor: pointer;
+                    }
+                    &.applicationForm {
+                        margin-top: 40px;
+                        max-width: 325px;
+                    }
+                }
+            }
+        }
+    }
+}

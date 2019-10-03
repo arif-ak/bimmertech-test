@@ -1,0 +1,23 @@
+AppBundle\Entity\ProductProperty:
+    type: entity
+    table: app_product_property
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+        code:
+            type: string
+        description:
+            type: text
+            nullable: true
+    oneToMany:
+        images:
+            targetEntity: AppBundle\Entity\ProductPropertyImage
+            mappedBy: owner
+            orphanRemoval: true
+            cascade:
+                - all

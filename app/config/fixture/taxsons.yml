@@ -1,0 +1,155 @@
+sylius_fixtures:
+    suites:
+        taxons:
+            fixtures:
+                taxons:
+                      options:
+                          custom:
+                              category:
+                                  code: "category"
+                                  name: "Category"
+                                  slug: "category"
+                                  description: "This is the first Taxon"
+                                  children:
+                                      taxone_park_assists:
+                                          code: "park_assists"
+                                          name: "PARK ASSISTS"
+                                          slug: "park_assists"
+                                          image: "/fixture_images/taxon/park_assist.svg"
+                                          children:
+                                             taxone_park_assists_container:
+                                                  code: "park_assists_container"
+                                                  name: "PARK ASSISTS Container"
+                                                  productName: "PARK ASSISTS Product"
+                                                  price: "99900"
+                                                  slug: "park_assists/rear-cameras"
+                                                  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                   Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+                                                    Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+                                                     ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+                                                      eget, efficitur porta tellus."
+                                                  shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                     Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+                                                      Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+                                                       ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+                                                        eget, efficitur porta tellus."
+                                                  isContainer: true
+                                                  image: "/fixture_images/taxon/BMW_Navigation_R_4e89c1a71179f_200x200.jpg"
+                                      taxone_audio:
+                                          code: "audio"
+                                          name: "AUDIO"
+                                          slug: "audio"
+                                          image: "/fixture_images/taxon/audio.svg"
+                                      taxone_multimedia:
+                                          code: "multimedia"
+                                          name: "MULTIMEDIA"
+                                          slug: "multimedia"
+                                          description: "This is the first Taxon."
+                                          image: "/fixture_images/taxon/multimedia.svg"
+                                          children:
+                                               taxone_multimedia_container:
+                                                    code: "multimedia_container"
+                                                    name: "MULTIMEDIA Container"
+                                                    productName: "MULTIMEDIA Container Product"
+                                                    price: "99900"
+                                                    slug: "multimedia/car-play"
+                                                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                     Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+                                                      Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+                                                       ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+                                                        eget, efficitur porta tellus."
+                                                    shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                       Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+                                                        Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+                                                         ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+                                                          eget, efficitur porta tellus."
+                                                    isContainer: true
+                                                    image: "/fixture_images/taxon/BMW_Navigation_R_4e89c1a71179f_200x200.jpg"
+                                      txone_coding:
+                                          code: "idrive"
+                                          name: "coding"
+                                          slug: "coding"
+                                          description: "This is the first Taxon."
+                                          image: "/fixture_images/taxon/coding.svg"
+                                      taxone_convenience:
+                                          code: "convenience"
+                                          name: "CONVENIENCE"
+                                          slug: "convenience"
+                                          image: "/fixture_images/taxon/convenience.svg"
+                                          children:
+                                              taxone_convenience_container:
+                                                  code: "convenience_container"
+                                                  name: "CONVENIENCE Container"
+                                                  productName: "CONVENIENCE Container Product"
+                                                  price: "99900"
+                                                  slug: "convenience/soft-close"
+                                                  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                   Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+                                                    Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+                                                     ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+                                                      eget, efficitur porta tellus."
+                                                  shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                     Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+                                                      Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+                                                       ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+                                                        eget, efficitur porta tellus."
+                                                  isContainer: true
+                                                  image: "/fixture_images/taxon/BMW_Navigation_R_4e89c1a71179f_200x200.jpg"
+                                      taxone_navigation:
+                                          code: "navigation"
+                                          name: "NAVIGATION"
+                                          slug: "navigation"
+                                          image: "/fixture_images/taxon/navigation.svg"
+                                          children:
+                                              taxone_navigation_container:
+                                                  code: "navigation_container"
+                                                  name: "Navigation Container"
+                                                  productName: "Navigation Container Product"
+                                                  price: "99900"
+                                                  slug: "navigation/navigation-retrofit"
+                                                  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                   Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+                                                    Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+                                                     ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+                                                      eget, efficitur porta tellus."
+                                                  shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                     Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+                                                      Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+                                                       ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+                                                        eget, efficitur porta tellus."
+                                                  isContainer: true
+                                                  image: "/fixture_images/taxon/BMW_Navigation_R_4e89c1a71179f_200x200.jpg"
+                                      taxone_interior:
+                                          code: "interior"
+                                          name: "INTERIOR"
+                                          slug: "interior"
+                                          image: "/fixture_images/taxon/interior.svg"
+                                          children:
+                                              taxone_interior_container:
+                                                  code: "interior_container"
+                                                  name: "INTERIOR Container"
+                                                  productName: "INTERIOR Container Product"
+                                                  price: "99900"
+                                                  slug: "interior/panel"
+                                                  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                   Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+                                                    Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+                                                     ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+                                                      eget, efficitur porta tellus."
+                                                  shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                     Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+                                                      Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+                                                       ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+                                                        eget, efficitur porta tellus."
+                                                  isContainer: true
+                                                  image: "/fixture_images/taxon/BMW_Navigation_R_4e89c1a71179f_200x200.jpg"
+                                      taxone_exterior:
+                                          code: "exterior"
+                                          name: "EXTERIOR"
+                                          slug: "exterior"
+                                          image: "/fixture_images/taxon/exterior.svg"
+                                      taxone_outlet:
+                                          code: "outlet"
+                                          name: "OUTLET"
+                                          slug: "outlet"
+                                          image: "/fixture_images/taxon/outlet.svg"

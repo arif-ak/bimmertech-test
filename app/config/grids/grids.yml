@@ -1,0 +1,33 @@
+imports:
+    - { resource: 'admin/warehouse.yml' }
+    - { resource: 'admin/user_sale.yml' }
+    - { resource: 'admin/user_logistic.yml' }
+    - { resource: 'admin/user_support.yml' }
+    - { resource: 'admin/user_coding.yml' }
+    - { resource: 'admin/user_marketing.yml'}
+    - { resource: 'admin/slider.yml' }
+    - { resource: 'admin/slide.yml' }
+    - { resource: 'admin/order.yml'}
+    - { resource: 'account/order.yml'}
+    - { resource: 'admin/general_options.yml' }
+    - { resource: 'admin/faq.yml' }
+    - { resource: 'admin/buyers_guide_option.yml' }
+    - { resource: 'admin/drop_down.yml' }
+    - { resource: 'admin/product_property.yml' }
+    - { resource: 'admin/pop_up_options.yml' }
+    - { resource: 'admin/contact_title.yml' }
+    - { resource: 'admin/contact.yml' }
+    - { resource: 'admin/custom_page.yml' }
+    - { resource: 'admin/installer.yml' }
+    - { resource: 'admin/color.yml' }
+    - { resource: 'admin/interested_in_category.yml'}
+    - { resource: 'admin/dealer.yml'}
+    - { resource: 'admin/blog_category.yml'}
+    - { resource: 'admin/blog_post.yml'}
+    - { resource: 'admin/blog_review.yml'}
+    - { resource: 'admin/blog_products.yml'}
+    - { resource: 'admin/product.yml'}
+    - { resource: 'admin/product_attribute.yml'}
+    - { resource: 'admin/product_association_type.yml'}
+    - { resource: 'admin/home.yml'}
+    - { resource: 'admin/blog_post_products.yml'}

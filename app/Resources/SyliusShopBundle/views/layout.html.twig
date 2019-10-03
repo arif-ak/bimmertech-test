@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html lang="{{ app.request.locale|slice(0, 2) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="csrf-token" content="{{ csrf_token('shop_authenticate') }}"/>
+        <meta name="robots" content="noindex">
+        <meta name="vin" title="{{ app.session.get('vincheck')['label']|default(' ') }}" content="{{ app.session.get('vincheck')['vin']|default(' ') }}"/>
+        <meta name="env" content="{{ app.environment }}" />
+        <title>
+            {% block title %} {% if metaTitle is defined %} {{ metaTitle }} {% endif %}{% endblock %}
+        </title>
+        {% block meta_description %}<meta name="description" content=" {% if metaDescription is defined %} {{ metaDescription }} {% endif %}"/>{% endblock %}
+        {% block meta_image %}<meta property="og:image" content="https://s3.amazonaws.com/TWFiles/451410/companyLogo/tf_03DE7151-BA5B-8316-728807451107E666.logo.png"/>{% endblock %}
+        {% block meta_keywords %}<meta name="keywords" content="{% if metaKeywords is defined %} {{ metaKeywords }}  {% endif %}"/>{% endblock %}
+        
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"> 
+        {# <meta content="width=1200,initial-scale=1" name="viewport"> #}
+        {% block metatags %}{% endblock %}
+        {% block stylesheets %}
+            {% include '@SyliusUi/_stylesheets.html.twig' with {
+                'path' : 'assets/shop/css/style.css'
+            } %}
+            {{ sonata_block_render_event('sylius.shop.layout.stylesheets') }}
+        {% endblock %}
+        <link href="https://unpkg.com/flatpickr@4/dist/flatpickr.min.css" rel="stylesheet">
+        <script>(function(){var WebP=new Image();WebP.onload=WebP.onerror=function(){
+            if(WebP.height!=2){var sc=document.createElement('script');sc.type='text/javascript';sc.async=true;
+            var s=document.getElementsByTagName('script')[0];sc.src='js/webpjs-0.0.2.min.js';s.parentNode.insertBefore(sc,s);}};
+            WebP.src='data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';})();</script>
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-P4KJTPL');</script>
+        {#<!-- End Google Tag Manager -->#}
+
+        <script type="text/javascript" src="/assets/shop/js/fetch.umd.js"></script>        
+        <script type="text/javascript" src="/assets/shop/js/vue-resource.min.js"></script>
+        <script type="text/javascript" src="/assets/shop/js/vee-validate.min.js"></script>
+        <script type="text/javascript" src="/assets/shop/js/vue-sessionstorage.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="/assets/shop/js/all.js"></script>
+        {{   sonata_block_render_event('sylius.shop.layout.head') }}
+
+    </head>
+    <body class="body">
+        {{ sonata_block_render_event('sylius.shop.layout.before_body') }}
+
+
+        <div id="nav-menu">
+            <div id="main-nav" class="main-nav transition" >
+                <div>
+                    {{ render(controller('app.controller.taxonomy_menu_controller:index')) }}
+                </div>
+            </div>
+            <div id="main-nav-mobile">
+                <div @click="navWidth=645" :style="{'width': navWidth+'px'}" class="main-nav mobile transition" >
+                    <div>
+                        {{ render(controller('app.controller.taxonomy_menu_controller:index')) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+{#         <div id="nav-menu" >
+            <div id="main-nav" class="main-nav transition">
+                {% include ':GlobalComponents/AppNav:app_nav.html.twig' %}
+            </div>
+            <div id="main-nav-mobile">
+                <div @click="navWidth=645" :style="{'width': navWidth+'px'}" class="main-nav mobile transition">
+                    {% include ':GlobalComponents/AppNav:app_nav.html.twig' %}
+                </div>
+            </div>
+        </div> #}
+
+        {% block header %}
+            <header id="appHeader" class={% block headerClass %} {% endblock %}>
+                {% include ':GlobalComponents/AppHeader:_header.html.twig' %}
+                {# {% include '@SyliusShop/AppHeader/_header.html.twig' %} #}
+            </header>
+            {{ sonata_block_render_event('sylius.shop.layout.after_header') }}
+        {% endblock %}
+        {% block slider %}{% endblock %}
+        <div class="grid-container boundary" style="min-height: 52vh;">
+            {# {% include '@SyliusShop/_flashes.html.twig' %} #}
+            {{ sonata_block_render_event('sylius.shop.layout.before_content') }}
+            {% block content %}{% endblock %}
+            {{ sonata_block_render_event('sylius.shop.layout.after_content') }}
+        </div>
+        {% block footer %}
+            {% include '@SyliusShop/_footer.html.twig' %}
+        {% endblock %}
+        {% block javascripts %}
+            <!-- Google Tag Manager (noscript) -->
+            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P4KJTPL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <!-- End Google Tag Manager (noscript) -->
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/utils_global.js'
+            } %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                 'path' : 'assets/shop/js/underscore.js'
+            } %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/vue.js'
+            } %}
+            {% if app.environment == "dev" %}
+                {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/dev.js'
+                } %}
+            {% else %}
+            {% endif %}
+
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/app.js'
+            } %}
+
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/popup.js'
+            } %}
+
+    {# {% include '@SyliusUi/_javascripts.html.twig' with { 'path' : 'assets/shop/js/vue2.js' } %} #}
+
+    {# *********************************************************************************************************************************************** #}
+    {# Start Global Components #}
+    {# *********************************************************************************************************************************************** #}
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/GlobalVueComponents/Components.js'
+        } %}
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/custom.vue.js'
+        } %}
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/GlobalVueComponents/price/price.js'
+        } %}
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/GlobalVueComponents/popup/popup.js'
+        } %}
+        
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/GlobalVueComponents/compatibility/compatibility.js'
+        } %}
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/GlobalVueComponents/compatibility/compatibilityIcon.js'
+        } %}
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/GlobalVueComponents/field/field.js'
+        } %}
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/GlobalVueComponents/checkbox/checkbox.js'
+        } %}
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/GlobalVueComponents/stars/stars.js'
+        } %}
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/GlobalVueComponents/reviews/reviews.js'
+        } %}
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/GlobalVueComponents/reviewsRating/reviewsRating.js'
+        } %}
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/GlobalVueComponents/radio/radio.js'
+        } %}
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/GlobalVueComponents/appFooter/appFooter.js'
+        } %}
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/GlobalVueComponents/appNav/appNav.js'
+        } %}
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/GlobalVueComponents/productList/list.js'
+        } %}
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/GlobalVueComponents/blogList/list.js'
+        } %}
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/GlobalVueComponents/askComponent/askComponent.js'
+        } %}
+        {# *********************************************************************************************************************************************** #}
+        {# Start Header Components #}
+        {# *********************************************************************************************************************************************** #}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/GlobalVueComponents/appHeader/components/cart/cart.js'
+            } %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/GlobalVueComponents/appHeader/components/login/login.js'
+            } %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/GlobalVueComponents/appHeader/components/vincheck/vincheck.js'
+            } %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/GlobalVueComponents/appHeader/components/search/search.js'
+            } %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/GlobalVueComponents/appHeader/appHeader.js'
+            } %}
+        {# *********************************************************************************************************************************************** #}
+        {# End Header Components #}
+        {# *********************************************************************************************************************************************** #}
+
+    {# *********************************************************************************************************************************************** #}
+    {# End Global Components #}
+    {# *********************************************************************************************************************************************** #}
+
+
+    {# *********************************************************************************************************************************************** #}
+    {# Start Home Page #}
+    {# *********************************************************************************************************************************************** #}
+        {% if app.request.attributes.get('_route') == "sylius_shop_homepage" %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/home/components/CategoryList/CategoryList.js'
+            } %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/home/home.js'
+            } %}
+        {% endif %}
+    {# *********************************************************************************************************************************************** #}
+    {# End Home Page #}
+    {# *********************************************************************************************************************************************** #}
+
+    {# *********************************************************************************************************************************************** #}
+    {# Start Contact Page #}
+    {# *********************************************************************************************************************************************** #}
+        {% if app.request.attributes.get('_route') == "sylius_shop_contact_request" %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/contact/contact.js'
+            } %}
+        {% endif %}
+    {# *********************************************************************************************************************************************** #}
+    {# End Contact Page #}
+    {# *********************************************************************************************************************************************** #}
+
+
+    {# *********************************************************************************************************************************************** #}
+    {# Start Product Page #}
+    {# *********************************************************************************************************************************************** #}
+        {% if app.request.attributes.get('_route') == "sylius_shop_product_show" %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/product/product.js'
+            } %}
+        {% endif %}
+        {% if app.request.attributes.get('_route') == "sylius_shop_product_index" %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/product/productContainer.js'
+            } %}
+        {% endif %}
+        {% if app.request.attributes.get('_route') == "sylius_shop_product_index" %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/parkAssists/parkAssists.js'
+            } %}
+        {% endif %}
+    {# *********************************************************************************************************************************************** #}
+    {# End Product Page #}
+    {# *********************************************************************************************************************************************** #}
+
+    {# *********************************************************************************************************************************************** #}
+    {# Start Search Page #}
+    {# *********************************************************************************************************************************************** #}
+        {% if app.request.attributes.get('_route') == "app_search_elastic_product_paginate" %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/search/search.js'
+            } %}
+        {% endif %}
+    {# *********************************************************************************************************************************************** #}
+    {# End Search Page #}
+    {# *********************************************************************************************************************************************** #}
+
+    {# *********************************************************************************************************************************************** #}
+    {# Start Search Page #}
+    {# *********************************************************************************************************************************************** #}
+        {% if app.request.attributes.get('_route') == "api_checkout_thank_you" %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/thank-you/thank-you.js'
+            } %}
+        {% endif %}
+    {# *********************************************************************************************************************************************** #}
+    {# End Search Page #}
+    {# *********************************************************************************************************************************************** #}
+
+
+    {# *********************************************************************************************************************************************** #}
+    {# Start Checkout Page #}
+    {# *********************************************************************************************************************************************** #}
+        {% if app.request.attributes.get('_route') == "sylius_shop_checkout_address" %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/checkout/components/checkoutEmails/checkoutEmails.js'
+            } %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/checkout/components/checkoutForm/checkoutForm.js'
+            } %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/checkout/checkout.js'
+            } %}
+        {% endif %}
+    {# *********************************************************************************************************************************************** #}
+    {# End Checkout Page #}
+    {# *********************************************************************************************************************************************** #}
+
+
+    {# *********************************************************************************************************************************************** #}
+    {# Start Blog List Page #}
+    {# *********************************************************************************************************************************************** #}
+        {% if app.request.attributes.get('_route') == "app_blog_index" %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/blogs/blogs.js'
+            } %}
+        {% endif %}
+    {# *********************************************************************************************************************************************** #}
+    {# End Blog List Page #}
+    {# *********************************************************************************************************************************************** #}
+
+
+    {# *********************************************************************************************************************************************** #}
+    {# Start Blog Page #}
+    {# *********************************************************************************************************************************************** #}
+        {% if app.request.attributes.get('_route') == "app_blog_show" %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/blogs/blog/blog.js'
+            } %}
+        {% endif %}
+    {# *********************************************************************************************************************************************** #}
+    {# End Blog Page #}
+    {# *********************************************************************************************************************************************** #}
+
+    {# {{ app.request.attributes.get('_route') }} #}
+
+    {# *********************************************************************************************************************************************** #}
+    {# Start Installer Page #}
+    {# *********************************************************************************************************************************************** #}
+        {% if app.request.attributes.get('_route') == "app_installers" %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/installer/installer.js'
+            } %}
+        {% endif %}
+    {# *********************************************************************************************************************************************** #}
+    {# End Installer Page #}
+    {# *********************************************************************************************************************************************** #}
+
+
+    {# *********************************************************************************************************************************************** #}
+    {# Start Cart Page #}
+    {# *********************************************************************************************************************************************** #}
+        {% if app.request.attributes.get('_route') == "sylius_shop_cart_summary" %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/cart/components/total/total.js'
+            } %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/cart/components/code/code.js'
+            } %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/cart/cart.js'
+            } %}
+        {% endif %}
+
+    {# *********************************************************************************************************************************************** #}
+    {# End Cart Page #}
+    {# *********************************************************************************************************************************************** #}
+
+    {# *********************************************************************************************************************************************** #}
+    {# Start Account Page #}
+    {# *********************************************************************************************************************************************** #}
+        {% if app.request.attributes.get('_route') == "sylius_shop_account_dashboard" %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/GlobalVueComponents/popup/popupRetRef.js'
+            } %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/account/components/orders/orders.js'
+            } %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/account/components/close/close.js'
+            } %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/account/components/info/info.js'
+            } %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/account/components/instruction/instruction.js'
+            } %}
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/account/components/password/password.js'
+            } %}
+
+            {% include '@SyliusUi/_javascripts.html.twig' with {
+                'path' : 'assets/shop/js/VuePages/account/account.js'
+            } %}
+        {% endif %}
+
+    {# *********************************************************************************************************************************************** #}
+    {# End Account Page #}
+    {# *********************************************************************************************************************************************** #}
+        {% include '@SyliusUi/_javascripts.html.twig' with {
+            'path' : 'assets/shop/js/jquery.accordionSlider.min.js'
+        } %}
+    {#             {% include '@SyliusUi/_javascripts.html.twig' with {
+        'path' : 'assets/shop/js/test1.js'
+    } %} #}
+    {{ sonata_block_render_event('sylius.shop.layout.javascripts') }}
+{% endblock %}
+{% include '@SyliusUi/Modal/_confirmation.html.twig' %}
+{{ sonata_block_render_event('sylius.shop.layout.after_body') }}
+</body>
+</html>

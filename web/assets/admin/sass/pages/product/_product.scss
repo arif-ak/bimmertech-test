@@ -1,0 +1,61 @@
+.ui.menu.product {
+    &-menu {
+        display: flex;
+
+        .details {
+            order: 0;
+        }
+
+        .taxonomy {
+            order: 1;
+        }
+
+        .description {
+            order: 2;
+        }
+
+        .media {
+            order: 3;
+        }
+
+        .bestseller {
+            order: 4;
+        }
+
+        .associations {
+            order: 5;
+        }
+
+        .properties {
+            order: 6;
+        }
+
+        .popupOption {
+            order: 7;
+        }
+
+        .dropDown {
+            order: 8;
+        }
+
+        .savePrice {
+            order: 9;
+        }
+
+        .installers {
+            order: 10;
+        }
+
+        .buyersGuide {
+            order: 11;
+        }
+
+        .attributes {
+            order: 12;
+        }
+
+        .interestedInProduct {
+            order: 13;
+        }
+    }
+}

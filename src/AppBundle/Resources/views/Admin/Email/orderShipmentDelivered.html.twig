@@ -1,0 +1,9 @@
+{% block subject %}
+    BimmerTech order #{{ data.order.number  }} has been delivered
+{% endblock %}
+{% block body %}
+    <p>Hi {{ data.order.Customer.FullName }},</p>
+    <p>The courier confirms that your shipment from BimmerTech has been delivered.</p>
+    <p>Thank you for shopping with BimmerTech.</p>
+    <p>Don't have your order yet? Please <a href="http://devtestshop.bimmer-tech.net{{ path( 'sylius_shop_contact_request') }}">let us know</a> as soon as possible.</p>
+{% endblock %}

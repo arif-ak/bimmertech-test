@@ -1,0 +1,8 @@
+{% block subject %}
+    {{ data.sender }} has left a note on BimmerTech order #{{ data.number }}
+{% endblock %}
+
+{% block body %}
+    <p>{{ data.sender }} ({{ data.userEmail }}) left a note on order {{ data.number }} on {{ data.date }}</p>
+    <p>"{{ data.message }}"</p>
+{% endblock %}

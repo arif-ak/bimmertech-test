@@ -1,0 +1,21 @@
+sylius_fixtures:
+  suites:
+    installer:
+      fixtures:
+       installer:
+          options:
+            custom:
+              -
+                name: "car_vzh_ooh"
+                address: "f"
+                type: "gold"
+                latitude: "234234"
+                longitude: "342323"
+                link: "qdasdsdasas"
+              -
+                name: "car_vzh_ooh"
+                address: "f"
+                type: "gold"
+                latitude: "234234"
+                longitude: "342323"
+                link: "qdasdsdasas"

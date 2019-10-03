@@ -1,0 +1,19 @@
+AppBundle\Entity\GeneralOption:
+    type: entity
+    table: app_general_option
+    repositoryClass: AppBundle\Repository\GeneralOptionRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        key:
+            type: string
+            column: key_code
+        name:
+            type: string
+        value:
+            type: text
+        enable:
+            type: boolean

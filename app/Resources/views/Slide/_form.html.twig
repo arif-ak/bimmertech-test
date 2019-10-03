@@ -1,0 +1,6 @@
+
+{% if  data.owner.images.0 is defined %}
+<img src="/media/image/{{ data.owner.images.0.path }}" height="100" width="100">
+{% else %}
+    no image
+{% endif %}

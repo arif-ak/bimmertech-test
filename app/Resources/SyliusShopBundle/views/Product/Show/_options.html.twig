@@ -1,0 +1,40 @@
+{% for option_form in form.cartItem.variant %}
+    <div class="bt-label">
+        {{ form_label(option_form) }}
+        <div class="bt-line"></div>
+    </div>
+    <div class="content" data-option="{{option_form.vars.name}}">
+        <div class="ui inline dropdown bt align-middle">
+            <div class="bt-arrow-right"></div>
+            <div class="text">
+                {% for key in option_form.vars.choices | keys %}
+                    {% if option_form.vars.choices[key].value == option_form.vars.value %}
+                        {{ option_form.vars.choices[key].label }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="bt-text">change</div>
+
+            <label class="menu">
+                {% for radio in option_form %}
+                    <label class="item" data-value="{{radio.vars.value}}" data-text="{{ radio.vars.label }}">
+                        <span class="text">{{radio.vars.label}}</span>
+                        {{ form_widget(radio, { 'attr': { 'data-option': option_form.vars.name, 'class': 'ui test checkbox' } }) }}
+                        <span class="checkmark"></span>
+                    </label>
+                {% endfor %}
+            </label>
+        </div>
+    </div>
+    {#</div>#}
+    {# 
+    {% for radio in option_form %}
+        <div class="ui test checkbox">
+            {{ form_label(radio) }}
+            {{ form_widget(radio, { 'attr': { 'data-option': option_form.vars.name, 'class': 'ui test checkbox' } }) }}
+        </div>
+    {% endfor %}
+
+     #}
+
+{% endfor %}

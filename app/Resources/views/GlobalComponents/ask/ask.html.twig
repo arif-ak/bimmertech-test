@@ -1,0 +1,29 @@
+<div class="ui bt modal askModal">
+    <div class="h5 text-center bt-heading">
+        Ask a BMW expert
+        <div class="bt-icon black bt-close"></div>
+    </div>
+    <div class="ui tabular menu grid-x large-up-2">
+        <a class="item cell align-center" :class="{'active': apiUrl=='/api2/ask-bmw-expert/sales_email'}" @click="apiUrl='/api2/ask-bmw-expert/sales_email'">
+            <span>Product Inquiry</span></a>
+        <a class="item cell align-center" :class="{'active': apiUrl=='/api2/ask-bmw-expert/support_email'}" @click="apiUrl='/api2/ask-bmw-expert/support_email'">
+            <span>After Sales Support</span></a>
+    </div>
+    <div class="container">
+        <div class="ui bottom attached tab segment" :class="{'active': apiUrl=='/api2/ask-bmw-expert/sales_email'}">
+            <h5 class="dividing header">Call us</h5>
+            <p>US: +1 (646) 439 7920 (8:00AM - 6:00PM ET)</p>
+            <p>UK: +44 113 403 3103 (11:00AM - 10:00PM)</p>
+            {% include ':GlobalComponents/ask/components:_contactForm.html.twig' %}
+            {# {% include '@SyliusShop/Product/Show/Tabs/_contactForm.html.twig' %} #}
+        </div>
+        <div class="ui bottom attached tab segment" :class="{'active': apiUrl=='/api2/ask-bmw-expert/support_email'}">
+            <h5 class="dividing header">Call us</h5>
+            <p>US: +1 (646) 439 7920 ext. 200 (11:00AM - 3:00PM ET)</p>
+            <p>UK: +44 113 403 3103 ext. 200 (4:00PM - 8:00PM BST)</p>
+            {% include ':GlobalComponents/ask/components:_contactForm.html.twig' %}
+            {# {% include '@SyliusShop/Product/Show/Tabs/_contactForm.html.twig' %} #}
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,253 @@
+sylius_resource:
+  resources:
+    app.warehouse:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\Warehouse
+        form: AppBundle\Form\Type\WarehouseType
+    app.user_sale:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\UserSale
+        form: AppBundle\Form\Type\UserSaleType
+        controller: Sylius\Bundle\UserBundle\Controller\UserController
+    app.user_logistic:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\UserLogistic
+        form: AppBundle\Form\Type\UserLogisticType
+        controller: Sylius\Bundle\UserBundle\Controller\UserController
+    app.user_support:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\UserSupport
+        form: AppBundle\Form\Type\UserSupportType
+        controller: Sylius\Bundle\UserBundle\Controller\UserController
+    app.user_coding:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\UserCoding
+        form: AppBundle\Form\Type\UserCodingType
+        controller: Sylius\Bundle\UserBundle\Controller\UserController
+    app.user_marketing:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\UserMarketing
+        form: AppBundle\Form\Type\UserMarketingType
+        controller: Sylius\Bundle\UserBundle\Controller\UserController
+
+    app.order_item_image:
+      classes:
+        model: AppBundle\Entity\OrderItemImage
+        form: AppBundle\Form\Type\OrderItemImageType
+    app.photo_report:
+      classes:
+        model: AppBundle\Entity\PhotoReport
+        form: AppBundle\Form\Type\PhotoReportType
+    app.slider:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\Slider
+    app.slide:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\Slide
+        form: AppBundle\Form\Type\SlideType
+
+    app.slide_image:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\SlideImage
+        form: AppBundle\Form\Type\SlideImageType
+    app.product_property:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\ProductProperty
+        form: AppBundle\Form\Type\ProductPropertiesType
+    app.contact_title:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\ContactTitle
+        form: AppBundle\Form\Type\ContactTitleType
+    app.installer:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\Installer
+    app.contact:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\Contact
+    app.interested_in_category:
+      driver: doctrine/orm
+      classes:
+        model:  AppBundle\Entity\TaxonProductRelated
+    app.taxon:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\Taxon
+    app.product_property_image:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\ProductPropertyImage
+        form: AppBundle\Form\Type\ProductPropertyImageType
+
+    app.general_option:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\GeneralOption
+        repository: AppBundle\Repository\GeneralOptionRepository
+
+    app.help_header:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\FaqHeader
+
+
+    app.help_question:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\FAQQuestion
+        controller: AppBundle\Controller\HelpPageController
+        form: AppBundle\Form\Type\FAQQuestionType
+        repository: AppBundle\Repository\FAQQuestionRepository
+    app.car_model:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\CarModel
+        repository: AppBundle\Repository\CarModelRepository
+    app.product_car_model:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\ProductCarModel
+        repository: AppBundle\Repository\ProductCarModelRepository
+
+    app.buyers_guide_option:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\BuyersGuideOption
+        form: AppBundle\Form\Type\BuyersGuideOptionType
+    app.pop_up_option:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\PopupOption
+    app.buyers_guide_image:
+      classes:
+        model: AppBundle\Entity\BuyersGuideImage
+        form: AppBundle\Form\Type\BuyersGuideImageType
+    app.buyers_guide_product_option:
+      classes:
+        model: AppBundle\Entity\BuyersGuideProductOption
+        form: AppBundle\Form\Type\BuyersGuideProductOptionType
+
+    app.drop_down:
+      classes:
+        model: AppBundle\Entity\DropDown
+        controller: AppBundle\Controller\DropDownController
+        repository: AppBundle\Repository\DropDownRepository
+        form: AppBundle\Form\Type\DropDownType
+
+    app.drop_down_option:
+      classes:
+        model: AppBundle\Entity\DropDownOption
+        form: AppBundle\Form\Type\DropDownOptionType
+        repository: AppBundle\Repository\DropDownOptionRepository
+
+    app.order_item_drop_down_option:
+      classes:
+        model: AppBundle\Entity\OrderItemDropDownOption
+
+    app.product_description:
+      classes:
+        model: AppBundle\Entity\ProductDescription
+        repository: AppBundle\Repository\ProductDescriptionRepository
+    app.product_description_image:
+      classes:
+        model: AppBundle\Entity\ProductDescriptionImage
+        form: AppBundle\Form\Type\ProductDescriptionImageType
+
+    app.product_installer:
+      classes:
+        model: AppBundle\Entity\ProductInstaller
+        repository: AppBundle\Repository\ProductInstallerRepository
+
+    app.product_installers_image:
+      classes:
+        model: AppBundle\Entity\ProductInstallersImage
+        form: AppBundle\Form\Type\ProductInstallersImageType
+
+    app.custom_page:
+      classes:
+        model: AppBundle\Entity\Page
+        form: AppBundle\Form\Type\PageType
+
+    app.home:
+      classes:
+        model: AppBundle\Entity\Home
+        form: AppBundle\Form\Type\HomeType
+
+    app.page_description:
+      classes:
+        model: AppBundle\Entity\PageDescription
+    app.page_description_image:
+      classes:
+        model: AppBundle\Entity\PageDescriptionImage
+
+    app.color:
+      classes:
+        model: AppBundle\Entity\Color
+        form: AppBundle\Form\Type\ColorType
+
+    app.dealer_image:
+      classes:
+        model: AppBundle\Entity\DealerImage
+        form: AppBundle\Form\Type\DealerImageType
+    app.dealer:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\Dealer
+        form: AppBundle\Form\Type\DealerType
+    app.blog_category:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\BlogCategory
+    app.blog_post:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\BlogPost
+        repository: AppBundle\Repository\BlogPostRepository
+        form: AppBundle\Form\Type\BlogPostType
+
+    app.blog_post_products:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\BlogPostProduct
+    app.blog_post_review:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\BlogReview
+    app.blog_products:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\BlogProducts
+        form: AppBundle\Form\Type\BlogProductsType
+    app.media_image:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\MediaImage
+        repository: AppBundle\Repository\MediaImageRepository
+
+    app.media_folder:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\MediaFolder
+        repository: AppBundle\Repository\MediaFolderRepository
+
+    app.help_page:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\HelpPage
+
+    app.history:
+      driver: doctrine/orm
+      classes:
+        model: AppBundle\Entity\History

@@ -1,0 +1,28 @@
+AppBundle\Entity\FaqHeader:
+  type: entity
+  table: faq_header
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      column: name
+      type: string
+      nullable: true
+    code:
+      column: code
+      type: string
+      nullable: true
+    position:
+      column: position
+      type: integer
+      nullable: true
+
+  oneToMany:
+    questions:
+      orderBy: { 'position': 'ASC' }
+      targetEntity: AppBundle\Entity\FAQQuestion
+      mappedBy: header

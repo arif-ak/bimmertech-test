@@ -1,0 +1,14 @@
+app_admin_color:
+    resource: |
+        alias: app.color
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        redirect: index
+        grid: app_admin_color
+        vars:
+            all:
+                header: Flag color
+                subheader: Manage your color
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

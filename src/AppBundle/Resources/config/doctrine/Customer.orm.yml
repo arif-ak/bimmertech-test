@@ -1,0 +1,27 @@
+AppBundle\Entity\Customer:
+    type: entity
+    table: sylius_customer
+    fields:
+        vatNumber:
+            type: string
+            nullable: true
+        path:
+            type: text
+            column: path
+            nullable: true
+        company:
+            type: string
+            nullable: true
+        vinNumber:
+            type: string
+            nullable: true
+
+    manyToOne:
+        userSale:
+            targetEntity: AppBundle\Entity\UserSale
+            inversedBy: customers
+            joinColumn:
+                name: user_sale_id
+                referencedColumnName: id
+
+

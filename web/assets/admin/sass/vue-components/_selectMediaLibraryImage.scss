@@ -1,0 +1,30 @@
+#selectMediaLibraryImage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.342);
+    z-index: 75537;
+    overflow-x: scroll;
+    > .modalWindow {
+        position: relative;
+        width: 70%;
+        padding: 2%;
+        margin: auto;
+        margin-top: 5%;
+        position: relative;
+        background: white;
+        .close.icon {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            cursor: pointer;
+        }
+    }
+    .header {
+        .two.fields {
+            margin-bottom: 0;
+        }
+    }
+}

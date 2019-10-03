@@ -1,0 +1,72 @@
+app_admin_warehouse:
+  resource: 'admin/warehouse.yml'
+app_admin_user_sale:
+  resource: 'admin/user_sale.yml'
+app_admin_user_logistic:
+  resource: 'admin/user_logistic.yml'
+app_admin_user_support:
+  resource: 'admin/user_support.yml'
+app_admin_user_coding:
+  resource: 'admin/user_coding.yml'
+app_admin_user_marketing:
+  resource: 'admin/user_marketing.yml'
+app_admin_slider:
+  resource: 'admin/slider.yml'
+app_admin_slide:
+  resource: 'admin/slide.yml'
+app_admin_general_option:
+  resource: 'admin/general_option.yml'
+app_admin_help_question:
+  resource: 'admin/faq.yml'
+app_admin_buyers_guide_option:
+  resource: 'admin/buyers_guide_option.yml'
+app_admin_drop_down:
+  resource: 'admin/drop_down.yml'
+app_admin_product_property:
+  resource: 'admin/product_property.yml'
+app_admin_pop_up_option:
+  resource: 'admin/pop_up_option.yml'
+app_admin_contact_title:
+  resource: 'admin/contact_title.yml'
+app_admin_contact:
+  resource: 'admin/contact.yml'
+app_admin_page:
+  resource: 'admin/custom_page.yml'
+app_admin_home:
+  resource: 'admin/home.yml'
+app_admin_installer:
+  resource: 'admin/installer.yml'
+app_admin_color:
+  resource: 'admin/color.yml'
+app_admin_interested_in_category:
+  resource: 'admin/interested_in_category.yml'
+app_admin_dealer:
+  resource: 'admin/dealer.yml'
+app_admin_blog_category:
+  resource: 'admin/blog_category.yml'
+app_admin_blog_post:
+  resource: 'admin/blog_post.yml'
+app_admin_blog_review:
+  resource: 'admin/blog_review.yml'
+app_admin_blog_products:
+  resource: 'admin/blog_products.yml'
+app_admin_api_blog:
+  resource: 'admin/api/admin_blog_post.yml'
+app_admin_order:
+  resource: 'admin/api/admin_order.yml'
+app_admin_product:
+  resource: 'admin/api/admin_product.yml'
+app_admin_api_media_folder:
+  resource: 'admin/api/media_folder.yml'
+
+sylius_admin_taxon:
+  resource: 'admin/taxon.yml'
+sylius_admin_partial_taxon:
+  resource: 'admin/partial/taxon.yml'
+  prefix: /category
+
+sylius_admin_order:
+  resource: 'admin/order.yml'
+
+app_admin_blog_post_products:
+  resource: 'admin/blog_post_products.yml'

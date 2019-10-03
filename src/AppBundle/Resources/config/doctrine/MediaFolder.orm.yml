@@ -1,0 +1,34 @@
+AppBundle\Entity\MediaFolder:
+  type: entity
+  table: app_media_folder
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    name:
+      type: string
+    foldersCount:
+      type: integer
+    imagesCount:
+      type: integer
+    createdAt:
+      type: datetime
+
+  oneToMany:
+    children:
+      targetEntity: AppBundle\Entity\MediaFolder
+      mappedBy: parent
+      cascade: ['persist' , 'remove']
+
+    images:
+      targetEntity: AppBundle\Entity\MediaImage
+      mappedBy: owner
+      cascade: ['persist' , 'remove']
+
+  manyToOne:
+    parent:
+      targetEntity: AppBundle\Entity\MediaFolder
+      inversedBy: children

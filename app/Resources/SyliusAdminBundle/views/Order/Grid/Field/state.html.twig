@@ -1,0 +1,10 @@
+{% set value = 'sylius.ui.' ~ data %}
+
+
+{#<a href="{{ path('sylius_admin_order_show', {id: data.id}) }}">#}
+    {% if options.vars.labels is defined %}
+        {% include [(options.vars.labels ~ '/' ~ data ~ '.html.twig'), '@SyliusUi/Label/_default.html.twig'] with {'value': value} %}
+    {% else %}
+        {% include '@SyliusUi/Label/_default.html.twig' with {'value': value} %}
+    {% endif %}
+{#</a>#}

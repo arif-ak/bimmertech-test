@@ -1,0 +1,14 @@
+app_admin_general_option:
+    resource: |
+        alias: app.general_option
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        redirect: index
+        grid: app_admin_general_option
+        vars:
+            all:
+                header: General Option
+                subheader: Manage your shop setting
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

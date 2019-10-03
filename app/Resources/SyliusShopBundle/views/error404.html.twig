@@ -1,0 +1,12 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+{% block content %}
+    <div class="not-found">
+        <img src="{{ asset('assets/shop/img/404.png') }}" alt="Not found 404 image" class=""/>
+        <h1 class="ui center aligned header">
+            {{ 'sylius.ui.page_404_header' | trans }}
+        </h1>
+        <p class="text-center text">
+            {{ 'sylius.ui.page_404_text' |trans|raw }}
+        </p>
+    </div>
+{% endblock %}

@@ -1,0 +1,135 @@
+<section-popup :hide-on-scroll="false" divider="login" inline-template on="click" position="bottom center">
+
+    <div class="grid-x grid-padding-x cell shrink">
+        <div :id="buttonId" class="user-login transition cell shrink">
+            <div class="grid-x">
+                <div v-if="isAuth" class="grid-x align-center-middle">
+                    <span class="bt-user bt-icon"></span>
+                    <i class="chevron down icon"></i>
+                </div>
+                <span v-else="v-else">Log In</span>
+            </div>
+        </div>
+        {# <input type="hidden" v-model="token" name="_csrf_token" value="{{ csrf_token('shop_authenticate') }}"> #}
+        <div :id="popupId" class="ui hidden bt-popup login-popup popup transition">
+            <div :class="{ 'bt-loading': loading }" class="grid-x" v-if="loginFormState!=''">
+                <transition name="fade">
+                    <div class="field cell message error" id="message" v-if="loginFormState=='login'">
+                        [[message]]
+                        <a @click="resendFunc()" style="color: #1ca3c2;" v-if="resend">resend email.</a>
+                    </div>
+                    <div class="field cell message error" id="message" v-if="loginFormState=='register'">
+                        [[regMessage]]
+                    </div>
+                    <div class="field cell message error" id="message" v-if="loginFormState=='recovery'">
+                        [[recoveryMessage]]
+                    </div>
+                    <div class="field cell message" id="message" v-if="loginFormState=='success'">
+                        [[successMessage]]
+                    </div>
+                </transition>
+                <template v-if="loginFormState=='regSuccess'">
+                    [[regMessage]]
+                    <div class="cell flex-container align-center">
+                        <a class="bt-button primary login-submit hvr-ripple-out" @click="loginFormState='login'">
+                            <span>Back to Login</span>
+                        </a>
+                    </div>
+                </template>
+                <template v-if="loginFormState=='logSuccess'">
+                    <div class="message-login">
+                        <a href="{{ path('sylius_shop_account_dashboard') }}">My Account</a>
+                        <div class="bt-line"></div>
+                        <a @click="logOut()">Log Out</a>
+                    </div>
+                </template>
+                <template v-if="loginFormState=='login'">
+                    <div class="field cell">
+                        <input @keyup.13="loginFunc()" data-vv-as="email" name="email" placeholder="Your email" required="required" type="email" v-model="email" v-validate="'required|email'">
+                            <transition name="fade">
+                                <span v-show="errors.has('email')" class="help is-danger">[[ errors.first('email') ]]</span>
+                            </transition>
+                        </div>
+                        <div class="field cell">
+                            <input @keyup.13="loginFunc()" data-vv-as="password" name="password" placeholder="Password" required="required" type="password" v-model="password" v-validate="'required'">
+                                <transition name="fade">
+                                    <span v-show="errors.has('password')" class="help is-danger">[[ errors.first('password') ]]</span>
+                                </transition>
+                            </div>
+                            <div class="field cell">
+                                <a @click="loginFormState='recovery'" class="login-forgot">Forgot password?</a>
+                            </div>
+                            <div class="field cell grid-x">
+                                <a @click="loginFunc()" class="bt-button primary login-submit hvr-ripple-out">
+                                    <span>Sign In</span>
+                                </a>
+                                <a href="/connect/facebook" class="bt-button social-auth-button facebook align-center hvr-ripple-out">
+                                    <span class="bt-facebook-custom bt-icon"></span>
+                                    <span>Continue with Facebook</span>
+                                </a>
+                            </div>
+                            <div class="cell login-help text-center">
+                                <p>Don't have an account yet?
+                                    <a @click="loginFormState='register'">Create an account</a>
+                                </p>
+                            </div>
+                        </template>
+                        {#  registration #}
+                        <template v-if="loginFormState=='register'">
+                            <div class="field cell">
+                                <input data-vv-as="email" name="emailFirst" placeholder="Your email" required="required" type="email" v-model="email" v-validate="'required|email'">
+                                    <transition name="fade">
+                                        <span v-show="errors.has('emailFirst')" class="help is-danger">[[ errors.first('emailFirst') ]]</span>
+                                    </transition>
+                                </div>
+                                <div class="field cell">
+                                    <input data-vv-as="email" name="emailSecond" placeholder="Confirm your email" ref="confirmation" required="required" type="email" v-model="emailConfirmation" v-validate="{ is: email }">
+                                        <transition name="fade">
+                                            <span v-show="errors.has('emailSecond')" class="help is-danger">[[ errors.first('emailSecond') ]]</span>
+                                        </transition>
+                                    </div>
+                                    <div class="field cell grid-x align-center">
+                                        <a @click="registerFunc()" class="bt-button primary login-create hvr-ripple-out">
+                                            <span>Create an account</span>
+                                        </a>
+                                        <a href="/connect/facebook" class="bt-button social-auth-button facebook align-center hvr-ripple-out">
+                                            <span class="bt-facebook-custom bt-icon"></span>
+                                            <span>Continue with Facebook</span>
+                                        </a>
+                                    </div>
+                                    <div class="cell login-help text-center">
+                                        <p>Already have an account?
+                                            <a @click="loginFormState='login'">Log in</a>
+                                        </p>
+                                    </div>
+                                </template>
+                                {#  registration #}
+                                {#  recovery #}
+                                    <template v-if="loginFormState=='recovery'"> <div class="field cell">
+                                        <label>Provide your email here and we'll send you the password reset link.</label>
+                                        <input data-vv-as="email" name="email" placeholder="Your email" type="email" v-model="email" v-validate="'required|email'">
+                                            <transition name="fade">
+                                                <span v-show="errors.has('email')" class="help is-danger">[[ errors.first('email') ]]</span>
+                                            </transition>
+                                        </div>
+                                        <div class="field cell grid-x align-center">
+                                            <a @click="recoveryFunc()" class="bt-button primary login-reset hvr-ripple-out">
+                                                <span>Send</span>
+                                            </a>
+                                            <a href="/connect/facebook" class="bt-button social-auth-button facebook align-center hvr-ripple-out">
+                                                <span class="bt-facebook-custom bt-icon"></span>
+                                                <span>Continue with Facebook</span>
+                                            </a>
+                                        </div>
+                                        <div class="cell login-help text-center">
+                                            <p>Already have an account?
+                                                <a @click="loginFormState='login'">Log in</a>
+                                            </p>
+                                        </div>
+                                    </template>
+                                    {#  recovery #}
+                                </div>
+                            </div>
+                        </div>
+                        <section-popup>
+                            

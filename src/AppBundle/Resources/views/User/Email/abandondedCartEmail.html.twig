@@ -1,0 +1,12 @@
+{% block subject %}
+    Don't forget about your BimmerTech order
+{% endblock %}
+
+{% block body %}
+    <p>Hi {{ data.order.customer }},</p>
+    <p>Thank you for choosing to shop with BimmerTech.</p>
+    <p>We notice that you haven't completed your latest order yet. If you have any questions about the products you've been looking at, feel free to  <a href="{{ url( 'sylius_shop_contact_request') }}">get in touch</a>.</p>
+    <p>To pick up where you left off, just head back to <a href="{{ data.host ~ data.url }}">the checkout</a>.</p>
+
+{% endblock %}
+

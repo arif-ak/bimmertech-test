@@ -1,0 +1,107 @@
+<div class="ui segment">
+
+    <h1>TEST IS WORK fine</h1>
+    {{ form_start(form, {'action': path(configuration.vars.route.name|default(configuration.getRouteName('create')), configuration.vars.route.parameters|default({})), 'attr': {'class': 'ui loadable form', 'novalidate': 'novalidate'}}) }}
+    {% if configuration.vars.templates.form is defined %}
+        {% include configuration.vars.templates.form %}
+    {% else %}
+        {{ form_widget(form) }}
+    {% endif %}
+
+    {{ sonata_block_render_event(event_prefix ~ '.form', {'resource': resource}) }}
+
+    {% include '@SyliusUi/Form/Buttons/_create.html.twig' with {'paths': {'cancel': path(configuration.getRouteName('index'), configuration.vars.route.parameters|default({}))}} %}
+    {{ form_row(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
+</div>
+
+{#<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>#}
+{#<script type="text/javascript">#}
+    {#google.charts.load('current', {#}
+        {#'packages': ['map'],#}
+        {#// Note: you will need to get a mapsApiKey for your project.#}
+        {#// See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings#}
+        {#// 'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'#}
+    {#});#}
+    {#google.charts.setOnLoadCallback(drawChart);#}
+
+    {#function drawChart() {#}
+        {#var data = google.visualization.arrayToDataTable([#}
+            {#['Lat', 'Long', 'Name'],#}
+            {#[37.4232, -122.0853, 'Work'],#}
+            {#[37.4289, -122.1697, 'University'],#}
+            {#[37.6153, -122.3900, 'Airport'],#}
+            {#[37.4422, -122.1731, 'Shopping']#}
+        {#]);#}
+
+        {#var options = {#}
+            {#icons: {#}
+                {#default: {#}
+                    {#normal: 'https://icons.iconarchive.com/icons/icons-land/vista-map-markers/48/Map-Marker-Ball-Azure-icon.png',#}
+                    {#selected: 'https://icons.iconarchive.com/icons/icons-land/vista-map-markers/48/Map-Marker-Ball-Right-Azure-icon.png'#}
+                {#}#}
+            {#}#}
+        {#};#}
+
+        {#var map = new google.visualization.Map(document.getElementById('map_markers_div'));#}
+        {#map.draw(data, options);#}
+    {#}#}
+
+
+{#<div id="map_markers_div" style="width: 400px; height: 300px"></div>#}
+
+<script type="text/javascript">
+        function updateCoordinates(lat, lng) {
+            document.getElementById('app_installer_type_latitude').value = lat;
+            document.getElementById('app_installer_type_longitude').value = lng;
+        }
+
+        function initMap() {
+            var map, marker;
+            const myLatlng = {
+                lat: 35.458,
+                lng: -55.761
+            };
+            document.getElementById('app_installer_type_longitude').value = myLatlng.lat;
+            document.getElementById('app_installer_type_latitude').value = myLatlng.lng;
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 3,
+                center: myLatlng,
+                mapTypeId: 'terrain'
+            });
+            map.setMapTypeId('terrain');
+
+            marker = new google.maps.Marker( {
+                position: myLatlng,
+                map: map,
+                draggable: true
+            });
+
+            marker.addListener('dragend', function(e) {
+                var position = marker.getPosition();
+                updateCoordinates(position.lat(), position.lng())
+            });
+
+            map.addListener('click', function(e) {
+                marker.setPosition(e.latLng);
+                updateCoordinates(e.latLng.lat(), e.latLng.lng())
+            });
+
+            map.panTo(myLatlng);
+        }
+    </script>
+
+    <div id="coordinates">
+        Click on installer position on the map. Drag the marker to update the coordinates.
+    </div>
+
+    <div id="map" style="height: 500px; width: 900px;"></div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcbwcK1JrUiApOa_TJAzV_J8f9m9gQ1FU&callback&callback=initMap" async defer></script>
+
+
+{#roadmap displays the default road map view. This is the default map type.#}
+{#satellite displays Google Earth satellite images.#}
+{#hybrid displays a mixture of normal and satellite views.#}
+{#terrain displays a physical map based on terrain information.#}

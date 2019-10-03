@@ -1,0 +1,78 @@
+{% if buyers_guide is not empty %}
+    <div class="segment margin-vertical-3" id="section-buyers-guide">
+        <div class="scrollTo" id="scrollToBuyers-guide"></div>
+        <section-min-header inline-template label="Buyer's guide">
+            {% include ':GlobalComponents/MinHeader:minHeader.html.twig' %}
+        </section-min-header>
+        <div class="headerContent">
+            {{ buyers_guide['headerContent']|raw }}</div>
+        <div class="content products_{{ buyers_guide['products']|length }}">
+            <div class="grid-x compare images large-up-4 grid-padding-x">
+                <div class="cell"></div>
+                {% for key,value in buyers_guide['products'] %}
+                    <div class="cell">
+                        <section-popup distance="5" inline-template on="hoverable" v-if="product">
+                            <span>
+                                <section-compatibility-icon :id="buttonId"
+                                                            :value="product.buyers_guide.products[{{ key }}].compatibility"
+                                                            class="block" inline-template>
+                                    {% include ':GlobalComponents/Compatibility:compatibilityIcon.html.twig' %}
+                                </section-compatibility-icon>
+                                <div :id="popupId" class="customPopup ui popup transition">
+                                    <div class="content" :class="{'bt-loading': updateBuyersGuide}">
+                                        <section-compatibility-text
+                                                :value="product.buyers_guide.products[{{ key }}].compatibility"
+                                                inline-template>
+                                            {% include ':GlobalComponents/Compatibility:compatibility.html.twig' %}
+                                        </section-compatibility-text>
+                                    </div>
+                                </div>
+                            </span>
+                        </section-popup>
+                        {# <div class="icon maybe"></div> #}
+                        {% if buyers_guide['products'][key]['image'] is not null %}
+                            <img class="ui small bordered image"
+                                 src="{{ asset('media/image/' ~ buyers_guide['products'][key]['image']) }}" alt=" "/>
+                        {% else %}
+                            <img class="ui small bordered image"
+                                 src="{{ asset('assets/shop/images/product-picture-buyers-guide.jpg') }}" alt=" "/>
+                        {% endif %}
+                        <h6>
+                            {{ buyers_guide['products'][key]['name'] }}</h6>
+                    </div>
+                {% endfor %}
+            </div>
+            {% for key,value in buyers_guide['products'][0]['options'] %}
+            
+                {% if key != 'No option' %}
+                    <div class="grid-x compare large-up-4 grid-padding-x">
+                        <div class="cell">
+                        <span>
+                            {{ key }}</span>
+                        </div>
+                        {% for i,value in buyers_guide['products'] %}
+                            <div class="cell">
+                            <span>
+                                {{ buyers_guide['products'][i]['options'][key]['name'] }}</span>
+                                {% if buyers_guide['products'][i]['options'][key]['image'] is not null %}
+                                    <img class="ui small bordered image"
+                                         src="{{ asset('media/image/' ~ buyers_guide['products'][i]['options'][key]['image']) }}"
+                                         alt=" "/>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <div class="grid-x compare lastRow large-up-4 grid-padding-x">
+                <div class="cell"></div>
+                {% for key,value in buyers_guide['products'] %}
+                    <div class="cell"></div>
+                {% endfor %}
+            </div>
+            {# {{ dump(buyers_guide) }} #}
+        </div>
+        <div class="footerContent">
+            {{ (buyers_guide['footerContent']|popup(popup_options))|raw }}</div>
+    </div>
+{% endif %}

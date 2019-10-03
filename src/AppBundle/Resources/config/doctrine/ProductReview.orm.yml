@@ -1,0 +1,18 @@
+AppBundle\Entity\ProductReview:
+  type: entity
+  table: sylius_product_review
+  repositoryClass: AppBundle\Repository\ProductReviewRepository
+  oneToMany:
+    reviewLike:
+      targetEntity: AppBundle\Entity\ProductReviewLike
+      mappedBy: review
+      cascade: [ persist, remove ]
+#  associationOverrides:
+#    manyToOne:
+#      reviewSubject:
+#        targetEntity: AppBundle\Entity\Product
+#        inversedBy: products
+#        joinColumn:
+#          name: product_id
+#          referencedColumnName: id
+#          nullable: true

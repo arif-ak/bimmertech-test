@@ -1,0 +1,29 @@
+sylius_grid:
+    grids:
+        app_admin_pop_up_option:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: AppBundle\Entity\PopupOption
+            fields:
+                code:
+                   type: string
+                   label: Code
+                title:
+                    type: string
+                    label: Title
+                description:
+                    type: string
+                    label: Description
+                vinCheckServiceId:
+                    type: string
+                    label: VinCheckSevice option id
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

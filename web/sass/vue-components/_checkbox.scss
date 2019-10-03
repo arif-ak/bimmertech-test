@@ -1,0 +1,118 @@
+$checkbox-width-height: 16px;
+
+.customCheckbox,
+.customCheckbox.bt.checkbox.item,
+.customCheckbox.ui.checkbox {
+    position: relative;
+    display: flex;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    outline: 0;
+    vertical-align: baseline;
+    font-style: normal;
+    min-height: $checkbox-width-height;
+    font-size: $small-font-size;
+    line-height: $checkbox-width-height;
+    min-width: $checkbox-width-height;
+
+    input {
+        &.hidden {
+            z-index: -1;
+        }
+
+        &:checked~label:after {
+            content: '';
+            opacity: 1;
+            background-color: $base-blue-color;
+        }
+
+        &:checked~label:before {
+            background: #FFF;
+            border-color: $base-blue-color;
+        }
+
+        &[type=checkbox],
+        &[type=radio] {
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            right: 0;
+            opacity: 0 !important;
+            outline: 0;
+            z-index: 3;
+            width: $checkbox-width-height;
+            height: $checkbox-width-height;
+            box-sizing: border-box;
+            padding: 0;
+        }
+    }
+
+    label {
+        position: relative;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        padding-right: 20px;
+
+        &:after {
+            position: absolute;
+            font-size: $small-font-size;
+            // top: 50%;
+            // transform: translate3d(0, -50%, 0);
+            top: 3px;
+            right: 3px;
+            width: $checkbox-width-height - 6px;
+            height: $checkbox-width-height - 6px;
+            text-align: center;
+            opacity: 0;
+            transition: border .1s ease, opacity .1s ease, transform .1s ease, box-shadow .1s ease, -webkit-transform .1s ease;
+            font-family: Checkbox;
+        }
+
+        &:before {
+            position: absolute;
+            // top: 50%;
+            // transform: translate3d(0, -50%, 0);
+            right: 0;
+            width: $checkbox-width-height;
+            height: $checkbox-width-height;
+            content: '';
+            background: #FFF;
+            transition: border .1s ease, opacity .1s ease, box-shadow .1s ease, -webkit-transform .1s ease;
+            border: 1px solid $base-blue-color;
+        }
+
+        &.left {
+            &::after {
+                left: 3px;
+            }
+        }
+    }
+
+    .errorMessage {
+        display: none;
+        
+        font-size: 12px;
+        color: $base-red-color;
+
+        .bt-link {
+            font-size: 13px;
+            color: $base-blue-color;
+        }
+    }
+
+    &.error {
+        display: flex;
+        flex-flow: row wrap;
+        label {
+            &:before {
+                border: 1px solid $base-red-color !important;
+            }
+        }
+
+        .errorMessage {
+            display: block;
+            margin-top: 5px;
+        }
+    }
+}

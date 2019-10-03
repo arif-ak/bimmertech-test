@@ -1,0 +1,28 @@
+#HomePage {
+    @import "components/CategoryList/CategoryList";
+    .content {
+        margin-top: 40px;
+        .sub-title,
+        .title {
+            color: $base-blue-color;
+            text-align: center;
+        }
+        .title {
+            font-size: 50px;
+            font-weight: 600;
+            line-height: 50px;
+        }
+        .sub-title {
+            font-size: 40px;
+            line-height: 40px;
+        }
+        .description {
+            font-size: 16px;
+        }
+    }
+    .min-header {
+        &.blog {
+            margin-top: 40px;
+        }
+    }
+}

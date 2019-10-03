@@ -1,0 +1,194 @@
+sylius_fixtures:
+    suites:
+        aboutUsPage:
+            fixtures:
+                about_us_page:
+                    options:
+                        custom:
+
+                            About Us:
+                                title: "About Us"
+                                slug: "about-us"
+                                description:
+                                    -
+                                        header: null
+                                        sub_header: null
+                                        content: '<p><strong>Company</strong><br />
+                                                  BimmerTech&nbsp;was established with the sole purpose of providing BMW owners with the most advanced and up-to-date OEM retrofits, coding and software updates not commonly available anywhere else. With more than 10 years of professional experience, our team of software and hardware engineers, technicians and, above all, BMW enthusiasts are dedicated to the complete understanding and expertise of BMW electronics and software.</p>
+
+                                                  <p>Our products are seamlessly integrated to each vehicle like they were factory-installed - even when they are actually not factory-available as retrofits. From complete 4th Generation iDrive CIC retrofits to the latest BMW Apps, BMW Live and Internet features, our expertise in surpassing customers expectations in product performance, installations and service quality has been our job from day one.</p>
+
+                                                  <p>Our customer service, warranty and aftersales support are exceptional. A global network of professional technicians and engineers install and support our products as an extension of our vast capabilities. We use only OEM tried and proven parts and software to guarantee that your BMW will just be a much better equipped BMW. Our personalization program provides a flexible and efficient platform from which the most demanding customers can select specific features and retrofits for their vehicles if so desired.&nbsp;</p>
+
+                                                  <p>Make your BMW a&nbsp;BimmerTech&nbsp;BMW...</p>
+
+                                                  <p><strong>Services</strong><br />
+                                                  From the very beginning,&nbsp;BimmerTech&nbsp;has set the standard in OEM retrofits not available anywhere else.&nbsp;<br />
+                                                  The days of lamenting that your car is missing a particular option and the dealer is of no help are over.<br />
+                                                  Our constant and extensive R&amp;D allows us to offer the most innovative solutions to any OEM retrofit.&nbsp;<br />
+                                                  The results speak by themselves.</p>
+
+                                                  <p>We were the first in the world to offer a full OEM CIC Navigation retrofit including the VIN-matched enabling codes.<br />
+                                                  The first in the world to offer the BMW Apps OEM retrofit.<br />
+                                                  The first in the world to offer a direct TCU replacement with Combox, no wires tapped, cut or spliced.<br />
+                                                  The first in the world to offer BMW Live and BMW Internet services.</p>
+
+                                                  <p>No BMW dealer is able to offer any of these services. At any price.&nbsp;</p>
+
+                                                  <p>Our services extend to:</p>
+
+                                                  <ul>
+                                                  	<li>OEM Bluetooth retrofits</li>
+                                                  	<li>OEM iPod/USB retrofits</li>
+                                                  	<li>OEM rearview cameras</li>
+                                                  	<li>OEM Park Distance Control retrofits</li>
+                                                  </ul>
+
+                                                  <p>We only use tested and proven OEM parts. For those extreme cases for which there are no OEM parts available we use the highest quality aftermarket parts, guaranteeing a hassle-free installation. And with the highest customer service and support possible, we can guarantee 100% customer satisfaction.</p>
+
+                                                  <p><strong>We are hiring</strong><br />
+                                                  BimmerTech offers the best BMW retrofits on the market, a feat we accomplish not only thanks to our high-quality products but because of the people who steer our business in the right direction. If you have passion and talent, we want to hear from you. Send us your CV and cover letter today at&nbsp;jobs@bimmer-tech.net&nbsp;to join a company that&rsquo;s going places!</p>
+
+                                                  <p>Most Wanted<br />
+                                                  1.Online Sales Specialist (Location: USA, home office) -&nbsp;Read more<br />
+                                                  2.Graphic designer /&nbsp;Front-end developer (Location: worldwide, home office) -&nbsp;Read more</p>'
+                                        video: null
+                                        type: "center"
+
+                            Privacy Policy:
+                                title: "Privacy Policy"
+                                slug: "privacy-policy"
+                                description:
+                                    -
+                                        header: null
+                                        sub_header: null
+                                        content: '<p>This Privacy Policy covers the entirety of the BVzine.com site (&quot;Website&quot;). The policy governs your access to and use of the services offered by the maintainers of BVzine.com (&quot;us&quot; or &quot;we&quot;). Your use of this Website indicates that you have read and understood this policy and agree to abide by our Terms of Use.</p>
+
+                                                  <p><strong>Mailing list</strong><br />
+                                                  BVzine.com may run a mailing list, in order to provide subscribers with relevant information, including but not limited to recent news stories and promotional material. In order to subscribe to this mailing list, users must submit a valid email address, which may be shared with our Service Provider. This email, in association with your mailing list subscription status, may be used by us, on our own behalf or on behalf of our partners, to assess interest in our materials and to present targetted content.</p>
+
+                                                  <p><strong>Comments</strong><br />
+                                                  BVzine.com may make it possible to post comments to the site through our own or a third-party commenting system. All comments posted may be made public, alongside personally identifying information (such as full name, picture etc. if given). Comments made through a third-party commenting system may be shared with the service provider, who may store or otherwise use this data.</p>
+
+                                                  <p><strong>Server logs</strong><br />
+                                                  As most websites, BVzine.com is hosted on a server that logs a small amount of information about users accessing it. This information includes your IP address along with a timestamp, and is used to ensure security of our server and to diagnose any issues we experience with the running of the Website.</p>
+
+                                                  <p>Our servers are located in the United States and managed in accordance with local law.</p>
+
+                                                  <p><strong>Third-party services</strong><br />
+                                                  BVzine.com uses third-party services to provide features for our users, to gather information that helps us improve the quality of our service and to earn enough to cover the costs associated with running the Website.</p>
+
+                                                  <p>Third-party services currently in use are:</p>
+
+                                                  <ul>
+                                                  	<li>Facebook Analytics: Website traffic and audience insights.</li>
+                                                  	<li>Facebook social plugins: Hosting and moderating comments.</li>
+                                                  	<li>Google AdSense: Displaying third-party advertisements.</li>
+                                                  	<li>Google Analytics: Measuring website traffic and user activity.</li>
+                                                  	<li>OneSignal: Email and push notifications and measuring their performance.</li>
+                                                  	<li>Quantcast Measure: Audience insights.</li>
+                                                  	<li>VigLink: Managing affiliate links and measuring their performance.</li>
+                                                  </ul>
+
+                                                  <p>These services may install cookies on your computer or collect information about you through your use of BVzine.com. Please review the privacy policy of these third parties for further clarification.</p>
+
+                                                  <p>Some content on BVzine.com &mdash; including images, videos and social media content &mdash; is embedded from third-party sources. These content providers may place cookies on your computer to track your engagement with the embedded content or for other purposes. We endeavour to restrict third party tracking through BVzine.com as appropriate.</p>
+
+                                                  <p><strong>Contact</strong><br />
+                                                  If you have any questions about this policy, please contact us for guidance.</p>
+
+                                                  <p>This page was last updated September 21 2018.</p>'
+                                        video: null
+                                        type: "center"
+
+                            Terms and Conditions:
+                                title: "Terms and Conditions"
+                                slug: "terms-and-conditions"
+                                description:
+                                    -
+                                        header: null
+                                        sub_header: null
+                                        content: '<p>This document covers the entirety of the BVzine.com site (&quot;Website&quot;). The policy governs your access to and use of the services offered by the maintainers of BVzine.com (&quot;us&quot; or &quot;we&quot;). Your use of this Website indicates that you agree to abide by these terms and have read and understood our Privacy Policy.</p>
+
+                                                  <p><strong>Copyright</strong><br />
+                                                  BVzine.com respects the intellectual property rights of others and expects users to do the same. All third party content is provided in good faith. We are happy to respond to notices of alleged copyright infringement where necessary.</p>
+
+                                                  <p>Unless otherwise stated, all other content published on the website, including texts, images and other assets remains our exclusive intellectual property and may not be reproduced in any form without explicit consent from BVzine.com or a representative.</p>
+
+                                                  <p><strong>Comments</strong><br />
+                                                  BVzine.com may allow users to post comments to the Website. Users shall not use comments posted to the Website to transmit, directly or indirectly, any content or information that:</p>
+
+                                                  <ol>
+                                                  	<li>Is grossly harmful, defamatory, libelous, menacing, hateful or otherwise unlawful or objectionable;</li>
+                                                  	<li>Infringes any patent, trademark, copyright or other proprietary rights;</li>
+                                                  	<li>Impersonates another person or seeks to mislead the addressee about the origin of the message;</li>
+                                                  	<li>Discloses any personally identifying information or private information about any third parties without their express consent;</li>
+                                                  	<li>Solicits anybody to buy or sell any product or service, to make donations of any kind or to engage in any fraudulent or illegal transation, financial or otherwise.</li>
+                                                  </ol>
+
+                                                  <p>BVzine.com reserves the right to remove any comments deemed to violate the above guidelines and restrict future posting capabilities of any individual responsible for the posting of inappropriate comments.</p>
+
+                                                  <p><strong>Links</strong><br />
+                                                  BVzine.com may contain links to other sites. We are not responsible for the availability, content or practices of any other site. All links are provided for information, and should not be assumed to constitute an endorsement of the site linked to or any of its services. BVzine.com shall not be held liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any content, goods or services available on or through such links.</p>
+
+                                                  <p><strong>Advertising</strong><br />
+                                                  We may display image or text ads on BVzine.com, either through a third party web advertising vendor or through our own ad delivery software. We or third parties may collect information about your activity on BVzine.com or elsewhere to help provide better targetted ads. We may use data gathered through BVzine.com to issue targeted ads, on our Website or elsewhere, on our own behalf or on behalf of our partners.</p>
+
+                                                  <p>BVzine.com may include affiliate marketing links, allowing us to earn commission on purchases made after a referral from this Website. Affiliate partners may use cookies and other technology to track your activity on their website in order to correctly allocate commission to BVzine.com.</p>
+
+                                                  <p><strong>Contact</strong><br />
+                                                  If you have any questions about this policy, please contact us for guidance.</p>
+
+                                                  <p>This page was last updated September 21 2018.</p>'
+                                        video: null
+                                        type: "center"
+
+                            Cookies policy:
+                                title: "Cookies policy"
+                                slug: "cookies-policy"
+                                description:
+                                    -
+                                        header: null
+                                        sub_header: null
+                                        content: '<p>We use cookies to help us understand how you use BVzine.com. By accessing and using this site, you are agreeing to our privacy policy and terms of use.</p>'
+                                        video: null
+                                        type: "center"
+
+                            Payment & Delivery:
+                                title: "Payment & Delivery"
+                                slug: "payment-and-delivery"
+                                description:
+                                    -
+                                        header: null
+                                        sub_header: null
+                                        content: '<p>We accept the following payment methods:</p>
+
+                                                  <ul>
+                                                  	<li>VISA, Mastercard and American Express credit cards</li>
+                                                  	<li>PayPal</li>
+                                                  	<li>Wire transfer</li>
+                                                  </ul>
+
+                                                  <p>All prices listed in our web shop are in USD exclusive of VAT. For European Union customers without a valid EU VAT number the 23% VAT might be added at checkout.</p>
+
+                                                  <p>When sending your payment by wire transfer please use the correct account based on the currency you selected for your order:</p>
+
+                                                  <p><strong>Euro:</strong>&nbsp;<br />
+                                                  Account number:&nbsp;&nbsp; &nbsp;PL26 2490 0005 0000 4600 8699 7415<br />
+                                                  Bank name: Alior Bank S.A.<br />
+                                                  Bank address: ul. Lopuszanska 38D, 02-232 Warszawa<br />
+                                                  BIC/SWIFT: ALBPPLPW</p>
+
+                                                  <p><strong>USD:</strong><br />
+                                                  Account number:&nbsp;&nbsp; &nbsp;PL75 2490 0005 0000 4600 4303 6327<br />
+                                                  Bank name: Alior Bank S.A.<br />
+                                                  Bank address: ul. Lopuszanska 38D, 02-232 Warszawa<br />
+                                                  BIC/SWIFT: ALBPPLPW</p>
+
+                                                  <p><strong>Beneficiary:&nbsp;</strong><br />
+                                                  BimmerTech Matysiak Sp. k.<br />
+                                                  Serwituty 25<br />
+                                                  02-233 Warszawa<br />
+                                                  Poland</p>'
+                                        video: null
+                                        type: "center"

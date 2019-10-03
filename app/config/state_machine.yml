@@ -1,0 +1,53 @@
+winzou_state_machine:
+  sylius_order_checkout:
+    states:
+      taxes_select: ~
+      taxes_skip: ~
+    transitions:
+      taxes_select:
+        from: [taxes_select, shipping_selected, addressed, taxes_skip, payment_selected, payment_skipped]
+        to: taxes_select
+      taxes_skip:
+        from: [addressed, taxes_select]
+        to: taxes_skip
+    callbacks:
+      after:
+        app_process_cart:
+          on: ["taxes_skip" ,"taxes_select"]
+          do: ["@sylius.order_processing.order_processor", "process"]
+          args: ["object"]
+        app_skip_taxes:
+          on: ["address"]
+          do: ["@app.service.checkout_taxes", "resolve"]
+          args: ["object"]
+          priority: 1
+
+      before:
+        app_create_shop_user:
+          on:  ["taxes_skip" ,"taxes_select"]
+          do: ["@app.service.create_shop_user", "create"]
+          args: ["object"]
+
+  sylius_order_payment:
+    callbacks:
+      after:
+        app_get_shipping_address:
+          on: ["pay"]
+          do: ["@app.service.shipping_address_pay_pal", "setAddressPayPal"]
+          args: ["object"]
+
+        app_after_payment_order_status:
+          on: ["pay"]
+          do: ["@app.service.after_payment", "setOrderStatus"]
+          args: ["object"]
+
+        app_after_payment_order_close:
+          on: ["cancel"]
+          do: ["@app.service.after_payment", "paymentClosed"]
+          args: ["object"]
+
+
+#                app_send_email_when_cancelled_status:
+#                    on: ["pay"]
+#                    do: ["@app.service.email_canceled_paid_pay_pal", "sendEmailCanceledPaymentPayPal"]
+#                    args: ["object"]

@@ -1,0 +1,75 @@
+AppBundle\Entity\BlogPost:
+  type: entity
+  repositoryClass: AppBundle\Repository\BlogPostRepository
+  table: app_blog_post
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    counter:
+      type: integer
+      nullable: true
+    slug:
+      type: string
+      length: 500
+    title:
+      type: string
+      length: 500
+    content:
+      type: text
+      nullable: true
+    enabled:
+      column: enabled
+      type: boolean
+    metaKeywords:
+      column: meta_keywords
+      type: string
+      nullable: true
+    metaDescription:
+      column: meta_description
+      type: string
+      nullable: true
+    metaTags:
+      column: meta_tags
+      type: string
+      nullable: true
+    seoText:
+      comumn: seo_text
+      type: text
+      nullable: true
+    createdAt:
+      type: datetime
+      column: created_at
+      nullable: true
+    author:
+      type: string
+      column: author
+      nullable: true
+
+  manyToOne:
+    blogCategory:
+      targetEntity: AppBundle\Entity\BlogCategory
+      inversedBy: blogCategory
+      joinColumn:
+        name: blog_category_id
+        referencedColumnName: id
+        nullable: true
+        onDelete: SET NULL
+  oneToMany:
+    blogPostImage:
+      targetEntity: AppBundle\Entity\BlogPostImage
+      mappedBy: blogPost
+      cascade: ['persist' , 'remove']
+      orphanRemoval: true
+    postReviews:
+      targetEntity: AppBundle\Entity\BlogReview
+      mappedBy: reviewSubject
+      orphanRemoval: true
+      cascade: ['persist' , 'remove']
+
+  oneToOne:
+    productRelated:
+      targetEntity: AppBundle\Entity\BlogPostProduct
+      mappedBy: blogPost

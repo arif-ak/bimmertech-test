@@ -1,0 +1,5 @@
+<div @dblclick="showInput()">
+    <div v-if="value && !show">[[filteredInstructionName]]</div>
+    <a v-else-if="!show" @click="showInput()" class="ui mini button" >Add</a>
+    <input v-model="input"  :id="'instruction_input_'+i" @keyup.esc="returnData()" @keyup.enter="updateValue()" @blur="returnData()" v-show="show" type="text" >
+</div>

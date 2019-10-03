@@ -1,0 +1,22 @@
+{% block subject %}
+    {% if data.order.ShippingState == 'shipped' %}
+        Your BimmerTech order #{{ data.order.number }}  has been shipped
+    {% else %}
+        Your BimmerTech order #{{ data.order.number }}  has been partially shipped
+    {% endif %}
+
+{% endblock %}
+
+{% block body %}
+    <p>Hi {{ data.order.Customer.FullName }},</p>
+
+    {% if data.order.ShippingState == 'shipped' %}
+        <p>We have shipped your BimmerTech order. Your order should be delivered within three working days.</p>
+    {% else %}
+        <p>We have shipped part of your BimmerTech order. Your order should be delivered within three working days.</p>
+    {% endif %}
+    <p>Your tracking number is: <b>{{ data.trackingNumber }}</b></p>
+    <p>You can track your order at: {{ app.request.getSchemeAndHttpHost() }}/tracking-delivery?trackingNumber={{ data.trackingNumber }}&couriers={{ data.couriers }}</p>
+
+    <p>Shipment tracking numbers can also be found by logging into your customer account at www.bimmer-tech.net. <a href="{{ app.request.getSchemeAndHttpHost() }}/#">Click here</a> to log in to your account.</p>
+{% endblock %}

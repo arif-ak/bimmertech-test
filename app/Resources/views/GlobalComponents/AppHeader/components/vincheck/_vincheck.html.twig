@@ -1,0 +1,71 @@
+<section-popup idbutton="section-vincheck" :menu-toggle="menuToggle" :hide-on-scroll="false" divider="vincheck" inline-template on="click" position="bottom right">
+    <div class="grid-x cell shrink">
+        <div :id="buttonId" class="ui cell shrink custom-button" :class="{'invisible': menuToggle=='vincheck', active: vincheck!='Identify your BMW/MINI'}">
+            <button class="ui vin-check-service cell shrink bt-button primary">
+                <span class="bt-car bt-icon"></span>
+                <span class="bt-text">
+                    [[vincheck]]
+                </span>
+                <a @click="ClearModel()" class="bt-icon bt-close-custom-button" v-if="vincheck!='Identify your BMW/MINI'">
+                    <div>X</div>
+                </a>
+            </button>
+        </div>
+        <div :id="popupId" class="ui bt-popup transition hidden popup vin-check-service-popup">
+            <div class="grid-x">
+                <div class="vin-check-service-search" :class="{ 'bt-loading': loading }">
+                    <h6 class="bt-header">
+                        Identify by your VIN
+                    </h6>
+                    <div class="ui action bt-input">
+                        <input @keyup.enter="checkVinFunc()" placeholder="VIN number" type="text" name="vin" v-model="vin" @keyup.13="checkVinFunc()" {% if vincheck is not empty and vincheck[ 'vin'] is not empty %} value=" {{ vincheck['vin'] }}" {% endif %} required="required" minlength="7" maxlength="17"/>
+                            <input type="hidden" name="route" value="{{ app.request.attributes.get('_route') }}"/>
+                            {% if app.request.attributes.get('_route') == "sylius_shop_product_index" %}
+                                <input type="hidden" name="parameters" value="{{ app.request.get('slug') }}"/>
+                            {% endif %}
+                            <button @click="checkVinFunc()" class="ui bt-button align-center-middle">
+                                <span>
+                                    Check
+                                </span>
+                            </button>
+                        </div>
+                        <div class="bt-description">
+                            <p>Our products might not be compatible with every BMW/MINI. Please enter your VIN above - our website will decode it, check your factory installed options and show you which products are compatible. Remember that no personal information can be obtained from the VIN.</p>
+                        </div>
+                        <div class="ui horizontal divider">
+                            or
+                        </div>
+                        <h6 class="bt-header">
+                            Choose your model and year
+                        </h6>
+                        {# <input class="cell" placeholder="Model" type="text" name="model" required="required">
+                                                                                    <input class="cell" placeholder="Year" type="text" name="year" required="required"> #}
+                        {# <div id="vin-dropdown" class="ui cell selection dropdown">
+                                                                                    <input type="hidden" @change="ChangeModel($event.target.value, true)">
+                                                                                    <i class="chevron down icon"></i>
+                                                                                    <div class="default text">Model</div>
+                                                                                    <div class="menu">
+                                                                                        <div class="item" v-for="VincheckModel in VincheckModels" :data-value="VincheckModel.model">[[VincheckModel.name]]</div>
+                                                                                    </div>
+                                                                                </div> #}
+                            <section-field :options="VincheckModels" :select="true" @change="ChangeModel()" inline-template placeholder="Model" v-model="selectedModel" vincheck> {% include ':GlobalComponents/Field:_field.html.twig' %}
+                        </section-field>
+                        {# <div class="ui cell search dropdown bt-input">
+                                                                                    <span class="text">Model</span>
+                                                                                    <i class="chevron down icon"></i>
+                                                                                    <select name="Model" v-model="ChangedModel" @change="ChangeModel">
+                                                                                        <option value="Model"></option>
+                                                                                        <option v-for="VincheckModel in VincheckModels" :value="VincheckModel.model">[[VincheckModel.name]]</option>
+                                                                                    </select>
+                                                                                </div> #}
+                        <div class="bt-description">
+                            <p>If you do not have your VIN at the moment, you can still identify your car in the drop-down menu below. Please note that compatibility of some products can't be confirmed without the VIN.
+                            </p>
+                        </div>
+                    </div>
+                    {# </div></div> #}
+                    <div class="bt-special-end"></div>
+                </div>
+            </div>
+        </div>
+    </section-popup>

@@ -1,0 +1,186 @@
+#installer {
+  margin-top: 50px;
+  .header {
+    h4 {
+      font-weight: 500;
+      color: #000;
+      line-height: 23px;
+    }
+    .divider {
+      background-color: #1ca3c2;
+      height: 4px;
+      width: calc(100% - 20px);
+      display: flex;
+      margin-left: 20px;
+      box-sizing: border-box;
+    }
+  }
+  .filters {
+    max-width: 475px;
+    min-width: 475px;
+    float: left;
+    margin-top: 40px;
+    .bt-input {
+      padding: 0;
+      font-size: 14px;
+      position: relative;
+      border-radius: 20px;
+      max-width: 100%;
+      input.field {
+        outline: 0;
+        border: none;
+        border-radius: 20px;
+        padding: 5px 10px;
+        padding-right: 15px;
+        padding-top: 8px;
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+        //&.space {
+        //  padding-left: 8px;
+        //}
+      }
+      input.bt-button {
+        width: 120px;
+        font-size: 14px;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        background-color: #1ca3c2;
+        color: #ffffff;
+        border-radius: 20px;
+        padding: 5px 10px;
+        line-height: 1;
+        border: 2px solid white;
+        height: 38px;
+        right: 0;
+        position: absolute;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+    }
+    .filters_container {
+      overflow-y: scroll;
+      margin-top: 20px;
+      max-height: 440px;
+      .filter {
+        min-height: 115px;
+        height: 115px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        > .divider {
+          width: 5px;
+          height: 80%;
+          background: silver;
+          &.bronze {
+            background: #795548;
+          }
+          &.gold {
+            background: #ffc400;
+          }
+          &.silver {
+            background: #9e9e9e;
+          }
+          &.platinum {
+            background: #212121;
+          }
+        }
+        .content {
+          width: calc(100% - 7px);
+          height: 100%;;
+          padding: 10px 20px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          transition: 0.5s;
+          cursor: pointer;
+          .left {
+            width: 86%;
+            height: 100px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            .name {
+              font-weight: 500;
+              font-size: 16px;
+              position: absolute;
+              top: 0;
+            }
+            .address {
+              font-size: 14px;
+              width: 50%;
+              line-height: 16px;
+            }
+            a {
+              color: $base-blue-color;
+              font-size: 12px;
+              display: block;
+              position: absolute;
+              bottom: 0;
+            }
+          }
+          > .divider {
+            background: #9e9e9e;
+            width: 1px;
+            height: 95%
+          }
+          .right {
+            width: calc(14% - 1px);
+            text-transform: capitalize;
+            font-size: 12px;
+            line-height: 15px;
+            margin-left: 10px;
+          }
+        }
+        &:hover {
+          .content {
+            background: $base-gray-light-color;
+          }
+        }
+        &.active {
+          .content {
+            background: $base-light-gray-color;
+          }
+        }
+      }
+
+    }
+  }
+  .bt-icon {
+    cursor: pointer;
+    display: -ms-flexbox;
+    &.bt-search {
+      margin-top: 8px;
+      margin-left: 10px;
+    }
+    &.bt-remove {
+      margin-top: 7px;
+      margin-right: 10px;
+      display: none;
+      &.space {
+        display: block;
+      }
+    }
+
+    //&.space {
+    //  margin-left: 20px;
+    //  display: block;
+    //}
+  }
+
+
+  #map {
+    width: calc(100% - 500px) !important;
+    float: left;
+    margin-left: 25px;
+    margin-top: 40px;
+  }
+  &::after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+}

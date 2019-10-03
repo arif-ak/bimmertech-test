@@ -1,0 +1,26 @@
+.ui {
+    &.list {
+        &.sylius-sortable-list {
+            .list {
+                .list {
+                    .item {
+                        .ui.buttons {
+                            .button.primary {
+                                background-color: #042944;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.button_block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    a {
+        width: 48%;
+    }
+}

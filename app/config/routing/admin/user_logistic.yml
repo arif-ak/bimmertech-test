@@ -1,0 +1,14 @@
+app_admin_user_logistic:
+    resource: |
+        alias: app.user_logistic
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        redirect: index
+        grid: app_admin_user_logistic
+        vars:
+            all:
+                header: User Logistic
+                subheader: Manage your Logistic persons
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

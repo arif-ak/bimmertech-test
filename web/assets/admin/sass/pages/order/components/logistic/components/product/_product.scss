@@ -1,0 +1,42 @@
+.product {
+
+    //padding: 15px 30px;
+    &+.product {
+        margin-top: 20px;
+    }
+
+    position: relative;
+
+    &+.bottom_buttons {
+        margin-top: 20px;
+    }
+
+    .drop-downs {
+        color: $base-gray-color;
+        margin-left: 1px;
+        font-size: 11px;
+    }
+
+    .ui {
+        &.header {
+
+            >img {
+                object-fit: cover;
+                min-height: 35px;
+            }
+
+            .sub.header.sylius-product-drop-downs {
+                font-size: 11px;
+                max-width: 400px;            
+            }
+        }
+
+        &.logisticBoardBtn {
+            width: 70px;
+            height: 18px;
+            margin: 0px;
+            margin-top: 0px !important;
+            padding: 5px;
+        }
+    }
+}

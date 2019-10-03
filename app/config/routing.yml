@@ -1,0 +1,1055 @@
+# This file is part of the Sylius package.
+# (c) Paweł Jędrzejewski
+
+
+sylius_admin:
+  resource: "@SyliusAdminBundle/Resources/config/routing.yml"
+  prefix: /admin
+
+sylius_api:
+  resource: "@SyliusAdminApiBundle/Resources/config/routing.yml"
+  prefix: /api
+
+sylius_shop:
+  resource: "@SyliusShopBundle/Resources/config/routing.yml"
+
+sylius_shop_payum:
+  resource: "@SyliusShopBundle/Resources/config/routing/payum.yml"
+
+_liip_imagine:
+  resource: "@LiipImagineBundle/Resources/config/routing.yaml"
+
+bitbag_sylius_mailchimp_plugin:
+  resource: "@BitBagSyliusMailChimpPlugin/Resources/config/routing.yml"
+  prefix: /
+
+
+bitbag_shipping_export_plugin:
+  resource: "@BitBagSyliusShippingExportPlugin/Resources/config/routing.yml"
+  prefix: /admin
+
+#routing for wishlist
+webburza_wishlist:
+  resource: "@WebburzaSyliusWishlistBundle/Resources/config/routing.yml"
+
+webburza_wishlist_front:
+  resource: "@WebburzaSyliusWishlistBundle/Resources/config/routingFront.yml"
+  prefix: /wishlist
+
+webburza_wishlist_account:
+  resource: "@WebburzaSyliusWishlistBundle/Resources/config/routingAccount.yml"
+  prefix: /account/wishlists
+
+
+
+#custom routings
+app_admin:
+  resource: 'routing/admin.yml'
+  prefix: /admin
+
+app_shop:
+  resource: 'routing/shop.yml'
+  prefix: /
+
+app_order_vin:
+  path: admin/orders/{id}/vin
+  methods: [PUT, POST]
+  defaults:
+    _controller: sylius.controller.order:updateVin
+    _sylius:
+      section: admin
+      permission: true
+      redirect: referer
+      form: AppBundle\Form\Type\OrderVinType
+
+app_order_item_report_add:
+  path: /orders/{id}/add-report
+  methods: [GET, PUT, POST]
+  defaults:
+    _controller: sylius.controller.order_item:updateAction
+    _sylius:
+      section: admin
+      permission: true
+      redirect: referer
+
+app_order_phot_report_add:
+  path: /orders/{orderId}/add-photo-report/{id}
+  methods: [PUT, POST]
+  defaults:
+    #        _controller: sylius.controller.shipment:addPhotoReportAction
+    _controller: sylius.controller.shipment:updateAction
+    _sylius:
+      section: admin
+      permission: true
+      redirect: referer
+      form: AppBundle\Form\Type\ShipmentPhotoReportType
+
+app_order_item_prepear_label:
+  path: /admin/orders/{id}/preapear-lable/{shipmentId}
+  methods: [GET,POST]
+  defaults:
+    _controller: sylius.controller.order:prepearLabelAction
+    _sylius:
+      section: admin
+      permission: true
+      redirect: referer
+
+app_oder_send_instructions:
+  path: /orders/{id}/send-instruction
+  methods: [GET,]
+  defaults:
+    _controller: sylius.controller.order:sendInstructionAction
+    _sylius:
+      section: admin
+      permission: true
+      redirect: referer
+
+app_order_item_instruction_add:
+  path: /orders/{id}/add-instruction
+  methods: [GET, PUT, POST]
+  defaults:
+    _controller: sylius.controller.order_item:addInstruction
+    _sylius:
+      section: admin
+      permission: true
+      redirect: referer
+      form: AppBundle\Form\Type\OrderItemInstructionType
+
+
+app_order_item_coding_edit:
+  path: /orders/item/{id}/coding-edit
+  methods: [GET, PUT, POST]
+  defaults:
+    _controller: sylius.controller.order_item:updateAction
+    _sylius:
+      section: admin
+      permission: true
+      redirect: referer
+      form: AppBundle\Form\Type\OrderItemCodingType
+
+app_order_shipping_edit:
+  path: /orders/{id}/shipping-edit
+  methods: [GET, PUT, POST]
+  defaults:
+    _controller: sylius.controller.order:updateAction
+    _sylius:
+      section: admin
+      permission: true
+      redirect: referer
+      form: AppBundle\Form\Type\OrderShippingStatusType
+
+app_order_payment_edit:
+  path: /orders/{id}/payment-edit
+  methods: [GET, PUT, POST]
+  defaults:
+    _controller: sylius.controller.order:updateAction
+    _sylius:
+      section: admin
+      permission: true
+      redirect: referer
+      form: AppBundle\Form\Type\OrderPaymentStatusType
+
+app_order_support_edit:
+  path: /orders/{id}/support-edit
+  methods: [GET, PUT, POST]
+  defaults:
+    _controller: sylius.controller.order:updateAction
+    _sylius:
+      section: admin
+      permission: true
+      redirect: referer
+      form: AppBundle\Form\Type\OrderSupportStatusType
+
+app_order_coding_edit:
+  path: /orders/{id}/coding-edit
+  methods: [GET, PUT, POST]
+  defaults:
+    _controller: sylius.controller.order:updateAction
+    _sylius:
+      section: admin
+      permission: true
+      redirect: referer
+      form: AppBundle\Form\Type\OrderCodingStatusType
+
+app_order_item_shipment:
+  path: /orders/{id}/shipment-edit
+  methods: [GET, PUT, POST]
+  defaults:
+    _controller: sylius.controller.shipment:updateAction
+    _sylius:
+      section: admin
+      permission: true
+      redirect: referer
+      form: AppBundle\Form\Type\OrderItemShipmentType
+
+app_order_item_shipment_warehouse:
+  path: /orders/{id}/{warehouse}/shipment-warehouse-create
+  methods: [PUT, POST]
+  defaults:
+    _controller: sylius.controller.shipment:createByWarehouseAction
+    _sylius:
+      section: admin
+      permission: true
+      redirect: referer
+      form: AppBundle\Form\Type\WarehouseShipmentType
+
+app_shipment_delete:
+  path: /orders/shipment-delete/{id}
+  methods: [GET,DELETE]
+  defaults:
+    _controller: sylius.controller.shipment:deleteAction
+    _sylius:
+      section: admin
+      permission: true
+      redirect: referer
+      csrf_protection: false
+
+app_oder_item_warehouse:
+  path: /orders/{id}/edit-warehouse
+  methods: [GET, PUT, POST]
+  defaults:
+    _controller: sylius.controller.order_item:changeWarehouseAction
+    _sylius:
+      section: admin
+      permission: true
+      redirect: referer
+      form: AppBundle\Form\Type\OrderItemWarehouseType
+
+app_check_vat_number:
+  path: /check/vat-number
+  methods: [POST]
+  defaults:
+    _controller: sylius.controller.order:checkVatNumberAction
+    _sylius:
+      event: taxes_select
+      flash: true
+      template: Checkout/selectTaxes.html.twig
+      form: AppBundle\Form\Type\CheckoutTaxesType
+      repository:
+        method: findCartForSelectingTaxes
+        arguments:
+        - "expr:service('sylius.context.cart').getCart().getId()"
+      redirect:
+        route: sylius_shop_checkout_taxes_select
+        parameters: []
+
+app_vincheck_product:
+  path: /vincheck/product
+  methods: [POST]
+  defaults:
+    _controller:  app.controller.vincheck:checkProductAction
+
+app_vincheck_product_to_session:
+  path: /vincheck/product/session
+  methods: [GET]
+  defaults:
+    _controller: app.controller.vincheck:saveProductAction
+    _sylius:
+      section: shop_account
+      redirect: referer
+
+app_vincheck_product_to_session_manual:
+  path: /vincheck/product/session-manual
+  methods: [GET]
+  defaults:
+    _controller: app.controller.vincheck:saveProductManualAction
+    _sylius:
+      section: shop_account
+      redirect: referer
+
+app_clear_vin:
+  path: /vincheck/clear
+  methods: [GET]
+  defaults:
+    _controller: app.controller.vincheck:clearVin
+
+app_tracking_delivery_controller_admin:
+  path: /admin/tracking-delivery
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller.tracking_delivery_controller:trackingDeliveryAdmin
+
+app_taxon_product_index_controller_admin:
+  path: /admin/taxon-product-recomended
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller.taxon_product_recomended_controller:indexAction
+
+app_taxon_product_create_controller_admin:
+  path: /admin/taxon-product-create
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller.taxon_product_recomended_controller:createAction
+
+app_taxon_product_edit_controller_admin:
+  path: /admin/taxon-product-edit/{id}
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller.taxon_product_recomended_controller:editAction
+
+app_taxon_product_delete_controller_admin:
+  path: /admin/taxon-product-delete/{id}
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller.taxon_product_recomended_controller:delete
+
+app_tracking_delivery_controller_account:
+  path: /tracking-delivery
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller.tracking_delivery_controller:trackingDeliveryAccount
+
+app_bopt_controller:
+  path: /bopt
+  methods: [GET]
+  defaults:
+    _controller: app.controller.bopt_controller:index
+
+app_taxon_menu_controller:
+  path: /taxonomy_menu
+  defaults:
+    _controller: app.controller.taxonomy_menu_controller:index
+
+app_slider_controller:
+  path: /slider
+  defaults:
+    _controller: app.controller.slider_controller:index
+
+app.controller.create_user:
+  path: /create-user
+  defaults:
+    _controller: app.controller.create_user_controller:create
+
+sylius_admin_order_payment_refund:
+  path: /orders/{orderId}/payments/{id}/refund
+  methods: [PUT]
+  defaults:
+    _controller: sylius.controller.payment:applyStateMachineTransitionAction
+    _sylius:
+      permission: true
+      repository:
+        method: findOneByOrderId
+        arguments:
+          id: $id
+          orderId: $orderId
+      state_machine:
+        graph: sylius_payment
+        transition: refund
+      redirect:
+        route: sylius_admin_order_cancel
+        _method: PUT
+        parameters: { id: $orderId }
+      flash: sylius.payment.refunded
+
+sylius_admin_order_cancel:
+  path: /orders/{id}/cancel
+  methods: [PUT, GET]
+  defaults:
+    _controller: sylius.controller.order:applyStateMachineTransitionAction
+    _sylius:
+      permission: true
+      state_machine:
+        graph: sylius_order
+        transition: cancel
+      redirect: referer
+
+app_shop_partial_product_index_recommended:
+  path: /recommended/{count}
+  methods: [GET]
+  defaults:
+    _controller: sylius.controller.product:indexAction
+    _sylius:
+      template: $template
+      repository:
+        method: findRecommendedByChannel
+        arguments:
+        - "expr:service('sylius.context.channel').getChannel()"
+        - "expr:service('sylius.context.locale').getLocaleCode()"
+        - '!!int $count'
+app_article_home_index:
+  path: /home/article/{count}
+  methods: [GET]
+  defaults:
+    _controller: webburza_article.controller.article:indexHomeAction
+    _sylius:
+      template: $template
+      repository:
+        method: findHomeBlog
+        arguments:
+        - '!!int $count'
+
+app_account_deactivate:
+  path: /account/deactive
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller.account:deleteAccountAction
+
+app_terms_and_condition:
+  path: /page-terms-and-conditions
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller.information_in_footer_controller:termsAndCondition
+
+app_payment_and_delivery:
+  path: /page-payment-and-delivery
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller.information_in_footer_controller:paymentAndDelivery
+
+app_installers:
+  path: /page-installers
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller.information_in_footer_controller:installers
+#
+#app_faq:
+#  path: /faq
+#  methods: [GET, POST]
+#  defaults:
+#    _controller: app.controller.information_in_footer_controller:FAQ
+
+app_privacy_policy:
+  path: /page-privacy-policy
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller.information_in_footer_controller:privacyPolicy
+
+sylius_shop_contact_request:
+  path: /page-contact
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller.information_in_footer_controller:contact
+
+app_cookies_policy:
+  path: /page-cookies_policy
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller.information_in_footer_controller:cookiesPolicy
+
+#app_about_us:
+#  path: /page-about-us
+#  methods: [GET, POST]
+#  defaults:
+#    _controller: app.controller.information_in_footer_controller:aboutUs
+
+app_for_dealer:
+  path: /page-for-dealers
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller.information_in_footer_controller:forDealer
+
+app_help:
+  path: /page-help
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller.information_in_footer_controller:help
+
+app_registration:
+  path: /registration
+  methods: [POST]
+  defaults:
+    _controller: app.controller.security_shop_controller:registration
+
+app_forgot_password:
+  path: /forgot-pasword
+  methods: [POST]
+  defaults:
+    _controller: app.controller.security_shop_controller:forgotPassword
+
+app_resend_link_activation:
+  path: /resend-link
+  methods: [POST]
+  defaults:
+    _controller: app.controller.security_shop_controller:resendLink
+
+app_confirmation_page:
+  path: /confirmation-page
+  methods: [GET]
+  defaults:
+    _controller: app.controller.confirmation_page_controller:index
+
+sylius_shop_user_verification:
+  path: /confirmation-page/{token}
+  methods: [GET]
+  defaults:
+    _controller: sylius.controller.shop_user:verifyAction
+    _sylius:
+      redirect: app_confirmation_page
+
+hwi_oauth_redirect:
+  resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+  prefix:   /connect
+
+hwi_oauth_connect:
+  resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+  prefix:   /connect
+
+hwi_oauth_login:
+  resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+  prefix:   /login
+
+facebook:
+  path: "/login/check-facebook"
+
+app_user_cookie_seting:
+  path: /cookie-user-seting
+  methods: [ GET, POST, PUT ]
+  defaults:
+    _controller: app.controller.user_cookie_setting_controller:checkSetting
+    _sylius:
+      redirect: referer
+
+api_registration:
+  path: /api2/registration-ajax
+  methods: [POST]
+  defaults:
+    _controller: app.controller_api.security_shop_controller:registration
+
+api_resend_link:
+  path: /api2/resend-link
+  methods: [POST]
+  defaults:
+    _controller: app.controller_api.security_shop_controller:resendConfirmationEmail
+
+api_forgot_password:
+  path: /api2/forgot-password-ajax
+  methods: [POST]
+  defaults:
+    _controller: app.controller_api.security_shop_controller:forgotPassword
+
+app_find_email:
+  path: /api2/email/find
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.security_shop_controller:findEmail
+
+app_user_restore_account:
+  path: /api2/user/restore-account
+  methods: [POST]
+  defaults:
+    _controller: app.controller_api.security_shop_controller:restoreAccount
+
+api_car_model:
+  path: /api2/car-model-ajax
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.car_model_controller:index
+
+api_get_car_model:
+  path: /api2/get-car-model
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.car_model_controller:getModel
+
+api_check_car_model:
+  path: /api2/check-car-model-ajax
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.car_model_controller:checkModel
+
+api_check_car_model_and_save:
+  path: /api2/check-car-and_model-ajax/{id}
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.car_model_controller:checkModelAndSave
+
+api_check_vin:
+  path: /api2/check-vin-ajax
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.car_model_controller:checkVin
+
+api_get_session:
+  path: /api2/get-session
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.car_model_controller:getSessionParams
+
+api_check_login:
+  path: /api2/check-login
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.security_shop_controller:checkLogin
+
+api_check_logout:
+  path: /api2/logout
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.security_shop_controller:logout
+
+api_product:
+  path: /api2/product/{id}
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.product_controller:index
+
+api_product_interesting_in:
+  path: /api2/product/recommended/{id}
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.product_controller:interestingInProduct
+
+api_product_compatibility:
+  path: /api2/product/compatibility/{id}
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.product_controller:compatibility
+
+api_product_container_compatibility:
+  path: /api2/product-container/compatibility
+  methods: [POST]
+  defaults:
+    _controller: app.controller_api.product_contaier_controller:compatibility
+
+api_product_properties:
+  path: /api2/product/{id}/{type}
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.product_controller:productProperty
+
+api_category:
+  path: /api2/category/{slug}
+  methods: [POST]
+  defaults:
+    _controller: app.controller_api.category_controller:index
+
+api_category_interesting_in:
+  path: /api2/category-interesting-in/{slug}
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.category_controller:interestingProducts
+
+api_category_id:
+  path: /api2/category/{id}
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.category_controller:getById
+
+api_category_properties:
+  path: /api2/category/{id}/{type}
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.category_controller:taxonProperty
+
+api_ask_bmw_expert:
+  path: /api2/ask-bmw-expert/{type}
+  methods: [POST]
+  defaults:
+    _controller: app.controller_api.ask_bmw_expert:sendMessage
+
+api_product_review_index:
+  path: /api2/product-review
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller_api.product_review_controller:index
+
+api_product_review:
+  path: /api2/product-review/{id}
+  methods: [POST]
+  defaults:
+    _controller: app.controller_api.product_review_controller:create
+
+api_product_review_like_filter_by_client_token:
+  path: /api2/product-review-like/token-filter
+  methods: [POST]
+  defaults:
+    _controller: app.controller_api.product_review_like_controller:clientTokenFilter
+
+api_product_review_like_create:
+  path: /api2/product-review-like
+  methods: [POST]
+  defaults:
+    _controller: app.controller_api.product_review_like_controller:create
+
+api_blog_review_index:
+  path: /api2/blog-review
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller_api.blog_review_controller:index
+
+api_blog_review_create:
+  path: /api2/blog-review/{id}
+  methods: [POST]
+  defaults:
+    _controller: app.controller_api.blog_review_controller:create
+
+api_blog_rating_count:
+  path: /api2/blog-rating/{id}
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.blog_review_controller:starRating
+
+api_blog_review_like_filter_by_client_token:
+  path: /api2/blog-review-like/token-filter
+  methods: [POST]
+  defaults:
+    _controller: app.controller_api.blog_review_like_controller:clientTokenFilter
+
+api_blog_review_like_create:
+  path: /api2/blog-review-like
+  methods: [POST]
+  defaults:
+    _controller: app.controller_api.blog_review_like_controller:create
+
+api_controller_installer_index:
+  path: /api2/installer
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.installer_controller:index
+
+api_controller_installer_client_location:
+  path: /api2/installer-location
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.installer_controller:locationAction
+
+api_product_rating_count:
+  path: /api2/product-rating/{id}
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.product_review_controller:starRating
+
+api_product_container_rating_count:
+  path: /api2/product-container/rating
+  methods: [POST]
+  defaults:
+    _controller: app.controller_api.category_controller:starRating
+
+app_product_description:
+  path: /admin/product/{productId}/descripions
+  methods: [GET]
+  defaults:
+    _controller: app.controller.product_description_controller:index
+
+app_product_description_delete:
+  path: /admin/product-descripions/{id}
+  methods: [POST]
+  defaults:
+    _controller: app.controller.product_description_controller:delete
+
+app_product_description_add:
+  path: /admin/product-descripions/{product}
+  methods: [GET,POST]
+  defaults:
+    _controller: app.controller.product_description_controller:add
+
+app_admin_product_images_add:
+  path: /admin/product/add-images/{productId}
+  methods: [POST]
+  defaults:
+    _controller: app.controller_api_admin.product_image_controller:addImages
+
+
+app_admin_product_images_remove:
+  path: /admin/product/remove-images/{Id}
+  methods: [DELETE]
+  defaults:
+    _controller: app.controller_api_admin.product_image_controller:removeImages
+
+app_admin_taxon_images_add:
+  path: /admin/category/add-images/{id}
+  methods: [POST]
+  defaults:
+    _controller:  app.controller_api_admin.taxon_image_controller:addImages
+
+app_admin_taxon_images_remove:
+  path: /admin/category/remove-images/{Id}
+  methods: [DELETE]
+  defaults:
+    _controller: app.controller_api_admin.taxon_image_controller:removeImages
+
+app_page_slug:
+  path: /page-{slug}
+  methods: [GET]
+  defaults:
+    _controller: app.controller.page_controller:getBySlug
+
+app_blog_show:
+  path: /blog/item/{slug}
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller.blog_controller:getBySlug
+
+app_blog_index:
+  path: /blog
+  methods: [GET]
+  defaults:
+    _controller: app.controller.blog_controller:index
+
+api_blog_index:
+  path: /api2/blog
+  methods: [GET]
+  defaults:
+    _controller: api.controller.blog_controller:index
+
+api_blog_intresting_in:
+  path: /api2/blog-interesting-in
+  methods: [GET]
+  defaults:
+    _controller: api.controller.blog_controller:interestingProducts
+
+api_blog_most_reviewed:
+  path: /api2/blog/most-reviewed
+  methods: [GET]
+  defaults:
+    _controller: api.controller.blog_controller:mostReviewed
+
+api_blog_slug_generator:
+  path: /api2/blog/generate-slug
+  methods: [GET]
+  defaults:
+    _controller: api.controller.blog_controller:generateAction
+
+api_blog_post_related:
+  path: /api2/blog/post/{slug}/related
+  methods: [GET]
+  defaults:
+    _controller: api.controller.blog_controller:getInterestingInProducts
+api_cart_delete:
+  path: /api2/cart/remove/item/{orderId}
+  methods: [DELETE]
+  defaults:
+    _controller: app.controller_api.cart_controller:removeCartItem
+
+api_cart_clear:
+  path: /api2/cart/clear
+  methods: [PUT]
+  defaults:
+    _controller: app.controller_api.cart_controller:clearCart
+
+api_index_cart_show:
+  path: /api2/cart
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.cart_controller:showCart
+
+api_add_to_cart:
+  path: /api2/cart/add
+  methods: [POST]
+  defaults:
+    _controller: app.controller_api.cart_controller:addToCart
+
+api_update_cart:
+  path: /api2/cart/update
+  methods: [PUT,PATCH]
+  defaults:
+    _controller: app.controller_api.cart_controller:updateCartItem
+
+api_update_warranty_cart:
+  path: /api2/cart/update/warranty
+  methods: [PUT,PATCH]
+  defaults:
+    _controller: app.controller_api.cart_controller:updateCartWarranty
+
+api_checkout_get_country:
+  path: /api2/countries
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.checkout_controller:getCountries
+
+api_checkout_get_sales_person:
+  path: /api2/sales-person
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.checkout_controller:getSalesUsers
+
+api_checkout_set_order_detail:
+  path: /api2/order-detail
+  methods: [POST,GET]
+  defaults:
+    _controller: app.controller_api.checkout_controller:setOrderDetail
+
+api_checkout_set_order_payment:
+  path: /api2/order-pay
+  methods: [POST,GET]
+  defaults:
+    _controller: app.controller_api.checkout_controller:setOrderPay
+
+api_checkout_set_order_payment_close:
+  path: /api2/order-pay/close
+  methods: [POST,GET]
+  defaults:
+    _controller: app.controller_api.checkout_controller:closePayment
+
+api_checkout_thank_you:
+  path: /thank-you
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.checkout_controller:getThankyou
+
+
+api_product_addon_find:
+  path: /admin/products/addon-product
+  methods: [GET]
+  defaults:
+    _controller: app.controller_api.product_controller:getAssociation
+
+api_user_close_account:
+  path: /api2/user/account/close
+  methods: [POST]
+  defaults:
+    _controller:  app.controller.api.user.user_controller:closeAccount
+
+api_user_password_change:
+  path: /api2/user/password/change
+  methods: [POST]
+  defaults:
+    _controller:  app.controller.api.user.user_controller:changePassword
+
+api_user_pesonal_info:
+  path: /api2/user/personal/info
+  methods: [PUT]
+  defaults:
+    _controller:  app.controller.api.user.user_controller:personalInfo
+
+api_user_coding:
+  path: /api2/user/coding
+  methods: [GET]
+  defaults:
+    _controller:  app.controller.api.user.user_controller:coding
+
+api_user_orders:
+  path: /api2/user/orders
+  methods: [GET]
+  defaults:
+    _controller:  app.controller.api.user.user_controller:orders
+
+sylius_shop_account_dashboard:
+  path: /account/dashboard
+  methods: [GET]
+  defaults:
+    _controller:  app.controller.api.user.user_controller:show
+
+app_system_info:
+  path: /admin/system_info
+  methods: [GET]
+  defaults:
+    _controller: AppBundle:SystemInfo:show
+
+app_menu:
+  path: /api2/menu/
+  methods: [GET]
+  defaults:
+    _controller: app.api.controller.shop_main_menu:index
+
+app_menu_show:
+  path: /api2/menu/{id}
+  methods: [GET]
+  defaults:
+    _controller: app.api.controller.shop_main_menu:show
+
+sylius_shop_order_show:
+  path: /close-page
+  methods: [GET,PUT]
+  defaults:
+    _controller: AppBundle:ClosePaymentPage:close
+
+app_admin_blog_post:
+  path: /admin/blog/post
+  methods: [GET,POST]
+  defaults:
+    _controller:  app.controller.admin.blog:index
+
+app_admin_blog_post_edit:
+  path: /admin/blog/post/{id}
+  methods: [GET,PUT]
+  defaults:
+    _controller:  app.controller.admin.blog:edit
+
+app_admin_media_library_image:
+  path: /admin/media/library/image
+  methods: [GET]
+  defaults:
+    _controller:  app.controller.media_image_controller:index
+
+app_admin_api_ media_images:
+  path: /admin/api2/media/library/images
+  methods: [GET]
+  defaults:
+    _controller:  app.controller_api_admin.media_image_controller:showImages
+
+app_admin_api_ media_image:
+  path: /admin/api2/media/library/image/{id}
+  methods: [GET]
+  defaults:
+    _controller:  app.controller_api_admin.media_image_controller:showImage
+
+app_admin_api_ media_image_remove:
+  path: /admin/api2/media/library/image/{id}
+  methods: [DELETE]
+  defaults:
+    _controller:  app.controller_api_admin.media_image_controller:deleteImage
+
+app_order_payment_status:
+  path: /api2/order/{id}/payment-status
+  methods: [GET]
+  defaults:
+    _controller: api.controller.order_controller:orderPaymentStatus
+
+app_admin_api_ media_image_edit:
+  path: /admin/api2/media/library/image/{id}
+  methods: [PUT]
+  defaults:
+    _controller:  app.controller_api_admin.media_image_controller:edit
+
+app_product_rewrite:
+  path: /rewrite/product
+  methods: [GET]
+  defaults:
+    _controller: app.controller.join_controller:rewriteAction
+
+app.controller_api_admin.product_buyers_guide_image_controller:
+  path: /admin/buers-guide-image-remove/{id}
+  methods: [ GET, DELETE ]
+  defaults:
+    _controller: app.controller_api_admin.product_buyers_guide_image_controller:removeImage
+
+app_server_logs:
+  path: /admin/server_logs
+  methods: [ GET ]
+  defaults:
+    _controller: AppBundle:ServerLogs:show
+
+app_server_logs_filter:
+  path: /admin/server_logs_filter
+  methods: [ POST ]
+  defaults:
+    _controller: AppBundle:ServerLogs:logFilter
+
+app_server_logs_delete:
+  path: /admin/server_logs_delete
+  methods: [ GET ]
+  defaults:
+    _controller: AppBundle:ServerLogs:delete
+
+api_home_interesting_in_product:
+  path: /api2/home/recommended
+  methods: [GET]
+  defaults:
+    _controller: sylius.controller.shop.homepage:interestingInProduct
+
+app_site_map:
+  path: /sitemap
+  methods: [GET]
+  defaults:
+    _controller: app.controller.site_map_controller:index
+
+
+app_admin_help_seo:
+  path: /admin/help-seo
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller.help_seo_controller:helpSeo
+
+app_api_admin.order:
+  path: /admin/api2/order/index/role
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller_api_admin.order_controller:indexRole
+
+app_api_admin.order.history:
+  path: /admin/api2/history/order/{id}/created
+  methods: [GET, POST]
+  defaults:
+    _controller: app.controller_api_admin.history:create
+

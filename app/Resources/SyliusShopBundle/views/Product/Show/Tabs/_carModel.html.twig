@@ -1,0 +1,36 @@
+
+{% if carModels is not empty %}
+    {% set lastSeries = false %}
+    <div class="segment " id="section-car-model">
+        <div class="grid-x">
+            <div class="car-models cell">
+                <span class="title">Compatible with:</span>
+            </div>
+        </div>
+        <div class="grid-x">
+            <div class="car-models cell">
+                {% for key, series in carModels %}
+                    {% if loop.last %}
+                        {% set lastSeries = true %}
+                    {% endif %}
+                    <span class="title">
+                        {% if key != "Mini" %}
+                            BMW {{ key }}:
+                        {% else %}
+                            {{ key }}:
+                        {% endif %}
+                    </span>
+                    {% for i,value in series %}
+                        {% if loop.last and lastSeries %}
+                            <span class="model">{{ value }}.</span>
+                        {% elseif loop.last %}
+                            <span class="model">{{ value }};</span>
+                        {% else %}
+                            <span class="model">{{ value }},</span>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}

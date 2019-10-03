@@ -1,0 +1,55 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+{% block content %}
+    <div class="grid-x display-flex align-middle breadcrumb margin-vertical-1">
+        <div>
+            <a class="section" href="/">Home</a>
+        </div>
+        <div class="divider display-flex align-middle">
+            <img src="/assets/shop/img/bread_crumb_divider.png"/></div>
+        <div class="active section">
+            {{ 'sylius.ui.my_account'|trans }}</div>
+    </div>
+    <div id="account">
+        <section-min-header inline-template label="DASHBOARD">
+            {% include ':GlobalComponents/MinHeader:minHeader.html.twig' %}
+        </section-min-header>
+        <div class="ui stackable grid">
+            <div class="navigation wide column">
+                <div class="ui fluid vertical menu">
+                    <a :class="{'selected': tab=='orders'}" @click="changeTab('orders')" class="item">
+                        <span>Orders</span>
+                    </a>
+                    <a :class="{'selected': tab=='info'}" @click="changeTab('info')" class="item">
+                        <span>Personal Info</span>
+                    </a>
+                    <a :class="{'selected': tab=='instruction'}" @click="changeTab('instruction')" class="item">
+                        <span>Instruction/Coding</span>
+                    </a>
+                    <a :class="{'selected': tab=='password'}" @click="changeTab('password')" class="item">
+                        <span>Change Password</span>
+                    </a>
+                    <a :class="{'selected': tab=='close'}" @click="changeTab('close')" class="item">
+                        <span>Close My Account</span>
+                    </a>
+                </div>
+            </div>
+            <div class="content wide column">
+                <section-orders inline-template v-show="tab=='orders'">
+                    {% include ':Pages/Account/components/orders:orders.html.twig' %}
+                </section-orders>
+                <section-info inline-template v-show="tab=='info'">
+                    {% include ':Pages/Account/components/info:info.html.twig' %}
+                </section-info>
+                <section-instruction inline-template v-show="tab=='instruction'">
+                    {% include ':Pages/Account/components/instruction:instruction.html.twig' %}
+                </section-instruction>
+                <section-password inline-template v-show="tab=='password'">
+                    {% include ':Pages/Account/components/password:password.html.twig' %}
+                </section-password>
+                <section-close inline-template v-show="tab=='close'">
+                    {% include ':Pages/Account/components/close:close.html.twig' %}
+                </section-close>
+            </div>
+        </div>
+    </div>
+{% endblock %}

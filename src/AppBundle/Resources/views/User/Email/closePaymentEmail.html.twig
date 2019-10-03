@@ -1,0 +1,16 @@
+{% block subject %}
+    Payment for your BimmerTech order was unsuccessful
+{% endblock %}
+
+{% block body %}
+
+    <p>Hi {{ data }},</p>
+    <p>Thank you for choosing to shop at BimmerTech.</p>
+    <p>Unfortunately, payment for your latest order was unsuccessful. This could mean your payment details were
+        incorrect, or that your bank has blocked the transaction.</p>
+    <p> Please consult your bank for more information, then <a
+                href="{{ host }}{{ path( 'sylius_shop_account_dashboard') }}">click here</a> to log in to your customer account at
+        www.bimmer-tech.net and navigate to the Orders tab to repeat your payment.</p>
+    <p> If you are having trouble, please <a href="{{ url( 'sylius_shop_contact_request') }}">get in touch</a>.</p>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+<div id="sylius-coupon" class="border coupon">
+    <h6 class="text-center header">I have a promotion code</h6>
+    <div class="margin-top-1"></div>
+    <div class="mc-field-group ui action bt-input">
+        <input type="email" @input="handleInput($event)" maxlength="70" name="EMAIL" placeholder="Enter Your Code" class="code pristine touched is-danger">
+        <input @click="sendCode()" type="submit" value="Apply" name="subscribe" id="mc-embedded-subscribe" class="ui bt-button bt-subscribe">
+    </div>
+    <div class="margin-top-1"></div>
+    <div class="coupon-description">Please provide the coupon code and press "Apply". The price quote will be counted accordingly. Note that only one coupon can be used during a single order.</div>
+</div>

@@ -1,0 +1,44 @@
+{% import '@SyliusUi/Macro/messages.html.twig' as messages %}
+{% import '@SyliusUi/Macro/pagination.html.twig' as pagination %}
+
+{#{{ sonata_block_render_event('sylius.shop.product.index.before_search', {'products': resources.data}) }}#}
+
+{#{% include '@SyliusShop/Product/Index/_search.html.twig' %}#}
+
+{#{{ sonata_block_render_event('sylius.shop.product.index.after_search', {'products': resources.data}) }}#}
+
+{{ sonata_block_render_event('sylius.shop.product.index.before_list', {'products': resources.data}) }}
+
+{# {% set taxon = code ?? null %} #}
+
+
+{#{% if resources.data | length > 0 %}#}
+<script>
+    var taxonSlug = "{{ app.request.attributes.get('slug') }}";
+</script>
+
+<div id="taxons">
+    <section-min-header inline-template h1 label="{{ taxonName }}">
+        {% include ':GlobalComponents/MinHeader:minHeader.html.twig' %}
+    </section-min-header>
+
+    <section-product-list v-if="productList.length > 0" :value="productList" inline-template>
+        {% include ':GlobalComponents/ProductList:list.html.twig' %}
+    </section-product-list>
+    <div class="preloder bt-loading" v-else></div>
+    <br>
+    <div class="flex">
+        <transition name="fade">
+            <section-button v-if="loadMoreBtn" @click="loadMore" label="Load more products" inline-template>
+                {% include ':GlobalComponents/Field:_button.html.twig' %}
+            </section-button>
+        </transition>
+    </div>
+    <div class="seo-text">{{ taxon.seoText|raw }}</div>
+    <section-swiper :recomended="recomended" inline-template>
+        {% include ':GlobalComponents/Swiper:recomended.html.twig' %}
+    </section-swiper>
+</div>
+{#{% else %}#}
+    {#{{ messages.info('sylius.ui.no_results_to_display') }}#}
+{#{% endif %}#}

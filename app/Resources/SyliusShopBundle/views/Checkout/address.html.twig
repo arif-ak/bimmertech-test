@@ -1,0 +1,90 @@
+{% extends '@SyliusShop/Checkout/layout.html.twig' %}
+{% form_theme form '@SyliusUi/Form/theme.html.twig' %}
+{% block content %}
+    <div class="grid-x display-flex align-middle breadcrumb margin-vertical-1">
+        <div>
+            <a href="{{ path('sylius_shop_homepage') }}" class="section">
+                {{ 'home'|title }}</a>
+        </div>
+        <div class="divider display-flex align-middle">
+            <img src="/assets/shop/img/bread_crumb_divider.png"/>
+        </div>
+        <div>
+            <a href="{{ path('sylius_shop_cart_summary') }}" class="section">
+                {{ 'Your Cart'|title }}</a>
+        </div>
+        <div class="divider display-flex align-middle">
+            <img src="/assets/shop/img/bread_crumb_divider.png"/>
+        </div>
+        <div class="active section">Your Details</div>
+    </div>
+    {% include '@SyliusShop/Checkout/_steps.html.twig' %}
+    {{ sonata_block_render_event('sylius.shop.checkout.address.after_steps', {'order': order}) }}
+    <div class="address-page" id="appCheckout">
+        {{ sonata_block_render_event('sylius.shop.checkout.address.before_form', {'order': order}) }}
+        {{ form_start(form, {'action': path('sylius_shop_checkout_address'), 'attr': {'class': 'bt ui loadable form', 'novalidate': 'novalidate'}}) }}
+        {{ form_errors(form) }}
+        <div class="grid-x">
+            <div class=" grid-x cell align-justify">
+                <section-emails :audited-prop="audited" @audited="changeAudited" inline-template v-model="checkoutEmails">
+                    {% include '@SyliusShop/Checkout/components/login/_login.html.twig' %}
+                </section-emails>
+                {# [[checkoutEmails]] #}
+                <div :class="{ inactive: !audited }" class="cell large-7 block-contact" id="block-contact">
+                    <div class="block-contact-form">
+                        <input name="_method" type="hidden" value="PUT"/>
+                        <section-form inline-template v-model="form">
+                            {% include '@SyliusShop/Checkout/components/form/_form.html.twig' %}
+                        </section-form>
+                        {{ sonata_block_render_event('sylius.shop.checkout.address.before_navigation', {'order': order}) }}
+                    </div>
+                    <div class="term cell margin-vertical-1 margin-left-2">
+                        <section-checkbox :error="errorAccept" inline-template v-model="accept">
+                            <div :class="{'error': errorClass }" :id="checkboxId" class="ui checkbox customCheckbox">
+                                <label class="left">
+                                    <span>
+                                        I accept BimmerTech’s
+                                        <a href="{{ path('app_terms_and_condition') }}" class="bt-link">Terms & Conditions</a>
+                                        &
+                                        <a href="{{ path('app_privacy_policy') }}" class="bt-link">Privacy Policy</a>
+                                    </span>
+                                </label>
+                                <input :value="value" @change="handleInput()" type="checkbox" v-model="selected"/>
+                                <div class="errorMessage">
+                                    Please accept BimmerTech’s
+                                    <a href="{{ path('app_terms_and_condition') }}" class="bt-link">Terms & Conditions</a>
+                                    &
+                                    <a href="{{ path('app_privacy_policy') }}" class="bt-link">Privacy Policy</a>
+                                    to proceed to the payment.
+                                </div>
+                            </div>
+                        </section-checkbox>
+                    </div>
+                    <div class="message margin-left-2">If you prefer to pay directly with your credit or debit card click "Pay with Debit or Credit Card" on the PayPal website.</div>
+                    {% include '@SyliusShop/Checkout/Address/_navigation.html.twig' %}
+                </div>
+            </div>
+        </div>
+        {{ form_row(form._token) }}
+        {{ form_end(form, {'render_rest': false}) }}
+    </div>
+    <div class="ui bt modal pay">
+        <div id="payModal" class="h5 text-center bt-heading">
+            <!-- PayPal Logo -->
+            <div class="display-flex align-center-middle margin-bottom-1">
+                <img src="/assets/shop/img/pp_h_1C_white.png"/>
+            </div>
+            <!-- PayPal Logo -->
+            <div class="message">Don't see secure PayPal browser? We'll help you re-launch the window to complete your purchase</div>
+            <a @click="showWindow()">
+                <span>Click to Continue</span>
+            </a>
+        </div>
+        <div class="bt-icon white bt-close"></div>
+    </div>
+{#{% include '@SyliusShop/Checkout/_summary.html.twig' with {'order': order} %}#}
+    {#{{ sonata_block_render_event('sylius.shop.checkout.address.before_support', {'order': order}) }}#}
+    {#{% include '@SyliusShop/Checkout/_support.html.twig' %}#}
+    {#{{ sonata_block_render_event('sylius.shop.checkout.address.after_support', {'order': order}) }}#}
+    {# </div> #}
+{% endblock %}

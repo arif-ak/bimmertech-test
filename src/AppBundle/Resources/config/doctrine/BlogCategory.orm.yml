@@ -1,0 +1,16 @@
+AppBundle\Entity\BlogCategory:
+    type: entity
+    table: app_blog_category
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 500
+        enabled:
+            column: enabled
+            type: boolean
+            nullable: true

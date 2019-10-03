@@ -1,0 +1,50 @@
+{% import "@SyliusAdmin/Common/Macro/money.html.twig" as money %}
+
+{% set orderPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_PROMOTION_ADJUSTMENT') %}
+{% set itemPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_ITEM_PROMOTION_ADJUSTMENT') %}
+{% set shippingAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::SHIPPING_ADJUSTMENT') %}
+{% set taxAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::TAX_ADJUSTMENT') %}
+
+
+{% set item =  order.items[loop.index0] %}
+{% set variant = item.variant %}
+{% set product = variant.product %}
+
+
+<tr>
+    <td class="single line">
+        {% include '@SyliusAdmin/Product/_info.html.twig' %}
+    </td>
+    <td class="right aligned quantity">
+        {{ item.quantity }}
+    </td>
+
+    {{ form_start(form,{'action': path('app_order_item_instruction_add',{'id': item.id }),
+        'method': 'POST',
+        'attr':{'id' : 'form_instruction_'~item.id }}) }}
+    <td class="right aligned ">
+        <div class="admin_support_instruction_info item{{ item.id }}">
+            {% if item.instruction is not empty %}
+                <a href="{{ item.instruction }}" target="_blank"> Instruction</a>
+            {% endif %}
+        </div>
+        <div class="admin_support_instruction item{{ item.id }}">
+            {{ form_row( form.instruction, { 'label': false, 'id':'inst_' ~item.id  }) }}
+        </div>
+        {{ form_end(form) }}
+    </td>
+    <td>
+        {{ item.supportStatus }}
+    </td>
+    <td>
+        <div class="admin_support_instruction item{{ item.id }}">
+            <button value="Save" onclick="sendInstruction({{ item.id }})">save</button>
+        </div>
+
+        <div class="admin_support_instruction_info item{{ item.id }}">
+            <button onclick="admin_support_instruction({{ item.id }})">Edit</button>
+            <a class="ui mini blue button" target="_blank"
+               href="{{ path('app_bopt_controller', {'vin':order.vin, 'productId':item.variant.vincheckserviceId }) }}">Bopt</a>
+        </div>
+    </td>
+</tr>

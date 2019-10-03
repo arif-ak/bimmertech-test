@@ -1,0 +1,16 @@
+app_admin_custom_page:
+    resource: |
+        alias: app.custom_page
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        redirect: index
+        grid: app_admin_page
+        vars:
+            all:
+                header: Page
+                subheader: Manage your page
+                templates:
+                  form: AppBundle:Admin/Page:_form.html.twig
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

@@ -1,0 +1,23 @@
+AppBundle\Entity\BuyersGuideImage:
+    type: entity
+    table: app_buyers_guide_image
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        type:
+            type: string
+            nullable: true
+        path:
+            type: string
+            nullable: true
+    manyToOne:
+        product:
+            targetEntity: AppBundle\Entity\Product
+            inversedBy: buyersImage
+            joinColumn:
+                name: product_id
+                referencedColumnName: id
+                onDelete: CASCADE

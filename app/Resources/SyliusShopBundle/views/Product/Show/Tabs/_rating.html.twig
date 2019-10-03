@@ -1,0 +1,10 @@
+<section-popup on="click" position="bottom center" edge='85' jitter='20'  boundary='.grid-container.boundary' inline-template>
+    <span>
+        <div :id="buttonId" class="ui bt-button cell shrink reviewsArrow">
+            <i class="dropdown icon"></i>
+        </div>
+        <section-rating :id="popupId" inline-template>
+            {% include ':GlobalComponents/ReviewsRating:reviewsRating.html.twig' %}
+        </section-rating>
+    </span>
+</section-popup>

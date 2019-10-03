@@ -1,0 +1,23 @@
+<div :id="product.id" class="cell product grid-x align-middle" v-ret-state:product="product">
+    <div class="ten wide column left aligned cell large-4 ">
+        <div class="ui header">
+            <popup-ret-ref :access="access" :value="product"></popup-ret-ref>
+            <img :data-src="product.productImage" alt="" class="ui bordered image" src="" v-img-loader/>
+            <div class="content">
+                <div :title="product.productName" class="sylius-product-name">[[product.productName]]</div>
+                <span class="sub header sylius-product-drop-downs" v-d-down="{ product: [product.savePrice,product.drop_down] }"></span>
+            </div>
+        </div>
+    </div>
+    <div class="cell large-5">
+        <div class="tracking-numbers additional-info" v-if="!!product.shipment">
+            <span v-for="number in product.shipment">[[number.tracking_number]]</span>
+        </div>
+    </div>
+    <div class="three wide column cell large-1 logisticBoardQuantity additional-info">Quantity: [[product.quantity]]</div>
+    <div class="two wide column cell large-1 text-center">
+        <div class=" admin_logistic_warehouse_info item53">
+            <a :class="{'disabled':!access}" :href="product.bopt" class="ui mini blue button logisticBoardBtn bopt" target="_blank">Bopt</a>
+        </div>
+    </div>
+</div>

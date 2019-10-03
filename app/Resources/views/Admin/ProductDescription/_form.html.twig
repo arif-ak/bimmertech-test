@@ -1,0 +1,21 @@
+{% set type = form.vars.value.type %}
+
+<div class="ui segment">
+
+    {% if type == 'left' %}
+        {{ include(':Admin/ProductDescription:_left.html.twig') }}
+    {% elseif type =='right' %}
+        {{ include(':Admin/ProductDescription:_right.html.twig') }}
+    {% elseif type == 'center' %}
+        {{ include(':Admin/ProductDescription:_center.html.twig') }}
+    {% elseif type == 'text' %}
+        {{ include(':Admin/ProductDescription:_text.html.twig') }}
+    {% endif %}
+
+
+
+</div>
+
+
+
+

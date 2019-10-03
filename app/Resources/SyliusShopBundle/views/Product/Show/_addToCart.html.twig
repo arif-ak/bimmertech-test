@@ -1,0 +1,159 @@
+{#{% set product = product.variant.product %}#}
+
+<div v-show="product" id="sylius-product-selecting-variant">
+    {#{{ sonata_block_render_event('sylius.shop.product.show.before_add_to_cart', {'product': product, 'order_item': order_item}) }}#}
+    {% if product.associations | length > 0 %}
+        <div class="bt-label" v-if="showAddons">
+            Option
+            <div class="bt-line"></div>
+        </div>
+        <div class="bt-addons" v-if="showAddons">
+            {% for association in product.associations %}
+                {% if association.type.code == 'IncludedAddons' %}
+                    <div class="addons-included">
+                        {% for addon in association.associatedProducts %}
+                            {% if addon.id %}
+                                <div class="item included">
+                                    <span class="name">{{ addon.name }}</span>
+                                    <span class="included">Included</span>
+                                </div>
+
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% elseif association.type.code == 'Addons' %}
+                    <div class="addons-main">
+                        <section-checkbox v-for="addon in filteredAddons" :addon="addon" @change="clacPrice()" v-model="selectedAddons" :value="addon.variant_id" inline-template>
+                            <div :id="checkboxId" class="bt checkbox item customCheckbox">
+                                <label>
+                                    <span class="name">
+                                        <span class="text">
+                                            [[ addon.name ]]&nbsp;
+                                            <section-popup on="hover" distance="3" inline-template>
+                                                <span>
+                                                    <span :id="buttonId" class="bt-icon gray bt-attention popup"></span>
+                                                    <div :id="popupId" class="customPopup ui popup transition">
+                                                        <div class="content">
+                                                            <h5>[[ addon.name ]]</h5>
+                                                            <span>
+                                                              [[ addon.addonDescription ]]
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </span>
+                                            </section-popup>
+                                        </span>
+                                    </span>
+                                    <span class="price">
+                                        <span class="dollar-sign">&#36;</span>[[priceMacro(addon.price)]]
+                                    </span>
+                                </label>
+                                <input @change="handleInput()" v-model="selected" type="checkbox" :value="value">
+                            </div>
+                        </section-checkbox>
+                    </div>
+                {% endif %}
+
+            {% endfor %}
+        </div>
+        {% for association in product.associations %}
+            {% if association.type.code == 'Warranty' and association.associatedProducts | length > 0 %}
+                <div class="bt-label">
+                    <label class="required">Warranty option</label>
+                    <div class="bt-line"></div>
+                </div>
+                <div class="content">
+                    <div class="ui inline dropdown bt align-middle">
+                        <div class="bt-arrow-right">></div>
+                        <div class="text" v-if="product">
+                            [[product.warranty[0].name]]
+                        </div>
+                        <div class="bt-text">change</div>
+
+                        <label class="menu">
+                            <div class="hideBtn">hide</div><br>
+                            <label v-for="addon in product.warranty" class="item" :data-value="addon.variant_id"
+                                   :data-price="priceMacro(addon.price)"
+                                   :data-text="addon.name">
+                                        <span class="text">
+                                            <div>[[addon.name]]</div>
+                                            <div v-if="addon.price!=0">(+ $[[priceMacro(addon.price)]])</div>
+                                        </span>
+                                <input @change="clacPrice()" v-model="selectedWarranty" type="radio" name="warranty"
+                                       required="required" data-option="waranty"
+                                       class="ui test checkbox" :value="addon.variant_id">
+                                <span class="checkmark"></span>
+                            </label>
+                        </label>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    <div v-for="(drop, i) in product.dropDown">
+        <div class="bt-label">
+            <label class="required">[[drop.name]]</label>
+            <div class="bt-line"></div>
+        </div>
+        <div class="content">
+            <div class="ui inline dropdown bt align-middle">
+                <div class="bt-arrow-right">></div>
+                <div class="text" v-if="product">
+                    [[drop.options[0].name]]
+                </div>
+                <div class="bt-text">change</div>
+                <label class="menu">
+                    <div class="hideBtn">hide</div><br>
+                    <label v-for="option in drop.options" class="item"
+                            :data-value="option.id" :data-price="priceMacro(option.price)"
+                            :data-text="option.name"
+                    >
+                            <span class="text">
+                                <div>[[option.name]]</div>
+                                {# <div v-if="option.price!=0">(+ $[[priceMacro(option.price)]])</div> #}
+                                <div v-if="option.price>0">(+ $[[priceMacro(option.price)]])</div>
+                                <div v-else-if="option.price<0">(- $[[priceMacro(option.price*-1)]])</div>
+                            </span>
+                        <input @change="addSelectedOptions();" v-model="product.dropDown[i].selectedOption" :value="option.id" type="radio" :name="'option'+i" required="required" class="ui test checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    {#{{ form_errors(form) }}#}
+    <div class="ui red label bottom pointing hidden sylius-validation-error" id="sylius-cart-validation-error"></div>
+    {% if not product.simple %}
+        {% if product.variantSelectionMethodChoice %}
+
+            {% include '@SyliusShop/Product/Show/_variants.html.twig' %}
+        {% else %}
+            {% include '@SyliusShop/Product/Show/_options.html.twig' %}
+        {% endif %}
+    {% endif %}
+    
+    {#{{ sonata_block_render_event('sylius.shop.product.show.add_to_cart_form', {'product': product, 'order_item': order_item}) }}#}
+    <div class="bt-line"></div>
+    <section-button  @click="addToCart()" label="{{ 'sylius.ui.add_to_cart'|trans }}" inline-template>
+        {% include ':GlobalComponents/Field:_button.html.twig' %}
+    </section-button>
+    <div class="additional-informations">
+        <div class="grid-x">
+            <div class="bt-icon gray bt-stopwatch"></div>
+            <div>Delivery time: 2-7 business days</div>
+        </div>
+        <div class="grid-x">
+            <div class="bt-icon gray bt-truck"></div>
+            <div>Free shipping worldwide</div>
+        </div>
+    </div>
+
+
+    {# do not delete it we will use it for future ******************************************************************************************************** #}
+    {# {% include '@WebburzaSyliusWishlist/Frontend/Shop/_addToWishlist.html.twig' %} #}
+    {# do not delete it we will use it for future ******************************************************************************************************** #}
+
+
+    {#{{ form_row(form._token) }}#}
+</div>

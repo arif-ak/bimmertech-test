@@ -1,0 +1,39 @@
+sylius_grid:
+    grids:
+        app_admin_user_sale:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: AppBundle\Entity\UserSale
+            fields:
+                first_name:
+                    type: string
+                    label: First name
+                last_name:
+                    type: string
+                    label: Last name
+                email:
+                    type: string
+                    label: Email
+                created_at:
+                    type: datetime
+                    label: Created at
+#                customer:
+#                    type: twig
+#                    label: country
+                enabled:
+                    type: twig
+                    label: sylius.ui.enabled
+                    options:
+                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    show:
+                        type: show
+                    delete:
+                        type: delete

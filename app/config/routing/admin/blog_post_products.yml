@@ -1,0 +1,15 @@
+app_admin_blog_post_products:
+    resource: |
+        alias: app.blog_post_products
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        form: AppBundle\Form\Type\BlogPostProductsType
+        redirect: index
+        grid: app_admin_blog_post_products
+        vars:
+            all:
+                header: Blog post interested in
+                subheader: Manage blog post interested in
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

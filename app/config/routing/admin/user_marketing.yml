@@ -1,0 +1,14 @@
+app_admin_user_marketing:
+    resource: |
+        alias: app.user_marketing
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        redirect: index
+        grid: app_admin_user_marketing
+        vars:
+            all:
+                header: User Marketing
+                subheader: Manage your Marketing persons
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

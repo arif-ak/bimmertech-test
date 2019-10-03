@@ -1,0 +1,36 @@
+<div :class="{'bt-loading': loading}" class="cell" id="Coding" v-if="products.length > 0">
+    <div class="cell">
+        <h4>Сoding board</h4>
+        <div class="cell segment-wrapper">
+            <div class="ui">
+                <div class="grid-x">
+                    <div class="cell product grid-x align-middle" v-for="(product, i) in products" v-ret-state:product="product">
+                        <div class="ten wide column left aligned cell large-4">
+                            <div class="ui header">
+                                <popup-ret-ref :access="access" :value="product"></popup-ret-ref>
+                                <img :data-src="product.image" alt="" class="ui bordered image" src="" v-img-loader/>
+                                <div class="content">
+                                    <div :title="product.name" class="sylius-product-name">[[product.name]]</div>
+                                    <span :title="product.productCode" class="sub header sylius-product-drop-downs" v-d-down="{ product: [product.savePrice,product.drop_down] }"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell large-5">
+                            <div class="additional-info date" v-if="!!product.date">
+                                <span>[[new Date(product.date)|date]]</span>
+                            </div>
+                        </div>
+                        <div class="three wide column cell large-1 text-right additional-info">
+                            <span>[[product.coding.statusText]]</span>
+                        </div>
+                        <div class="two wide column cell large-1 text-center">
+                            <div class="">
+                                <div :class="[{'disabled':!access.codding_board}, product.coding.statusClass]" @click="changeStatus(product)" class="ui mini button logisticBoardBtn code">[[product.coding.statusBtnText]]</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+sylius_fixtures:
+    suites:
+        contactPage:
+#            listeners:
+#                orm_purger:
+#                    options:
+#                        mode: truncate
+#                        managers:
+#                            - app_contact_title
+            fixtures:
+                contact_page:
+                    options:
+                        custom:
+
+                            Sales Questions:
+                                title: "Sales Questions"
+                                popup: "sales"
+                                contacts:
+                                    -
+                                        position: "Vertical"
+                                        contact_contents:
+                                            -
+                                                content_title: "US PHONE NUMBER"
+                                                content_value: "+1 (646) 439 7920"
+                                                content_hours: "(8:00 am - 6:00 pm ET)"
+                                            -
+                                                content_title: "UK PHONE NUMBER"
+                                                content_value: "+44 133 403 3103"
+                                                content_hours: "(11:00 am - 10:00 pm)"
+                                            -
+                                                content_title: "EMAIL"
+                                                content_value: "info@bimmer-tech.net"
+                                                content_hours: ""
+                                    -
+                                        position: "Horizontal"
+                                        contact_contents:
+                                            -
+                                                content_title: "BIMMERTECH HQ"
+                                                content_value: "LOB15  #239 <br>
+                                                                Jafza <br>
+                                                                Dubai, UAE"
+                                                content_hours: ""
+                                            -
+                                                content_title: "BIMMERTECH EU OFFICE"
+                                                content_value: "Warsaw, Poland"
+                                                content_hours: ""
+                                            -
+                                                content_title: "BIMMERTECH USA OFFICE"
+                                                content_value: "Orlando, FL"
+                                                content_hours: ""
+
+
+
+                            Installation & Technical Support:
+                                title: "Installation & Technical Support"
+                                popup: "support"
+                                contacts:
+                                    -
+                                        position: "Vertical"
+                                        contact_contents:
+                                            -
+                                                content_title: "US PHONE NUMBER"
+                                                content_value: "+1 (646) 439 7920 ext .200"
+                                                content_hours: "(11:00 am - 3:00 pm)"
+                                            -
+                                                content_title: "UK PHONE NUMBER"
+                                                content_value: "+44 133 403 3103"
+                                                content_hours: "(4:00 am - 8:00 pm)"
+                                            -
+                                                content_title: "EMAIL"
+                                                content_value: "support@bimmer-tech.net"
+                                                content_hours: ""
+
+
+
+                            Our Offices:
+                                title: "Our Offices"
+                                popup: "none"
+#                                contacts:
+#                                    contact1:
+#                                        position: "Horizontal"
+#                                        contact_contents:
+#                                            contact_content1:
+#                                                content_title: "title"
+#                                                content_value: "value Our Offices"
+#                                                content_hours: "3"
+#                                    contact2:
+#                                        position: "Vertical"
+#                                        contact_contents:
+#                                            contact_content1:
+#                                                content_title: "title"
+#                                                content_value: "value Installation & Technical Support"
+#                                                content_hours: "2"
+#                                            contact_content2:
+#                                                content_title: "title"
+#                                                content_value: "value I Technical Suppor 2222tion & Technical Support"
+#                                                content_hours: "22"

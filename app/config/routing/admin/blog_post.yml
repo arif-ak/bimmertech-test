@@ -1,0 +1,16 @@
+app_admin_blog_post:
+    resource: |
+        alias: app.blog_post
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        redirect: index
+        grid: app_admin_blog_post
+        vars:
+            all:
+                header: Blog post
+                subheader: Manage blog post
+                templates:
+                    form: AppBundle:Admin/Blog:_form.html.twig
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

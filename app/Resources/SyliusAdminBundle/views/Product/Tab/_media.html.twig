@@ -1,0 +1,33 @@
+ {% form_theme form '@SyliusAdmin/Form/imagesTheme.html.twig' %}
+<div id="product-media" class="ui tab media" data-apiget="/api2/product/{{ product.id }}/media" data-apiset="/admin/product/add-images/{{ product.id }}" data-apiremove="/admin/product/remove-images/" data-tab="media">
+    <h3 class="ui dividing header">{{ 'sylius.ui.media'|trans }}</h3>
+    <br>
+    <div :class="{'bt-loading': loading}" class="required field" v-if="media">
+        <div id="sylius_product_images" class="controls collection-widget">
+            <div class="ui four column stackable grid">
+
+                <div class="column" v-for="(media, m) in media">
+                    <div class="ui upload box segment">
+                        <label :for="'sylius_product_images_'+m+'_file'" class="ui icon labeled button">
+                            <i class="cloud upload icon"></i> Choose file
+                        </label>
+                        <img class="ui small bordered image" :src="media.name">
+                        <div class="ui hidden element">
+                            <input @change="changeImage(m)" type="file" :id="'sylius_product_images_'+m+'_file'" :name="'sylius_product_images_'+m+'_file'">
+                        </div>
+                    </div>
+                    <div @click="delMdia(m)" class="ui red labeled icon button">
+                        <i class="trash icon"></i> Delete
+                    </div>
+                </div>
+
+
+
+            </div>
+            {# <a @click="addMedia()" class="ui labeled icon button add-button"><i class="plus square outline icon"></i>Add</a> #}
+        </div>
+    </div>
+</div>
+<script>
+    var product_id = {{ product.id }}
+</script>

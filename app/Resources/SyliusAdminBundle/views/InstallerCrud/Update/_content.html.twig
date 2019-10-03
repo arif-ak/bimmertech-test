@@ -1,0 +1,66 @@
+<div class="ui segment">
+    <h1>TEST</h1>
+    {{ form_start(form, {'action': path(configuration.getRouteName('update'), configuration.vars.route.parameters|default({ 'id': resource.id })), 'attr': {'class': 'ui loadable form', 'novalidate': 'novalidate'}}) }}
+    <input type="hidden" name="_method" value="PUT" />
+    {% if configuration.vars.templates.form is defined %}
+        {% include configuration.vars.templates.form %}
+    {% else %}
+        {{ form_widget(form) }}
+    {% endif %}
+
+    {{ sonata_block_render_event(event_prefix ~ '.form', {'resource': resource}) }}
+
+    {% include '@SyliusUi/Form/Buttons/_update.html.twig' with {'paths': {'cancel': path(configuration.getRouteName('index'), configuration.vars.route.parameters|default({}))}} %}
+    {{ form_row(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
+</div>
+<script type="text/javascript">
+    function updateCoordinates(lat, lng) {
+        document.getElementById('app_installer_type_latitude').value = lat;
+        document.getElementById('app_installer_type_longitude').value = lng;
+    }
+
+    function initMap() {
+        var map, marker;
+        var latitude = parseFloat(document.getElementById('app_installer_type_latitude').value);
+        var longitude = parseFloat(document.getElementById('app_installer_type_longitude').value);
+
+        const myLatlng = {
+            lat: latitude,
+            lng: longitude
+        };
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 3,
+            center: myLatlng,
+            mapTypeId: 'terrain'
+        });
+        map.setMapTypeId('terrain');
+
+        marker = new google.maps.Marker( {
+            position: myLatlng,
+            map: map,
+            draggable: true
+        });
+
+        marker.addListener('dragend', function(e) {
+            var position = marker.getPosition();
+            updateCoordinates(position.lat(), position.lng())
+        });
+
+        map.addListener('click', function(e) {
+            marker.setPosition(e.latLng);
+            updateCoordinates(e.latLng.lat(), e.latLng.lng())
+        });
+
+        map.panTo(myLatlng);
+    }
+</script>
+
+<div id="coordinates">
+    Click on installer position on the map. Drag the marker to update the coordinates.
+</div>
+
+<div id="map" style="height: 500px; width: 900px;"></div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcbwcK1JrUiApOa_TJAzV_J8f9m9gQ1FU&callback=initMap" async defer></script>

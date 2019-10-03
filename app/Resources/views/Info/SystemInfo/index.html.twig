@@ -1,0 +1,70 @@
+{% extends 'SyliusAdminBundle::layout.html.twig' %}
+{% block content %}
+    <div id="content">
+        <div class="ui stackable four column grid">
+            <div class="column">
+                <h1 class="ui header">
+                    <i class="circular info icon"></i>
+                    <div class="content">
+                        System Info
+                        <div class="sub header">Symfony version: {{ symfony_version ?? '--' }}</div>
+                        <div class="sub header">PHP version: {{ php_version ?? '--' }}</div>
+                    </div>
+                </h1>
+                <div class="ui breadcrumb">
+                    <a href="/admin/" class="section">Administration</a>
+                    <i class="right chevron icon divider"></i>
+                    <div class="active section">system_info</div>
+                </div>
+            </div>
+            <div class="column">
+                <h1 class="ui header">
+                    <div class="content">
+                        Operating system
+
+                        {% for item  in  operating_system %}
+                            <div class="sub header">{{ item }}</div>
+                        {% endfor %}
+                        <div class="sub header">Core: {{ linux_core.0 }}</div>
+
+                    </div>
+                </h1>
+            </div>
+            <div class="column">
+                <h1 class="ui header">
+                    <div class="content">
+                        Version commit
+                        <div class="sub header">Committer name: {{ commit['authorName'] ?? '--' }}</div>
+                        <div class="sub header">Committer email: {{ commit['authorEmail'] ?? '--' }}</div>
+                        <div class="sub header">Commit date: {{ commit['authorDate'] ?? '--' }}</div>
+                        <div class="sub header">Commit date relative: {{ commit['authorDateRelative'] ?? '--' }}</div>
+                        <div class="sub header">Commit subject: {{ commit['subject'] ?? '--' }}</div>
+                    </div>
+                </h1>
+            </div>
+        </div>
+        <div class="ui segment overflow-x-auto">
+            <table class="ui sortable stackable celled table">
+                <thead>
+                <tr>
+                    <th>System Info</th>
+
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for key, info in server %}
+                    <tr class="item">
+                        <td>
+                            <strong>{{ key }}</strong>
+                        </td>
+                        <td>
+                            {{ info }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

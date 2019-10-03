@@ -1,0 +1,33 @@
+<script type="text/javascript">
+    var CKEDITOR_BASEPATH = "/bundles/ivoryckeditor/";
+</script>
+<script type="text/javascript" src="/bundles/ivoryckeditor/ckeditor.js"></script>
+<div id="sylius_product_product_descriptions" class="ui tab" data-tab="description2">
+    <h3 class="ui dividing header">Description</h3>
+    <div :class="{'bt-loading': loading}" class="required field">
+        <label class="required">Product descriptions</label>
+        <div class=" controls collection-widget">
+            <div class="ui three column stackable grid">
+                <div v-for="(description, d) in productDescriptions" class="column">
+                    <div :id="'sylius_product_productDescriptions_'+d">
+                        <div class="field">
+                            <label :for="'sylius_product_productDescriptions_'+d+'_header'">Header</label>
+                            <input v-model="productDescriptions[d].title" type="text" name="" :id="'sylius_product_productDescriptions_'+d+'_header'">
+                        </div>
+                        <div class="field">
+                            <label :for="'sylius_product_productDescriptions_'+d+'_subHeader'">Sub header</label>
+                            <input v-model="productDescriptions[d].subHeader" type="text" name="" :id="'sylius_product_productDescriptions_'+d+'_subHeader'">
+                        </div>
+                        <div class="required field">
+                            <label :for="'sylius_product_productDescriptions_'+d+'_description'" class="required">Description</label>
+                            <textarea :id="'sylius_product_productDescriptions_'+d+'_description'">[[productDescriptions[d].description]]</textarea>
+                            [[editor(d)]]
+                        </div>
+                        <div class="required field"></div>
+                        <div class="required field"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

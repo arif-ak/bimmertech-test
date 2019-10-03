@@ -1,0 +1,33 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: db
+    database_port: 3306
+    database_name: sylius
+    database_user: root
+    database_password: 123456
+    # You should uncomment this if you want use pdo_sqlite.
+    # database_path: "%kernel.root_dir%/data.db3"
+
+    mailer_transport: gmail
+    mailer_host: gmail-smtp-msa.l.google.com
+    mailer_user: mykola.rokobit1
+    mailer_password: MykolaRoko
+
+    secret: EDITME
+
+    mailchimp.api_key: efaf82e3233723158056cbbf76504262-us17
+    mailchimp.list_id: d56968ed4e
+    vincheck_base_url: "https://apps.bimmer-tech.net"
+    vincheck_uri_part: /vincheckservice/web/api/get/response
+    vincheck_uri_products: /vincheckservice/web/api/products/get/service
+    vincheck_uri_manual: /vincheckservice/web/api/products/get/by_params
+    vincheck_part_key: wfewffffeee22
+    vincheck_product_key: 5nZ6gVNyDrhgHPH
+
+    elastic_enable: false
+    elastic_host: elasticsearch
+    elastic_port: 9200
+
+    site_name: Webshop
+    after_ship_key: "916e983b-3946-48ff-98ce-ab1c1f5d29c3"
+    apilayer_key: "8d8a4f9d2b24c9de415b672cdb62ece4"

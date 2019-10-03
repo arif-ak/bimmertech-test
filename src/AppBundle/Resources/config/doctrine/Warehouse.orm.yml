@@ -1,0 +1,54 @@
+AppBundle\Entity\Warehouse:
+  type: entity
+  table: warehouse
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+    country:
+      type: string
+    city:
+      type: string
+    address:
+      type: string
+      nullable: true
+    zip:
+      type: string
+      nullable: true
+    phone:
+      type: string
+      nullable: true
+  manyToMany:
+    taxCategory:
+      targetEntity: AppBundle\Entity\TaxCategory
+      mappedBy: warehouse
+      cascade: ['persist']
+      fetch: EXTRA_LAZY
+    paymentMethod:
+      targetEntity: AppBundle\Entity\PaymentMethod
+      mappedBy: warehouse
+      cascade: ['persist']
+      fetch: EXTRA_LAZY
+    shippingMethod:
+      targetEntity: AppBundle\Entity\ShippingMethod
+      mappedBy: warehouse
+      cascade: ['persist']
+      fetch: EXTRA_LAZY
+
+  manyToOne:
+    zone:
+      targetEntity: AppBundle\Entity\Zone
+  OneToMany:
+    userLogistic:
+      targetEntity: AppBundle\Entity\UserLogistic
+      mappedBy: warehouse
+  oneToMany:
+    orders:
+      targetEntity: AppBundle\Entity\Order
+      mappedBy: warehouse
+
+  lifecycleCallbacks: {  }

@@ -1,0 +1,8 @@
+<div :class="{'bt-loading': loading}" class="cell large-3" id="Status">
+    <div :class="compatibilityClass" class="cell compatibility">[[compatibility]]</div>
+    <div class="grid-x align-middle">
+        <section-status :i="i" @save-status="save" :access="access" :status="status" :initial-status="initialStatuses[i]" inline-template v-for="(status, i) in statuses">
+            {% include '@SyliusAdmin/Order/components/status/components/section-status/section-status.html.twig' %}
+        </section-status>
+    </div>
+</div>

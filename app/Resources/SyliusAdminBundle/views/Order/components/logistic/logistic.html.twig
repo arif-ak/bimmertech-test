@@ -1,0 +1,20 @@
+<div :class="{'bt-loading': loading}" class="cell" id="Logistic" v-if="warehouses != 0">
+    <div class="cell">
+        <h4>Logistic board</h4>
+        <div class="cell segment-wrapper">        
+            <section-warehouse :i="i" :access="access" :warehouse="warehouse" :warehouses-list="filteredWarehousesList" inline-template v-for="(warehouse, i) in filteredWarehouses">
+                {% include '@SyliusAdmin/Order/components/logistic/components/warehouse/warehouse.html.twig' %}
+            </section-warehouse>
+        </div>
+        <section-form inline-template>
+            {% include '@SyliusAdmin/Order/components/logistic/components/form/form.html.twig' %}
+        </section-form>
+        <section-base-modal inline-template>
+            {% include '@SyliusAdmin/Order/components/logistic/components/modals/baseModal.html.twig' %}
+        </section-base-modal>
+        <section-change-warehouse inline-template>
+            {% include '@SyliusAdmin/Order/components/logistic/components/changeWarehouse/changeWarehouse.html.twig' %}
+        </section-change-warehouse>
+    </div>
+</div>
+{# [{"name":"Drop Down"}, {"name":"Drop Down2"}] #}

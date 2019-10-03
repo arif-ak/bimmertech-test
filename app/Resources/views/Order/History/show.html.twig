@@ -1,0 +1,32 @@
+{% extends 'SyliusAdminBundle::layout.html.twig' %}
+
+{% block title %} History of order number {{ order.number }} {% endblock %}
+{% block content %}
+    {% set header  = ' History of order number #' ~ order.number %}
+    {% include configuration.vars.templates.header_title|default('@SyliusAdmin/Crud/Index/_headerTitle.html.twig') %}
+    {% import '@SyliusAdmin/Macro/breadcrumb.html.twig' as breadcrumb %}
+
+    {% set breadcrumbs = [
+        { label: 'sylius.ui.administration'|trans, url: path('sylius_admin_dashboard') },
+        { label: ('Order'), url: path('sylius_admin_order_show', { id: order.id }) },
+        { label: 'History' }
+    ] %}
+
+    {{ breadcrumb.crumble(breadcrumbs) }}
+
+    <div class="ui hidden divider"></div>
+    <div class="ui styled fluid accordion">
+    <br>
+    {% if messages |length >0 %}
+
+        {% for message in messages %}
+            <p> &numsp;{{ message.createdAt | date("d-m-Y h:i") }}
+                - {{ message.user.firstName }} {{ message.user.lastName }}
+                - {{ message.message }}</p>
+        {% endfor %}
+    {% else %}
+        <p><b> &numsp; History is empty</b></p>
+    {% endif %}
+    <br>
+    <div>
+{% endblock %}

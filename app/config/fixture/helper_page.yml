@@ -1,0 +1,185 @@
+sylius_fixtures:
+    suites:
+        helperPage:
+            fixtures:
+                helper_page:
+                    options:
+                        custom:
+                            Your_order:
+                                header: "Your order"
+                                code: "your_order"
+                                positiion: 1
+                                helpers:
+                                    -
+                                        code: "Vertical"
+                                        position: 2
+                                        enabled: 1
+                                        question: "Where to find the information about my order?"
+                                        answer: '<p>If you place an order, the system automatically creates an account for you. To learn any information about your order, please log into your account in the top right corner of the website. Navigate to the Orders tab where you can find such info as the Order ID, Payment Status, Shipping Status, etc.</p>'
+                                    -
+                                        code: "Vertical"
+                                        position: 3
+                                        enabled: 1
+                                        question: "Where can I find the password to log into my account?"
+                                        answer: "<p>If you place an order or just register on our website, after typing in your email address twice, you get a confirmation email. It contains a link that is used to confirm your email address and an automatically generated password that you can use to sign in.
+
+                                                 You can change the password in your account, in the Change Password tab.
+
+                                                 Please note that you won’t be able to log in without confirming your email address. </p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 4
+                                        enabled: 1
+                                        question: "Why can’t I log into my account?"
+                                        answer: "<p>If you can’t log into your account, it means you haven’t confirmed your email address.
+
+                                                 When you place an order or just register on our website, after typing in your email address twice, you get a confirmation email. It contains a link that is used to confirm your email address and an automatically generated password that you can use to sign in.
+
+                                                 If you can’t locate this email in your inbox, check the spam folder. If it isn’t there either, go to the Log in tab in the top right corner, type in your email and press Enter. There will be a message with a link to resend this email. After you click it, you need to input your email address once more.
+
+                                                 After this process, the confirmation email should be in your inbox where you will be able to confirm your email address.</p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 5
+                                        enabled: 1
+                                        question: "What’s my order status?"
+                                        answer: "<p>Log into your personal account in the top right corner of the website and navigate to the Orders tab. The 3rd column will inform you about your order status.</p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 6
+                                        enabled: 1
+                                        question: "How to find my order number?"
+                                        answer: "<p>Log into personal account in the top right corner of the website and navigate to the Orders tab. The 1st column will contain the Order ID which is your order number. </p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 7
+                                        enabled: 1
+                                        question: "Can I change my shipping address after I’ve completed the order?"
+                                        answer: "<p>If you would like to change the shipping destination after the order is placed, please contact us at info@bimmer-tech.net with your order number as soon as possible for details. Please note that we can only ship to a PayPal registered address.</p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 8
+                                        enabled: 1
+                                        question: "How can I change / add / remove items in my order?"
+                                        answer: "<p>Contact us at info@bimmer-tech.net with your order number and we will handle it.</p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 9
+                                        enabled: 1
+                                        question: "How do I cancel my order?"
+                                        answer: "<p>Contact us at info@bimmer-tech.net with your order number and we will handle it.</p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 10
+                                        enabled: 1
+                                        question: "What does the status “Backorder” mean?"
+                                        answer: "<p>It means that product is out of stock and we’re waiting for delivery. You will be notified when we have it in stock again - you’ll receive an email with the parcel tracking number. The status in your personal account will also change in the Orders tab.</p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 11
+                                        enabled: 1
+                                        question: "Why is my order partially shipped?"
+                                        answer: "<p>This situation may appear in 2 cases:
+                                                 When you ordered several products and some of them ship from different locations;
+                                                 When you ordered several products and some of them are out of stock at the moment.
+
+                                                 When everything is sent, the status will change to Shipped.</p>"
+
+                            Payment_&_Delivery:
+                                header: "Payment & Delivery"
+                                code: "payment_delivery"
+                                positiion: 2
+                                helpers:
+                                    -
+                                        code: "Vertical"
+                                        position: 12
+                                        enabled: 1
+                                        question: "How can I pay for my order?"
+                                        answer: "<p>All the payments on our website are done through the PayPal paying system. While placing an order, you will be redirected to the PayPal website to complete your payment. On the PayPal website you can log in to your PayPal account, select one of your existing shipping addresses or add a new one and pay for your order.</p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 13
+                                        enabled: 1
+                                        question: "If I don't have PayPal, can I pay by card?"
+                                        answer: '<p>Yes, you can. If you don’t have a PayPal account or just prefer to pay directly with your credit or debit card, click "Pay with Debit or Credit Card" on the PayPal website.</p>'
+                                    -
+                                        code: "Vertical"
+                                        position: 14
+                                        enabled: 1
+                                        question: "PayPal isn’t supported in my country. Can I still order from you?"
+                                        answer: "<p>If PayPal doesn’t work or is blocked in your country, you can pay for your order using a wire transfer.
+
+                                                 If this is your case, write an email to info@bimmer-tech.net and our sales representatives will guide you step-by-step through the process.</p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 15
+                                        enabled: 1
+                                        question: "How will I know you have received my payment?"
+                                        answer: "<p>You can log into your account, navigate to the Orders tab and check the Payment Status column. When we receive the payment, the status will be changed to Paid.</p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 16
+                                        enabled: 1
+                                        question: "Where don’t you ask for the delivery address when I place an order?"
+                                        answer: "<p>We ship only to PayPal registered addresses. While placing an order, you will be redirected to the PayPal website to complete your payment. On the PayPal website you can log in to your PayPal account, select one of your existing shipping addresses or add a new one.</p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 17
+                                        enabled: 1
+                                        question: "Where is my order being sent from?"
+                                        answer: "<p>Most of our products are shipped from our headquarters in Dubai, UAE. However, certain upgrades can also be sent from Warsaw, Poland, or Orlando, USA.</p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 18
+                                        enabled: 1
+                                        question: "How much does the delivery cost?"
+                                        answer: "<p>We provide free worldwide delivery.
+
+                                                 However, the delivery & handling don’t include duties, import taxes and brokerage fees, if applicable. We do what we can to comply with the value limits, but they vary widely from country to country. Please check with your local customs agency for details on estimated costs.</p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 19
+                                        enabled: 1
+                                        question: "How long does the delivery usually take?"
+                                        answer: "<p>Our standard delivery time is 2-5 business days. It might take longer than that if the retrofit you’ve ordered  is out of stock. If such a situation takes place, you will be informed and the Shipping & Order Status in your personal account will be changed accordingly. </p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 20
+                                        enabled: 1
+                                        question: "Where can I find my parcel tracking number?"
+                                        answer: "<p>Log into your personal account in the top right corner of the website and navigate to the Orders tab. Under the Shipping status you will find the tracking numbers for all items in your order.</p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 21
+                                        enabled: 1
+                                        question: "Why do I need to pay to DHL if the delivery is free?"
+                                        answer: "<p>The delivery is free. But we don’t cover duties, import taxes and brokerage fees, if applicable.We do what we can to comply with the value limits, but they vary widely from country to country, and even low value items might be subject to import tax. Please check with your local customs agency for details on estimated costs.</p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 22
+                                        enabled: 1
+                                        question: "How are the USB coding options delivered?"
+                                        answer: "<p>If you order USB coding options for your car, they are delivered via email in a form of a link for download together with instructions. No physical delivery is involved.</p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 23
+                                        enabled: 1
+                                        question: "How are the cable coding options delivered?"
+                                        answer: "<p>If you order cable coding options for your car, we send out a coding interface together with instructions. After it is delivered in 2-3 business days, you can schedule a remote coding session during which our technician activates the features you ordered.</p>"
+                                    -
+                                        code: "Vertical"
+                                        position: 24
+                                        enabled: 1
+                                        question: "How is the Navigation Map Update delivered?"
+                                        answer: "<p>After you’ve placed an order and completed the payment, we ship a USB stick with a map update on it.</p>"
+
+                            Installation_&_Support:
+                                header: "Installation & Support"
+                                code: "installation_tech_support"
+                                positiion: 3
+
+                            Returns_and_Refunds:
+                                header: "Returns & Refunds"
+                                code: "returns_and_refunds"
+                                positiion: 4
+

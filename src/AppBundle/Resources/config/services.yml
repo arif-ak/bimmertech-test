@@ -1,0 +1,528 @@
+parameters:
+  bitbag.shipping_gateway.validation_groups: ['bitbag']
+  bitbag.shipping_labels_path: '%kernel.project_dir%/web/shipping_labels'
+  app.shipping_labels_path: '/web/shipping_labels'
+  app.model.faq_question.class: AppBundle\Entity\FAQQuestion
+
+services:
+  #customize  JS & CSS
+  app.block_event_listener.admin.layout.javascripts:
+    class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+    arguments:
+    - '@@App/Admin/_javascripts.html.twig'
+    tags:
+    - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.layout.javascripts, method: onBlockEvent }
+  app.block_event_listener.shop.layout.javascripts:
+    class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+    arguments:
+    - '@@App/Shop/_javascripts.html.twig'
+    tags:
+    - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.javascripts, method: onBlockEvent }
+  app.block_event_listener.admin.layout.stylesheets:
+    class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+    arguments:
+    - '@@App/Admin/_stylesheets.html.twig'
+    tags:
+    - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.layout.stylesheets, method: onBlockEvent }
+  app.block_event_listener.shop.layout.stylesheets:
+    class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+    arguments:
+    - '@@App/Shop/_stylesheets.html.twig'
+    tags:
+    - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.stylesheets, method: onBlockEvent }
+  # services for menus
+  app.listener.shop.menu_builder:
+    class: AppBundle\Menu\AccountMenuListener
+    tags:
+    - { name: kernel.event_listener, event: sylius.menu.shop.account, method: addAccountMenuItems }
+  app.listener.admin.menu_builder:
+    class: AppBundle\Menu\AdminMenuListener
+    tags:
+    - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
+    - { name: kernel.event_listener, event: sylius.menu.admin.main, method: removeAdminMenuItems }
+    #        arguments: ["@service_container"]
+    arguments: ["@security.authorization_checker"]
+
+  app.listener.admin.product.form.menu_builder:
+    class: AppBundle\Menu\AdminProductFormMenuListener
+    tags:
+    - { name: kernel.event_listener, event: sylius.menu.admin.product.form, method: addItems }
+
+#  sylake_sylius_consumer.projector.product.postprocessor:
+#    class: AppBundle\SyliusConsumerPlugin\SyliusConsumerPlugin
+
+  # Services
+
+  # services for custom FORMS
+  app.form_type.page_description_type:
+    class: AppBundle\Form\Type\PageDescriptionType
+    arguments: ['@sylius.image_uploader']
+    tags:
+    - { name: form.type, alias: AppBundle\Form\Type\PageDescriptionType }
+
+  app.form_type.page_description_image_type:
+    class: AppBundle\Form\Type\PageDescriptionImageType
+    arguments:
+    - '%app.model.page_description_image.class%'
+    tags:
+    - { name: form.type, alias: AppBundle\Form\Type\PageDescriptionImageType }
+
+  app.warehouse.form.type:
+    class: AppBundle\Form\Type\WarehouseType
+    tags:
+    - { name: form.type }
+    arguments: ['%app.model.warehouse.class%']
+  app.user_sale.form.type:
+    class: AppBundle\Form\Type\UserSaleType
+    tags:
+    - { name: form.type }
+    arguments: ['%app.model.user_sale.class%']
+  app.user_support.form.type:
+    class: AppBundle\Form\Type\UserSupportType
+    tags:
+    - { name: form.type }
+    arguments: ['%app.model.user_support.class%']
+  app.user_logistic.form.type:
+    class: AppBundle\Form\Type\UserLogisticType
+    tags:
+    - { name: form.type }
+    arguments: ['%app.model.user_logistic.class%']
+  app.user_coding.form.type:
+    class: AppBundle\Form\Type\UserCodingType
+    tags:
+    - { name: form.type }
+    arguments: ['%app.model.user_coding.class%']
+  app.user_marketing.form.type:
+    class: AppBundle\Form\Type\UserMarketingType
+    tags:
+    - { name: form.type }
+    arguments: ['%app.model.user_marketing.class%']
+  app.checkout_taxes:
+    class: AppBundle\Form\Type\CheckoutTaxesType
+    tags:
+    - { name: form.type }
+    arguments: ['%sylius.model.order.class%']
+  app.slide.form.type:
+    class: AppBundle\Form\Type\SlideType
+    tags:
+    - { name: form.type }
+
+  app.product_property.form.type:
+    class: AppBundle\Form\Type\ProductPropertiesType
+    tags:
+    - { name: form.type }
+    arguments: [ '@sylius.image_uploader']
+
+  app.faq_question.form.type:
+    class: AppBundle\Form\Type\FAQQuestionType
+    tags:
+    - { name: form.type }
+    arguments: ['%app.model.faq_question.class%']
+
+  app.dealer_image.form.type:
+    class: AppBundle\Form\Type\DealerImageType
+    tags:
+    - { name: form.type }
+    arguments: ['%app.model.dealer_image.class%']
+  app.dealer.form.type:
+    class: AppBundle\Form\Type\DealerType
+    tags:
+    - { name: form.type }
+    arguments: ['@sylius.image_uploader']
+
+  app.blog_post.form.type:
+    class: AppBundle\Form\Type\BlogPostType
+    tags:
+    - { name: form.type }
+    arguments: ['@sylius.image_uploader']
+
+  app.blog_post_image.form.type:
+    class: AppBundle\Form\Type\BlogPostImageType
+    tags:
+    - { name: form.type }
+    arguments: ['@app.service.image_upload']
+
+  app.form_type.product_description_type:
+    class: AppBundle\Form\Type\ProductDescriptionType
+    arguments: ['@sylius.image_uploader']
+    tags:
+    - { name: form.type, alias: AppBundle\Form\Type\ProductDescriptionType }
+
+  app.form_type.product_installers_type:
+    class: AppBundle\Form\Type\ProductInstallersType
+    arguments: ['@sylius.image_uploader']
+    tags:
+    - { name: form.type, alias: AppBundle\Form\Type\ProductInstallersType }
+
+  #Services for added images to entities
+
+  app.form_type.product_description_image_type:
+    class: AppBundle\Form\Type\ProductDescriptionImageType
+    arguments: ['%app.model.product_description_image.class%']
+    tags:
+    - { name: form.type, alias: AppBundle\Form\Type\ProductDescriptionImageType }
+  app.form_type.product_installers_image_type:
+    class: AppBundle\Form\Type\ProductInstallersImageType
+    arguments: ['%app.model.product_installers_image.class%']
+    tags:
+    - { name: form.type, alias:  AppBundle\Form\Type\ProductInstallersImageType }
+
+  app.form_type.product_property_image_type:
+    class: AppBundle\Form\Type\ProductPropertyImageType
+    tags:
+    - { name: form.type}
+    arguments: ['%app.model.product_property_image.class%']
+
+  app.form_type.slide_image_type:
+    class: AppBundle\Form\Type\SlideImageType
+    tags:
+    - { name: form.type }
+    arguments: ['%app.model.slide_image.class%']
+
+  app.form.type.order_item_image:
+    class: AppBundle\Form\Type\OrderItemImageType
+    tags:
+    - { name: form.type }
+    arguments: ['%app.model.order_item_image.class%']
+
+  app.form.type.photo_report:
+    class: AppBundle\Form\Type\PhotoReportType
+    tags:
+    - { name: form.type }
+    arguments: ['%app.model.photo_report.class%']
+
+  logapp.form.type.buyers_guide_product_option:
+    class: AppBundle\Form\Type\BuyersGuideProductOptionType
+    tags:
+    - { name: form.type }
+    arguments: ['@app.service.image_upload', '%app.model.buyers_guide_product_option.class%']
+
+  app.form.type.buyers_guide_image:
+    class: AppBundle\Form\Type\BuyersGuideImageType
+    tags:
+    - { name: form.type }
+    arguments: ['@app.service.image_upload', '@app.repository.buyers_guide_image']
+
+  app.form.extension.type.order_item:
+    class: AppBundle\Form\Extension\OrderItemTypeExtension
+    tags:
+    - { name: form.type_extension, extended_type: Sylius\Bundle\OrderBundle\Form\Type\OrderItemType }
+
+  app.form.extension.product_translation:
+    class: AppBundle\Form\Extension\ProductTranslationTypeExtension
+    tags:
+    - { name: form.type_extension, extended_type: Sylius\Bundle\ProductBundle\Form\Type\ProductTranslationType, priority: -1 }
+  app.form.extension.html_block_tarnslation:
+    class: AppBundle\Form\Extension\HtmlBlockTranslationTypeExtension
+    tags:
+    - { name: form.type_extension, extended_type: BitBag\SyliusCmsPlugin\Form\Type\Translation\HtmlBlockTranslationType, priority: -1 }
+  app.form.extension.type.channel_pricing:
+    class: AppBundle\Form\Extension\ChannelPricingTypeExtension
+    tags:
+    - { name: form.type_extension, extended_type: Sylius\Bundle\CoreBundle\Form\Type\Product\ChannelPricingType }
+
+  sylius.listener.image_upload:
+    class: Sylius\Bundle\CoreBundle\EventListener\ImagesUploadListener
+    arguments: ['@sylius.image_uploader']
+    tags:
+    - { name: kernel.event_listener, event: "sylius.product.pre_create", method: "uploadImages" }
+    - { name: kernel.event_listener, event: "sylius.product.pre_update", method: "uploadImages" }
+    - { name: kernel.event_listener, event: "sylius.taxon.pre_create", method: "uploadImages" }
+    - { name: kernel.event_listener, event: "sylius.taxon.pre_update", method: "uploadImages" }
+    - { name: kernel.event_listener, event: "sylius.order_item.pre_create", method: "uploadImages" }
+    - { name: kernel.event_listener, event: "sylius.order_item.pre_update", method: "uploadImages" }
+    - { name: kernel.event_listener, event: "sylius.shipment.pre_create", method: "uploadImages" }
+    - { name: kernel.event_listener, event: "sylius.shipment.pre_update", method: "uploadImages" }
+    - { name: kernel.event_listener, event: "app.slide.pre_create", method: "uploadImages" }
+    - { name: kernel.event_listener, event: "app.slide.pre_update", method: "uploadImages" }
+    - { name: kernel.event_listener, event: "app.manager.dealer.pre_create", method: "uploadImages" }
+    - { name: kernel.event_listener, event: "app.manager.dealer.pre_update", method: "uploadImages" }
+
+  app.twig.extension.popup_option:
+    class: AppBundle\Twig\PopupOptionExtension
+    tags:
+    - { name: twig.extension }
+  app.twig.extension.post_content:
+    class: AppBundle\Twig\BlogPostContentExtension
+    tags:
+    - { name: twig.extension }
+
+  #Services for added images to entities
+
+
+  # services for custom FORMS
+  app.form.extension.type.product_variant:
+    class: AppBundle\Form\Extension\ProductVariantTypeMyExtension
+    tags:
+    - { name: form.type_extension, extended_type: Sylius\Bundle\ProductBundle\Form\Type\ProductVariantType, priority: -5 }
+
+  app.form.extension.type.cart:
+    class: AppBundle\Form\Extension\CartTypeExtension
+    tags:
+    - { name: form.type_extension, extended_type: Sylius\Bundle\OrderBundle\Form\Type\CartType }
+
+  app.form.extension.type.checkout_adrress:
+    class: AppBundle\Form\Extension\AddressTypeExtension
+    tags:
+    - { name: form.type_extension, extended_type: Sylius\Bundle\CoreBundle\Form\Type\Checkout\AddressType }
+  app.form.extension.type.customer_guest:
+    class: AppBundle\Form\Extension\CustomerGuestTypeExtension
+    tags:
+    - { name: form.type_extension, extended_type: Sylius\Bundle\CoreBundle\Form\Type\Customer\CustomerGuestType }
+
+  app.form.extension.type.checkout_sylius_adrress:
+    class: AppBundle\Form\Extension\SyliusAddressTypeExtension
+    tags:
+    - { name: form.type_extension, extended_type: Sylius\Bundle\AddressingBundle\Form\Type\AddressType }
+
+  app.form.extension.type.customer:
+    class: AppBundle\Form\Extension\CustomerTypeExtension
+    tags:
+    - { name: form.type_extension, extended_type: Sylius\Bundle\CustomerBundle\Form\Type\CustomerType}
+
+  app.form.extension.type.customer_profile:
+    class: AppBundle\Form\Extension\CustomerProfileTypeExtension
+    tags:
+    - { name: form.type_extension, extended_type: Sylius\Bundle\CustomerBundle\Form\Type\CustomerProfileType }
+
+  app.form.extension.type.select_shipping_type:
+    class: AppBundle\Form\Extension\SelectShippingTypeExtension
+    tags:
+    - { name: form.type_extension, extended_type: Sylius\Bundle\CoreBundle\Form\Type\Checkout\SelectShippingType }
+  app.form.extension.type.article:
+    class: AppBundle\Form\Extension\AppArticleType
+    tags:
+    - { name: form.type_extension, extended_type: Webburza\Sylius\ArticleBundle\Form\Type\ArticleType }
+  app.form.extension.type.select_payment:
+    class: AppBundle\Form\Extension\SelectPaymentTypeExtension
+    tags:
+    - { name: form.type_extension, extended_type: Sylius\Bundle\CoreBundle\Form\Type\Checkout\SelectPaymentType }
+  app.form_extension.order_item_instruction_type_extension:
+    class: AppBundle\Form\Type\OrderItemInstructionType
+    arguments: ['%sylius.model.order_item.class%', '%sylius.form.type.order_item.validation_groups%']
+    tags:
+    - { name: form.type }
+  app.form_extension.taxon_type_extension:
+    class: AppBundle\Form\Extension\TaxonTypeExtension
+    tags:
+    - { name: form.type_extension, extended_type: Sylius\Bundle\TaxonomyBundle\Form\Type\TaxonType }
+
+  app.form_extension.product_type_extension:
+    class: AppBundle\Form\Extension\ProductTypeExtension
+    tags:
+    - { name: form.type_extension, extended_type: Sylius\Bundle\ProductBundle\Form\Type\ProductType }
+
+  app.form_extension.atribute_choice_type_extension:
+    class: AppBundle\Form\Extension\ProductAttributeChoiceTypeExtension
+    arguments: ['@sylius.repository.product_attribute']
+    tags:
+    - { name: form.type_extension, extended_type:  Sylius\Bundle\ProductBundle\Form\Type\ProductAttributeChoiceType  }
+
+  app.form_type.order_item_shipment_type:
+    class: AppBundle\Form\Type\OrderItemShipmentType
+    arguments: ['%sylius.model.shipment.class%', '%sylius.form.type.order_item.validation_groups%', '@Doctrine\ORM\EntityManagerInterface']
+    tags:
+    - { name: form.type }
+
+  app.form_type.shipment_photo_report_type:
+    class: AppBundle\Form\Type\ShipmentPhotoReportType
+    arguments: ['%sylius.model.shipment.class%']
+    tags:
+    - { name: form.type }
+
+  app.form_type.tracking_delivery_type:
+    class: AppBundle\Form\Type\TrackingDeliveryType
+    tags:
+    - { name: form.type }
+
+  app.form_type.warehouse_shipment_type:
+    class: AppBundle\Form\Type\WarehouseShipmentType
+    arguments: ['%sylius.model.shipment.class%',]
+    tags:
+    - { name: form.type }
+
+  app.form.type.app_dhl_shipping_gateway:
+    class: AppBundle\Form\Type\AppDHLGatewayType
+    tags:
+    - { name: bitbag.shipping_gateway_configuration_type, type: "app_dhl_shipping_gateway", label: "DHL Gateway" }
+
+  app.form.type.app_usps_shipping_gateway:
+    class: AppBundle\Form\Type\AppUSPSGatewayType
+    tags:
+    - { name: bitbag.shipping_gateway_configuration_type, type: "app_usps_shipping_gateway", label: "USPS Gateway" }
+
+  app.service.dhlgateway:
+    class: AppBundle\Service\DHLGateway
+    arguments: ['@doctrine.orm.entity_manager']
+
+  app.service.uspsgateway:
+    class: AppBundle\Service\USPSGateway
+    arguments: ['@Doctrine\ORM\EntityManagerInterface']
+
+  app.service.elastic_search:
+    class: AppBundle\Service\ElasticSearchService
+    arguments: ['@doctrine.orm.entity_manager', '@sylius.repository.taxon', '@sylius.repository.channel',
+                '@sylius.repository.product', '@service_container']
+
+  app.service.order_api:
+    class: AppBundle\Service\OrderService
+    arguments: ['@doctrine.orm.entity_manager', '@service_container', '@app.service.image_upload']
+
+  app.service.order_board_status:
+      class: AppBundle\Service\OrderBoardStatusService
+      arguments: ['@doctrine.orm.entity_manager', '@service_container']
+
+  app.event_listener.app_dhl_shipping_export:
+    class: AppBundle\EventListener\AppDHLExportEventListener
+    arguments: ['@app.service.dhlgateway', '@filesystem']
+    tags:
+    - { name: kernel.event_listener, event: 'bitbag.export_shipment', method: exportShipment }
+
+  app.event_listener.app_usps_shipping_export:
+    class: AppBundle\EventListener\AppUSPSExportEventListener
+    arguments: ['@app.service.uspsgateway']
+    tags:
+    - { name: kernel.event_listener, event: 'bitbag.export_shipment', method: exportShipment }
+
+  app.form_type.order_item_warehouse_type:
+    class: AppBundle\Form\Type\OrderItemWarehouseType
+    arguments: ['%sylius.model.order_item.class%', '%sylius.form.type.order_item.validation_groups%' , '@Doctrine\ORM\EntityManagerInterface']
+    tags:
+    - { name: form.type }
+
+  app.form.extension.type.product_option_valuec_choice_type:
+    class: AppBundle\Form\Extension\ProductOptionValueChoiceTypeExtension
+    tags:
+    - { name: form.type_extension, extended_type: Sylius\Bundle\ProductBundle\Form\Type\ProductOptionValueChoiceType }
+
+  # fixture
+  app.fixture.car_model_fixture:
+    class: AppBundle\Fixture\CarModelFixture
+    arguments: ['@doctrine.orm.entity_manager']
+    tags:
+    - { name: sylius_fixtures.fixture }
+
+  app.fixture.buyers_guide_option_fixture:
+    class: AppBundle\Fixture\BuyersGuideOptionFixture
+    arguments: ['@doctrine.orm.entity_manager']
+    tags:
+    - { name: sylius_fixtures.fixture }
+
+  app.fixture.warehouse:
+    class: AppBundle\Fixture\WarehouseFixture
+    arguments: ['@Doctrine\ORM\EntityManagerInterface']
+    tags:
+    - { name: sylius_fixtures.fixture }
+
+  app.fixture.products:
+    class: AppBundle\Fixture\ProductFixture
+    arguments: ['@fos_oauth_server.entity_manager', '@sylius.image_uploader']
+    tags:
+    - { name: sylius_fixtures.fixture }
+
+  app.fixture.admin_users_fixture:
+    class: AppBundle\Fixture\AdminUsersFixture
+    arguments: ['@fos_oauth_server.entity_manager']
+    tags:
+    - { name: sylius_fixtures.fixture }
+
+  app.fixture.order_fixture:
+    class: AppBundle\Fixture\OrderFixture
+    arguments: ['@sylius.factory.order_item', '@sylius.order_item_quantity_modifier', '@sylius.manager.order', '@sylius.repository.channel','@sylius.repository.customer','@sylius.repository.product','@sylius.repository.country','@sylius.repository.payment_method','@sylius.repository.shipping_method', '@sylius.factory.address','@sm.factory','@sylius.checker.order_shipping_method_selection_requirement','@sylius.checker.order_payment_method_selection_requirement','@app.repository.warehouse', '@sylius.repository.channel_pricing']
+    tags:
+    - { name: sylius_fixtures.fixture }
+
+  app.fixture.shipping_gateway_fixture:
+    class: AppBundle\Fixture\ShippingGatewayFixture
+    arguments: ['@fos_oauth_server.entity_manager']
+    tags:
+    - { name: sylius_fixtures.fixture }
+
+  app.service.support_board:
+    class: AppBundle\Service\SupportBoard
+    arguments: ['@doctrine.orm.entity_manager', '@sylius.email_sender', '@service_container']
+
+  app.fixture.slider_fixture:
+    class: AppBundle\Fixture\SliderFixture
+    arguments: ['@Doctrine\ORM\EntityManagerInterface', '@sylius.image_uploader']
+    tags:
+    - { name: sylius_fixtures.fixture }
+
+  app.fixture.taxon_fixture:
+    class: AppBundle\Fixture\TaxonFixture
+    arguments: ['@sylius.repository.taxon', '@sylius.repository.locale', '@sylius.generator.taxon_slug', '@doctrine.orm.entity_manager', '@sylius.image_uploader']
+    tags:
+    - { name: sylius_fixtures.fixture }
+
+  app.fixture.contact_page:
+    class: AppBundle\Fixture\ContactPageFixture
+    arguments: ['@doctrine.orm.entity_manager']
+    tags:
+    - { name: sylius_fixtures.fixture }
+
+  app.fixture.helper_page:
+    class: AppBundle\Fixture\HelperPageFixture
+    arguments: ['@doctrine.orm.entity_manager']
+    tags:
+    - { name: sylius_fixtures.fixture }
+
+  app.fixture.about_us_page:
+    class: AppBundle\Fixture\PageFixture
+    arguments: ['@doctrine.orm.entity_manager','@sylius.image_uploader']
+    tags:
+    - { name: sylius_fixtures.fixture }
+
+  app.fixture.drop_down:
+    class: AppBundle\Fixture\DropDownFixture
+    arguments: ['@doctrine.orm.entity_manager']
+    tags:
+    - { name: sylius_fixtures.fixture }
+
+  app.fixture.blog_post:
+    class: AppBundle\Fixture\BlogPostFixture
+    arguments: ['@doctrine.orm.entity_manager', '@app.service.image_upload']
+    tags:
+    - { name: sylius_fixtures.fixture }
+
+  app.fixture.installer:
+    class: AppBundle\Fixture\InstallerFixture
+    arguments: ['@doctrine.orm.entity_manager']
+    tags:
+    - { name: sylius_fixtures.fixture }
+
+  app.fixture.app_product_review:
+    class: AppBundle\Fixture\ProductReviewFixture
+    arguments: ['@doctrine.orm.entity_manager', '@sylius.repository.customer', '@sylius.repository.product']
+    tags:
+    - { name: sylius_fixtures.fixture }
+
+  app.fixture.product_specification:
+    class: AppBundle\Fixture\ProductSpecificationFixture
+    arguments: ['@doctrine.orm.entity_manager', '@sylius.repository.customer', '@sylius.repository.product']
+    tags:
+    - { name: sylius_fixtures.fixture }
+
+  #Customs Controllers
+
+  app.controller_api.cart_controller:
+    class: AppBundle\Controller\API\CartController
+    arguments:
+    - '@sylius.repository.channel'
+    - '@doctrine.orm.entity_manager'
+    - '@app.service.create_cart'
+    - '@sylius.repository.order_item'
+    - '@sylius.repository.order'
+    - '@app.serializer_normalizer.cart_normalizer'
+
+  app.controller.user_cookie_setting_controller:
+    class: AppBundle\Controller\UserCookieSettingController
+    arguments: ['@app.repository.general_option']
+
+  # Service helpers
+  app.service.image_upload:
+    class: AppBundle\Service\ImageUploader
+    arguments: ['@service_container']
+  app.service.geolocation:
+    class: AppBundle\Service\LocationService
+
+#    app.order_item_quantity_modifier

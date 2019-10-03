@@ -1,0 +1,109 @@
+AppBundle\Entity\Address:
+  properties:
+    firstName:
+    - Length:
+        min: 2
+        max: 255
+        groups: [app_address]
+    - NotBlank:
+        message: Please type first name
+        groups: [app_address]
+
+    lastName:
+    - Length:
+        min: 2
+        max: 255
+        groups: [app_address]
+    - NotBlank:
+        message: Please type last name
+        groups: [app_address]
+    phoneNumber:
+    - Length:
+        min: 2
+        max: 255
+        groups: [app_address]
+    - NotBlank:
+        message: Julia, Please type phone number
+        groups: [app_address]
+
+
+AppBundle\Entity\Order:
+  properties:
+    countryCode:
+    - NotBlank:
+        message: sylius.address.country.not_blank
+        groups: [app_address]
+    vin:
+    - NotBlank:
+        message: Vin can't be a blank
+        groups: [app_address]
+    - Length:
+        min: 7
+        max: 16
+        minMessage: Julia, I hope you know that the min lenght of vin  it's 7 characters
+        maxMessage: Max lenght of vin can be only 16 characters
+        groups: [app_address]
+
+AppBundle\Entity\Slide:
+  properties:
+    name:
+    - NotBlank:
+        message: This field not be blank
+    code:
+    - NotBlank:
+        message: This field not be blank
+
+AppBundle\Entity\BuyersGuideProductOption:
+  properties:
+    value:
+    - NotBlank:
+        message: This field not be blank
+
+AppBundle\Entity\Page:
+  properties:
+    title:
+    - NotBlank:
+        message: This field not be blank
+    slug:
+    - NotBlank:
+        message: This field not be blank
+
+AppBundle\Entity\BlogPost:
+  constraints:
+  - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+      fields: [slug]
+      message: 'This slug already exist'
+  properties:
+    title:
+    - NotBlank:
+        message: This field not be blank
+    slug:
+    - NotBlank:
+        message: This field not be blank
+
+AppBundle\Entity\Customer:
+  constraints:
+  - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+      fields: [vinNumber]
+      message: 'This slug already exist'
+  properties:
+    vinNumber:
+    - NotBlank:
+        message: Vin can't be a blank
+    - Length:
+        min: 7
+        max: 16
+        minMessage: Max lenght of vin it's 7 characters
+        maxMessage: Max lenght of vin can be only 16 characters
+
+AppBundle\Entity\DropDown:
+  properties:
+    code:
+    - NotBlank:
+        message: Not be blank
+
+AppBundle\Entity\DropDownOption:
+  properties:
+    position:
+    - NotBlank:
+        message: Not be blank

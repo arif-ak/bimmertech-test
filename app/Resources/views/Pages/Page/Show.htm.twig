@@ -1,0 +1,38 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block title %}{% if page.metaTitle is defined %} {{ page.metaTitle }} {% endif %}{% endblock %}
+{% block meta_description %}
+    <meta name="description" content="{{ page.metaDescription }}"/>{% endblock %}
+{% block meta_keywords %}
+    <meta name="keywords" content="{{ page.metaKeywords }}"/>{% endblock %}
+
+
+{% block content %}
+    <div class="grid-x display-flex align-middle breadcrumb margin-vertical-1">
+        <div>
+            <a href="/" class="section">Home</a>
+        </div>
+        <div class="divider display-flex align-middle">
+            <img src="/assets/shop/img/bread_crumb_divider.png">
+        </div>
+        <div class="active section">{{ page.title }}</div>
+    </div>
+    <div id="page">
+        <div class="segment margin-vertical-3 pagi-title">
+            <div class="header grid-x align-middle">
+                <div class="cell shrink">
+                    <h4 class="text-uppercase" id="title">
+                        {{ page.title }}
+                    </h4>
+                </div>
+                <div class="cell large-auto">
+                    <span class="divider"></span>
+                </div>
+            </div>
+            <div class="section-custom-page section-custom">
+                {{ page.content|postContent()|raw }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

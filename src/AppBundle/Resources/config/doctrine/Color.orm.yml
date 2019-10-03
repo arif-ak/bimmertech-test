@@ -1,0 +1,19 @@
+AppBundle\Entity\Color:
+  type: entity
+  table: app_color
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+    value:
+      type: string
+
+  oneToMany:
+    product:
+      targetEntity: AppBundle\Entity\Product
+      mappedBy: flagColor
+      cascade: ['remove']

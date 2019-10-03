@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+    web:
+        build: web
+        environment:
+        - APACHE_RUN_USER=#100
+        volumes:
+        - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+        ports:
+        - 8080:80
+        - 9301:9200
+        working_dir: ${APP_PATH_CONTAINER}
+
+    db:
+        image: mariadb
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: 123456
+        volumes:
+        - ${DB_PATH_HOST}:/var/lib/mysql
+        ports:
+        - 3307:3306
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links:
+        - db:db
+        ports:
+        - 8181:80
+        environment:
+            MYSQL_ROOT_PASSWORD: 123456
+    composer:
+        image: composer:1.6
+        volumes:
+        - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+        working_dir: ${APP_PATH_CONTAINER}
+        command: composer install --ignore-platform-reqs --no-scripts
+
+    elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
+        environment:
+        - cluster.name=demo
+        - bootstrap.memory_lock=true
+        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        - transport.host=127.0.0.1
+        ulimits:
+            memlock:
+                soft: -1
+                hard: -1
+        ports:
+        - 9200:9200

@@ -1,0 +1,64 @@
+{% from '@SyliusAdmin/Macro/translationForm.html.twig' import translationFormWithSlugAndEditor,translationFormWithSlug %}
+<div class="ui segment">
+    {{ form_errors(form) }}
+
+    <div class="three fields">
+        {{ form_row(form.code) }}
+        {% if taxon.id != null %}
+            {{ form_row(form.parent) }}
+        {% else %}
+            {{ form_widget(form.parent, {'attr': {'style': 'display: none;'}}) }}
+        {% endif %}
+        {{ form_row(form.enabled) }}
+    </div>
+    {% if showContainerBlock %}
+        {{ form_row(form.price) }}
+    {% endif %}
+
+    {% if showContainerBlock %}
+        {{ translationFormWithSlugAndEditor(form.translations, '@SyliusAdmin/Taxon/_slugField.html.twig', taxon, form.shortDescription, form.seoText) }}
+            {{ form_row(form.teaser) }}
+    {% else %}
+        <div class="field">
+            {{ translationFormWithSlug(form.translations, '@SyliusAdmin/Taxon/_slugField.html.twig', taxon) }}
+        </div>
+    {% endif %}
+
+    {% if showContainerBlock %}
+        {{ form_row(form.shortDescription) }}
+
+        <div class="field">
+            <label class="label-title">Flag<span class="label-star">*</span></label>
+            <div class="ui segment">
+                {{ form_row(form.bestseller) }}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if showContainerBlock == false %}
+        <div class="field">
+            {{ form_row(form.seoText) }}
+        </div>
+    {% endif %}
+
+
+    <div class="field">
+        <label class="label-title">SEO</label>
+        <div class="ui segment">
+            {{ form_row(form.metaTitle) }}
+            {{ form_row(form.metaDescription) }}
+            {{ form_row(form.metaKeywords) }}
+        </div>
+    </div>
+
+    {% if taxon.level == 2 or showContainerBlock %}
+        <div class="field">
+            <label class="label-title">Popup option<span class="label-star">*</span></label>
+            <div class="ui segment">
+                {{ form_row(form.popupOption) }}
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+{% include '@SyliusAdmin/Taxon/_media.html.twig' %}

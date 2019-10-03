@@ -1,0 +1,72 @@
+{% import "@SyliusAdmin/Common/Macro/money.html.twig" as money %}
+
+{% set orderPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_PROMOTION_ADJUSTMENT') %}
+{% set itemPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_ITEM_PROMOTION_ADJUSTMENT') %}
+{% set shippingAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::SHIPPING_ADJUSTMENT') %}
+{% set taxAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::TAX_ADJUSTMENT') %}
+
+{% set item = warehouseForm.vars.value %}
+{% set variant = item.variant %}
+{% set product = variant.product %}
+
+<tr>
+    <td class="single line">
+        {% include '@SyliusAdmin/Product/_info.html.twig' %}
+    </td>
+    <td class="right aligned ">
+        <div class="admin_logistic_warehouse_info item{{ item.id }}">
+            {{ item.warehouse.name }}
+        </div>
+        <div class="admin_logistic_warehouse item{{ item.id }}">
+            {{ form_start(warehouseForm,{'action': path('app_oder_item_warehouse',{'id':item.id}),'method': 'PUT','attr':{'class': 'ui loadable form'}}) }}
+            {{ form_row( warehouseForm.warehouse, { 'label': false }) }}
+        </div>
+    </td>
+    <td class="right aligned ">
+        {% if order.hasShipments %}
+            {{ item.units[0].shipment.method }}
+        {% endif %}
+    </td>
+    <td class="right aligned quantity">
+        {{ item.quantity }}
+    </td>
+    <td class="right aligned ">
+        {% if item.images is not empty %}
+            {% for image in item.images %}
+                {{ image.path }},
+            {% endfor %}
+        {% else %}
+            {% if item.variant.imageRequired %}
+                Required
+            {% else %}
+                Not Required
+            {% endif %}
+        {% endif %}
+    </td>
+    <td class="right aligned ">
+        {% if order.hasShipments %}
+            {{ item.units[0].shipment.tracking }}
+        {% endif %}
+    </td>
+    <td class="centered">
+        <div class="admin_logistic_warehouse item{{ item.id }}">
+            <input type="submit" value="Save"/>
+        </div>
+        {{ form_end(warehouseForm) }}
+        <div class="admin_logistic_warehouse_info item{{ item.id }}">
+            <button onclick="admin_logistic_warehouse({{ item.id }})" class="ui mini button">Change warehouse
+            </button>
+        </div>
+        <button class="ui mini button" onclick="admin_modal_logistic({{ item.id }})">
+            Add photo report
+        </button>
+        <a href="{{ path('app_order_item_prepear_label',{'id':order.id,'shipmentId':item.units[0].shipment.id}) }}">
+            <div class="ui animated mini button" tabindex="0">
+                <div class="visible content">Prepear label</div>
+                <div class="hidden content">
+                    <i class="right arrow icon"></i>
+                </div>
+            </div>
+        </a>
+    </td>
+</tr>

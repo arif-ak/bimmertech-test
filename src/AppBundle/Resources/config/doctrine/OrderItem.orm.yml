@@ -1,0 +1,78 @@
+AppBundle\Entity\OrderItem:
+  type: entity
+  table: sylius_order_item
+  repositoryClass: AppBundle\Repository\OrderItemRepository
+  fields:
+    instruction:
+      type: text
+      nullable: true
+    supportStatus:
+      type: string
+    codingStatus:
+      type: string
+      nullable: true
+    type:
+      type: string
+      nullable: true
+    price:
+      type: integer
+      nullale: true
+    supportDate:
+      type: datetime
+      column: support_date
+      nullable: true
+    codingDate:
+      type: datetime
+      column: coding_date
+      nullable: true
+    compatible:
+      type: string
+      nullable: true
+
+
+  manyToOne:
+    warehouse:
+      targetEntity: AppBundle\Entity\Warehouse
+    parent:
+      targetEntity: AppBundle\Entity\OrderItem
+      inversedBy: addons
+      joinColumn:
+        onDelete: CASCADE
+    #            cascade:
+    #                - all
+    savePrice:
+      targetEntity: AppBundle\Entity\SavePrice
+      inersedBy: orderItem
+      joinColumn:
+        onDelete: CASCADE
+        name: save_price_id
+        referencedColumnName: id
+
+
+  oneToMany:
+    images:
+      targetEntity: AppBundle\Entity\OrderItemImage
+      mappedBy: owner
+      orphanRemoval: true
+      cascade:
+      - all
+    addons:
+      targetEntity: AppBundle\Entity\OrderItem
+      mappedBy: parent
+
+    orderItemDropDownOptions:
+      targetEntity: AppBundle\Entity\OrderItemDropDownOption
+      mappedBy: orderItem
+      orphanRemoval: true
+      cascade:
+      - all
+      fetch: EXTRA_LAZY
+
+  oneToOne:
+    orderItemUsbCoding:
+      targetEntity: AppBundle\Entity\OrderItemUsbCoding
+      mappedBy: orderItem
+      orphanRemoval: true
+      onDelete: CASCADE
+      cascade: [remove, persist]
+      fetch: EXTRA_LAZY

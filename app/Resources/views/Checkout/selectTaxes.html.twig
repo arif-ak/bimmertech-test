@@ -1,0 +1,55 @@
+{% extends '@SyliusShop/Checkout/layout.html.twig' %}
+
+{% form_theme form '@SyliusUi/Form/theme.html.twig' %}
+
+{% block content %}
+    {% include '@SyliusShop/Checkout/_steps.html.twig' with {'active': 'taxes_select', 'orderTotal': order.total} %}
+
+    {{ sonata_block_render_event('sylius.shop.checkout.taxes_select.after_steps', {'order': order}) }}
+    {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+    <div class="ui stackable grid">
+        <div class="sixteen wide column">
+            <div class="ui unmargined segments">
+                <div class="ui segment">
+                    <div class="ui dividing header">Congratulation</div>
+                    <div class="ui fluid stackable items">
+                        You need pay tax <b>{{ money.convertAndFormat(order.adjustmentsTotal) }}</b>
+                    </div>
+                </div>
+            </div>
+            <div class="ui padded segment" id="app-taxes-select">
+                {{ sonata_block_render_event('sylius.shop.checkout.taxes_select.before_form', {'order': order}) }}
+
+                {{ form_start(form, {'action': path('sylius_shop_checkout_taxes_select'), 'attr': {'class': 'ui loadable form', 'novalidate': 'novalidate'}}) }}
+                {{ form_errors(form) }}
+                <input type="hidden" name="_method" value="PUT"/>
+
+                {% include ':Checkout/SelectTaxes:_form.html.twig' %}
+                <div class="ui hidden divider"></div>
+
+                {{ sonata_block_render_event('sylius.shop.checkout.taxes_select.before_navigation', {'order': order}) }}
+
+                {% include '@SyliusShop/Checkout/SelectShipping/_navigation.html.twig' %}
+
+                {{ form_row(form._token) }}
+                {{ form_end(form, {'render_rest': false}) }}
+
+                <form action="{{ path('app_check_vat_number') }}" method="post" id="form-check-vat-number"
+                      name="checkVatNumber">
+                    <input type="hidden" name="vatNumber">
+                </form>
+            </div>
+        </div>
+        {#<div class="five wide column">#}
+            {#{{ sonata_block_render_event('sylius.shop.checkout.taxes_select.before_summary', {'order': order}) }}#}
+
+            {#{% include '@SyliusShop/Checkout/_summary.html.twig' with {'order': order} %}#}
+
+            {#{{ sonata_block_render_event('sylius.shop.checkout.taxes_select.before_support', {'order': order}) }}#}
+
+            {#{% include '@SyliusShop/Checkout/_support.html.twig' %}#}
+
+            {#{{ sonata_block_render_event('sylius.shop.checkout.taxes_select.after_support', {'order': order}) }}#}
+        {#</div>#}
+    </div>
+{% endblock %}

@@ -1,0 +1,55 @@
+<div class="ui tab" data-tab="buyersGuide">
+    <script> var image =null </script>
+    <div class="ui three column stackable grid">
+        <div class="column">
+            <h3 class="ui dividing header">Buyers guide Image </h3>
+            <div class="required field">
+                <div data-form-type="collection" id="sylius_product_buyersImage" class=" controls collection-widget">
+                    <div data-form-collection="list" class="ui one column stackable grid" >
+                        <div data-form-collection="item" data-form-collection-index="0" class="column">
+                            <div class="ui upload box segment">
+                                {% if form.buyersImage.vars.value.first %}
+                                    <script> image = {{  form.buyersImage.vars.value.first.id }} </script>
+                                    {% if form.buyersImage.vars.value.first.path %}
+                                        <img class="ui small bordered image" id="buyers-small-image"
+                                             src="{{ form.buyersImage.vars.value.first.path|imagine_filter('sylius_small') }}"/>
+                                    {% endif %}
+                                {% endif %}
+                                <label for="sylius_product_buyersImage_0_file" class="ui icon labeled button"><i
+                                            class="cloud upload icon"></i> Choose file</label>
+                                <img class="ui small bordered image" id="buyers-small-image"
+                                     src=""/>
+                                <div class="ui hidden element">
+                                    <input type="file" id="sylius_product_buyersImage_0_file"
+                                           name="sylius_product[buyersImage][0][file]"
+                                           required="required">
+                                </div>
+                                <div class="ui element">
+                                </div>
+                            </div>
+                            <a href="#"  class="ui red labeled icon button"  onclick="addBuyersImage()"
+                               style="margin-bottom: 1em;" ><i class="trash icon"></i>
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <h3 class="ui dividing header">Buyers guide related product</h3>
+            {% form_theme form ':Admin:theme_buyers_guide.html.twig' %}
+            {{ form_row(form.buyersRelated) }}
+        </div>
+    </div>
+
+    <h3 class="ui dividing header">Buyers guide Option</h3>
+    {% form_theme form ':Admin:theme_buyers_guide_option.html.twig' %}
+    {{ form_row(form.buyersOption) }}
+
+    <h3 class="ui dividing header">Buyers guide text content</h3>
+    {{ form_row(form.buyersHeaderContent) }}
+    {{ form_row(form.buyersFooterContent) }}
+    {{ sonata_block_render_event('sylius.admin.product.' ~ action ~ '.tab_buyersGuide', {'form': form}) }}
+</div>

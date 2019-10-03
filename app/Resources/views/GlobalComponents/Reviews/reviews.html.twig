@@ -1,0 +1,88 @@
+<div class="segment margin-vertical-3" id="section-reviews">
+    <div id="scroll-to-reviews"></div>
+    <div class="scrollTo" id="scrollToReviews"></div>
+    <section-min-header :label="header" inline-template>
+        {% include ':GlobalComponents/MinHeader:minHeader.html.twig' %}
+    </section-min-header>
+    {# {{ sonata_block_render_event('sylius.shop.product.show.tab_reviews', {'product': product}) }}
+                                                                    {{ render(url('sylius_shop_partial_product_review_latest', {'productId': product.id, 'template': '@SyliusShop/ProductReview/_list.html.twig'})) }} #}
+    {# *********************************************************************************************************** #}
+    <div class="ui large comments">
+        <div :class="{'bt-loading': loading}" class="comment">
+            <div class="content">
+                <a class="author">
+                    <img class="avatar" title="" v-if="user.avatar"/>
+                    <div class="avatar defaultAvatar" v-else></div>
+                    <div @click="openLogin()" class="name" v-if="header=='Reviews' && !isAuth">Rate this product</div>
+                    <div @click="openLogin()" class="name" v-if="header=='Comments' && !isAuth">Rate this post</div>
+                    <div class="name" v-if="header=='Reviews' && isAuth">Rate this product</div>
+                    <div class="name" v-if="header=='Comments' && isAuth">Rate this post</div>
+                </a>
+                <div class="metadata">
+                    <div
+                        class="rating">
+                        {# <div v-show="isAuth" id="commentRating" class="ui star mini rating bt-rating" :data-rating="0" data-max-rating="5" :data-average-rating="0" ></div> #}
+                        <section-stars inline-template size="mini" v-model="selectedStars" v-show="isAuth">
+                            {% include ':GlobalComponents/Stars:stars.html.twig' %}
+                        </section-stars>
+                        {# <div @click="openLogin()" v-show="!isAuth" class="ui star mini rating bt-rating commentRating" :data-rating="0" data-max-rating="5" :data-average-rating="0" ></div> #}
+                        <section-stars @click="openLogin()" class="commentRating" disabled inline-template size="mini" v-show="!isAuth" value="5">
+                            {% include ':GlobalComponents/Stars:stars.html.twig' %}
+                        </section-stars>
+                    </div>
+                </div>
+                <div class="mc-field-group ui action bt-input" v-if="isAuth">
+                    <input :placeholder="placeolder" class="pristine touched is-danger" v-model="newComment"/></div>
+                <div @click="sendComment()" class="button" v-if="isAuth">
+                    <button :disabled="(!newComment || !selectedStars)" class="bt-button primary" type="submit">
+                        <span>[[buttonname]]</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="comment" v-for="(comment, c) in comments">
+            <div class="content">
+                <a class="author">
+                    <img :src="comment.image" class="avatar" v-if="comment.image"/>
+                    <div class="avatar defaultAvatar" v-else></div>
+                    <div class="name">[[comment.name]]</div>
+                </a>
+                <div class="metadata">
+                    <div class="rating">
+                        <section-stars :value="comment.rating" class="review-rating" disabled inline-template size="mini">
+                            {% include ':GlobalComponents/Stars:stars.html.twig' %}
+                        </section-stars>
+                    </div>
+                    <div class="date">[[comment.date]]</div>
+                </div>
+                <div class="text">[[comment.text]]</div>
+                <div class="like" v-if="userLikesList">
+                    <div @click="like(comment.id, false, c)" class="icon bt-liked" v-if="userLikes(comment.id)"></div>
+                    <div @click="like(comment.id, true, c)" class="icon bt-like" v-else></div>
+                    <div class="count" v-if="comment.likeCount!=0">[[comment.likeCount]]</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <template v-if="loadMoreShow">
+        <a :data-loadmore="loadMoreShow" @click="loadComments(loadPagination)">[[loadmorelabel]]</a>
+    </template>
+    {# <a href="{{ path('sylius_shop_product_review_index', {'slug': product.slug, '_locale': product.translation.locale}) }}">
+                                                                                                                                                    <div class="ui labeled icon button">
+                                                                                                                                                        <i class="icon list"></i>
+                                                                                                                                                        {{ 'sylius.ui.view_more'|trans }}
+                                                                                                                                                    </div>
+                                                                                                                                                </a>
+                                                                                                                                                <a href="{{ path('sylius_shop_product_review_create', {'slug': product.slug, '_locale': product.translation.locale}) }}">
+                                                                                                                                                    <div class="ui blue labeled icon button">
+                                                                                                                                                        <i class="icon plus"></i>
+                                                                                                                                                        {{ 'sylius.ui.add_your_review'|trans }}
+                                                                                                                                                    </div>
+                                                                                                                                                </a> #}
+    <div class="ui bt modal thankForSubmission">
+        <div class="h5 text-center bt-heading">
+            <div class="message">Thank you for the submission. Your review will appear shortly.</div>
+            <div class="bt-icon black bt-close"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+{% set product = item.product %}
+{% set product_variant = item.variant %}
+{% set vincheck = app.session.get('vincheck') %}
+{#{{ dump(product) }}#}
+
+{# <div class="grid-x"> #}
+
+{% include '@SyliusShop/Cart/Summary/_info.html.twig' with {
+    'variant' : product_variant
+} %}
+
+<div class="large-auto compatibility">
+    {% if product.compatibility is not empty %}
+        {% if product.compatibility == 'No' %}
+            <div class="display-flex align-middle">
+                <div class="bt-icon red bt-no"></div>
+            </div>
+            <div class="large-auto header-message display-flex align-middle">
+                Not compatible with your
+                {% if vincheck is not empty %}
+                    BMW
+                    {{ vincheck['year'] }}
+                    {{ vincheck['model'] }}
+                {% endif %}
+            </div>
+        {% elseif vincheck.compatibility == 'Not sure' %}
+            <div class=" display-flex align-middle">
+                <div class="bt-icon blue bt-maybe"></div>
+            </div>
+            <div class="large-auto header-message display-flex align-middle">
+                <p>Compatibility with this product can only be confirmed after
+                    <span class="vin-check-message-blue">entering your VIN</span>
+                </p>
+            </div>
+        {% elseif vincheck.compatibility == 'Yes' %}
+            <div class=" display-flex align-middle">
+                <div class="bt-icon green bt-yes"></div>
+            </div>
+            <div class="large-auto header-message display-flex align-middle">
+                Compatible with your
+                {% if vincheck is not empty %}
+                    BMW
+                    {{ vincheck['year'] }}
+                    {{ vincheck['model'] }}
+                {% endif %}
+            </div>
+        {% endif %}
+    {% else %}
+        <div class=" display-flex align-middle">
+            <div class="bt-icon yellow bt-attention"></div>
+        </div>
+        <div class="large-auto header-message display-flex align-middle">
+            <div class="text-wrapper">
+                <p class="text-truncate">You need to identify your car to check compatibility
+                </p>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+{# </div> #}
+
+<div class="cell text-center sylius-total">
+    <span class="">{{ money.convertAndFormat(item.subtotal) }}</span>
+</div>
+<div class="cell text-center sylius-quantity">
+    <span class="">{{ form_widget(form.quantity) }}</span>
+</div>
+<div class="">
+    <div class="sylius-btn align-center-middle">
+        <button type="button" data-redirect="{{ path('sylius_shop_cart_summary') }}" data-url="{{ path('sylius_shop_ajax_cart_item_remove', {'id': item.id}) }}" class="ui cursorPointer icon  sylius-cart-remove-button" data-csrf-token="{{ csrf_token(item.id) }}">
+            <span class="bt-trash black bt-icon"></span>
+        </button>
+    </div>
+</div>
+{#
+<tr>
+    <td class="single line">
+        {% include '@SyliusShop/Product/_info.html.twig' with {'variant': product_variant} %}
+    </td>
+    <td class="right aligned">
+        {% if item.unitPrice != item.discountedUnitPrice %}
+        <span class="sylius-regular-unit-price">{{ money.convertAndFormat(item.unitPrice) }}</span>
+        {% endif %}
+        <span class="sylius-unit-price">{{ money.convertAndFormat(item.discountedUnitPrice) }}</span>
+    </td>
+    <td class="center aligned">
+        <span class="sylius-total">{{ money.convertAndFormat(item.subtotal) }}</span>
+    </td>
+    <td class="center aligned">
+        <span class="sylius-quantity">{{ form_widget(form.quantity) }}</span>
+    </td>
+    <td class="center aligned">
+        <button type="button" data-redirect="{{ path('sylius_shop_cart_summary') }}" data-url="{{ path('sylius_shop_ajax_cart_item_remove', {'id': item.id}) }}"
+            class="ui cursorPointer icon  sylius-cart-remove-button" data-csrf-token="{{ csrf_token(item.id) }}">
+            <i class="large trash outline icon "></i>
+        </button>
+    </td>
+
+</tr> #}

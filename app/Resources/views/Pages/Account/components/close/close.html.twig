@@ -1,0 +1,46 @@
+<div id="Close">
+    <div class="ui form">
+        <div class="ui bt modal closeConfirm hidden">
+            <div class="container">
+                <div class="content">
+                    <p>Are you sure you want to close the account?</p>
+                </div>
+                <div class="actions grid-x footerContent">
+                    <div class="btnBorder">
+                        <div class="bt-button deny">
+                            <span>No</span>
+                        </div>
+                    </div>
+                    <div class="btnBorder">
+                        <div class="bt-button approve">
+                            <span>Yes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block-header text-center margin-bottom-1">
+            <span>Are you sure you want to close your account?<br></span>
+                <span class="red">All the information stored on the account will be lost.</span>
+            </div>
+            <div>
+                <section-field :error="error" inline-template label="Enter your password" required type="password" v-model="password">
+                    {% include ':GlobalComponents/Field:_field.html.twig' %}
+                </section-field>
+            </div>
+        </div>
+        <div class="button customButton">
+            <button @click="checkFields()" class="bt-button primary" type="submit">
+                <span>Save Changes</span>
+            </button>
+        </div>
+        {# <draggable :list="list" class="dragArea">
+                                                                                                                        <div v-for="element in list">[[element.name]]</div>
+                                                                                                                    </draggable> #}
+        <div class="ui bt modal closeAccount">
+            <div class="h5 text-center bt-heading">
+                <div class="message">Your account has been successfully closed.</div>
+                <div class="bt-icon black bt-close"></div>
+            </div>
+        </div>
+    </div>

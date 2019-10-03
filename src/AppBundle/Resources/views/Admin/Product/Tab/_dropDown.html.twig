@@ -1,0 +1,8 @@
+<div class="ui tab" data-tab="dropDown">
+    <h3 class="ui dividing header">Drop-downs</h3>
+
+    {{ form_row(form.productDropDowns) }}
+
+    {{ sonata_block_render_event('sylius.admin.product.' ~ action ~ '.tab_dropDown', {'form': form}) }}
+
+</div>

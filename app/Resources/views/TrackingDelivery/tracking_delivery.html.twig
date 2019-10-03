@@ -1,0 +1,40 @@
+{% extends 'SyliusAdminBundle::layout.html.twig' %}
+ {% block content %}
+     {{ form_start(form, {'attr': {'novalidate': 'novalidate',  'class': 'ui large form'}}) }}
+     <div class="two fields">
+         <div class="field">
+             {{ form_row(form.couriers) }}
+         </div>
+
+         <div class="field">
+             {{ form_row(form.code) }}
+         </div>
+     </div>
+     {{ form_errors(form) }}
+     {{ form_end(form) }}
+
+     {% if checkpoints is defined and checkpoints is not null %}
+         <table class="ui celled table">
+             <thead>
+             <tr>
+                 <th>Date</th>
+                 <th>Location</th>
+                 <th>Message</th>
+             </tr>
+             </thead>
+             <tbody>
+             {% for checkpoint in checkpoints %}
+                 <tr>
+                     <td>{{ checkpoint['checkpoint_time'] | date("d-m-Y H:i:s") }}</td>
+                     <td>{{ checkpoint['location'] }}</td>
+                     <td>{{ checkpoint['message'] }}</td>
+                 </tr>
+             {% endfor %}
+             </tbody>
+         </table>
+     {% elseif message %}
+         <p style="text-align: center; font-size: 17px;">
+             {{ message }}
+         </p>
+     {% endif %}
+ {% endblock %}

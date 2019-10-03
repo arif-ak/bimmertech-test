@@ -1,0 +1,23 @@
+sylius_grid:
+    grids:
+        app_admin_color:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: AppBundle\Entity\Color
+            fields:
+                name:
+                    type: string
+                    label: Name
+                value:
+                    type: string
+                    label: Color
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

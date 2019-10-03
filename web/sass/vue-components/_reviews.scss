@@ -1,0 +1,155 @@
+#section-reviews {
+  position: relative;
+
+  .comments {
+    max-width: 100%;
+    margin-top: 60px;
+
+    .comment {
+      margin-top: 40px;
+
+      .content {
+        margin-left: 70px;
+        color: $base-black-color;
+
+        .author {
+          width: 100%;
+          position: relative;
+
+          .avatar {
+            position: absolute;
+            background: $base-light-gray-color;
+            width: 45px;
+            height: 45px;
+            left: -68px;
+            top: -16px;
+            border-radius: 50%;
+            margin: 0;
+            max-width: 45px;
+
+            &.defaultAvatar {
+             // background: url("/assets/shop/img/svg/user-default.svg") no-repeat center;
+              background: url("/assets/shop/img/user-default.png") no-repeat center;
+              background-size: contain;
+              @include bt-icon-size(45px, 45px);
+            }
+          }
+
+          .name {
+            font-weight: normal;
+            font-size: 14px;
+
+          }
+        }
+
+        .metadata {
+          margin-left: 0;
+          margin-top: -2px;
+
+          .rating {
+            i {
+              cursor: pointer;
+            }
+
+            margin-right: -1px;
+
+            .icon {
+              &.selected {
+                color: rgba(0, 0, 0, .15) !important;
+              }
+
+              &.active {
+                color: #fC0 !important;
+              }
+            }
+
+            &.commentRating {
+              .icon {
+                color: $base-blue-color;
+
+                &.selected {
+                  color: $base-blue-color !important;
+                }
+
+                &.active {
+                  color: $base-blue-color !important;
+                }
+              }
+            }
+          }
+
+          .date {
+            font-size: 12px;
+          }
+        }
+
+        .bt-input {
+          max-width: 100%;
+
+          input {
+            font-size: 14px;
+            width: 100%;
+            outline: 0;
+            border: none;
+            border-radius: 20px;
+            padding: 5px 20px;
+            padding-right: 130px;
+            padding-top: 8px;
+            -webkit-box-flex: 1;
+            -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+          }
+        }
+
+        .button {
+          display: inline-block;
+          width: auto;
+          border-radius: 20px;
+          border: 1px solid #757575;
+          padding: 2px;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          margin-top: 10px;
+
+          button {
+            margin: 0;
+            border-radius: 20px;
+            padding: 0 25px;
+
+            span {
+              font-size: 14px;
+              letter-spacing: inherit;
+            }
+          }
+        }
+
+        .text {
+          margin-left: 0;
+          font-size: 14px;
+        }
+
+        .like {
+          position: relative;
+          width: 24px;
+          cursor: pointer;
+          margin-top: -7px;
+          margin-left: 0px;
+
+          .count {
+            position: absolute;
+            bottom: 1px;
+            right: -7px;
+            font-size: 12px;
+            width: 5px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  >a {
+    color: $base-blue-color;
+    font-weight: 500;
+  }
+}

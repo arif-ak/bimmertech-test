@@ -1,0 +1,13 @@
+<div class="pagination ui two column fluid stackable grid">
+    <div class="sixteen wide column">
+        <div class="ui stackable fluid pagination menu">
+            <a @click="update(value-1)" class="item prev">← Previous</a>
+            <div v-if="value>5" class="item disabled">…</div>
+            <a @click="update(pageItem)" v-if="value-pageItem<5 && pageItem-value<5 || value<8 && pageItem<=10 || value>pages-5 && pageItem>pages-10" v-for="pageItem in pages" class="item" :class="{'active': pageItem==value}">[[pageItem]]</a>
+            {# <div class="item disabled">…</div>
+            <a class="item " href="/admin/products/?page=13">13</a> #}
+            <div v-if="value<pages-5" class="item disabled">…</div>
+            <a @click="update(value+1)" class="item next">Next →</a>
+        </div>
+    </div>
+</div>

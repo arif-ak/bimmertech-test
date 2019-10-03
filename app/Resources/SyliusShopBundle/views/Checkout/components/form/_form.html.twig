@@ -1,0 +1,51 @@
+<div id="checkoutForm">
+    <div class="block-contact-header ">Order details</div>
+    <p class="message">Please note that we ship only to a PayPal registered address. You can select one of your existing shipping addresses or add a new one.</p>
+    <div id="sylius-shipping-address">
+        {# {% include '@SyliusShop/Checkout/Address/_addressBookSelect.html.twig' %}
+        {% include '@SyliusShop/Common/Form/_address.html.twig' with {
+            'form' : form.shippingAddress,
+            'order' : order
+        } %}
+        {{ sonata_block_render_event('sylius.shop.checkout.address.shipping_address_form', {'order': order}) }} #}
+        <div class="two fields">
+            <section-field required label="Name" name="name" v-model="name" inline-template>
+                {% include ':GlobalComponents/Field:_field_custom.html.twig' %}
+            </section-field>
+            <section-field required label="Surname" name="surname" v-model="surname" inline-template>
+                {% include ':GlobalComponents/Field:_field_custom.html.twig' %}
+            </section-field>
+        </div>
+    </div>
+    <div class="ui">
+        <div class="two fields">
+            <section-field :error-msg="errors.country" required :options="countries" name="Country" placeholder="Country" label="Country" v-model="country" inline-template>
+                {% include ':GlobalComponents/Field:_field_custom.html.twig' %}
+            </section-field>
+            <section-field required label="Phone number" name="phone"  v-model="phone" inline-template>
+                {% include ':GlobalComponents/Field:_field_custom.html.twig' %}
+            </section-field>
+        </div>
+        <div class="two fields">
+            <section-field :options="salesReps" placeholder="No one" label="Who was your sales rep?" v-model="salesRep" inline-template>
+                {% include ':GlobalComponents/Field:_field_custom.html.twig' %}
+            </section-field>
+            <section-field required label="Vehicle Identification Number (VIN)" name="vin" v-model="vin" inline-template>
+                {% include ':GlobalComponents/Field:_field_custom.html.twig' %}
+            </section-field>
+        </div>
+        {# <div class="two fields">
+            <section-field label="Company name" v-model="company" inline-template>
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <section-field label="SurnaVAT numberme" v-model="vat" inline-template>
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+        </div> #}
+    </div>
+    <div class="ui">
+        <section-field :textarea="true" label="Comments" name="Comments" v-model="comments" inline-template>
+            {% include ':GlobalComponents/Field:_field_custom.html.twig' %}
+        </section-field>
+    </div>
+</div>

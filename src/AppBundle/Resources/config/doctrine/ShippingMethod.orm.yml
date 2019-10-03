@@ -1,0 +1,19 @@
+AppBundle\Entity\ShippingMethod:
+    type: entity
+    table: sylius_shipping_method
+
+    manyToMany:
+        warehouse:
+            targetEntity: AppBundle\Entity\Warehouse
+            inversedBy: shippingMethod
+            joinTable:
+                name: warehouse_shipping_method
+                joinColumns:
+                    shipping_method_id:
+                        referencedColumnName: id
+                        nullable: true
+                inverseJoinColumns:
+                    warehouse_id:
+                        referencedColumnName: id
+            cascade: ['persist', 'remove']
+            fetch: EXTRA_LAZY

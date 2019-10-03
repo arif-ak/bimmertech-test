@@ -1,0 +1,51 @@
+AppBundle\Entity\Order:
+  type: entity
+  table: sylius_order
+  fields:
+    vin:
+      type: string
+      nullable: true
+    vatNumber:
+      type: string
+      nullable: true
+    hasTax:
+      type: boolean
+      nullable: true
+    source:
+      type: string
+    supportStatus:
+      type: string
+    codingStatus:
+      type: string
+    usbCodingStatus:
+      type: string
+      column: usb_coding_status
+      nullable: true
+    countryCode:
+      type: string
+      nullable: true
+    provinceName:
+      type: string
+      nullable: true
+  manyToOne:
+    userSale:
+      targetEntity: AppBundle\Entity\UserSale
+      inversedBy: orders
+    warehouse:
+      targetEntity: AppBundle\Entity\Warehouse
+      inversedBy: orders
+  oneToMany:
+    orderNotes:
+      targetEntity: AppBundle\Entity\OrderNote
+      mappedBy: order
+      cascade: [persist, remove]
+      orphanRemoval: true
+    orderRefund:
+      targetEntity: AppBundle\Entity\OrderRefund
+      mappedBy: order
+      cascade: [persist, remove]
+      orphanRemoval: true
+
+    history:
+      targetEntity: AppBundle\Entity\History
+      mappedBy: order

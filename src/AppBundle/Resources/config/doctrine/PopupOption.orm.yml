@@ -1,0 +1,23 @@
+AppBundle\Entity\PopupOption:
+  type: entity
+  table: app_pop_up_option
+  repositoryClass: AppBundle\Repository\PopupOptionRepository
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    code:
+      type: string
+      nullable: true
+    title:
+      type: string
+      nullable: true
+    description:
+      type: string
+      nullable: true
+    vinCheckServiceId:
+      type: integer
+      nullable: true
+      column: vin_check_service_id

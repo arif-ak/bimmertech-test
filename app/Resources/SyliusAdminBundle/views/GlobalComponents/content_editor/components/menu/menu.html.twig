@@ -1,0 +1,10 @@
+<div class="menu">
+    <div class="label">Position</div>
+    <draggable v-model="content">
+        <div class="list" v-for="(block, b) in content">
+            <div>[[block.header]]</div>
+            <div>[[block.subHeader]]</div>
+            <div @click="deleteBlock(b)" class="delete ui red labeled icon button"><i class="trash icon"></i>Delete</div>
+        </div>
+    </draggable>
+</div>

@@ -1,0 +1,9 @@
+<div class="ui segment">
+    <div class="ui dividing header">Vat Number</div>
+    <div class="ui fluid stackable items">
+        {{ form_errors(form.vatNumber) }}
+        {{ form_row(form.vatNumber) }}
+        <input type="submit" id="CheckVatNumber" form="form-check-vat-number" style="display: none">
+        <label for="CheckVatNumber" class="ui large primary button"> Check Vat Number</label>
+    </div>
+</div>

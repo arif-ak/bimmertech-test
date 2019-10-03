@@ -1,0 +1,9 @@
+{% block subject %}
+    Your BimmerTech account details have been updated
+{% endblock %}
+
+{% block body %}
+    <p>Hi {{ data.firstName }} {{ data.lastName }},</p>
+    <p>Your BimmerTech customer account details have been updated. To review your details, log in to your account at www.bimmer-tech.net.</p>
+    <p>If you did not make these changes, please <a href="{{ app.request.getSchemeAndHttpHost() }}{{ path( 'sylius_shop_contact_request') }}">let us know</a> as soon as possible.</p>
+{% endblock %}

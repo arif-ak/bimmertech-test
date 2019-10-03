@@ -1,0 +1,14 @@
+app_admin_dealer:
+    resource: |
+        alias: app.dealer
+        section: admin
+        templates: SyliusAdminBundle:DealerCrud
+        redirect: index
+        grid: app_admin_dealer
+        vars:
+            all:
+                header: Dealer
+                subheader: Manage dealer
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

@@ -1,0 +1,15 @@
+app_admin_pop_up_option:
+    resource: |
+        alias: app.pop_up_option
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        form: AppBundle\Form\Type\PopupOptionType
+        redirect: index
+        grid: app_admin_pop_up_option
+        vars:
+            all:
+                header: Pop-up Option
+                subheader: Manage your pop-up setting
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

@@ -1,0 +1,32 @@
+AppBundle\Entity\Dealer:
+    type: entity
+    repositoryClass: AppBundle\Repository\DealerRepository
+    table: app_dealer
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 300
+            nullable: true
+        content:
+            type: text
+            nullable: true
+        linkForButton:
+            type: string
+            length: 128
+            nullable: true
+        otherContent:
+            type: text
+            nullable: true
+
+    oneToMany:
+        images:
+            targetEntity: AppBundle\Entity\DealerImage
+            mappedBy: owner
+            orphanRemoval: true
+            cascade:
+                - all

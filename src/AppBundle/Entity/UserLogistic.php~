@@ -1,0 +1,35 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class UserLogistic
+ * @package AppBundle\Entity
+ *
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserLogisticRepository")
+ */
+class UserLogistic extends AdminUser implements UserLogisticInterface
+{
+    /**
+     * @var Warehouse
+     */
+    protected $warehouse;
+
+//    public function isLocked(): bool
+//    {
+//        return parent::isAccountNonLocked();
+//    }
+
+    /**
+     * UserLogistic constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->roles = [UserLogisticInterface::LOGISTIC_ROLE];
+    }
+
+
+}

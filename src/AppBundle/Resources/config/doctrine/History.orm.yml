@@ -1,0 +1,29 @@
+AppBundle\Entity\History:
+  type: entity
+  table: app_history
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    message:
+      type: string
+      nullable: true
+    createdAt:
+      type: datetime
+      nullable: true
+
+  manyToOne:
+    order:
+      targetEntity: AppBundle\Entity\Order
+      inversedBy: History
+      joinColumn:
+        name: order_id
+        referencedColumnName: id
+    user:
+      targetEntity: AppBundle\Entity\AdminUser
+      inversedBy: history
+      joinColumn:
+        name: user_id
+        referencedColumnName: id

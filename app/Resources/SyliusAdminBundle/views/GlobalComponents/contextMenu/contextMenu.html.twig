@@ -1,0 +1,5 @@
+<div id="section-context-menu" @blur="show=false" v-show="show" ref="context" :style="{top:top, left:left}">
+    <div class="list">
+        <div v-for="button in buttons" @click="returnEvent(button)" class="item" :class="{'disabled': button.disabled}">[[button.name]]</div>
+    </div>
+</div>

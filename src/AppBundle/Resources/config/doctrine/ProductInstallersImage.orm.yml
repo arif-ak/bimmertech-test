@@ -1,0 +1,12 @@
+AppBundle\Entity\ProductInstallersImage:
+    type: entity
+    table: app_product_installers_image
+    manyToOne:
+        owner:
+            targetEntity: AppBundle\Entity\ProductInstaller
+            inversedBy: images
+            joinColumn:
+                name: owner_id
+                referencedColumnName: id
+                nullable: false
+                onDelete: CASCADE

@@ -1,0 +1,25 @@
+sylius_grid:
+    grids:
+        app_admin_home:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: AppBundle\Entity\Home
+            fields:
+                title:
+                    type: string
+                    label: Title
+                description:
+                    type: twig
+                    label: Description
+                    options:
+                        template: "GridRow/Home/description.html.twig"
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

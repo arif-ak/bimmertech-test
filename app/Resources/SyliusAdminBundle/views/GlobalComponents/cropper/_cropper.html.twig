@@ -1,0 +1,13 @@
+<div id="backgroundCropper" v-show="show" @click.self="hide">
+    <div id="cropper">
+        <img id="newImage" :src="imageSrc">
+        <div  @click="crop()" class="ui labeled icon primary button crop">
+            <i class="crop icon"></i> Crop
+        </div>
+        <div v-if="buttons" class="custom">
+            <div @click="aspectRatio=button.aspectRatio" v-for="button in aspectRatios" class="ui labeled icon primary button">
+                <i class="crop icon"></i> [[button.name]]
+            </div>
+        </div>
+    </div>
+</div>

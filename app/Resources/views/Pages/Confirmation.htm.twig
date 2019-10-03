@@ -1,0 +1,29 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block title %}Confirmation page{% endblock %}
+{% block meta_description %}
+    <meta name="description" content="Confirmation page"/>{% endblock %}
+{% block meta_keywords %}
+    <meta name="keywords" content="Confirmation page"/>{% endblock %}
+
+
+{% block content %}
+<div class="grid-x display-flex align-middle breadcrumb margin-vertical-1">
+        <div>
+            <a href="/" class="section">Home</a>
+        </div>
+        <div class="divider display-flex align-middle">
+            <img src="/assets/shop/img/bread_crumb_divider.png"/></div>
+            <div class="active section">Confirmation</div>
+        </div>
+    <div class="page-email-verified grid-y align-center-middle">
+        <h1 class="ui center aligned header">
+            {{ 'sylius.ui.page_email_verified_header' |trans|raw }}
+        </h1>
+        <img src="{{ asset('assets/shop/img/ConfirmationPageblue.png') }}" alt="Not found 404 image" class=""/>
+        <p class="text-center text">
+            {{ 'sylius.ui.page_email_verified_text' |trans|raw }}
+        </p>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'SyliusAdminBundle::layout.html.twig' %}
+
+{% block title %} Order not found {% endblock %}
+{% block content %}
+    {% set header  = 'Order not found' %}
+    {% include configuration.vars.templates.header_title|default('@SyliusAdmin/Crud/Index/_headerTitle.html.twig') %}
+    {% import '@SyliusAdmin/Macro/breadcrumb.html.twig' as breadcrumb %}
+
+    {% set breadcrumbs = [
+        { label: 'sylius.ui.administration'|trans, url: path('sylius_admin_dashboard') },
+        { label: 'Order' },
+        { label: 'History' }
+    ] %}
+
+    {{ breadcrumb.crumble(breadcrumbs) }}
+
+    <div class="ui hidden divider"></div>
+    <div class="ui styled fluid accordion">
+        <br>
+        <p><b> &numsp;Order not found</b></p>
+        <br>
+        <div>
+{% endblock %}

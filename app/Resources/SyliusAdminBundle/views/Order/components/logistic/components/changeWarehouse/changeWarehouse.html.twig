@@ -1,0 +1,32 @@
+<div class="ui modal changeWarehouse">
+    <i class="close icon"></i>
+    <div class="header">
+        <span>Change warehouse</span>
+    </div>
+    <div class="content ui form">
+        <div class="ui celled relaxed item-list">
+            <div class="item">
+                <div class="ui master checkbox">
+                    <input type="checkbox"/>
+                    <label>Select all</label>
+                </div>
+                <div class="list grid-y">
+                    <div class="item " v-for="item in items">
+                        <div :data-returned="item.is_returned" class="ui child checkbox" v-return>
+                            <input :name="!!item.product_name ? item.product_name : item.name" :value="item.id" type="checkbox" v-model="selected_items"/>
+                            <label>[[(!!item.product_name ? item.product_name : item.name)]]</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section-field :options="warehousesList" :select="true" inline-template="inline-template" label="Warehouse" placeholder="Select warehouse" v-model.number="selectedWarehouse">
+            {% include ':GlobalComponents/Field:_field.html.twig' %}
+        </section-field>
+    </div>
+    <div class="actions">
+        <div class="success" v-if="success">[[success]]</div>
+        <div class="ui black deny modal-button">Back</div>
+        <input :class="{'disabled':!saveBtn}" :disabled="!saveBtn" @click="changeWarehose()" class="ui green positiveright modal-button right" type="submit" value="Save"/>
+    </div>
+</div>

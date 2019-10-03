@@ -1,0 +1,7 @@
+AppBundle\Entity\UserSupport:
+    type: entity
+    table: sylius_admin_user_support
+    fields:
+        refundAccess:
+          type: boolean
+          nullable: true

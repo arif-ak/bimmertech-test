@@ -1,0 +1,22 @@
+AppBundle\Entity\MediaImage:
+  type: entity
+  table: app_media_image
+  fields:
+    name:
+      type: string
+      nullable: true
+    createdAt:
+      type: datetime
+      nullable: true
+    alt:
+      type: string
+      nullable: true
+
+  manyToOne:
+    owner:
+      targetEntity: AppBundle\Entity\MediaFolder
+      inversedBy: images
+      joinColumn:
+        name: owner_id
+        referencedColumnName: id
+        onDelete: CASCADE

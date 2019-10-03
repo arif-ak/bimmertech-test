@@ -1,0 +1,97 @@
+.media {
+    width: 100%;
+    position: relative;
+    .required.field {
+        position: relative;
+        .ui.column.stackable.grid {
+            .column {
+                min-width: 250px;
+                
+            }
+            &.four {
+                .column {
+                    width: 25%;
+                    &:only-child {
+                        width: 25%;
+                    }
+                    .button,
+                    .image {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        .error {
+            position: absolute;
+            bottom: -5px;
+            left: 15px;
+            font-size: 12px;
+            color: $base-red-color;
+        }
+    }
+    &:after {
+        display: block;
+        clear: both;
+        content: "";
+    }
+    &.once {
+        .required.field {
+            .ui.column.stackable {
+                .column {
+                    width: calc(100% - 1.875rem);
+                    .ui.upload.box.segment {
+                        position: relative;
+                        .labeled.button,
+                        img {
+                            width: 100%;
+                        }
+                        
+                        .delete {
+                            position: absolute;;
+                            right: 17px;
+                            top: 52px;
+                            color: rgba(0,0,0,.8);
+                            background: #E0E1E2;
+                            width: 30px;
+                            height: 30px;
+                            text-align: center;
+                            border-radius: 50px;
+                            cursor: pointer;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            transition: .2s;
+                            &:hover {
+                                background: #CACBCD;
+                                transition: .2s;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.error {
+        .required.field {
+            .ui.column.stackable.grid {
+                .column {
+                    .ui.upload.box.segment {
+                        border: 1px solid $base-red-color;
+                    }
+                }
+            }
+        }
+        .message.is-danger {
+            position: absolute;
+            bottom: -18px;
+            left: 15px;
+            font-size: 12px;
+            color: $base-red-color;
+        }
+    }
+}
+.two.fields {
+    .media {
+        width: 50%;
+    }
+}

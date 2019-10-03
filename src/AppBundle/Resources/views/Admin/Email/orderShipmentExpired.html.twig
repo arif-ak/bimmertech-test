@@ -1,0 +1,7 @@
+{% block subject %}
+    Tracking number removed (order #{{ data.order.number }})
+{% endblock %}
+
+{% block body %}
+    <p>Order number {{ data.order.number }} and tracking number {{ data.trackingNumber }} have been removed from AfterShip after two weeks. Please confirm the tracking number was correct.</p>
+{% endblock %}

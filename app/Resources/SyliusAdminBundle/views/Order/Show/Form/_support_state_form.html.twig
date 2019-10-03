@@ -1,0 +1,15 @@
+{% if orderSupportStateForm is defined %}
+    <div class="order-support-state">
+        <b>Support state:</b>{{ order.supportStatus }}
+        {% if isAdmin or isShowSupportBoard %}
+            <button class="ui mini button" onclick="edit_order_state_show('support')">edit</button>
+        {% endif %}
+    </div>
+
+    {{ form_start(orderSupportStateForm, {'action': path('app_order_support_edit', { 'id': order.id }), 'method': 'POST' }) }}
+    <div class="order-support-state-edit">
+        {{ form_row(orderSupportStateForm.supportStatus) }}
+        {{ form_widget(orderSupportStateForm.save, { 'label': 'Save' }) }}
+    </div>
+    {{ form_end(orderSupportStateForm) }}
+{% endif %}

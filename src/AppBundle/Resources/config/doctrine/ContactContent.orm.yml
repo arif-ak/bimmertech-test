@@ -1,0 +1,23 @@
+AppBundle\Entity\ContactContent:
+    type: entity
+    table: app_contact_content
+    repositoryClass: AppBundle\Repository\ContactContentRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            nullable: true
+        value:
+            type: string
+            nullable: true
+        hours:
+            type: string
+            nullable: true
+    manyToOne:
+        contact:
+            targetEntity: AppBundle\Entity\Contact
+            inversedBy: contactContent

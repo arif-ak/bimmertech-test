@@ -1,0 +1,15 @@
+<div class="Content_editor">
+    <div class="blocks">
+        {# <draggable v-model="blocks"> #}
+            <section-block @change="updatePreview()" @delete="deleteBlock(b)" :key="'block_'+b" v-model="blocks[b]" v-for="(block, b) in blocks" inline-template>
+                {% include '@SyliusAdmin/GlobalComponents/content_editor/components/block/block.html.twig' %}
+            </section-block>
+        {# </draggable> #}
+        <div @click="addBlock()" class="ui labeled icon button"><i class="plus square outline icon"></i>Add Block</div>
+        <div @click="openPreview()" class="delete ui yellow labeled icon button"><i class="sticky note icon"></i>Preview</div>
+    </div>
+
+    <section-menu @change="updatePreview()" v-model="blocks" inline-template>
+        {% include '@SyliusAdmin/GlobalComponents/content_editor/components/menu/menu.html.twig' %}
+    </section-menu>
+</div>

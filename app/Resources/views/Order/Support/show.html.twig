@@ -1,0 +1,21 @@
+<h1>Support board</h1>
+<a href="{{ path('app_oder_send_instructions', {'id':order.id }) }}"
+   class=" ui mini green button" >Send instructions</a>
+<table class="ui celled compact small table fixed">
+    <thead>
+    <tr>
+        <th class="six wide sylius-table-column-item">{{ 'sylius.ui.order_item_product'|trans }}</th>
+        <th class="center aligned sylius-table-column-quantity">Quantity</th>
+        <th class="center aligned sylius-table-column-subtotal">Instruction</th>
+        <th class="center aligned sylius-table-column-subtotal">Status</th>
+        <th class="center aligned sylius-table-column-subtotal">Action</th>
+
+    </thead>
+    <tbody>
+
+    {% for form in instructionsForms %}
+        {% include ':Order/Support:_ithem.html.twig' %}
+    {% endfor %}
+
+    </tbody>
+</table>

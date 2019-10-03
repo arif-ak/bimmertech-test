@@ -1,0 +1,27 @@
+AppBundle\Entity\SavePrice:
+  type: entity
+  table: app_save_price
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    title:
+      type: string
+      nullable: true
+    price:
+      type: integer
+      nullable: true
+  oneToOne:
+    product:
+      targetEntity: AppBundle\Entity\Product
+      inversedBy: savePrice
+      joinColumn:
+        name: product_id
+        referencedColumnName: id
+
+  oneToMany:
+    orderItem:
+      targetEntity: AppBundle\Entity\OrderItem
+      mappedBy: savePrice

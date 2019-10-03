@@ -1,0 +1,14 @@
+app_admin_warehouse:
+    resource: |
+        alias: app.warehouse
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        redirect: index
+        grid: app_admin_warehouse
+        vars:
+            all:
+                header: Warehouse
+                subheader: Manage your warehouses
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

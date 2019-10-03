@@ -1,0 +1,29 @@
+sylius_grid:
+  grids:
+    app_admin_product_property:
+      driver:
+        name: doctrine/orm
+        options:
+          class: AppBundle\Entity\ProductProperty
+      fields:
+        image:
+          type: twig
+          label: sylius.ui.image
+          path: .
+          options:
+            template: "Admin/ProductProperties/image.html.twig"
+        name:
+          type: string
+          label: Name
+        code:
+          type: string
+          label: ID
+      actions:
+        main:
+          create:
+            type: create
+        item:
+          update:
+            type: update
+          delete:
+            type: delete

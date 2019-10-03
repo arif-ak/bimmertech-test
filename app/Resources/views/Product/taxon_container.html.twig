@@ -1,0 +1,87 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+{% block title %}
+    {{ taxon.metaTitle }}{% endblock %}
+{% block meta_description %}
+    <meta name="description" content="{{ taxon.metaDescription }}"/>{% endblock %}
+{% block meta_keywords %}
+    <meta name="keywords" content="{{ taxon.metaKeywords }}"/>{% endblock %}
+{% if  taxon.images|length >0 %}
+    {% block meta_image %}
+        <meta property="og:image"
+              content="{{ taxon.images.first.path|imagine_filter('product_570_367') }}"/>{% endblock %}
+{% endif %}
+{% block content %}
+    {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+    {% if taxon is defined %}
+        {% set product = taxon %}
+    {% endif %}
+    <script>
+        var cSlug = "{{ taxon.translations['en_US'].slug }}";
+        var product_container_name = "{{ taxon.productName }}";
+    </script>
+    {% set vincheck = app.session.get('vincheck') %}
+    <div id="product-page-container">
+        <div class="product-page mb-30">
+            {% include "Product/ContainerProduct/_breadcrumb.html.twig" %}
+            {% include "Product/ContainerProduct/_header.html.twig" %}
+        </div>
+        <div class="grid-x large-up-2 product-container">
+            <div class="cell">
+                 {% include 'Product/ContainerProduct/_images.html.twig' %}
+            </div>
+            <div :class="{'block': true}" v-show="product" id="product-price" class="large-3 display-flex align-right align-middle price mobile">
+                {% include 'Product/ContainerProduct/_productPrice.html.twig' %}
+            </div>
+            <section-button class="mobile" @click="openVinchek()" label="Identify your car" inline-template>
+                {% include ':GlobalComponents/Field:_button.html.twig' %}
+            </section-button>
+            <div class="cell">
+                <div class="grid-x large-up-2">
+                    <div class="cell features">
+                        <div class="bt-label margin-bottom-1">
+                            <div class="header">Features</div>
+                            <div class="bt-line"></div>
+                        </div>
+                        <div class="short-description">
+                            {{ (taxon.shortDescription|popup(popup_options))|raw }}
+                        </div>
+                        <div class="grid-x align-justify compare socialIcons">
+                            {% include 'Product/ContainerProduct/_socialIcons.html.twig' %}
+                        </div>
+                    </div>
+                    <div class="cell description">
+                        <div class="bt-label margin-bottom-1">
+                            <div class="header">Description</div>
+                            <div class="bt-line"></div>
+                        </div>
+                        {{ (taxon.description|popup(popup_options, true))|raw }}
+                        <div class="mt-20">
+                            <div class="field cell grid-x align-center">
+                                <section-button @click="openVinchek()" label="Identify your car" inline-template>
+                                    {% include ':GlobalComponents/Field:_button.html.twig' %}
+                                </section-button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-x align-justify compare socialIcons mobile">
+                        {% include 'Product/ContainerProduct/_socialIcons.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="description-container">
+            {% if taxon.seoText|length > 7 %}
+                <div class="seo-text">
+                    {{ taxon.seoText|raw }}
+                </div>
+            {% endif %}
+        </div>
+        <section-swiper :recomended="recomended" inline-template>
+            {% include ':GlobalComponents/Swiper:recomended.html.twig' %}
+        </section-swiper>
+    </div>
+    {% if taxon.seoText|length > 7 %}
+        {% include 'SyliusShopBundle:Product/Show/Tabs:_carModel.html.twig' %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+<div :id="product.id" class="cell product usb grid-x align-middle" v-ret-state:product="product">
+    <div class="ten wide column left aligned cell large-4 ">
+        <div class="ui header">
+            <popup-ret-ref :access="access" :value="product"></popup-ret-ref>
+            <img :alt="product.name" :data-src="product.image" class="ui bordered image" src="" v-img-loader/>
+            <div class="content">
+                <div :title="product.name" class="sylius-product-name">[[product.name]]</div>
+                <span class="sub header sylius-product-drop-downs" v-d-down="{ product: [product.savePrice,product.drop_down] }"></span>
+            </div>
+        </div>
+    </div>
+    <div class="cell large-5">
+        <div class="additional-info date" v-if="product.usb_coding.is_sent">
+            <span>Sent [[new Date(product.usb_coding.date)|date]]</span>
+        </div>
+    </div>
+    <div class="three wide column cell large-1 logisticBoardQuantity additional-info">Quantity: [[product.quantity]]</div>
+</div>
+{# <div class="row">
+    <div class="large-12 margin-left-3">
+        <input :id="'shipmentRadioInput_'+shipment.id+p+i" :value="shipment.id" @change="changeRadio()" v-model="value" type="radio" >
+        <label :for="'shipmentRadioInput_'+shipment.id+p+i">[[shipment.tracking_number]]</label>
+    </div>
+</div> #}

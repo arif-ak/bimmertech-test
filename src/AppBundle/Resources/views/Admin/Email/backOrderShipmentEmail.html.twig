@@ -1,0 +1,13 @@
+{% block subject %}
+    Your BimmerTech order #{{ data.number }} is on backorder
+{% endblock %}
+
+{% block body %}
+    Hi {{ data.name }},
+    <p>Thank you for shopping with BimmerTech.</p>
+    <p>One or more products that you ordered are currently out of stock. We are working hard to fulfil your order as soon as possible, but delivery may take slightly longer than usual.</p>
+    <p>You will be notified by email as soon as your order is shipped.</p>
+    <p>We apologize for any inconvenience.</p>
+    <p>If you have any questions about your email, please <a href="{{ app.request.getSchemeAndHttpHost() }}{{ path( 'sylius_shop_contact_request') }}"> get in touch</a>.</p>
+
+{% endblock %}

@@ -1,0 +1,378 @@
+.ui {
+    .summaryWrap {
+        margin-top: 2px;
+        padding: 20px 15%;
+    }
+
+    .checkoutBtn {
+        background: $base-btn-color;
+        color: $base-black-color;
+        width: 100%;
+        font-size: 1em;
+        text-align: center;
+        border-radius: 15px;
+        text-transform: uppercase;
+
+        &:hover {
+            background: $base-btn-hover-color;
+        }
+    }
+
+    .couponBtn {
+        position: relative;
+        color: #14cf8a;
+        text-transform: uppercase;
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            border-left: 1px solid #e0e0e0;
+            height: 66%;
+            left: -15px;
+            top: 6px;
+        }
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}
+
+%text-settings {
+    font-size: 12px;
+    color: $base-black-color;
+}
+
+#sylius-shipping-address {
+    input[name='surname'],
+    input[name='name'] {
+        & + .message.help.is-danger {
+            bottom: -15px !important;
+        }
+    }
+}
+
+.address-page {
+    @import "components/login/login";
+
+    .block-contact {
+        &-form {
+            border: 1px solid $base-light-gray-color;
+            padding: 30px;
+            border-radius: $border-radius;
+        }
+
+        &-header {
+            @extend .block-email-header;
+
+            margin-bottom: 5px;
+        }
+
+        .message {
+            font-size: 14px;
+            line-height: 20px;
+        }
+    }
+
+    .btn {
+        &.btn {
+            &-login {
+                margin-top: 39px;
+                margin-bottom: 39px;
+                border-radius: 12px;
+                height: 36px;
+                width: 100%;
+                border: 2px solid #3edbff;
+
+                @include bt-padding(10px, 5px, 10px, 5px);
+
+                &:hover {
+                    border-color: darken($base-btn-color, 10%);
+                    background-image: none;
+                    color: rgba(0, 0, 0, 0.8);
+                    box-shadow: 0px 6px 11px 1px rgba(28, 163, 194, 0.36);
+                }
+            }
+
+            &-login-submit {
+                border-radius: 12px;
+                height: 36px;
+                width: 70px;
+                border: 2px solid #3edbff;
+
+                @include bt-padding(10px, 5px, 10px, 5px);
+
+                &:hover {
+                    border-color: darken($base-btn-color, 10%);
+                    background-image: none;
+                    color: rgba(0, 0, 0, 0.8);
+                    box-shadow: 0px 6px 11px 1px rgba(28, 163, 194, 0.36);
+                }
+            }
+        }
+
+        > span {
+            text-transform: capitalize;
+        }
+    }
+
+    #bt-api-login-form {
+        height: 36px;
+
+        input[type='password'] {
+            border-radius: 6px;
+        }
+
+        .btn-login-submit {
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-radius: 6px;
+        }
+    }
+
+    .help-text {
+        font-size: $small-font-size;
+        line-height: 20px;
+        text-align: justify;
+    }
+
+    .bt.ui.form {
+        & select,
+        textarea {
+            font-size: $small-font-size;
+            background: $base-white-color;
+            border: 1px solid #bdbdbd;
+            color: $base-black-color;
+            border-radius: 6px;
+        }
+
+        .field {
+            label {
+                font-weight: 400;
+                font-size: 12px;
+                color: $base-black-color;
+
+                &.required:after {
+                    color: $base-red-color;
+                    display: inline-block;
+                    margin: -.2em 0 0 .2em;
+                    content: '*';
+                }
+            }
+        }
+    }
+
+    .ui.checkbox label {
+        span {
+            @extend %text-settings;
+
+            line-height: 1.6;
+
+            .bt-link {
+                font-weight: 400;
+                color: $base-blue-color;
+                text-transform: initial;
+            }
+        }
+
+        &:before {
+            border-radius: 0;
+            border: 1px solid $base-blue-color;
+        }
+    }
+
+    .bt-link.back {
+        letter-spacing: 0.5px;
+        color: $base-blue-color;
+        text-transform: none;
+        font-weight: 500;
+        font-size: 14px;
+    }
+}
+
+#appCheckout.address-page {
+    #checkoutForm {
+        .message {
+            &.help.is-danger {
+                font-size: 12px;
+                line-height: 1;
+                bottom: -8px;
+            }
+
+            font-size: 15px;
+        }
+    }
+
+    .button {
+        margin-top: 15px;
+        border-radius: 20px;
+        border: 1px solid #757575;
+        padding: 2px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        height: 42px;
+        display: block;
+
+        .btn-checkout {
+            margin: 0;
+            border-radius: 20px;
+            height: 100%;
+        }
+    }
+
+    .selection.dropdown {
+        padding: 5px 15px;
+        border-width: 1px;
+        border-color: #bdbdbd;
+        border-style: solid;
+        border-radius: 20px;
+        line-height: 1;
+        height: 37px;
+        min-height: 37px;
+        display: flex;
+        align-items: center;
+        font-size: $small-font-size;
+        margin-bottom: 10px;
+
+        .active {
+            border-color: $base-gray-color;
+
+            .menu {
+                border-color: $base-gray-color;
+            }
+        }
+
+        > .default.text {
+            color: $base-gray-color;
+        }
+
+        .menu {
+            border-color: #bdbdbd;
+
+            &::-webkit-scrollbar-track {
+                background: rgba(0, 0, 0, 0.1);
+                border-radius: 0;
+            }
+
+            &::-webkit-scrollbar-button {
+                width: 10px;
+                height: 10px;
+            }
+
+            &::-webkit-scrollbar {
+                transform: translateX(10px);
+                -webkit-appearance: none;
+                width: 10px;
+                height: 10px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                cursor: pointer;
+                border-radius: 5px;
+                background: $base-blue-color;
+                transition: color .2s ease;
+            }
+
+            border-bottom-right-radius: $border-radius;
+            border-bottom-left-radius: $border-radius;
+
+            > .item {
+                padding: 5px 15px !important;
+                line-height: 1;
+                font-size: $small-font-size;
+            }
+
+            .active {
+                .item {
+                    font-weight: 400;
+                }
+            }
+        }
+
+        &.upward {
+            border-radius: $border-radius !important;
+
+            &.active {
+                border-radius: 0 0 $border-radius $border-radius !important;
+            }
+
+            .menu {
+                border-radius: $border-radius $border-radius 0 0;
+            }
+        }
+
+        &:hover {
+            border-color: $base-gray-color;
+
+            .menu {
+                border-color: $base-gray-color !important;
+            }
+        }
+
+        .chevron.down {
+            cursor: pointer;
+            position: absolute;
+            width: auto;
+            height: auto;
+            line-height: 1.2;
+            top: 12px;
+            right: 15px;
+            font-weight: 400;
+            font-size: 11px;
+            z-index: 3;
+            margin: -10px;
+            padding: 10px;
+            opacity: .8;
+            transition: opacity .1s ease;
+        }
+    }
+}
+
+.modals.dimmer {
+    .ui.bt.modal.pay {
+        background: none;
+        box-shadow: none;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        height: 100vh;
+        width: 100%;
+        margin-top: 0 !important;
+
+        .bt-heading {
+            width: 335px;
+
+            .message {
+                font-weight: 400;
+                font-size: 15px;
+                line-height: 1.5;
+                padding: 10px 0;
+            }
+
+            a {
+                display: block;
+                font-weight: 500;
+                margin-top: 20px;
+                color: $base-white-color;
+
+                span {
+                    border-bottom: 1px solid $base-white-color;
+                }
+            }
+        }
+
+        .bt-icon {
+            cursor: pointer;
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            right: 30px;
+            top: 30px;
+            border-radius: 3px;
+        }
+    }
+}

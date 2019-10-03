@@ -1,0 +1,96 @@
+#contact_us {
+    .header {
+        h4 {
+            font-weight: 500;
+            color: #000;
+            line-height: 23px;
+        }
+        .divider {
+            background-color: #1ca3c2;
+            height: 4px;
+            width: calc(100% - 20px);
+            display: flex;
+            margin-left: 20px;
+            box-sizing: border-box;
+        }
+    }
+    .main_title {
+        font-weight: 500;
+        font-size: 21px;
+        line-height: 21px;
+        line-height: 45px;
+    }
+    .title {
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+    .content {
+        font-weight: 500;
+        pre {
+            font-weight: 500;
+            font-family: "Rubik", sans-serif;
+            float: left;
+        }
+        .hours {
+            font-weight: 400;
+            pre {
+                font-weight: 400;
+            }
+        }
+    }
+    .horizontal {
+        margin-top: 30px;
+        >div.cell {
+            .title {
+                width: 197px;
+                font-family: Rubik;
+                font-size: 12px;
+                color: #878787;
+            }
+        }
+        .items {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            div.grid-y {
+                width: 16.65%;
+                margin-bottom: 20px;
+            }
+        }
+        
+    }
+    .vertical {
+        margin-top: 25px;
+        >div.cell {
+            float: left;
+            width: 33.32%;
+            .title {
+                width: 197px;
+                font-family: Rubik;
+                font-size: 12px;
+                color: #878787;
+            }
+            .js-modal-expert {
+                box-shadow: 0 0 0 1px $base-blue-color inset !important;
+                background-color: transparent;
+                max-width: 125px;
+                border-radius: 50px;
+                height: 30px;
+                margin-top: 5px;
+                span {
+                    margin-top: 0;
+                    font-size: 12px;
+                    letter-spacing: 0.25px;
+                    color: $base-blue-color !important;
+                }
+            }
+        }
+    }
+    div.cell {
+        .js-modal-expert {
+            span {
+                font-weight: 400
+            }
+        }
+    }
+}

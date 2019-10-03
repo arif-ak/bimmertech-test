@@ -1,0 +1,117 @@
+<div id="Orders">
+    <div class="order" v-for="(order, o) in orders">
+        <div class="table table_order_data">
+            <div class="table_head text-uppercase">
+                <div class="item order_id">Order id</div>
+                <div class="item date">Date</div>
+                <div class="item order_status">Order status</div>
+                <div class="item payment_status">Payment status</div>
+                <div class="item shipping_status">Shipping status</div>
+                <div class="item total_amount">Total amount</div>
+            </div>
+            <div class="table_content">
+                <div class="item order_id">#[[order.number]]</div>
+                <div class="item date">[[order.date]]</div>
+                <div class="item order_status">[[order.orderStatus]]</div>
+                <div :class="{'awaiting-payment': order.paymentUrl}" @click="openPaymentWindow(order.id, order.paymentUrl)" class="item payment_status">
+                    [[order.paymentStatus]]
+                </div>
+                <div class="item shipping_status">[[order.shippingStatus]]</div>
+                <div class="item total_amount">
+                    <section-price :value="order.totalAmount" inline-template>
+                        {% include ':GlobalComponents/Price:price.html.twig' %}
+                    </section-price>
+                </div>
+            </div>
+        </div>
+        <div class="table table_items">
+            <div class="table_head text-uppercase">
+                <div class="item order_id">Item</div>
+                <div class="item date"></div>
+                <div class="item order_status">Unit Price</div>
+                <div class="item payment_status">Qnt</div>
+                <div class="item shipping_status">TRACKING NUMBER</div>
+                <div class="item total_amount">Price</div>
+            </div>
+            <div class="table_content product_list">
+                <div class="item margin-bottom-1" v-for="(item, i) in order.orderItems">
+                    <div :class="{'returned': item.is_returned}" class="item_name">
+                        <popup-ret-ref :value="item"></popup-ret-ref>
+                        <div class="item name">
+                            <span :class="{'item_count_10': i+1>9}" class="item_count">
+                                [[i+1]].
+                            </span>
+                            [[item.name]]
+                        </div>
+                        <div class="item unit-price">
+                            <section-price :value="item.unitPrice" inline-template>
+                                {% include ':GlobalComponents/Price:price.html.twig' %}
+                            </section-price>
+                        </div>
+                        <div class="item quantity">[[item.quantity]]</div>
+                        <div class="tracking">
+                            <a :href="link.url" class="item tracking_number" target="_blank" v-for="link in item.trackingNumber">[[link.number]]</a>
+                        </div>
+                        <div class="item price">
+                            <section-price :value="item.price" inline-template>
+                                {% include ':GlobalComponents/Price:price.html.twig' %}
+                            </section-price>
+                        </div>
+                    </div>
+                    <div class="dropdowns">
+                        <div :class="{'returned': dropdown.is_returned}" class="dropdown" v-for="dropdown in item.dropDowns">
+                            <popup-ret-ref :value="dropdown"></popup-ret-ref>
+                            [[dropdown.name]]: [[dropdown.selected]]
+                        </div>
+                        <div class="dropdown" v-if="item.savePrice">
+                            [[item.savePrice.name]]
+                        </div>
+                    </div>
+                    <div class="addons" v-if="showAdons(o, i)">
+                        <div class="bt-label">
+                            Add-ons for this product:
+                            <div class="bt-line"></div>
+                        </div>
+                        <div :class="{'returned': addon.is_returned}" class="addon included" v-for="addon in item.includedAddons">
+                            <popup-ret-ref :value="addon"></popup-ret-ref>
+                            <div class="item name">[[addon.name]]</div>
+                            <div class="tracking">
+                                <a :href="link.url" class="item tracking_number" target="_blank" v-for="link in addon.trackingNumber">[[link.number]]</a>
+                            </div>
+                            <div class="item price">
+                                free
+                            </div>
+                        </div>
+                        <div :class="{'returned': addon.is_returned}" class="addon" v-for="addon in item.addons">
+                            <popup-ret-ref :value="addon"></popup-ret-ref>
+                            <div class="item name">[[addon.name]]</div>
+                            <div class="tracking">
+                                <a :href="link.url" class="item tracking_number" target="_blank" v-for="link in addon.trackingNumber">[[link.number]]</a>
+                            </div>
+                            <div class="item price">
+                                <section-price :value="addon.price" inline-template>
+                                    {% include ':GlobalComponents/Price:price.html.twig' %}
+                                </section-price>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui bt modal pay transition hidden">
+        <div
+            class="h5 text-center bt-heading">
+            <!-- PayPal Logo -->
+            <div class="display-flex align-center-middle margin-bottom-1">
+                <img src="/assets/shop/img/pp_h_1C_white.png"/>
+            </div>
+            <!-- PayPal Logo -->
+            <div class="message">Don't see secure PayPal browser? We'll help you re-launch the window to complete your purchase</div>
+            <a @click="showWindowO()">
+                <span>Click to Continue</span>
+            </a>
+        </div>
+        <div class="bt-icon white bt-close"></div>
+    </div>
+</div>

@@ -1,0 +1,1762 @@
+imports:
+    - {resource: fixture/car_model.yml}
+    - {resource: fixture/buyers_guide_option.yml}
+    - {resource: fixture/my.yml}
+    - {resource: fixture/taxsons.yml}
+    - {resource: fixture/products.yml}
+    - {resource: fixture/orders.yml}
+    - {resource: fixture/contact_page.yml}
+    - {resource: fixture/helper_page.yml}
+    - {resource: fixture/about_us_page.yml}
+    - {resource: fixture/drop_down.yml}
+    - {resource: fixture/blog_post.yml}
+    - {resource: fixture/installer.yml}
+#    - {resource: fixture/product_specification.yml}
+#    - {resource: fixture/product_review.yml}
+
+
+
+
+#sylius_fixtures:
+#    suites:
+#        carModel:
+#            fixtures:
+#                car_model:
+#                    options:
+#                      load: true
+#        buyersGuideOption:
+#            fixtures:
+#                buyers_guide_option:
+#                    options:
+#                      load: true
+#        contactTitle:
+#            fixtures:
+#                contact_title:
+#                    options:
+#                      load: true
+#        my:
+#            listeners:
+#                orm_purger: ~
+#                logger: ~
+#            fixtures:
+#                locale:
+#                   options:
+#                        locales: ~
+#                currency:
+#                    options:
+#                        currencies: ['USD','EUR']
+#                buyers_guide_option:
+#                    options:
+#                        load: true
+#                contact_title:
+#                    options:
+#                        load: true
+#                geographical:
+#                    options:
+#                        countries:   ['CA', 'US', 'PL', 'DE', 'FR', 'IT', 'AE', 'CN', 'ID', 'DZ', 'EG', 'IQ', 'IR', 'AL', 'BB']
+#                        zones:
+#                            US_Zone:
+#                                name: " USA (United State of America)"
+#                                countries:
+#                                    - "US"
+#                                    - "CA"
+#                            Zone_tax_Europe:
+#                                name: "Tax Europe"
+#                                countries:
+#                                    - "DE"
+#                                    - "AL"
+#                                    - "FR"
+#                                    - "DZ"
+#                                    - "IT"
+#
+#                channel:
+#                    options:
+#                        custom:
+#                            us_web_store:
+#                                name: "Bimmer tech"
+#                                code: "bimmer_tech"
+#                                locales:
+#                                    - "%locale%"
+#                                currencies:
+#                                    - "USD"
+#                                enabled: true
+#                                hostname: "localhost"
+#
+#                            us_i_drive:
+#                                name: "Addons"
+#                                code: "addons"
+#                                locales:
+#                                    - "%locale%"
+#                                currencies:
+#                                    - "USD"
+#                                enabled: true
+#                                hostname: "addons.bimmer-tech.net"
+#
+#                            us_speakers:
+#                                name: "Speakers"
+#                                code: "speakers"
+#                                locales:
+#                                    - "%locale%"
+#                                currencies:
+#                                    - "USD"
+#                                enabled: true
+#                                hostname: "speakers.bimmer-tech.net"
+#
+#                            us_idrive:
+#                                name: "IDrive coding"
+#                                code: "idrive_coding"
+#                                locales:
+#                                    - "%locale%"
+#                                currencies:
+#                                    - "USD"
+#                                enabled: true
+#                                hostname: "idrive.bimmer-tech.net"
+#
+#                shop_user:
+#                    name: "shop_user"
+#                    options:
+#                        random: 2
+#                        custom:
+#                            -
+#                                email: "shop@example.com"
+#                                first_name: "John"
+#                                last_name: "Doe"
+#                                password: "sylius"
+#
+#                admin_users:
+#                    options:
+#                         custom:
+#                              -
+#                                email: "admin@bimmer-tech.net"
+#                                username: "admin"
+#                                password: "admin"
+#                                enabled: true
+#                                locale_code: "%locale%"
+#                                first_name: "John"
+#                                last_name: "Smith"
+#                                role: "admin"
+#                              -
+#                                email: "salesperson@bimmer-tech.net"
+#                                username: "sales_user"
+#                                password: "sylius"
+#                                enabled: true
+#                                locale_code: "%locale%"
+#                                first_name: "Josh"
+#                                last_name: "Cannon"
+#                                role: "sale"
+#
+#                              -
+#                                email: "logisticperson@bimmer-tech.net"
+#                                username: "logistic_user"
+#                                password: "sylius"
+#                                enabled: true
+#                                locale_code: "%locale%"
+#                                first_name: "Michael"
+#                                last_name: "Winter"
+#                                role: "logistic"
+#
+#                              -
+#                                email: "supportperson@bimmer-tech.net"
+#                                username: "support_user"
+#                                password: "sylius"
+#                                enabled: true
+#                                locale_code: "%locale%"
+#                                first_name: "Mishel"
+#                                last_name: "Summer"
+#                                role: "support"
+#                              -
+#                                email: "codingperson@bimmer-tech.netr"
+#                                username: "coding_user"
+#                                password: "sylius"
+#                                enabled: true
+#                                locale_code: "%locale%"
+#                                first_name: "Petro"
+#                                last_name: "Poroh"
+#                                role: "coding"
+#                              -
+#                                email: "editorperson@bimmer-tech.netr"
+#                                username: "editor_user"
+#                                password: "sylius"
+#                                enabled: true
+#                                locale_code: "%locale%"
+#                                first_name: "User"
+#                                last_name: "Editor"
+#                                role: "editor"
+#                              -
+#                                email: "marketingperson@bimmer-tech.netr"
+#                                username: "marketing_user"
+#                                password: "sylius"
+#                                enabled: true
+#                                locale_code: "%locale%"
+#                                first_name: "User"
+#                                last_name: "Marketing"
+#                                role: "marketing"
+#
+#                payment_method:
+#                    options:
+#                            custom:
+#                                paypal:
+#                                    code: "paypal"
+#                                    name: "paypal"
+#                                    enabled: true
+#                                    channels:
+#                                        - "bimmer_tech"
+#                                    gatewayName: "online"
+#                                    gatewayFactory: "paypal_express_checkout"
+#                                    gatewayConfig:
+#                                       { "username":"taras.terletskij-facilitator_api1.bimmer-tech.net", "password":"B9JRKAJGTRVUUAPF", "signature":"AbVVIgZN-8e3gYTHhH.ethLJ7FkTARLYzxFQrXgNqpuBlvzC1LAtTp86", "sandbox":true}
+#                shipping_method:
+#                    options:
+#                           custom:
+#                                dhl_pl:
+#                                    code: "dhl_pl"
+#                                    name: "DHL Pl"
+#                                    zone: US_Zone
+#                                    description: "The DHL Pl shipping method"
+#                                    enabled: true
+#                                    channels:
+#                                        - "bimmer_tech"
+#                                        - "addons"
+#                                        - "speakers"
+#                                    calculator:
+#                                        type: "flat_rate"
+#                                        configuration:
+#                                            bimmer_tech:
+#                                                amount: 0
+#                                            addons:
+#                                                 amount: 0
+#                                            speakers:
+#                                                 amount: 0
+#
+#                                dhl_ae:
+#                                    code: "dhl_ae"
+#                                    name: "DHL AE"
+#                                    zone: US_Zone
+#                                    description: "The DHL AE shipping method"
+#                                    enabled: true
+#                                    channels:
+#                                        - "Bimmer_tech"
+#                                    calculator:
+#                                        type: "flat_rate"
+#                                        configuration:
+#                                            bimmer_tech:
+#                                                amount: 0
+#                                            addons:
+#                                                 amount: 0
+#                                            speakers:
+#                                                 amount: 0
+#
+#                                usps:
+#                                    code: "usps"
+#                                    name: "USPS"
+#                                    description: "The test shipping method"
+#                                    enabled: true
+#                                    channels:
+#                                        - "Bimmer_tech"
+#                                    calculator:
+#                                        type: "flat_rate"
+#                                        configuration:
+#                                            bimmer_tech:
+#                                                amount: 0
+#                                            addons:
+#                                                 amount: 0
+#                                            speakers:
+#                                                 amount: 0
+#                                ems:
+#                                    code: "ems"
+#                                    name: "EMS"
+#                                    description: "The test shipping method"
+#                                    enabled: true
+#                                    channels:
+#                                        - "Bimmer_tech"
+#                                    calculator:
+#                                        type: "flat_rate"
+#                                        configuration:
+#                                            bimmer_tech:
+#                                                amount: 0
+#                                            addons:
+#                                                 amount: 0
+#                                            speakers:
+#                                                 amount: 0
+#
+#                tax_category:
+#                        options:
+#                            custom:
+#                                tax_category_warehouse_eu:
+#                                    code: "tax_category_warehouse_eu"
+#                                    name: "Tax Category Warehouse EU"
+#                                    description: "The European tax category"
+#                tax_rate:
+#                        options:
+#                            custom:
+#                                warehouse_eu_tax:
+#                                    code: "tax_eu"
+#                                    name: "ax EU"
+#                                    zone:  "Zone_tax_Europe"
+#                                    category: "tax_category_warehouse_eu"
+#                                    amount: 0.23
+#                taxons:
+#                      options:
+#                          custom:
+#                              category:
+#                                  code: "category"
+#                                  name: "Category"
+#                                  slug: "category"
+#                                  description: "This is the first Taxon"
+#                                  children:
+#                                      taxone_park_assists:
+#                                          code: "taxone_park_assists"
+#                                          name: "PARK ASSISTS"
+#                                          slug: "park_assists"
+#                                          image: "/fixture_images/taxon/park_assist.svg"
+#                                          children:
+#                                             taxone_park_assists_container:
+#                                                  code: "taxone_park_assists_container"
+#                                                  name: "PARK ASSISTS Container"
+#                                                  productName: "PARK ASSISTS Product"
+#                                                  price: "99900"
+#                                                  slug: "park_assists/rear-cameras"
+#                                                  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#                                                   Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+#                                                    Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+#                                                     ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+#                                                      eget, efficitur porta tellus."
+#                                                  shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#                                                     Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+#                                                      Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+#                                                       ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+#                                                        eget, efficitur porta tellus."
+#                                                  isContainer: true
+#                                                  image: "/fixture_images/taxon/BMW_Navigation_R_4e89c1a71179f_200x200.jpg"
+#                                      taxone_audio:
+#                                          code: "taxone_audio"
+#                                          name: "AUDIO"
+#                                          slug: "audio"
+#                                          image: "/fixture_images/taxon/audio.svg"
+#                                      taxone_multimedia:
+#                                          code: "taxone_multimedia"
+#                                          name: "MULTIMEDIA"
+#                                          slug: "multimedia"
+#                                          description: "This is the first Taxon."
+#                                          image: "/fixture_images/taxon/multimedia.svg"
+#                                          children:
+#                                               taxone_multimedia_container:
+#                                                    code: "taxone_multimedia_container"
+#                                                    name: "MULTIMEDIA Container"
+#                                                    productName: "MULTIMEDIA Container Product"
+#                                                    price: "99900"
+#                                                    slug: "multimedia/car-play"
+#                                                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#                                                     Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+#                                                      Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+#                                                       ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+#                                                        eget, efficitur porta tellus."
+#                                                    shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#                                                       Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+#                                                        Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+#                                                         ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+#                                                          eget, efficitur porta tellus."
+#                                                    isContainer: true
+#                                                    image: "/fixture_images/taxon/BMW_Navigation_R_4e89c1a71179f_200x200.jpg"
+#                                      txone_coding:
+#                                          code: "taxone_coding"
+#                                          name: "coding"
+#                                          slug: "coding"
+#                                          description: "This is the first Taxon."
+#                                          image: "/fixture_images/taxon/coding.svg"
+#                                      taxone_convenience:
+#                                          code: "taxone_convenience"
+#                                          name: "CONVENIENCE"
+#                                          slug: "convenience"
+#                                          image: "/fixture_images/taxon/convenience.svg"
+#                                          children:
+#                                              taxone_convenience_container:
+#                                                  code: "taxone_convenience_container"
+#                                                  name: "CONVENIENCE Container"
+#                                                  productName: "CONVENIENCE Container Product"
+#                                                  price: "99900"
+#                                                  slug: "convenience/soft-close"
+#                                                  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#                                                   Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+#                                                    Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+#                                                     ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+#                                                      eget, efficitur porta tellus."
+#                                                  shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#                                                     Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+#                                                      Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+#                                                       ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+#                                                        eget, efficitur porta tellus."
+#                                                  isContainer: true
+#                                                  image: "/fixture_images/taxon/BMW_Navigation_R_4e89c1a71179f_200x200.jpg"
+#                                      taxone_navigation:
+#                                          code: "taxone_navigation"
+#                                          name: "NAVIGATION"
+#                                          slug: "navigation"
+#                                          image: "/fixture_images/taxon/navigation.svg"
+#                                          children:
+#                                              taxone_navigation_container:
+#                                                  code: "taxone_navigation_container"
+#                                                  name: "Navigation Container"
+#                                                  productName: "Navigation Container Product"
+#                                                  price: "99900"
+#                                                  slug: "navigation/navigation-retrofit"
+#                                                  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#                                                   Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+#                                                    Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+#                                                     ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+#                                                      eget, efficitur porta tellus."
+#                                                  shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#                                                     Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+#                                                      Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+#                                                       ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+#                                                        eget, efficitur porta tellus."
+#                                                  isContainer: true
+#                                                  image: "/fixture_images/taxon/BMW_Navigation_R_4e89c1a71179f_200x200.jpg"
+#                                      taxone_interior:
+#                                          code: "taxone_interior"
+#                                          name: "INTERIOR"
+#                                          slug: "interior"
+#                                          image: "/fixture_images/taxon/interior.svg"
+#                                          children:
+#                                              taxone_interior_container:
+#                                                  code: "taxone_interior_container"
+#                                                  name: "INTERIOR Container"
+#                                                  productName: "INTERIOR Container Product"
+#                                                  price: "99900"
+#                                                  slug: "interior/panel"
+#                                                  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#                                                   Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+#                                                    Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+#                                                     ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+#                                                      eget, efficitur porta tellus."
+#                                                  shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#                                                     Ut accumsan pellentesque justo, sed facilisis elit finibus ut.
+#                                                      Maecenas vitae laoreet augue. Interdum et malesuada fames ac ante
+#                                                       ipsum primis in faucibus. Proin risus mauris, feugiat eget sem
+#                                                        eget, efficitur porta tellus."
+#                                                  isContainer: true
+#                                                  image: "/fixture_images/taxon/BMW_Navigation_R_4e89c1a71179f_200x200.jpg"
+#                                      taxone_exterior:
+#                                          code: "taxone_exterior"
+#                                          name: "EXTERIOR"
+#                                          slug: "exterior"
+#                                          image: "/fixture_images/taxon/exterior.svg"
+#                                      taxone_outlet:
+#                                          code: "taxone_outlet"
+#                                          name: "OUTLET"
+#                                          slug: "outlet"
+#                                          image: "/fixture_images/taxon/outlet.svg"
+#
+#                warehouse:
+#                    options:
+#                        warehouses:
+#                              -
+#                                name: "Dubai Warehouse"
+#                                country: AE
+#                                city: "Dubai"
+#                                zip: 26534
+#                                address: "Lob15 #239, Jafza, Dubai"
+#                                phone: "+971521509404"
+#                                zone: null
+#                                tax_category: null
+#                                payment_method: [ "paypal" ]
+#                                shipping_method: [ "dhl_ae", "ems" ]
+#                              -
+#                                name: "Warsaw Warehouse"
+#                                country: PL
+#                                city: "Warsaw"
+#                                zip: 26534
+#                                address: "Serwituty 25, Warsaw, Poland"
+#                                phone: "+46464397920"
+#                                zone: null
+#                                tax_category: tax_category_warehouse_eu
+#                                payment_method: [ "paypal" ]
+#                                shipping_method: [ "dhl_pl", "ems" ]
+#                              -
+#                                name: "Orlando Warehouse"
+#                                country: US
+#                                city: "Orlando"
+#                                zip: 32839
+#                                address: "2641 Dorena Dr, Orlando, Florida state, USA"
+#                                phone: "+6464397920"
+#                                zone: US_Zone
+#                                tax_category: null
+#                                payment_method: ["paypal"]
+#                                shipping_method: [ "usps"]
+#
+#                shipping_gateway:
+#                    options:
+#                        gateways:
+#                           dhl_ae:
+#                              code: "app_dhl_shipping_gateway"
+#                              bitbag_ui_label: "DHL Gateway AE"
+#                              shipping_methods: ["dhl_ae"]
+#                              gateway_name: "DHL AE"
+#                              mode: "staging"
+#                              dhl_id: "bimmertech"
+#                              password: "AX7SVGkWmi"
+#                              shipper_account_number: "954268699"
+#                              region_code: "AP"
+#                              company_name: "Bimmer Tech"
+#                              country_code: "AE"
+#                              name: "Bimmer Tech"
+#                              phone_number: "+971521509404"
+#                              postal_code: "26534"
+#                              city: "Dubai"
+#                              address: "Lob15 #239, Jafza, Dubai"
+#                           dhl_pl:
+#                              code: "app_dhl_shipping_gateway"
+#                              bitbag_ui_label: "DHL Gateway PL"
+#                              shipping_methods: ["dhl_pl"]
+#                              gateway_name: "DHL PL"
+#                              mode: "staging"
+#                              dhl_id: "bimmertech"
+#                              password: "AX7SVGkWmi"
+#                              shipper_account_number: "954268699"
+#                              region_code: "AP"
+#                              company_name: "Bimmer Tech"
+#                              country_code: "PL"
+#                              name: "Bimmer Tech"
+#                              phone_number: "+971521509404"
+#                              postal_code: "26534"
+#                              city: "Warsaw"
+#                              address: "Serwituty 25, Warsaw, Poland"
+#
+#                products:
+#                    options:
+#                        custom:
+##---------------------- Addons-----------------------------
+#                            front:
+#                                name: "Front Camera (addon)"
+#                                code: "front"
+#                                enabled: true
+#                                short_description: "The wide-angle, high-quality lens provides a detailed and full-color image and corrects perspective - even at night when visibility decreases. With the front view camera, you'll never have to worry about what's ahead!"
+#                                description: "The wide-angle, high-quality lens provides a detailed and full-color image and corrects perspective - even at night when visibility decreases. With the front view camera, you'll never have to worry about what's ahead! The wide-angle, high-quality lens provides a detailed and full-color image and corrects perspective - even at night when visibility decreases. With the front view camera, you'll never have to worry about what's ahead!"
+#                                main_taxon: "taxone_park_assists"
+#                                channels:
+#                                     - "addons"
+#                                shipping_required: true
+#                                price: 24900
+#                                original_price: 24900
+#                                amount: 25
+#                                installation_time: "2 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: false
+#                                vincheckserviceId: 20
+#                                meta_keywords: "front"
+#                                meta_descriptions: "Add improved park assist features to your ModMyNav kit with this front camera for BMW. The camera module mounts discreetly in your vehicle’s front grill, and the picture from the camera is displayed on your BMW’s dashboard screen."
+#                                slug: "front"
+#                                taxonDescription: "short textshort textshort textshort textshort textshort text "
+#                                image: '/fixture_images/product/10.-FrontCamera.jpg'
+#
+#                            smarthdflex:
+#                                name: "SmartView HD Flex (addon)"
+#                                code: "smarthdflex"
+#                                enabled: true
+#                                short_description: "Bring all your favorite smartphone apps onto the iDrive screen, with wireless mirroring for iOS and Android. Enjoy improved navigation or great entertainment options with Google Maps, Waze, Netflix and more."
+#                                description: "Bring all your favorite smartphone apps onto the iDrive screen, with wireless mirroring for iOS and Android. Enjoy improved navigation or great entertainment options with Google Maps, Waze, Netflix and more."
+#                                main_taxon: "taxone_multimedia"
+#                                channels:
+#                                     - "addons"
+#                                shipping_required: true
+#                                price: 25000
+#                                original_price: 25000
+#                                amount: 25
+#                                installation_time: "2 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: false
+#                                vincheckserviceId: 10
+#                                meta_keywords: "smarthdflex"
+#                                meta_descriptions: "Add improved park assist features to your ModMyNav kit with this front camera for BMW. The camera module mounts discreetly in your vehicle’s front grill, and the picture from the camera is displayed on your BMW’s dashboard screen."
+#                                slug: "smarthdflex"
+#                                taxonDescription: "long textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong text"
+#
+#                            AUX port:
+#                                name: "AUX_port (addon)"
+#                                code: "aux_port"
+#                                enabled: true
+#                                short_description: "Get more out of your E6x or E9x BMW with the smaller 6 factory screen. This high-resolution 8.8 replacement screen is a perfect fit for your BMW, and has the same 1280×480 screen resolution found in more recent BMWs.
+#                                                    This kit adds compatibility with our smartphone mirroring, content streaming and park assist retrofits, otherwise unavailable to owners of older vehicles."
+#                                description: "Our HD Screen in a drop-in replacement for the smaller 6 screen found in pre-2009 E60/E61/E63/E64 and E90/E91/E92/E93 BMWs with a CCC or M‑ASK head unit. This larger 8.8, 1280×480 screen matches those found in many of the latest BMWs, and is carefully designed to fit your dashboard perfectly.
+#                                              The larger screen is ideal for multimedia consumption or for use with a park assist camera, when the smaller screen can be difficult to see. For greater visibility in direct sunlight, the screen does not feature the plastic shield found in front of older factory iDrive displays.
+#                                              To extend the capabilities of your iDrive, this screen also includes our HD interface, adding compatibility with our range of optional accessories. Add iOS and Android smartphone mirroring or stream Apple TV 3 apps for a greater multimedia experience, or take advantage of all the features of our reverse camera, including dynamic on-screen parking lines.
+#                                              HD Screen will be connected to your iDrive through the standard video port and the display will automatically be optimized for the larger screen, maintaining the full functionality of your factory display."
+#                                main_taxon: "taxone_multimedia"
+#                                channels:
+#                                     - "addons"
+#                                shipping_required: true
+#                                price: 18000
+#                                original_price: 18000
+#                                amount: 25
+#                                installation_time: "2 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: false
+#                                vincheckserviceId: 99
+#                                meta_keywords: "AUX_port"
+#                                meta_descriptions: "Add improved park assist features to your ModMyNav kit with this front camera for BMW. The camera module mounts discreetly in your vehicle’s front grill, and the picture from the camera is displayed on your BMW’s dashboard screen."
+#                                slug: "aux_port"
+#                                taxonDescription: "long textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong text"
+#                                image: '/fixture_images/product/AUX_port_59f1c51e85d9b.png'
+#
+#                            toolkit:
+#                                name: "Trim Tool Kit (addon)"
+#                                code: "toolkit"
+#                                enabled: true
+#                                short_description: "Trim Tool Kit"
+#                                description:  "Trim Tool Kit"
+#                                main_taxon: "category"
+#                                channels:
+#                                     - "addons"
+#                                     - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 1499
+#                                original_price: 1499
+#                                amount: 25
+#                                installation_time: "2 hours"
+#                                warehouse: "Orlando Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: false
+#                                vincheckserviceId: 28
+#                                meta_keywords: "Trim Tool Kit"
+#                                meta_descriptions: "Trim Tool Kit"
+#                                slug: "toolkit"
+#                                taxonDescription: "long textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong text"
+#                                image: '/fixture_images/product/15.-Trim-Tool-Kit — копия.png'
+#
+##------------------------------------------- included addons------------------------------------------------------------------
+#                            dynamiclines:
+#                                name: "Dynamic Parking Lines"
+#                                code: "dynamiclines"
+#                                enabled: true
+#                                short_description: "This kit features dynamic parking lines, which bend automatically when the steering wheel is turned."
+#                                description: "This kit features dynamic parking lines, which bend automatically when the steering wheel is turned."
+#                                main_taxon: "taxone_multimedia"
+#                                channels:
+#                                - "addons"
+#                                shipping_required: true
+#                                price: 31000
+#                                original_price: 30000
+#                                amount: 25
+#                                installation_time: "2 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: false
+#                                vincheckserviceId: 0
+#                                meta_keywords: "dynamiclines"
+#                                meta_descriptions: "Add improved park assist features to your ModMyNav kit with this front camera for BMW. The camera module mounts discreetly in your vehicle’s front grill, and the picture from the camera is displayed on your BMW’s dashboard screen."
+#                                slug: "dynamiclines"
+#                                taxonDescription: "long textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong text"
+#
+#                            hd_interface:
+#                                name: "HD interface"
+#                                code: "hd_interface"
+#                                enabled: true
+#                                short_description: "This kit features dynamic parking lines, which bend automatically when the steering wheel is turned."
+#                                description: "This kit features dynamic parking lines, which bend automatically when the steering wheel is turned."
+#                                main_taxon: "taxone_multimedia"
+#                                channels:
+#                                - "addons"
+#                                shipping_required: true
+#                                price: 31000
+#                                original_price: 30000
+#                                amount: 25
+#                                installation_time: "2 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: false
+#                                vincheckserviceId: 0
+#                                meta_keywords: "HD interface"
+#                                meta_descriptions: "Add improved park assist features to your ModMyNav kit with this front camera for BMW. The camera module mounts discreetly in your vehicle’s front grill, and the picture from the camera is displayed on your BMW’s dashboard screen."
+#                                slug: "hd_interface"
+#                                taxonDescription: "long textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong text"
+#
+##------------------------------------------- warranty ------------------------------------------------------------------
+#                            1_years:
+#                                name: "Extended Warranty 1 year"
+#                                code: "1_years"
+#                                enabled: true
+#                                short_description: "Extended Warranty 1 year"
+#                                description: "Extended Warranty 1 year"
+#                                main_taxon: "taxone_multimedia"
+#                                channels:
+#                                - "addons"
+#                                shipping_required: true
+#                                price: 1
+#                                original_price: 1
+#                                amount: 25
+#                                installation_time: "2 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: false
+#                                vincheckserviceId: 0
+#                                meta_keywords: "1_years"
+#                                meta_descriptions: "Add improved park assist features to your ModMyNav kit with this front camera for BMW. The camera module mounts discreetly in your vehicle’s front grill, and the picture from the camera is displayed on your BMW’s dashboard screen."
+#                                slug: "1_years"
+#                                taxonDescription: "long textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong text"
+#
+#                            2_years:
+#                                name: "Extended Warranty 2 year"
+#                                code: "2_years"
+#                                enabled: true
+#                                short_description: "Extended Warranty 2 year"
+#                                description: "Extended Warranty 2 year"
+#                                main_taxon: "taxone_multimedia"
+#                                channels:
+#                                - "addons"
+#                                shipping_required: true
+#                                price: 10000
+#                                original_price: 10000
+#                                amount: 25
+#                                installation_time: "2 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: false
+#                                vincheckserviceId: 0
+#                                meta_keywords: "HD interface"
+#                                meta_descriptions: "Add improved park assist features to your ModMyNav kit with this front camera for BMW. The camera module mounts discreetly in your vehicle’s front grill, and the picture from the camera is displayed on your BMW’s dashboard screen."
+#                                slug: "2_years"
+#                                taxonDescription: "long textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong text"
+#
+#                            3_years:
+#                                name: "Extended Warranty 3 year"
+#                                code: "3_years"
+#                                enabled: true
+#                                short_description: "Extended Warranty 3 year"
+#                                description: "Extended Warranty 3 year"
+#                                main_taxon: "taxone_multimedia"
+#                                channels:
+#                                - "addons"
+#                                shipping_required: true
+#                                price: 15000
+#                                original_price: 15000
+#                                amount: 25
+#                                installation_time: "2 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: false
+#                                vincheckserviceId: 0
+#                                meta_keywords: "3_years"
+#                                meta_descriptions: "Add improved park assist features to your ModMyNav kit with this front camera for BMW. The camera module mounts discreetly in your vehicle’s front grill, and the picture from the camera is displayed on your BMW’s dashboard screen."
+#                                slug: "3_years"
+#                                taxonDescription: "long textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong text"
+#
+#
+##------------------------------------ Products-------------------------------
+#
+#                            mmi_rear_view_camera:
+#                                name: "MMI Rear View Camera"
+#                                code: "mmi_rear_view_camera"
+#                                enabled: true
+#                                short_description: "Get more out of your E6x or E9x BMW with the smaller 6 factory screen. This high-resolution 8.8 replacement screen is a perfect fit for your BMW, and has the same 1280×480 screen resolution found in more recent BMWs.
+#                                                    This kit adds compatibility with our smartphone mirroring, content streaming and park assist retrofits, otherwise unavailable to owners of older vehicles."
+#                                description: "Our HD Screen in a drop-in replacement for the smaller 6 screen found in pre-2009 E60/E61/E63/E64 and E90/E91/E92/E93 BMWs with a CCC or M‑ASK head unit. This larger 8.8, 1280×480 screen matches those found in many of the latest BMWs, and is carefully designed to fit your dashboard perfectly.
+#                                              The larger screen is ideal for multimedia consumption or for use with a park assist camera, when the smaller screen can be difficult to see. For greater visibility in direct sunlight, the screen does not feature the plastic shield found in front of older factory iDrive displays.
+#                                              To extend the capabilities of your iDrive, this screen also includes our HD interface, adding compatibility with our range of optional accessories. Add iOS and Android smartphone mirroring or stream Apple TV 3 apps for a greater multimedia experience, or take advantage of all the features of our reverse camera, including dynamic on-screen parking lines.
+#                                              HD Screen will be connected to your iDrive through the standard video port and the display will automatically be optimized for the larger screen, maintaining the full functionality of your factory display."
+#                                main_taxon: "taxone_park_assists"
+#                                channels:
+#                                      - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 68000
+#                                original_price: 68000
+#                                amount: 25
+#                                installation_time: "2 hours"
+#                                warehouse: "Orlando Warehouse"
+#                                imageRequired: true
+#                                instructionRequired: true
+#                                vincheckserviceId: 6
+#                                meta_keywords: "MMI Rear View Camera"
+#                                meta_descriptions: "Add improved park assist features to your ModMyNav kit with this front camera for BMW. The camera module mounts discreetly in your vehicle’s front grill, and the picture from the camera is displayed on your BMW’s dashboard screen."
+#                                slug: "mmi_rear_view_camera"
+#                                taxonDescription: "long textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong text"
+#                                recomended: true
+#                                addons:
+#                                    - "front"
+#                                    - "smarthdflex"
+#                                    - "toolkit"
+#                                warranty:
+#                                    - "1_years"
+#                                    - "2_years"
+#                                    - "3_years"
+#
+#                                image: '/fixture_images/product/MMI and Oem Integration Rear View Camera.png'
+#
+#                            smart_view_hd_flex_mmi:
+#                                name: "SmartView HD Flex + MMI"
+#                                code: "smart_view_hd_flex_mmi"
+#                                enabled: true
+#                                short_description: "Bring all your favorite smartphone apps onto the iDrive screen, with wireless mirroring for iOS and Android. Enjoy improved navigation or great entertainment options with Google Maps, Waze, Netflix and more."
+#                                description: "Bring all your favorite smartphone apps onto the iDrive screen, with wireless mirroring for iOS and Android. Enjoy improved navigation or great entertainment options with Google Maps, Waze, Netflix and more. Bring all your favorite smartphone apps onto the iDrive screen, with wireless mirroring for iOS and Android. Enjoy improved navigation or great entertainment options with Google Maps, Waze, Netflix and more. Bring all your favorite smartphone apps onto the iDrive screen, with wireless mirroring for iOS and Android. Enjoy improved navigation or great entertainment options with Google Maps, Waze, Netflix and more. Bring all your favorite smartphone apps onto the iDrive screen, with wireless mirroring for iOS and Android. Enjoy improved navigation or great entertainment options with Google Maps, Waze, Netflix and more."
+#                                main_taxon: "taxone_multimedia"
+#                                channels:
+#                                      - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 72500
+#                                original_price: 72500
+#                                amount: 25
+#                                installation_time: "2 hours"
+#                                warehouse: "Orlando Warehouse"
+#                                imageRequired: true
+#                                instructionRequired: true
+#                                vincheckserviceId: 11
+#                                meta_keywords: "SmartView HD Flex + MMI"
+#                                meta_descriptions: "Add improved park assist features to your ModMyNav kit with this front camera for BMW. The camera module mounts discreetly in your vehicle’s front grill, and the picture from the camera is displayed on your BMW’s dashboard screen."
+#                                slug: "smart_view_hd_flex_mmi"
+#                                recomended: true
+#                                taxonDescription: "long textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong text"
+#                                image: '/fixture_images/product/MMI and Oem Integration Rear View Camera.png'
+#
+#                            combox_media_pnp_retrofit:
+#                                name: "Combox Media PnP Retrofit"
+#                                code: "combox_media_pnp_retrofit"
+#                                enabled: true
+#                                short_description: "Bluetooth audio, album art covers and internet access are just a few of the Combox features you can gain with a Combox retrofit kit."
+#                                description: "Bluetooth audio, album art covers and internet access are just a few of the Combox features you can gain with a Combox retrofit kit. Bluetooth audio, album art covers and internet access are just a few of the Combox features you can gain with a Combox retrofit kit. Bluetooth audio, album art covers and internet access are just a few of the Combox features you can gain with a Combox retrofit kit."
+#                                main_taxon: "taxone_multimedia"
+#                                channels:
+#                                      - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 69900
+#                                original_price: 69900
+#                                amount: 25
+#                                installation_time: "2 hours"
+#                                warehouse: "Orlando Warehouse"
+#                                imageRequired: true
+#                                instructionRequired: true
+#                                vincheckserviceId: 13
+#                                meta_keywords: "Combox Media PnP Retrofit"
+#                                meta_descriptions: "Add improved park assist features to your ModMyNav kit with this front camera for BMW. The camera module mounts discreetly in your vehicle’s front grill, and the picture from the camera is displayed on your BMW’s dashboard screen."
+#                                slug: "combox_media_pnp_retrofit"
+#                                taxonDescription: "short textshort textshort textshort textshort text"
+#                                recomended: true
+#                                image: '/fixture_images/product/Combox_Media_PnP_5b1a86fce717d.png'
+#
+#                            key_fob:
+#                                name: "Key fob (Bimmernav)"
+#                                code: "key_fob"
+#                                enabled: true
+#                                short_description: "Bluetooth audio, album art covers and internet access are just a few of the Combox features you can gain with a Combox retrofit kit."
+#                                description: "Bluetooth audio, album art covers and internet access are just a few of the Combox features you can gain with a Combox retrofit kit. Bluetooth audio, album art covers and internet access are just a few of the Combox features you can gain with a Combox retrofit kit. Bluetooth audio, album art covers and internet access are just a few of the Combox features you can gain with a Combox retrofit kit."
+#                                main_taxon: "taxone_convenience"
+#                                channels:
+#                                      - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 35000
+#                                original_price: 35000
+#                                amount: 25
+#                                installation_time: "2 hours"
+#                                warehouse: "Orlando Warehouse"
+#                                imageRequired: true
+#                                instructionRequired: true
+#                                vincheckserviceId: 62
+#                                meta_keywords: "Key fob (Bimmernav)"
+#                                meta_descriptions: "Add improved park assist features to your ModMyNav kit with this front camera for BMW. The camera module mounts discreetly in your vehicle’s front grill, and the picture from the camera is displayed on your BMW’s dashboard screen."
+#                                slug: "key_fob"
+#                                taxonDescription: "long textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong textlong text"
+#                                image: '/fixture_images/product/Remote_Key_Fob___5a0ecc72d143b.jpg'
+#
+#                            remote_key_fob:
+#                                name: "Remote Key Fob"
+#                                code: "remote_key_fob"
+#                                enabled: true
+#                                short_description: "An original BMW remote key fob prepared for each vehicle based on its unique VIN. Ideal as a replacement or a spare."
+#                                description: "An original BMW remote key fob prepared for each vehicle based on its unique VIN. Ideal as a replacement or a spare. An original BMW remote key fob prepared for each vehicle based on its unique VIN. Ideal as a replacement or a spare. An original BMW remote key fob prepared for each vehicle based on its unique VIN. Ideal as a replacement or a spare. An original BMW remote key fob prepared for each vehicle based on its unique VIN. Ideal as a replacement or a spare."
+#                                main_taxon: "taxone_convenience"
+#                                channels:
+#                                      - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 29900
+#                                original_price: 29900
+#                                amount: 25
+#                                installation_time: "2 hours"
+#                                warehouse: "Orlando Warehouse"
+#                                imageRequired: true
+#                                instructionRequired: true
+#                                vincheckserviceId: 74
+#                                meta_keywords: "Remote Key Fob"
+#                                meta_descriptions: "Add improved park assist features to your ModMyNav kit with this front camera for BMW. The camera module mounts discreetly in your vehicle’s front grill, and the picture from the camera is displayed on your BMW’s dashboard screen."
+#                                slug: "remote_key_fob"
+#                                taxonDescription: "long textlong textlong textlongg textlong textlong textlong textlong textlong textlong textlong textlong text"
+#                                image: '/fixture_images/product/Remote_Key_Fob___5a0ecc72d143b.jpg'
+#
+#                            oem_integration_rear_view_camera:
+#                                name: "OEM Integration Rear View Camera"
+#                                code: "oem_integration_rear_view_camera"
+#                                enabled: true
+#                                short_description: "A high-quality reverse camera to add improved park assist to any of our standard kits.
+#                                              The wide-angle lens is built in to a replacement trunk handle that can be easily mounted in your vehicle without any permanent modifications.
+#                                              This backup camera is not a standalone item and requires one of our kits to operate."
+#                                description: "Add improved park assist to any ModMyNav kit with this rear view camera module.
+#                                              The wide-angle lens is fitted in a replacement trunk handle designed to match the factory handle. Easy mounting in the trunk lid means no permanent modification to your vehicle or modification to your exterior.
+#                                              The picture from the camera will be displayed on your factory iDrive screen, or on your ModMyNav HD screen.
+#                                              Pair with one of our HD kits and the rear view camera will activate automatically when shifting into reverse, and feature dynamic on-screen parking lines that bend as you turn the steering wheel. Perfect for parallel parking and fitting into tight spots in the parking lot.
+#                                              Please note that this is not a standalone item, and requires the interface included in one of our kits in order to function."
+#                                main_taxon: "taxone_park_assists"
+#                                channels:
+#                                    - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 18000
+#                                original_price: 18000
+#                                amount: 25
+#                                installation_time: null
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: true
+#                                vincheckserviceId: 9
+#                                meta_keywords: "OEM Integration Rear View Camera"
+#                                meta_descriptions: "Add improved park assist to any ModMyNav kit with this rear view camera module."
+#                                slug: "oem_integration_rear_view_camera"
+#                                recomended: true
+#                                taxonDescription: "long-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long text"
+#                                image: '/fixture_images/product/MMI and Oem Integration Rear View Camera.png'
+#
+#                            CICE63:
+#                                name: "CIC Navigation Retrofit"
+#                                code: "CICE63"
+#                                enabled: true
+#                                short_description: "A high-quality reverse camera to add improved park assist to any of our standard kits.
+#                                              The wide-angle lens is built in to a replacement trunk handle that can be easily mounted in your vehicle without any permanent modifications.
+#                                              This backup camera is not a standalone item and requires one of our kits to operate."
+#                                description: "Add improved park assist to any ModMyNav kit with this rear view camera module.
+#                                              The wide-angle lens is fitted in a replacement trunk handle designed to match the factory handle. Easy mounting in the trunk lid means no permanent modification to your vehicle or modification to your exterior.
+#                                              The picture from the camera will be displayed on your factory iDrive screen, or on your ModMyNav HD screen.
+#                                              Pair with one of our HD kits and the rear view camera will activate automatically when shifting into reverse, and feature dynamic on-screen parking lines that bend as you turn the steering wheel. Perfect for parallel parking and fitting into tight spots in the parking lot.
+#                                              Please note that this is not a standalone item, and requires the interface included in one of our kits in order to function."
+#                                main_taxon: "taxone_navigation_container"
+#                                channels:
+#                                    - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 18000
+#                                original_price: 18000
+#                                amount: 25
+#                                installation_time: null
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: true
+#                                vincheckserviceId: 96
+#                                meta_keywords: "OEM Integration Rear View Camera"
+#                                meta_descriptions: "Add improved park assist to any ModMyNav kit with this rear view camera module."
+#                                slug: "CICE63"
+#                                recomended: false
+#                                isContainer: true
+#                                taxonDescription: "long-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long text"
+#                                image: '/fixture_images/product/MMI and Oem Integration Rear View Camera.png'
+#
+#                            NR001:
+#                                name: "CIC Navigation Retrofit"
+#                                code: "NR001"
+#                                enabled: true
+#                                short_description: "A high-quality reverse camera to add improved park assist to any of our standard kits.
+#                                              The wide-angle lens is built in to a replacement trunk handle that can be easily mounted in your vehicle without any permanent modifications.
+#                                              This backup camera is not a standalone item and requires one of our kits to operate."
+#                                description: "Add improved park assist to any ModMyNav kit with this rear view camera module.
+#                                              The wide-angle lens is fitted in a replacement trunk handle designed to match the factory handle. Easy mounting in the trunk lid means no permanent modification to your vehicle or modification to your exterior.
+#                                              The picture from the camera will be displayed on your factory iDrive screen, or on your ModMyNav HD screen.
+#                                              Pair with one of our HD kits and the rear view camera will activate automatically when shifting into reverse, and feature dynamic on-screen parking lines that bend as you turn the steering wheel. Perfect for parallel parking and fitting into tight spots in the parking lot.
+#                                              Please note that this is not a standalone item, and requires the interface included in one of our kits in order to function."
+#                                main_taxon: "taxone_navigation_container"
+#                                channels:
+#                                    - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 18000
+#                                original_price: 18000
+#                                amount: 25
+#                                installation_time: null
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: true
+#                                vincheckserviceId: 97
+#                                meta_keywords: "OEM Integration Rear View Camera"
+#                                meta_descriptions: "Add improved park assist to any ModMyNav kit with this rear view camera module."
+#                                slug: "NR001"
+#                                recomended: false
+#                                isContainer: true
+#                                taxonDescription: "long-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long text"
+#                                image: '/fixture_images/product/MMI and Oem Integration Rear View Camera.png'
+#
+#                            CICE60:
+#                                name: "CIC Navigation Retrofit"
+#                                code: "CICE60"
+#                                enabled: true
+#                                short_description: "A high-quality reverse camera to add improved park assist to any of our standard kits.
+#                                              The wide-angle lens is built in to a replacement trunk handle that can be easily mounted in your vehicle without any permanent modifications.
+#                                              This backup camera is not a standalone item and requires one of our kits to operate."
+#                                description: "Add improved park assist to any ModMyNav kit with this rear view camera module.
+#                                              The wide-angle lens is fitted in a replacement trunk handle designed to match the factory handle. Easy mounting in the trunk lid means no permanent modification to your vehicle or modification to your exterior.
+#                                              The picture from the camera will be displayed on your factory iDrive screen, or on your ModMyNav HD screen.
+#                                              Pair with one of our HD kits and the rear view camera will activate automatically when shifting into reverse, and feature dynamic on-screen parking lines that bend as you turn the steering wheel. Perfect for parallel parking and fitting into tight spots in the parking lot.
+#                                              Please note that this is not a standalone item, and requires the interface included in one of our kits in order to function."
+#                                main_taxon: "taxone_navigation_container"
+#                                channels:
+#                                    - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 18000
+#                                original_price: 18000
+#                                amount: 25
+#                                installation_time: null
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: true
+#                                vincheckserviceId: 98
+#                                meta_keywords: "OEM Integration Rear View Camera"
+#                                meta_descriptions: "Add improved park assist to any ModMyNav kit with this rear view camera module."
+#                                slug: "CICE60"
+#                                recomended: false
+#                                isContainer: true
+#                                taxonDescription: "long-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long text"
+#                                image: '/fixture_images/product/MMI and Oem Integration Rear View Camera.png'
+#
+#                            vivid_screen_sv_hd_flex:
+#                                name: "VividScreen + SV HD Flex"
+#                                code: "vivid_screen_sv_hd_flex"
+#                                enabled: true
+#                                short_description: "Get more out of your E6x or E9x BMW with the smaller 6 factory screen. This high-resolution 8.8 replacement screen is a perfect fit for your BMW, and has the same 1280×480 screen resolution found in more recent BMWs.
+#                                                    This kit adds compatibility with our smartphone mirroring, content streaming and park assist retrofits, otherwise unavailable to owners of older vehicles."
+#                                description: "Our HD Screen in a drop-in replacement for the smaller 6 screen found in pre-2009 E60/E61/E63/E64 and E90/E91/E92/E93 BMWs with a CCC or M‑ASK head unit. This larger 8.8, 1280×480 screen matches those found in many of the latest BMWs, and is carefully designed to fit your dashboard perfectly.
+#                                              The larger screen is ideal for multimedia consumption or for use with a park assist camera, when the smaller screen can be difficult to see. For greater visibility in direct sunlight, the screen does not feature the plastic shield found in front of older factory iDrive displays.
+#                                              To extend the capabilities of your iDrive, this screen also includes our HD interface, adding compatibility with our range of optional accessories. Add iOS and Android smartphone mirroring or stream Apple TV 3 apps for a greater multimedia experience, or take advantage of all the features of our reverse camera, including dynamic on-screen parking lines.
+#                                              HD Screen will be connected to your iDrive through the standard video port and the display will automatically be optimized for the larger screen, maintaining the full functionality of your factory display."
+#                                main_taxon: "taxone_multimedia"
+#                                channels:
+#                                   - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 58000
+#                                original_price: 58000
+#                                amount: 25
+#                                installation_time: "3 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: true
+#                                vincheckserviceId: 27
+#                                meta_keywords: "VividScreen + SV HD Flex"
+#                                meta_descriptions: "The larger screen is ideal for multimedia consumption or for use with a park assist camera, when the smaller screen can be difficult to see."
+#                                slug: "vivid_screen_sv_hd_flex"
+#                                recomended: true
+#                                taxonDescription: "long-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long text"
+#                                image: '/fixture_images/product/MMI and Oem Integration Rear View Camera.png'
+#
+#                            CarPlayG01:
+#                                name: "CarPlay Activation"
+#                                code: "CarPlayG01"
+#                                enabled: true
+#                                short_description: "Short CarPlay Activation"
+#                                description: "Description for CarPlay Activation and some text "
+#                                main_taxon: "taxone_multimedia_container"
+#                                channels:
+#                                   - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 58000
+#                                original_price: 58000
+#                                amount: 25
+#                                installation_time: "3 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: true
+#                                vincheckserviceId: 102
+#                                meta_keywords: "CarPlay Activation"
+#                                meta_descriptions: "meta_descriptions for CarPlay Activation"
+#                                slug: "CarPlayG01"
+#                                recomended: false
+#                                isContainer: true
+#                                taxonDescription: "long-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long text"
+#                                image: '/fixture_images/product/MMI and Oem Integration Rear View Camera.png'
+#
+#                            CarPlayF20:
+#                                name: "CarPlay Activation"
+#                                code: "CarPlayF20"
+#                                enabled: true
+#                                short_description: "Short CarPlay Activation"
+#                                description: "Description for CarPlay Activation and some text "
+#                                main_taxon: "taxone_multimedia_container"
+#                                channels:
+#                                   - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 58000
+#                                original_price: 58000
+#                                amount: 25
+#                                installation_time: "3 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: true
+#                                vincheckserviceId: 103
+#                                meta_keywords: "CarPlay Activation"
+#                                meta_descriptions: "meta_descriptions for CarPlay Activation"
+#                                slug: "CarPlayF20"
+#                                recomended: false
+#                                isContainer: true
+#                                taxonDescription: "long-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long text"
+#                                image: '/fixture_images/product/MMI and Oem Integration Rear View Camera.png'
+#
+#                            CarPlayF22:
+#                                name: "CarPlay Activation"
+#                                code: "CarPlayF22"
+#                                enabled: true
+#                                short_description: "Short CarPlay Activation"
+#                                description: "Description for CarPlay Activation and some text "
+#                                main_taxon: "taxone_multimedia_container"
+#                                channels:
+#                                   - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 58000
+#                                original_price: 58000
+#                                amount: 25
+#                                installation_time: "3 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: true
+#                                vincheckserviceId: 104
+#                                meta_keywords: "CarPlay Activation"
+#                                meta_descriptions: "meta_descriptions for CarPlay Activation"
+#                                slug: "CarPlayF22"
+#                                recomended: false
+#                                isContainer: true
+#                                taxonDescription: "long-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long text"
+#                                image: '/fixture_images/product/MMI and Oem Integration Rear View Camera.png'
+#
+#                            CarPlayF32:
+#                                name: "CarPlay Activation"
+#                                code: "CarPlayF32"
+#                                enabled: true
+#                                short_description: "Short CarPlay Activation"
+#                                description: "Description for CarPlay Activation and some text "
+#                                main_taxon: "taxone_multimedia_container"
+#                                channels:
+#                                   - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 58000
+#                                original_price: 58000
+#                                amount: 25
+#                                installation_time: "3 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: true
+#                                vincheckserviceId: 105
+#                                meta_keywords: "CarPlay Activation"
+#                                meta_descriptions: "meta_descriptions for CarPlay Activation"
+#                                slug: "CarPlayF32"
+#                                recomended: false
+#                                isContainer: true
+#                                taxonDescription: "long-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long text"
+#                                image: '/fixture_images/product/MMI and Oem Integration Rear View Camera.png'
+#
+#                            CarPlayF25:
+#                                name: "CarPlay Activation"
+#                                code: "CarPlayF25"
+#                                enabled: true
+#                                short_description: "Short CarPlay Activation"
+#                                description: "Description for CarPlay Activation and some text "
+#                                main_taxon: "taxone_multimedia_container"
+#                                channels:
+#                                   - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 58000
+#                                original_price: 58000
+#                                amount: 25
+#                                installation_time: "3 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: true
+#                                vincheckserviceId: 106
+#                                meta_keywords: "CarPlay Activation"
+#                                meta_descriptions: "meta_descriptions for CarPlay Activation"
+#                                slug: "CarPlayF25"
+#                                recomended: false
+#                                isContainer: true
+#                                taxonDescription: "long-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long text"
+#                                image: '/fixture_images/product/MMI and Oem Integration Rear View Camera.png'
+#
+#                            CarPlayF26:
+#                                name: "CarPlay Activation"
+#                                code: "CarPlayF26"
+#                                enabled: true
+#                                short_description: "Short CarPlay Activation"
+#                                description: "Description for CarPlay Activation and some text "
+#                                main_taxon: "taxone_multimedia_container"
+#                                channels:
+#                                   - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 58000
+#                                original_price: 58000
+#                                amount: 25
+#                                installation_time: "3 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: true
+#                                vincheckserviceId: 107
+#                                meta_keywords: "CarPlay Activation"
+#                                meta_descriptions: "meta_descriptions for CarPlay Activation"
+#                                slug: "CarPlayF26"
+#                                recomended: false
+#                                isContainer: true
+#                                taxonDescription: "long-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long text"
+#                                image: '/fixture_images/product/MMI and Oem Integration Rear View Camera.png'
+#
+#                            CarPlayF06:
+#                                name: "CarPlay Activation"
+#                                code: "CarPlayF06"
+#                                enabled: true
+#                                short_description: "Short CarPlay Activation"
+#                                description: "Description for CarPlay Activation and some text "
+#                                main_taxon: "taxone_multimedia_container"
+#                                channels:
+#                                   - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 58000
+#                                original_price: 58000
+#                                amount: 25
+#                                installation_time: "3 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: true
+#                                vincheckserviceId: 108
+#                                meta_keywords: "CarPlay Activation"
+#                                meta_descriptions: "meta_descriptions for CarPlay Activation"
+#                                slug: "CarPlayF06"
+#                                recomended: false
+#                                isContainer: true
+#                                taxonDescription: "long-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long text"
+#                                image: '/fixture_images/product/MMI and Oem Integration Rear View Camera.png'
+#
+#                            CarPlayG30:
+#                                name: "CarPlay Activation"
+#                                code: "CarPlayG30"
+#                                enabled: true
+#                                short_description: "Short CarPlay Activation"
+#                                description: "Description for CarPlay Activation and some text "
+#                                main_taxon: "taxone_multimedia_container"
+#                                channels:
+#                                   - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 58000
+#                                original_price: 58000
+#                                amount: 25
+#                                installation_time: "3 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: true
+#                                vincheckserviceId: 109
+#                                meta_keywords: "CarPlay Activation"
+#                                meta_descriptions: "meta_descriptions for CarPlay Activation"
+#                                slug: "CarPlayG30"
+#                                recomended: false
+#                                isContainer: true
+#                                taxonDescription: "long-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long text"
+#                                image: '/fixture_images/product/MMI and Oem Integration Rear View Camera.png'
+#
+#                            CarPlayG11:
+#                                name: "CarPlay Activation"
+#                                code: "CarPlayG11"
+#                                enabled: true
+#                                short_description: "Short CarPlay Activation"
+#                                description: "Description for CarPlay Activation and some text "
+#                                main_taxon: "taxone_multimedia_container"
+#                                channels:
+#                                   - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 58000
+#                                original_price: 58000
+#                                amount: 25
+#                                installation_time: "3 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: true
+#                                vincheckserviceId: 110
+#                                meta_keywords: "CarPlay Activation"
+#                                meta_descriptions: "meta_descriptions for CarPlay Activation"
+#                                slug: "CarPlayG11"
+#                                recomended: false
+#                                isContainer: true
+#                                taxonDescription: "long-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long text"
+#                                image: '/fixture_images/product/MMI and Oem Integration Rear View Camera.png'
+#
+#                            front_camera:
+#                                name: "Front Camera + MMI"
+#                                code: "front_camera"
+#                                enabled: true
+#                                short_description: "The wide-angle, high-quality lens provides a detailed and full-color image and corrects perspective - even at night when visibility decreases. With the front view camera, you'll never have to worry about what's ahead!"
+#                                description: "The wide-angle, high-quality lens provides a detailed and full-color image and corrects perspective - even at night when visibility decreases. With the front view camera, you'll never have to worry about what's ahead! The wide-angle, high-quality lens provides a detailed and full-color image and corrects perspective - even at night when visibility decreases. With the front view camera, you'll never have to worry about what's ahead! The wide-angle, high-quality lens provides a detailed and full-color image and corrects perspective - even at night when visibility decreases. With the front view camera, you'll never have to worry about what's ahead!"
+#                                main_taxon: "taxone_park_assists"
+#                                channels:
+#                                     - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 54900
+#                                original_price: 54900
+#                                amount: 25
+#                                installation_time: "2 hours"
+#                                warehouse: "Warsaw Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: false
+#                                vincheckserviceId: 25
+#                                meta_keywords: "Front Camera"
+#                                meta_descriptions: "Add improved park assist features to your ModMyNav kit with this front camera for BMW. The camera module mounts discreetly in your vehicle’s front grill, and the picture from the camera is displayed on your BMW’s dashboard screen."
+#                                slug: "front_camera"
+#                                taxonDescription: "short textshort textshort textshort textshort text"
+#                                image: '/fixture_images/product/Front View Cam1.png'
+#
+#                            front_view_camera_kit:
+#                                name: "MMI Front View Camera"
+#                                code: "front_view_camera_kit"
+#                                enabled: true
+#                                short_description: "Get more out of your E6x or E9x BMW with the smaller 6 factory screen. This high-resolution 8.8 replacement screen is a perfect fit for your BMW, and has the same 1280×480 screen resolution found in more recent BMWs.
+#                                                    This kit adds compatibility with our smartphone mirroring, content streaming and park assist retrofits, otherwise unavailable to owners of older vehicles."
+#                                description: "Our HD Screen in a drop-in replacement for the smaller 6 screen found in pre-2009 E60/E61/E63/E64 and E90/E91/E92/E93 BMWs with a CCC or M‑ASK head unit. This larger 8.8, 1280×480 screen matches those found in many of the latest BMWs, and is carefully designed to fit your dashboard perfectly.
+#                                              The larger screen is ideal for multimedia consumption or for use with a park assist camera, when the smaller screen can be difficult to see. For greater visibility in direct sunlight, the screen does not feature the plastic shield found in front of older factory iDrive displays.
+#                                              To extend the capabilities of your iDrive, this screen also includes our HD interface, adding compatibility with our range of optional accessories. Add iOS and Android smartphone mirroring or stream Apple TV 3 apps for a greater multimedia experience, or take advantage of all the features of our reverse camera, including dynamic on-screen parking lines.
+#                                              HD Screen will be connected to your iDrive through the standard video port and the display will automatically be optimized for the larger screen, maintaining the full functionality of your factory display."
+#                                main_taxon: "taxone_navigation"
+#                                channels:
+#                                    - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 48000
+#                                original_price: 48000
+#                                amount: 25
+#                                installation_time: "2 hours"
+#                                warehouse: "Orlando Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: false
+#                                vincheckserviceId: 20
+#                                meta_keywords: "Front View Camera Kit"
+#                                meta_descriptions: "Add improved park assist features to your ModMyNav kit with this front camera for BMW. The camera module mounts discreetly in your vehicle’s front grill, and the picture from the camera is displayed on your BMW’s dashboard screen."
+#                                slug: "front_view_camera_kit"
+#                                taxonDescription: "long-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long textlong-long text"
+#                                image: '/fixture_images/product/Front_View_Camer_55cc9b31f3faa.jpg'
+#
+#                            oem_rear_view_camera_kit:
+#                                name: "OEM Rear View Camera"
+#                                code: "oem_rear_view_camera_kit"
+#                                enabled: true
+#                                short_description: "Get more out of your E6x or E9x BMW with the smaller 6 factory screen. This high-resolution 8.8 replacement screen is a perfect fit for your BMW, and has the same 1280×480 screen resolution found in more recent BMWs.
+#                                                    This kit adds compatibility with our smartphone mirroring, content streaming and park assist retrofits, otherwise unavailable to owners of older vehicles."
+#                                description: "Our HD Screen in a drop-in replacement for the smaller 6 screen found in pre-2009 E60/E61/E63/E64 and E90/E91/E92/E93 BMWs with a CCC or M‑ASK head unit. This larger 8.8, 1280×480 screen matches those found in many of the latest BMWs, and is carefully designed to fit your dashboard perfectly.
+#                                              The larger screen is ideal for multimedia consumption or for use with a park assist camera, when the smaller screen can be difficult to see. For greater visibility in direct sunlight, the screen does not feature the plastic shield found in front of older factory iDrive displays.
+#                                              To extend the capabilities of your iDrive, this screen also includes our HD interface, adding compatibility with our range of optional accessories. Add iOS and Android smartphone mirroring or stream Apple TV 3 apps for a greater multimedia experience, or take advantage of all the features of our reverse camera, including dynamic on-screen parking lines.
+#                                              HD Screen will be connected to your iDrive through the standard video port and the display will automatically be optimized for the larger screen, maintaining the full functionality of your factory display."
+#                                main_taxon: "taxone_park_assists"
+#                                channels:
+#                                      - "bimmer_tech"
+#                                shipping_required: true
+#                                price: 68000
+#                                original_price: 68000
+#                                amount: 25
+#                                installation_time: "2 hours"
+#                                warehouse: "Orlando Warehouse"
+#                                imageRequired: false
+#                                instructionRequired: false
+#                                vincheckserviceId: 14
+#                                meta_keywords: "OEM Rear View Camera"
+#                                meta_descriptions: "Add improved park assist features to your ModMyNav kit with this front camera for BMW. The camera module mounts discreetly in your vehicle’s front grill, and the picture from the camera is displayed on your BMW’s dashboard screen."
+#                                slug: "oem_rear_view_camera_kit"
+#                                taxonDescription: "long textlong textlong textlongg textlong textlong textlong textlong textlong textlong textlong textlong text"
+#                                addons:
+#                                    - "front"
+#                                    - "aux_port"
+#                                image: '/fixture_images/product/MMI and Oem Integration Rear View Camera.png'
+#
+### Speakers
+##                            Alpha_One_A90_Woofer_2_Ohm:
+##                                name: "Alpha One A90 Woofer 2 Ohm"
+##                                code: "Alpha_One_A90_Woofer_2_Ohm"
+##                                enabled: true
+##                                short_description: "Alpha_One_A90_Woofer_2_Ohm"
+##                                description:  "Alpha_One_A90_Woofer_2_Ohm"
+##                                main_taxon: "taxone_multimedia"
+##                                channels:
+##                                     - "speakers"
+##                                shipping_required: true
+##                                price: 27900
+##                                original_price: 27900
+##                                amount: 25
+##                                installation_time: "2 hours"
+##                                warehouse: "Orlando Warehouse"
+##                                imageRequired: false
+##                                instructionRequired: false
+##                                vincheckserviceId: 78
+##                                meta_keywords: "Alpha One A90 Woofer 2 Ohm"
+##                                meta_descriptions: "Alpha One A90 Woofer 2 Ohm"
+##                                slug: "Alpha_One_A90_Woofer_2_Ohm"
+##
+##                            Alpha_One_A90_Woofer_4_Ohm:
+##                                name: "Alpha One A90 Woofer 4 Ohm"
+##                                code: "Alpha_One_A90_Woofer_4_Ohm"
+##                                enabled: true
+##                                short_description: "Alpha_One_A90_Woofer_4_Ohm"
+##                                description:  "Alpha_One_A90_Woofer_4_Ohm"
+##                                main_taxon: "taxone_multimedia"
+##                                channels:
+##                                      - "speakers"
+##                                shipping_required: true
+##                                price: 27900
+##                                original_price: 27900
+##                                amount: 25
+##                                installation_time: "2 hours"
+##                                warehouse: "Orlando Warehouse"
+##                                imageRequired: false
+##                                instructionRequired: false
+##                                vincheckserviceId: 79
+##                                meta_keywords: "Alpha One A90 Woofer 4 Ohm"
+##                                meta_descriptions: "Alpha One A90 Woofer 4 Ohm"
+##                                slug: "Alpha_One_A90_Woofer_4_Ohm"
+##
+##                            Alpha_One_A90_Woofer_7_Ohm:
+##                                name: "Alpha One A90 Woofer 7 Ohm"
+##                                code: "Alpha_One_A90_Woofer_7_Ohm"
+##                                enabled: true
+##                                short_description: "Alpha_One_A90_Woofer_7_Ohm"
+##                                description:  "Alpha_One_A90_Woofer_7_Ohm"
+##                                main_taxon: "taxone_multimedia"
+##                                channels:
+##                                      - "speakers"
+##                                shipping_required: true
+##                                price: 27900
+##                                original_price: 27900
+##                                amount: 25
+##                                installation_time: "2 hours"
+##                                warehouse: "Orlando Warehouse"
+##                                imageRequired: false
+##                                instructionRequired: false
+##                                vincheckserviceId: 80
+##                                meta_keywords: "Alpha One A90 Woofer 7 Ohm"
+##                                meta_descriptions: "Alpha One A90 Woofer 7 Ohm"
+##                                slug: "Alpha_One_A90_Woofer_7_Ohm"
+##
+##                            Alpha_One_A40_Midrange:
+##                                name: "Alpha One A40 Midrange"
+##                                code: "Alpha_One_A40_Midrange"
+##                                enabled: true
+##                                short_description: "Alpha One A40 Midrange"
+##                                description:  "Alpha One A40 Midrange"
+##                                main_taxon: "taxone_multimedia"
+##                                channels:
+##                                      - "speakers"
+##                                shipping_required: true
+##                                price: 9900
+##                                original_price: 9900
+##                                amount: 25
+##                                installation_time: "2 hours"
+##                                warehouse: "Orlando Warehouse"
+##                                imageRequired: false
+##                                instructionRequired: false
+##                                vincheckserviceId: 81
+##                                meta_keywords: "Alpha One A40 Midrange"
+##                                meta_descriptions: "Alpha One A40 Midrange"
+##                                slug: "Alpha_One_A40_Midrange"
+##
+##                            Alpha_One_A45_Midrange:
+##                                name: "Alpha One A45 Midrange"
+##                                code: "Alpha_One_A45_Midrange"
+##                                enabled: true
+##                                short_description: "Alpha One A45 Midrange"
+##                                description:  "Alpha One A45 Midrange"
+##                                main_taxon: "taxone_multimedia"
+##                                channels:
+##                                       - "speakers"
+##                                shipping_required: true
+##                                price: 9900
+##                                original_price: 9900
+##                                amount: 25
+##                                installation_time: "2 hours"
+##                                warehouse: "Orlando Warehouse"
+##                                imageRequired: false
+##                                instructionRequired: false
+##                                vincheckserviceId: 82
+##                                meta_keywords: "Alpha One A45 Midrange"
+##                                meta_descriptions: "Alpha One A45 Midrange"
+##                                slug: "Alpha_One_A45_Midrange"
+##
+##                            Alpha_One_A10_Tweeter_Round:
+##                                name: "Alpha One A10 Tweeter Round"
+##                                code: "Alpha_One_A10_Tweeter_Round"
+##                                enabled: true
+##                                short_description: "Alpha One A10 Tweeter Round"
+##                                description:  "Alpha One A10 Tweeter Round"
+##                                main_taxon: "taxone_multimedia"
+##                                channels:
+##                                      - "speakers"
+##                                shipping_required: true
+##                                price: 4900
+##                                original_price: 4900
+##                                amount: 25
+##                                installation_time: "2 hours"
+##                                warehouse: "Orlando Warehouse"
+##                                imageRequired: false
+##                                instructionRequired: false
+##                                vincheckserviceId: 83
+##                                meta_keywords: "Alpha One A10 Tweeter Round"
+##                                meta_descriptions: "Alpha One A10 Tweeter Round"
+##                                slug: "Alpha_One_A10_Tweeter_Round"
+##
+##                            Alpha_One_A10_Tweeter_Oval:
+##                                name: "Alpha One A10 Tweeter Oval"
+##                                code: "Alpha_One_A10_Tweeter Oval"
+##                                enabled: true
+##                                short_description: "Alpha One A10 Tweeter Oval"
+##                                description:  "Alpha One A10 Tweeter Oval"
+##                                main_taxon: "taxone_multimedia"
+##                                channels:
+##                                       - "speakers"
+##                                shipping_required: true
+##                                price: 4900
+##                                original_price: 4900
+##                                amount: 25
+##                                installation_time: "2 hours"
+##                                warehouse: "Orlando Warehouse"
+##                                imageRequired: false
+##                                instructionRequired: false
+##                                vincheckserviceId: 84
+##                                meta_keywords: "Alpha One A10 Tweeter Oval"
+##                                meta_descriptions: "Alpha One A10 Tweeter Oval"
+##                                slug: "Alpha_One_A10_Tweeter_Oval"
+##
+##                            PP86DSP_AMP_DSP:
+##                                name: "PP86DSP AMP DSP"
+##                                code: "PP86DSP_AMP_DSP"
+##                                enabled: true
+##                                short_description: "PP86DSP AMP/DSP"
+##                                description:  "PP86DSP AMP/DSP"
+##                                main_taxon: "taxone_multimedia"
+##                                channels:
+##                                      - "speakers"
+##                                shipping_required: true
+##                                price: 109900
+##                                original_price: 109900
+##                                amount: 25
+##                                installation_time: "2 hours"
+##                                warehouse: "Orlando Warehouse"
+##                                imageRequired: false
+##                                instructionRequired: false
+##                                vincheckserviceId: 21
+##                                meta_keywords: "PP86DSP AMP/DSP"
+##                                meta_descriptions: "PP86DSP AMP/DSP"
+##                                slug: "PP86DSP_AMP_DSP"
+##
+##                            PP86DSP_AMP_DSP_1:
+##                                name: "PP86DSP AMP DSP"
+##                                code: "PP86DSP_AMP_DSP1"
+##                                enabled: true
+##                                short_description: "PP86DSP AMP/DSP"
+##                                description:  "PP86DSP AMP/DSP"
+##                                main_taxon: "taxone_multimedia"
+##                                channels:
+##                                       - "speakers"
+##                                shipping_required: true
+##                                price: 89900
+##                                original_price: 109900
+##                                amount: 25
+##                                installation_time: "2 hours"
+##                                warehouse: "Orlando Warehouse"
+##                                imageRequired: false
+##                                instructionRequired: false
+##                                vincheckserviceId: 19
+##                                meta_keywords: "PP86DSP AMP/DSP"
+##                                meta_descriptions: "PP86DSP AMP/DSP"
+##                                slug: "PP86DSP_AMP_DSP_1"
+##
+##                            PP86DSP_AMP_DSP_2:
+##                                name: "PP86DSP AMP DSP"
+##                                code: "PP86DSP_AMP_DSP2"
+##                                enabled: true
+##                                short_description: "PP86DSP AMP/DSP"
+##                                description:  "PP86DSP AMP/DSP"
+##                                main_taxon: "taxone_multimedia"
+##                                channels:
+##                                     - "speakers"
+##                                shipping_required: true
+##                                price: 104900
+##                                original_price: 109900
+##                                amount: 25
+##                                installation_time: "2 hours"
+##                                warehouse: "Orlando Warehouse"
+##                                imageRequired: false
+##                                instructionRequired: false
+##                                vincheckserviceId: 87
+##                                meta_keywords: "PP86DSP AMP/DSP"
+##                                meta_descriptions: "PP86DSP AMP/DSP"
+##                                slug: "PP86DSP_AMP_DSP_2"
+##
+##                            Active_Sound_Design_Deactivation:
+##                                name: "Active Sound Design Deactivation"
+##                                code: "Active_Sound_Design_Deactivation"
+##                                enabled: true
+##                                short_description: "Active Sound Design Deactivation"
+##                                description:  "Active Sound Design Deactivation"
+##                                main_taxon: "taxone_multimedia"
+##                                channels:
+##                                     - "speakers"
+##                                shipping_required: true
+##                                price: 6500
+##                                original_price: 6500
+##                                amount: 25
+##                                installation_time: "2 hours"
+##                                warehouse: "Orlando Warehouse"
+##                                imageRequired: false
+##                                instructionRequired: false
+##                                vincheckserviceId: 94
+##                                meta_keywords: "Active Sound Design Deactivation"
+##                                meta_descriptions: "Active Sound Design Deactivation"
+##                                slug: "Active_Sound_Design_Deactivation"
+#
+### Idrive
+##                            compass:
+##                                name: "compass"
+##                                code: "compass"
+##                                enabled: true
+##                                short_description: "Do you have a good sense of direction? Or do you have a habit of losing your"
+##                                description:  "Do you have a good sense of direction? Or do you have a habit of losing your bearings on the road? We can activate a compass option on your iDrive menu, and you’ll never have to wonder where you’re heading."
+##                                main_taxon: "category"
+##                                channels:
+##                                     - "idrive"
+##                                shipping_required: true
+##                                price: 3500
+##                                original_price: 3500
+##                                amount: 100
+##                                installation_time: "2 hours"
+##                                warehouse: "Orlando Warehouse"
+##                                imageRequired: false
+##                                instructionRequired: false
+##                                vincheckserviceId: 42
+##                                meta_keywords: "Do you have a good sense of direction"
+##                                meta_descriptions: "Do you have a good sense of direction"
+##                                slug: "compass"
+##
+##                            ringtones:
+##                                name: "ringtones"
+##                                code: "ringtones"
+##                                enabled: true
+##                                short_description: "Do you have a good sense of direction? Or do you have a habit of losing your"
+##                                description:  "Do you have a good sense of direction? Or do you have a habit of losing your bearings on the road? We can activate a compass option on your iDrive menu, and you’ll never have to wonder where you’re heading."
+##                                main_taxon: "category"
+##                                channels:
+##                                     - "idrive"
+##                                shipping_required: true
+##                                price: 4500
+##                                original_price: 4500
+##                                amount: 100
+##                                installation_time: "2 hours"
+##                                warehouse: "Orlando Warehouse"
+##                                imageRequired: false
+##                                instructionRequired: false
+##                                vincheckserviceId: 40
+##                                meta_keywords: "Do you have a good sense of direction"
+##                                meta_descriptions: "Do you have a good sense of direction"
+##                                slug: "ringtones"
+##
+##                            remote_trunk_open:
+##                                name: "Remote Trunk Open"
+##                                code: "remote_trunk_open"
+##                                enabled: true
+##                                short_description: "Do you have a good sense of direction? Or do you have a habit of losing your"
+##                                description:  "Do you have a good sense of direction? Or do you have a habit of losing your bearings on the road? We can activate a compass option on your iDrive menu, and you’ll never have to wonder where you’re heading."
+##                                main_taxon: "category"
+##                                channels:
+##                                     - "idrive"
+##                                shipping_required: true
+##                                price: 4500
+##                                original_price: 4500
+##                                amount: 100
+##                                installation_time: "2 hours"
+##                                warehouse: "Orlando Warehouse"
+##                                imageRequired: false
+##                                instructionRequired: false
+##                                vincheckserviceId: 54
+##                                meta_keywords: "Do you have a good sense of direction"
+##                                meta_descriptions: "Do you have a good sense of direction"
+##                                slug: "remote_trunk_open"
+##
+##                            digital_speedometer:
+##                                name: "Remote Trunk Open"
+##                                code: "digital_speedometer"
+##                                enabled: true
+##                                short_description: "Do you have a good sense of direction? Or do you have a habit of losing your"
+##                                description:  "Do you have a good sense of direction? Or do you have a habit of losing your bearings on the road? We can activate a compass option on your iDrive menu, and you’ll never have to wonder where you’re heading."
+##                                main_taxon: "category"
+##                                channels:
+##                                     - "idrive"
+##                                shipping_required: true
+##                                price: 4500
+##                                original_price: 4500
+##                                amount: 100
+##                                installation_time: "2 hours"
+##                                warehouse: "Orlando Warehouse"
+##                                imageRequired: false
+##                                instructionRequired: false
+##                                vincheckserviceId: 55
+##                                meta_keywords: "Do you have a good sense of direction"
+##                                meta_descriptions: "Do you have a good sense of direction"
+##                                slug: "digital_speedometer"
+##
+##                            enhanced_bluetooth:
+##                                name: "Enhanced Bluetooth"
+##                                code: "enhanced_bluetooth"
+##                                enabled: true
+##                                short_description: "Do you have a good sense of direction? Or do you have a habit of losing your"
+##                                description:  "Do you have a good sense of direction? Or do you have a habit of losing your bearings on the road? We can activate a compass option on your iDrive menu, and you’ll never have to wonder where you’re heading."
+##                                main_taxon: "category"
+##                                channels:
+##                                     - "idrive"
+##                                shipping_required: true
+##                                price: 17500
+##                                original_price: 17500
+##                                amount: 100
+##                                installation_time: "2 hours"
+##                                warehouse: "Orlando Warehouse"
+##                                imageRequired: false
+##                                instructionRequired: false
+##                                vincheckserviceId: 29
+##                                meta_keywords: "Do you have a good sense of direction"
+##                                meta_descriptions: "Do you have a good sense of direction"
+##                                slug: "enhanced_bluetooth"
+#
+#                orders:
+#                    options:
+#                        amount: 3
+#                        country_code: "PL"
+#                        channel_code: "bimmer_tech"
+#                        warehouse: "Dubai Warehouse"
+#                        vin_number: "KT33030"
+#
+#                slider:
+#                    options:
+#                        code: 'slider_homepage'
+#                        name: 'slider homepage'
+#                        description: 'Slide description'
+#                        slides: [ '/fixture_images/slider/slide1.jpg', '/fixture_images/slider/slide2.jpg', '/fixture_images/slider/slide3.jpg' ]
+#
+#
+#
+#
+##                article:
+##                    options:
+##                        articles:
+##                            -
+##                                title: 'Patent images of the BMW 8 Series Gran Coupe Surface Online'
+##                                image: '/fixture_images/article/article1.jpg'
+##                                content: 'BMW last week finally gave us an official view of the upcoming 8 Series. The return of the model after 20 years is a significant step for the Bavarian manufacturer, which will now have a weapon to take on the Mercedes-Benz E-Class, Audi S8 and Porsche Panamera.
+##                                          However, only the coupe version had been confirmed... until now. We now have the first images providing a glimpse of the four-door Gran Coupe variant of the model. As recently happened with the BMW Z4, the leaked sketches are patent images, destined for the patent office from the Brazilian National Institute of Industrial Property.
+##                                          Looks increasingly like there’s a regular inside spy somewhere...
+##                                          This is not the first clue BMW watchers have gotten regarding what a four-door version of the 8 Series might look like. Earlier this year, BMW presented the M8 Gran Coupe as a concept at the Geneva auto show. The leaked images we’re seeing this week confirm that the automaker did not intend to lose time at the concept stage for long.
+##                                          One surprising fact about the new 8 Series is that it’s actually shorter than the 5 Series, by about 5 cm. it’s also shorter than the 7 Series, by about 35 cm. Clearly, the model that arrives at dealerships in the near-future won’t be an oversized monster. We expect that the production model will most closely resemble the company’s 6 Series.
+##                                          Mechanically, the Gran Coupe will be powered by the same 4.4L twin-turbo V8 found in the coupe. With 523 hp and 553 lb-ft of torque, the car will be well-equipped to rival its powerful competitors. Spy images are also floating around online of an M8 coupe variant being tested in camouflage. In its case, the same engine will deliver at least 617 hp, the same as the M5, with the distinct possibility that it will go beyond that output.
+##                                          The images leaked from the Brazilian National Institute of Industrial Property include one of a cabriolet version as well.'
+##                                author: 'Jon Snow'
+##                                authorPhoto: 'https://wallpaper-house.com/data/out/10/wallpaper2you_440080.jpg'
+##
+##                            -
+##                                title: 'BMW UNVEILS NEW 8 SERIES COUPE'
+##                                image: '/fixture_images/article/article2.jpg'
+##                                content: '20 years after the 8 Series disappeared, the BMW catalogue will once again feature the line, and soon. BMW has released official images of the reborn coupe.
+##                                            The images reveal much about the new product, of course, but also lifts the veil on the new design signature the Bavarian automaker is planning to gradually introduce across its product range. The defining elements of this new look include an elongated silhouette and pillars that are thinner than the norm today. The rear lights are much more stretched and slender than before, which represents a departure for the brand.
+##                                            This is undoubtedly good news – respect for tradition is great and all, but it is possible to evolve within that!
+##                                            Speaking of tradition, the new 8 Series, like its predecessor, features a stretched wheelbase as well as a wider-than-average tread.'
+##                                author: 'Jon Snow'
+##                                authorPhoto: 'https://wallpaper-house.com/data/out/10/wallpaper2you_440080.jpg'
+##                            -
+##                                title: '530 Horses for the New 2019 BMW M850i'
+##                                image: '/fixture_images/article/article3.jpg'
+##                                content: 'BMW made public more details regarding the power output of its upcoming M850i, set to make its debut this summer. Owners of the reborn 8 Series will, it’s clear, will have their hands full. The 4.4L turbo engine, which BMW says has been entirely revised, produces 530 hp and an astronomical 553 lb-ft of torque.
+##                                          The spectacular new car, which will get its official reveal on Friday, June 15 on the eve of the 24 Hours of Le Mans will be the first of the 8 Series models that the company is bringing back after a 20-year absence. This two-door coupe will be followed a convertible and a sedan. There is also talk of a possible 700-hp M8 further down the road.
+##                                          To start with, though, just the coupe will be available to consumers, as an xDrive. The powertrain will however prioritize the rear wheels. The engine will run in conjunction with an 8-speed automatic transmission, the only gearbox to be offered.'
+##                                author: 'Jon Snow'
+##                                authorPhoto: 'https://wallpaper-house.com/data/out/10/wallpaper2you_440080.jpg'

@@ -1,0 +1,15 @@
+app_admin_installer:
+    resource: |
+        alias: app.installer
+        section: admin
+        form: AppBundle\Form\Type\InstallerType
+        templates: SyliusAdminBundle:InstallerCrud
+        redirect: index
+        grid: app_installer
+        vars:
+            all:
+                header: Installer
+                subheader: Manage installers
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

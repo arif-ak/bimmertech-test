@@ -1,0 +1,32 @@
+AppBundle\Entity\CarModel:
+  type: entity
+  table: car_model
+  repositoryClass: AppBundle\Repository\CarModelRepository
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    title:
+      type: string
+    code:
+      type: string
+    year:
+      type: string
+    label:
+      type: string
+      nullable: true
+    model:
+      type: string
+      nullable: true
+    series:
+      type: string
+      nullable: true
+  oneToMany:
+      productCarModel:
+        targetEntity: AppBundle\Entity\ProductCarModel
+        mappedBy: carModel
+        cascade: [persist, remove]
+        onDelete: SET NULL
+        orphanRemoval: true

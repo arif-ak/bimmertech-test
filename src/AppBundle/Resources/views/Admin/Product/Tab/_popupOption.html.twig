@@ -1,0 +1,6 @@
+<div class="ui tab" data-tab="popupOption">
+    <h3 class="ui dividing header">Pop-ups</h3>
+
+    {{ form_row(form.productPopupOption) }}
+    {{ sonata_block_render_event('sylius.admin.product.' ~ action ~ '.tab_popupOption', {'form': form}) }}
+</div>

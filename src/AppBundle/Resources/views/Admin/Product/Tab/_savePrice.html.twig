@@ -1,0 +1,5 @@
+<div class="ui tab" data-tab="savePrice">
+    <h3 class="ui dividing header">Discount</h3>
+    {{ form_row(form.savePrice) }}
+    {{ sonata_block_render_event('sylius.admin.product.' ~ action ~ '.tab_savePrice', {'form': form}) }}
+</div>

@@ -1,0 +1,99 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+{# {% include ":InformationInFooter:help.html.twig" %} #}
+
+{% block content %}
+    {% include ':InformationInFooter:contact_breadcrump.html.twig' %}
+    <div id="contact_us" style="margin-top: 50px;">
+        <div class="header grid-x align-middle">
+            <div class="cell shrink">
+                <h4 class="text-uppercase">
+                    Contact
+                </h4>
+            </div>
+            <div class="cell large-auto">
+                <span class="divider"></span>
+            </div>
+        </div>
+        <div class="grid-x vertical">
+            {% for contact in contacts %}
+                {% if contact.contactPosition == "Vertical" %}
+                    <div class="cell">
+                        <div class="main_title">
+                            {% if contact.contactMainTitle is defined %}
+                                {{ contact.contactMainTitle.name }}
+                            {% endif %}
+                        </div>
+                        {% for content in contact.contactContent %}
+                            <div class="grid-y">
+                                {% if "@" in content.value %}
+                                    
+                                {% else %}
+                                    <div class="cell title">
+                                        {{ content.title }}
+                                    </div>
+                                {% endif %}
+                                <div class="cell content">
+                                    {% if "@" in content.value and contact.contactMainTitle.popup == constant('AppBundle\\Entity\\ContactTitle::SALES') %}
+                                        {# <span style="color: #0bd1ff">{{ content.value|nl2br }}</span> #}
+                                        <button @click="openModalAskExpert('SALES')" class="bt-button primary basic js-modal-expert">
+                                            <span>Contact Sales</span>
+                                        </button>
+                                    {% elseif "@" in content.value and contact.contactMainTitle.popup == constant('AppBundle\\Entity\\ContactTitle::SUPPORT') %}
+                                        <button @click="openModalAskExpert('SUPPORT')" class="bt-button primary basic js-modal-expert">
+                                            <span>Contact Support</span>
+                                        </button>
+                                    {% else %}
+                                        <pre>{{ content.value|nl2br }}</pre>
+                                    {% endif %}
+                                    {% if content.hours is not empty %}
+                                        &nbsp<span class="hours">
+                                        {{ content.hours }}
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {#{{ dump(contacts) }}#}
+        <div class="grid-x horizontal">
+            {% for contact in contacts %}
+                {% if contact.contactPosition == "Horizontal" %}
+                    <div class="cell">
+                        <div class="main_title">
+                            {% if contact.contactMainTitle is defined %}
+                                {{ contact.contactMainTitle.name }}
+                            {% endif %}
+                        </div>
+                        <div class="items">
+                            {% for content in contact.contactContent %}
+                                <div class="grid-y">
+                                    <div class="cell title" style="">
+                                        {{ content.title }}
+                                    </div>
+                                    <div class="cell content">
+                                        {% if "@" in content.value %}
+                                            <span style="color: #0bd1ff">{{ content.value|raw }}</span>
+                                        {% else %}
+                                            <pre>{{ content.value|raw }}</pre>
+                                        {% endif %}
+                                        {% if content.hours is not empty %}
+                                            &nbsp<span class="hours">
+                                                {{ content.hours }}
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <section-ask inline-template>
+            {% include ':GlobalComponents/ask:ask.html.twig' %}
+        </section-ask>
+    </div>
+{% endblock %}

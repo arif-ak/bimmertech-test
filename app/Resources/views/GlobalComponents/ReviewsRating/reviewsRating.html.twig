@@ -1,0 +1,23 @@
+<div class="customPopup ui bt-popup transition hidden popup reviewsArrowPopup">
+    <div class="content" :class="{'bt-loading': reviewsLoader}">
+        <div class="starsRow">
+            <h6 class="cell shrink">Average Rating</h6>
+            <div class="cell shrink averageRating">
+                <section-stars disabled :value="averageRating" inline-template size="mini">
+                    {% include ':GlobalComponents/Stars:stars.html.twig' %}
+                </section-stars>
+            </div>
+            <div v-if="averageRating!=0" class="result cell shrink">[[averageRating]] out of 5</div>
+        </div>
+        <div class="starsRow" v-for="(rating, rIndex) in reviews.ratings">
+            <section-stars disabled :value="reviews.ratings.length-rIndex" inline-template size="mini">
+                {% include ':GlobalComponents/Stars:stars.html.twig' %}
+            </section-stars>
+            <div class="cell shrink chart">
+                <div class="line"></div>
+                <div :style="{'width': 100/customers*rating+'%'}" class="currentLine"></div>
+            </div>
+            <div class="cell shrink customers">[[rating]] customers</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+#Logistic,
+#Support,
+#Coding {
+    @import "components/product/product";
+
+    >.cell {
+
+        >.cell.segment-wrapper {
+            >.cell {
+                margin-top: 1px;
+                margin-bottom: 20px;
+
+                &:first-child {
+                    margin-top: 0px;
+                }
+
+                &:last-child {
+                    margin-bottom: 0px;
+                }
+            }
+        }
+    }
+
+    .ui {
+        >.grid-x {
+            margin: 15px 30px;
+            .bottom_buttons {
+                //padding: 0px 30px 15px;
+            }
+            position: relative;
+            >.product-usb-header {
+                margin-top: 10px;
+                font-weight: 500;
+
+                &::before {
+                    content: '';
+                    width: 95%;
+                    height: 2px;
+                    background: $base-gray-light-color;
+                    top: 0;
+                    position: absolute;
+                }
+            }
+        }
+    }
+
+    .header {
+        &.ui.top.attached {
+            border-radius: 3px;
+            padding: 10px 30px;
+            background: $base-gray-light-color;
+            margin: 0;
+
+            &+.ui {
+                border: $border-style;
+                border-radius: 3px;
+                margin-top: 1px;
+            }
+        }
+    }
+
+    .display-none {
+        display: none;
+    }
+}

@@ -1,0 +1,24 @@
+{% if key == 0 %}
+    <div class="bt-blog-card cell large-6 image">
+    {% else %}
+        <div class="bt-blog-card cell large-3 image">
+        {% endif %}
+        <img alt="" src="{{ article.image ? (article.image.path | imagine_filter('webburza_article_cover')) : 'https://placehold.it/260x260' }}"/>
+        <a href="{{ path('webburza_article_frontend_show', {'slug': article.slug}) }}">
+            <div class="content">
+                <div class="author">
+                    {{ article.author }}
+                </div>
+                <div class="title">
+                    {{ article.title }}
+                </div>
+                <div class="description">
+                    {{ (article.lead | slice(0, 100)) ~ (article.lead | length > 100 ? '...' : '') }}
+                </div>
+{#                 <div class="read-more">
+                    <span class="bt-arrow"></span>
+                    <span class="text-uppercase">read story</span>
+                </div> #}
+            </div>
+        </a>
+    </div>

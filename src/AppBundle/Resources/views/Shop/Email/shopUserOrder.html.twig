@@ -1,0 +1,104 @@
+{% block subject %}
+    User order
+{% endblock %}
+
+{% block body %}
+
+    <table style="width:100%;height: 100%">
+        <thead style="background-color:#E1E1E1">
+        <tr>
+            <th>DATA</th>
+            <th>PAYMENT STATUS</th>
+            <th>SHIPPING STATUS</th>
+            <th>ORDER NUMBER</th>
+            <th>TOTAL AMOUNT</th>
+        </tr>
+        </thead>
+        <tbody style="text-align: center">
+        <tr>
+            <td>{{ data.date }}</td>
+            <td>{{ data.payment_status }}</td>
+            <td>{{ data.shipping_status }}</td>
+            <td>{{ data.number }}</td>
+            <td>${{ data.order_total }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div  style="display: flex; width: 600px">
+        <table style="width:100%">
+            <thead style="background-color:#E1E1E1">
+            <tr>
+                <th>ITEM</th>
+                <th>PRICE</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for key, product in data.products %}
+                <tr>
+                    <td>
+                        <b>{{ product.name }}</b>
+                    </td>
+                    <td>${{ data.total[key] }}</td>
+                </tr>
+            {% endfor %}
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div style="width: 300px">
+
+    <table style="width:100%;height: 100%">
+        <thead style="background-color:#E1E1E1">
+        <tr>
+            <th>ADDRESS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <ul>
+                    <li> <b>Name:</b> {{ data.first_name }} {{ data.last_name }}</li>
+
+                    {% if data.phone %}
+                        <li><b>Phone:</b> {{ data.phone }}</li>
+                    {% endif %}
+
+                    <li><b>City:</b> {{ data.city }}</li>
+                    <li><b>Street:</b> {{ data.street }}</li>
+
+                    {% if data.company %}
+                        <li><b>Company:</b> {{ data.company }}</li>
+                    {% endif %}
+
+                    {% if data.country_code %}
+                        <li><b>Country code:</b> {{ data.country_code }}</li>
+                    {% endif %}
+
+                    {% if data.province_code  %}
+                        <li><b>Province code:</b> {{ data.province_code }}</li>
+                    {% endif %}
+
+                    {% if data.province_name %}
+                        <li><b>Province name:</b> {{ data.province_name }}</li>
+                    {% endif %}
+
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <p>
+        Thanks,
+        Bimmer Tech
+    </p>
+
+
+{% endblock %}

@@ -1,0 +1,143 @@
+<footer class="footer" id="appFooter">
+    <div class="grid-container">
+        <div class="grid-x large-12 first grid-margin-x">
+            <div class="grid-x cell">
+                <div class="grid-x cell bt-social">
+                    <a href="https://www.facebook.com/BimmerTechLLP/" target="_blank">
+                        <span class="bt-facebook bt-icon hvr-grow"></span>
+                    </a>
+                    <a href="https://www.instagram.com/bimmer.tech/" target="_blank">
+                        <span class="bt-instagram bt-icon hvr-grow"></span>
+                    </a>
+                    <a href="https://www.linkedin.com/company/bimmertech" target="_blank">
+                        <span class="bt-linkedin bt-icon hvr-grow"></span>
+                    </a>
+                    <a href="https://www.youtube.com/user/BimmerTechVideos" target="_blank">
+                        <span class="bt-youtube bt-icon hvr-grow"></span>
+                    </a>
+                </div>
+                <div class="cell large-auto email-form">
+                    <form action="//bimmer-tech.us9.list-manage.com/subscribe/post-json?u=23e79f3a6730c63aab494a67d&amp;id=dc6ae235e0&amp;c=?"
+                          id="mc-embedded-subscribe-form" method="get" name="mc-embedded-subscribe-form">
+                        <div class="mc-field-group ui action bt-input">
+                            <input class="email" data-vv-as="email" id="mce-EMAIL" maxlength="70" name="EMAIL"
+                                   placeholder="Your email address" type="email" v-model="email"
+                                   v-validate="'required|email'" value="">
+                            <input :disabled="errors.has('EMAIL')" class="ui bt-button bt-subscribe"
+                                   id="mc-embedded-subscribe" name="subscribe" type="submit" v-model="button"
+                                   value="subscribe"></div>
+                        <transition name="fade">
+                            <span class="help is-danger" v-show="errors.has('EMAIL')">[[ errors.first('EMAIL') ]]</span>
+                        </transition>
+                        <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                            <input name="b_23e79f3a6730c63aab494a67d_dc6ae235e0" tabindex="-1" type="text" value="">
+                        </div>
+                        <div id="subscribe-result"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="grid-x second">
+            {{ sonata_block_render_event('sylius.shop.layout.before_footer') }}
+            <section-collapsible inline-template>
+                <div class="section cell auto" :class="{'active': active}">
+                    <h4 class="ui header" @click="openTab()">Our company</h4>
+                    {#<h4 class="ui header">{{ 'sylius.ui.your_store'|trans }}</h4> #}
+                    <div class="ui link list">
+                        <a href="{{ path('app_page_slug', { 'slug': 'about-us' }) }}" class="item">About Us</a>
+                        <a href="{{ path('app_blog_index') }}" class="item">Our Blog</a>
+                        <a href="{{ path('sylius_shop_contact_request') }}" class="item">Contact Us</a>
+                    </div>
+                </div>
+            </section-collapsible>
+            <section-collapsible inline-template>
+                <div class="section cell auto" :class="{'active': active}">
+                    <h4 class="ui header" @click="openTab()">Your account</h4>
+                    <div class="ui link list">
+                        <a class="item" href="{{ path('sylius_shop_account_dashboard') }}"
+                        v-on:click="checkUserAuth($event)">Log In / Register</a>
+                        <a href="{{ path('sylius_shop_cart_summary') }}" class="item">Your Cart</a>
+                        <a href="{{ path('sylius_shop_account_dashboard') }}" class="item"
+                        v-on:click="checkUserAuth($event, true)">Your Order</a>
+                    </div>
+                </div>
+            </section-collapsible>
+            <section-collapsible inline-template>
+                <div class="section cell auto" :class="{'active': active}">
+                    <h4 class="ui header" @click="openTab()">Information</h4>
+                    <div class="ui link list">
+                        <a href="{{ path('app_help') }}" class="item">Help</a>
+                        <a href="{{ path('app_page_slug', { 'slug': 'payment-and-delivery' }) }}" class="item"
+                        @click.prevent="goTo('scrollTo','#payment_delivery')">Payment & Delivery</a>
+                        <a href="{{ path('app_installers') }}" class="item">Find Your Installer</a>
+                        <a href="{{ path('app_for_dealer') }}" class="item">For Dealers</a>
+                        <a href="{{ path('app_site_map') }}" class="item">Sitemap</a>
+                    </div>
+                </div>
+            </section-collapsible>
+            <section-collapsible inline-template>
+                <div class="section cell auto" :class="{'active': active}">
+                    <h4 class="ui header" @click="openTab()">Policies</h4>
+                    <div class="ui link list">
+                        <a href="{{ path('app_page_slug', { 'slug': 'terms-and-conditions' }) }}" class="item">Terms &
+                            Conditions</a>
+                        <a href="{{ path('app_page_slug', { 'slug': 'privacy-policy' }) }}" class="item">Privacy Policy</a>
+                        <a href="{{ path('app_page_slug', { 'slug': 'cookies-policy' }) }}" class="item">Cookies Policy</a>
+                    </div>
+                </div>
+            </section-collapsible>
+            <section-collapsible inline-template>
+            <div class="section cell contacts shrink auto" :class="{'active': active}">
+                <h4 class="ui header" @click="openTab()">Still have questions?</h4>
+                <div class="ui list">
+                    <div class="item">
+                        <div class="content">
+                            <a href="tel:+16464397920">
+                                <span class="bt-phone bt-icon"></span>
+                                <a href="tel:+16464397920">US: +1 (646) 439 7920</a>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">(8:00am - 6:00pm ET)</div>
+                    <div class="item">
+                        <div class="content">
+                            <a href="tel:+441134033103">
+                                <span class="bt-phone bt-icon"></span>
+                                <a href="tel:+441134033103">UK: +44 113 403 3103</a>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">(11:00am - 10:00pm)</div>
+                    <div class="item">
+                        <div @click.prevent="sendMail()" class="content">
+                            <span class="bt-email-inline bt-icon"></span>
+                            <a href="mailto:info@bimmer-tech.net">info@bimmer-tech.net</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section-collapsible>
+            {{ sonata_block_render_event('sylius.shop.layout.after_footer') }}
+        </div>
+    </div>
+    {% if app.request.cookies.get('_accept_cookie') == false %}
+        <transition name="fade">
+            <div class="announcement margin-top-1" v-if="show">
+                <div class="grid-container">
+                                <span class="announcement__message">To help personalize content, tailor and measure adverts and provide a safer experience, we use cookies. By clicking on or navigating the site, you agree to allow us to collect information.
+                                    <br>
+                                        Want to know more? Read our
+                                        <a href="{{ path('app_page_slug', { 'slug': 'cookies-policy' }) }}"
+                                           class="bt-link-dark">Cookie Policy</a>. You can change your preferences any time in your
+                                        <a href="{{ path('app_page_slug', { 'slug': 'privacy-policy' }) }}"
+                                           class="bt-link-dark">Privacy Settings</a>.</span>
+                    <div @click="cookieAccepted" class="bt-icon black bt-close-custom"></div>
+                </div>
+            </div>
+        </transition>
+    {% endif %}
+    <div class="ui inverted segment text-center bt-copyright">
+        <p>&copy; BimmerTech 2019</p>
+    </div>
+</footer>
+            

@@ -1,0 +1,22 @@
+AppBundle\Entity\Comment:
+    type: entity
+    table: comment
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        comment:
+            type: text
+            nullable: true
+        date:
+            type: datetime
+            nullable: false
+    manyToOne:
+        subject:
+            targetEntity: AppBundle\Entity\OrderItem
+        user:
+            targetEntity: AppBundle\Entity\AdminUser
+        order:
+            targetEntity: AppBundle\Entity\Order

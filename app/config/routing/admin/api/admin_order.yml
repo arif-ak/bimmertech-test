@@ -1,0 +1,161 @@
+api_order_warehouse_order_item:
+  path: /api2/order/{id}/warehouse-order-items
+  methods: [POST,GET]
+  defaults:
+    _controller: api.controller.order_controller:warehouseOrderItemsAction
+api_order_shipment_item:
+  path: /api2/order/shipment/{id}
+  methods: [POST,GET]
+  defaults:
+    _controller: api.controller.order_controller:getShipmentAction
+api_order_shipment_create:
+  path: /api2/create-order-shipment
+  methods: [POST,GET,PUT]
+  defaults:
+    _controller: api.controller.order_controller:createSippingAction
+api_order_product_list:
+  path: /api2/order/{id}/products
+  methods: [POST,GET]
+  defaults:
+    _controller: api.controller.order_controller:orderProductListsAction
+api_order_support_board:
+  path: /api2/order/{id}/support-board
+  methods: [POST,GET]
+  defaults:
+    _controller: api.controller.order_controller:supportBoardListAction
+api_order_add_instuction_support_board_:
+  path: /api2/order/add-instruction
+  methods: [POST,GET]
+  defaults:
+    _controller: api.controller.order_controller:addInstructionAction
+api_order_codding_board:
+  path: /api2/order/{id}/codding-board
+  methods: [POST,GET]
+  defaults:
+    _controller: api.controller.order_controller:coddingBoardListAction
+api_order_codding_board_:
+  path: /api2/order/{id}/edit-codding
+  methods: [POST]
+  defaults:
+    _controller: api.controller.order_controller:addCoddingAction
+api_order_shipment_update:
+  path: /api2/update-order-shipment
+  methods: [POST,GET]
+  defaults:
+    _controller: api.controller.order_controller:updateSippingAction
+api_order_shipment_remove:
+  path: /api2/remove-shipment/{id}
+  methods: [POST, DELETE]
+  defaults:
+    _controller: api.controller.order_controller:removeShipmentAction
+api_order_change_warehouse:
+  path: /api2/order/change-warehouse
+  methods: [POST]
+  defaults:
+    _controller: api.controller.order_controller:changeWareHouseAction
+
+api_order_usb_change_warehouse:
+  path: /api2/order/change-usb-coding-warehouse
+  methods: [POST]
+  defaults:
+    _controller: api.controller.order_controller:changeWarehouseForUSbCoding
+
+api_order_list_warehouse:
+  path: /api2/warehouse-list
+  methods: [get]
+  defaults:
+    _controller: api.controller.order_controller:warehouseList
+api_get_order_states:
+  path: /api2/order/{id}/states
+  methods: [get]
+  defaults:
+    _controller: api.controller.order_controller:getStateAction
+api_update_order_states:
+  path: /api2/order/update-state/{variable}
+  methods: [post]
+  defaults:
+    _controller: api.controller.order_controller:updateStateAction
+
+api_user_role:
+  path: /api2/order/{id}/user-role
+  methods: [get]
+  defaults:
+    _controller: api.controller.order_controller:getUserRole
+
+app_order_vin_change:
+  path: /api2/order/{id}/vin
+  methods: [POST]
+  defaults:
+    _controller: api.controller.order_controller:orderChangeVIN
+
+app_order_comment:
+  path: /api2/order/{id}/comment
+  methods: [POST,GET]
+  defaults:
+    _controller: api.controller.order_controller:orderComment
+
+app_order_note_create:
+  path: /api2/order/{id}/order-note
+  methods: [POST]
+  defaults:
+    _controller: api.controller.order_controller:orderNoteCreate
+
+app_order_note_index:
+  path: /api2/order/{id}/order-note
+  methods: [GET]
+  defaults:
+    _controller: api.controller.order_controller:orderNoteIndex
+
+app_order_usb_coding_create:
+  path: /api2/order/usb-coding-create
+  methods: [POST]
+  defaults:
+    _controller: api.controller.order_controller:sendUsbProduct
+
+app_order_usb_coding_update:
+  path: /api2/order/usb-coding-update
+  methods: [POST]
+  defaults:
+    _controller: api.controller.order_controller:editUsbProduct
+
+app_order_return:
+  path: /api2/order/return
+  methods: [POST]
+  defaults:
+    _controller: api.controller.order_controller:orderReturn
+
+app_order_balance:
+  path: /api2/order/balance
+  methods: [POST]
+  defaults:
+    _controller: api.controller.order_controller:orderBalance
+
+app_order_refund_view:
+  path: /api2/order-refund/{id}
+  methods: [GET]
+  defaults:
+    _controller: api.controller.order_controller:getOrderRefundAndReturn
+
+app_order_refund_index:
+  path: /api2/order/{id}/refund
+  methods: [GET]
+  defaults:
+    _controller: api.controller.order_controller:getOrderRefundIndex
+
+app_order_refund_create:
+  path: /api2/order/refund-create
+  methods: [POST]
+  defaults:
+    _controller: api.controller.order_controller:orderReturnAndRefundCreate
+
+app_order_refund_edit:
+  path: /api2/order/refund-edit
+  methods: [POST]
+  defaults:
+    _controller: api.controller.order_controller:orderReturnAndRefundEdit
+
+app_order_board_access:
+  path: /api2/order/board-access
+  methods: [GET]
+  defaults:
+    _controller: api.controller.order_controller:boardAccess

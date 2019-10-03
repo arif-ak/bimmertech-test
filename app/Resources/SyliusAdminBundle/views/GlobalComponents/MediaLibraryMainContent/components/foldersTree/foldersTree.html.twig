@@ -1,0 +1,4 @@
+<div class="foldersTree">
+    <section-folder :parent-id='false' @contextmenu='contextMenuHandle' :count="0" @delete="deleteHandle" :selected="selected" @renamefolder="renameFolder" @newfolder="addFolder" v-if='folderModel.length>0' @start='startHandle()' @move="moveHandle" :value="folderModel[f]" :index="f"  v-for="(folder, f) in folderModel" @choose="chooseHandle"></section-folder>
+
+</div>

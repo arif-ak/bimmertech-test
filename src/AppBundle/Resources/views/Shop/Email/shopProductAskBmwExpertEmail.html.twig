@@ -1,0 +1,9 @@
+{% block subject %}
+   {{ subject }}
+{% endblock %}
+
+{% block body %}
+    {% for key, item in data %}
+      <p><b>{{ key }} : </b>{{ item }}</p>
+    {% endfor %}
+{% endblock %}

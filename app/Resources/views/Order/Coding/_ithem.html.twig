@@ -1,0 +1,45 @@
+{% import "@SyliusAdmin/Common/Macro/money.html.twig" as money %}
+
+{% set orderPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_PROMOTION_ADJUSTMENT') %}
+{% set itemPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_ITEM_PROMOTION_ADJUSTMENT') %}
+{% set shippingAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::SHIPPING_ADJUSTMENT') %}
+{% set taxAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::TAX_ADJUSTMENT') %}
+
+{% set variant = item.variant %}
+{% set product = variant.product %}
+
+{% if variant.hasHardware ==true or variant.hasSoftware ==true %}
+
+    <tr>
+        <td class="single line">
+            {% include '@SyliusAdmin/Product/_info.html.twig' %}
+        </td>
+        <td class="right aligned quantity">
+            {{ item.quantity }}
+        </td>
+        {{ form_start(codingForms[loop.index0],{'action': path('app_order_item_coding_edit',
+            {'id':codingForms[loop.index0].vars.value.id}),
+            'method': 'PUT',
+            'attr':{'class': ''}}) }}
+
+        <td class="right aligned ">
+            <div class="admin_coding_info item{{ item.id }}">
+                {{ item.codingStatus }}
+            </div>
+            <div class="admin_coding item{{ item.id }}">
+               {{ form_row(codingForms[loop.index0].codingStatus) }}
+            </div>
+        </td>
+        <td class="right aligned ">
+
+            <div class="admin_coding item{{ item.id }}">
+                <input type="submit" value="Save"/>
+            </div>
+            {{ form_end(codingForms[loop.index0]) }}
+            <div class="admin_coding_info item{{ item.id }}">
+                <button onclick="admin_support_coding({{ item.id }})">Edit</button>
+            </div>
+        </td>
+
+    </tr>
+{% endif %}

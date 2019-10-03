@@ -1,0 +1,15 @@
+<div class="grid-x display-flex align-middle breadcrumb">
+    {#{% if taxon.slug is not null %}#}
+    {#{% set ancestors = taxon.ancestors|reverse %}#}
+    <div>
+        <a href="/" class="section">{{ 'home'|title }}</a>
+    </div>
+    <div class="divider display-flex align-middle"> <img src="{{ asset('assets/shop/img/bread_crumb_divider.png') }}"> </div>
+    <div>
+            <span style="width: 61px;
+                         height: 9px;
+                         font-family: Rubik;
+                         font-size: 12px;
+                         color: #878787;">Contact</span>
+    </div>
+</div>

@@ -1,0 +1,123 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+{% block content %}
+    <div class="grid-x display-flex align-middle breadcrumb margin-vertical-1">
+        <div>
+            <a href="{{ path('sylius_shop_homepage') }}" class="section">
+                {{ 'home'|title }}</a>
+        </div>
+        <div class="divider display-flex align-middle">
+            <img src="/assets/shop/img/bread_crumb_divider.png"/>
+        </div>
+        <div class="active section">Thank you</div>
+    </div>
+    <div id="thank-you-page" class="grid-x align-center thank-you-page">
+        <div>
+            <div class="cell section-main">
+                <h1 class="text-center title margin-vertical-2">
+                    Thank you
+                    <br>for your purchase!
+                    </h1>
+                    <div class="text-center description">
+                        <p>
+                            <span>Now your order is complete. We’re glad to participate in creating a unique BMW suited</span>
+                            <br>
+                                <span>specifically to your needs and preferences.</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="cell section-what">
+                        <h4 class="text-center title margin-vertical-3">What happens next?</h4>
+                        <div class="grid-x grid-margin-x grid-margin-y items">
+                            <div class="cell grid-x medium-4 item">
+                                <div class="cell icon-badge medium-2">
+                                    <div class="bt-round-icon">
+                                        <div class="bt-icon bt-shape-1"></div>
+                                    </div>
+                                </div>
+                                <div class="cell medium-10 shrink description">
+                                    <div class="cell">
+                                        <p>
+                                            You can check the status of your order in your account.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell grid-x medium-4 item">
+                                <div class="cell icon-badge medium-2">
+                                    <div class="bt-round-icon">
+                                        <div class="bt-icon bt-shape-2"></div>
+                                    </div>
+                                </div>
+                                <div class="cell medium-10 shrink description">
+                                    <div class="cell">
+                                        <p>
+                                            The product will be sent to the address specified in your PayPal account.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell grid-x medium-4 item">
+                                <div class="cell icon-badge medium-2">
+                                    <div class="bt-round-icon">
+                                        <div class="bt-icon bt-shape-3"></div>
+                                    </div>
+                                </div>
+                                <div class="cell medium-10 shrink description">
+                                    <div class="cell">
+                                        <p>
+                                            When it is shipped, you will get a tracking number to keep tabs on your parcel.</div>
+                                    </p>
+                                </div>
+                            </div>
+                            <a v-if="isAuth" href="{{ url('sylius_shop_account_dashboard') }}" class="button customButton checkStatus">
+                                <button type="submit" class="bt-button primary">
+                                    <span>Check Your Order</span>
+                                </button>
+                            </a>
+                            <a @click="openLogin()" class="button customButton checkStatus" v-else>
+                                <button type="submit" class="bt-button primary">
+                                    <span>Check Your Order</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="bt-line margin-vertical-3"></div>
+                    <div class="cell section-additional-info">
+                        <div class="grid-x grid-margin-x items">
+                            <div class="cell large-6 item">
+                                <div class=" grid-x">
+                                    <div class="image">
+                                        <img alt="Coding icon" height="71px" src="/assets/shop/img/svg/coding-2.svg" width="76px"></div>
+                                        <div class="cell description auto">
+                                            <h5 class="title">Coding</h5>
+                                            <p>Your upgrade requires remote programming via the Internet. That's why you will receive a coding cable in the package. When your parcel is delivered, please go to
+                                                <a href="https://www.bimmer-tech.net/RemoteSession">bimmer-tech.net/RemoteSession</a>
+                                                to learn the details of the process and schedule your remote coding session.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cell large-6 item">
+                                    <div class=" grid-x">
+                                        <div class="image">
+                                            <img alt="Manual icon" height="68px" src="/assets/shop/img/svg/manual-2.svg" width="43px"></div>
+                                            <div class="cell description auto">
+                                                <h5 class="title">Manual</h5>
+                                                <p>The installation manual will appear in your account within 72 hours after your order is shipped. You will get an email notification when the instructions are uploaded.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center help-text margin-top-3">
+                                <p>If you have any questions regarding the delivery, product or any other issue, visit our
+                                    <a href="{{ path('app_help') }}">Help</a>
+                                    <br>
+                                        section to get the info you need.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endblock %}
+                

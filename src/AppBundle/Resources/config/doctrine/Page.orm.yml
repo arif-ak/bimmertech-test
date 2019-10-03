@@ -1,0 +1,42 @@
+AppBundle\Entity\Page:
+  type: entity
+  table: app_page
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    title:
+      type: string
+      length: 500
+    slug:
+      type: string
+      length: 500
+    metaTitle:
+      type: string
+      column: meta_title
+      nullable: true
+    metaDescription:
+      type: text
+      column: meta_description
+      nullable: true
+    metaKeywords:
+      type: text
+      column: meta_keywords
+      nullable: true
+    createdAt:
+      type: datetime
+      column: created_at
+      nullable: true
+    content:
+      type: text
+      nullable: true
+
+  oneToMany:
+    pageDescriptions:
+      targetEntity: AppBundle\Entity\PageDescription
+      mappedBy: page
+      cascade: [persist, remove]
+      orphanRemoval: true
+

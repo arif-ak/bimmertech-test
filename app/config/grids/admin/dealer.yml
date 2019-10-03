@@ -1,0 +1,35 @@
+sylius_grid:
+    grids:
+        app_admin_dealer:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: AppBundle\Entity\Dealer
+            fields:
+                name:
+                    type: string
+                    label: Name
+                content:
+                    type: string
+                    label: Content
+                linkForButton:
+                    type: string
+                    label: Link for button
+                otherContent:
+                    type: string
+                    label: Other content
+                image:
+                    type: twig
+                    label: sylius.ui.image
+                    path: .
+                    options:
+                      template: "Admin/Dealer/image.html.twig"
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

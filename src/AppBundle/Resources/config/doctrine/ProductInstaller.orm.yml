@@ -1,0 +1,43 @@
+AppBundle\Entity\ProductInstaller:
+  type: entity
+  table: app_product_installer
+  repositoryClass: AppBundle\Repository\ProductInstallerRepository
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    header:
+      type: string
+      nullable: true
+    subHeader:
+      type: string
+      nullable: true
+      column: sub_header
+    description:
+      type: text
+      nullable: true
+    video:
+      type: text
+      nullable: true
+
+    type:
+        type: string
+
+  manyToOne:
+      product:
+          targetEntity: AppBundle\Entity\Product
+          inversedBy: productInstallers
+          joinColumn:
+            name: product_id
+            referencedColumnName: id
+  oneToMany:
+      images:
+          targetEntity: AppBundle\Entity\ProductInstallersImage
+          mappedBy: owner
+          orphanRemoval: true
+          cascade:
+            - all
+

@@ -1,0 +1,17 @@
+{% import '@SyliusUi/Macro/buttons.html.twig' as buttons %}
+
+{% set path = options.link.url|default(path(options.link.route, options)) %}
+
+{% if is_granted('ROLE_ADMINISTRATION_ACCESS') or
+    is_granted('ROLE_SALE_ACCESS') or
+    is_granted('ROLE_MARKETING_ACCESS') %}
+{% else %}
+
+    {% if app.request.attributes.get('_route') == "sylius_admin_role_order_index" %}
+        {{ buttons.default(path, action.label, null, 'inbox', 'green') }}
+    {% endif %}
+
+    {% if app.request.attributes.get('_route') == "sylius_admin_order_index" %}
+        {{ buttons.default(path, action.label, null, 'inbox', 'grey') }}
+    {% endif %}
+{% endif %}

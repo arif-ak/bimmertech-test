@@ -1,0 +1,28 @@
+{#{% form_theme form 'SyliusUiBundle:Form:imagesThemeTwoColumn.html.twig' %}#}
+    {{ form_errors(form) }}
+    {{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.slug) }}
+    {{ form_row(form.metaTitle) }}
+    {{ form_row(form.metaDescription) }}
+    {{ form_row(form.metaKeywords) }}
+
+
+{# <script>
+    var pageContent = `{{ page.content|raw }}`;
+</script> #}
+<script>
+    var pageContent = `{{ form.content.vars.value|raw }}`;
+</script>
+
+<div id="customPage" class="ui">
+    <div :class="{'bt-loading': loading}">
+        <h3 class="ui dividing header">Description</h3>
+        {{ form_row(form.content) }}
+        <tinymce v-model="pageContent"></tinymce>
+    </div>
+</div>
+
+
+
+

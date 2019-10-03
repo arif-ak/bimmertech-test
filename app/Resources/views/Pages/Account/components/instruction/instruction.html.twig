@@ -1,0 +1,64 @@
+<div id="Instruction">
+    <div class="table table_items margin-bottom-2" v-for="item in items">
+        <div class="table_head text-uppercase">
+            <div class="item">#[[item.number]]</div>
+            <div class="item Item">Item</div>
+            <div class="itemsContainer">
+                <div class="item">Instruction</div>
+                <div class="item">Coding</div>
+                <div class="item">Coding Session</div>
+            </div>
+        </div>
+        <div class="table_content grid-x">
+            <div class="item cell margin-bottom-1" v-for="(item, i) in item.orderItems">
+
+                <div :class="{'returned': item.is_returned}" class="item_name">
+                    <popup-ret-ref :value="item"></popup-ret-ref>
+                    <div class="name">
+                        <span :class="{'item_count_10': i+1>9 , 'returned': item.is_returned}" class="item_count">
+                            [[i+1]].
+                        </span>
+                        [[item.name]]
+                    </div>
+                    <div class="links">
+                        <a :class="{'has-url': item.instruction.url }" :href="item.instruction.url" class="item instruction">[[item.instruction.statusMessage]]</a>
+                        <a class="item coding">[[item.coding]]</a>
+                        <a :class="{'has-url': item.coding_session.url }" :href="item.coding_session.url" class="item coding_session">[[item.coding_session.message]]</a>
+                    </div>
+                </div>
+                <div class="dropdowns">
+                    <div :class="{'returned': dropdown.is_returned}" class="dropdown" v-for="dropdown in item.dropDowns">
+                        <popup-ret-ref :value="dropdown"></popup-ret-ref>
+                        [[dropdown.name]]: [[dropdown.selected]]
+                    </div>
+                </div>
+                <div class="addons">
+                    <div class="bt-label" v-if="item.addons.length>0 || item.includedAddons.length>0">
+                        Add-ons for this product:
+                        <div class="bt-line"></div>
+                    </div>
+                    <div :class="{'returned': addon.is_returned}" class="addon included" v-for="addon in item.includedAddons">
+                        <popup-ret-ref :value="addon"></popup-ret-ref>
+                        <div class="name">
+                            [[addon.name]]</div>
+                        <div class="links">
+                            <a :class="{'has-url': addon.instruction.url }" :href="addon.instruction.url" class="item instruction">[[addon.instruction.statusMessage]]</a>
+                            <a class="item coding">[[addon.coding]]</a>
+                            <a :class="{'has-url': addon.coding_session.url }" :href="addon.coding_session.url" class="item coding_session">[[addon.coding_session.message]]</a>
+                        </div>
+                    </div>
+                    <div :class="{'returned': addon.is_returned}" class="addon" v-for="addon in item.addons">
+                        <popup-ret-ref :value="addon"></popup-ret-ref>
+                        <div class="name">
+                            [[addon.name]]</div>
+                        <div class="links">
+                            <a :class="{'has-url': addon.instruction.url }" :href="addon.instruction.url" class="item instruction">[[addon.instruction.statusMessage]]</a>
+                            <a class="item coding">[[addon.coding]]</a>
+                            <a :class="{'has-url': addon.coding_session.url }" :href="addon.coding_session.url" class="item coding_session">[[addon.coding_session.message]]</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

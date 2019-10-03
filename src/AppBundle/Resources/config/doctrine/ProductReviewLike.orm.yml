@@ -1,0 +1,23 @@
+AppBundle\Entity\ProductReviewLike:
+    type: entity
+    table: app_product_review_like
+    repositoryClass: AppBundle\Repository\ProductReviewLikeRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        clientToken:
+            type: string
+            nullable: true
+        sessionId:
+            type: string
+            nullable: true
+    manyToOne:
+        review:
+            targetEntity: AppBundle\Entity\ProductReview
+            inversedBy: reviewLike
+        customer:
+            targetEntity: AppBundle\Entity\Customer
+            inversedBy: reviewLike

@@ -1,0 +1,192 @@
+.help {
+    &-page {
+        .header {
+            overflow: hidden; // margin-top: 40px;
+            margin-bottom: 26px;
+            h2 {
+                font-weight: 500;
+                margin-right: 20px;
+                font-size: 28px;
+                color: $black;
+                line-height: 23px;
+            }
+            .divider {
+                width: 100%;
+                background-color: $base-blue-color;
+                height: 4px;
+                display: flex;
+            }
+            .subheader {
+                margin: 0;
+                color: $black;
+            }
+        }
+        margin-top: 50px;
+        .bt-section-name {
+            font-size: 26px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        .categories {
+            >.category {
+                margin-top: 40px;
+                position: relative;
+                .scroll_to {
+                    position: absolute;
+                    top: -7em;
+                }
+            }
+        }
+        .category {
+            &.header {
+                font-size: 21px;
+                font-weight: 500;
+                color: $base-black-color;
+                margin-bottom: 0;
+                //text-transform: uppercase;
+                line-height: 40px;
+                padding-left: 15px;
+            }
+            &.description {
+                .question:last-child {
+                    border-bottom: 1px solid $base-gray-color;
+                }
+            }
+        }
+        .question {
+            &.accordion {
+                .title~.content {
+                    display: none;
+                }
+                .active.content {
+                    display: block;
+                }
+            }
+            &:nth-child(odd) {
+                border-top: 1px solid $base-gray-color;
+                border-bottom: 1px solid $base-gray-color;
+                background-color: $base-white-color;
+                box-shadow: 0px 3px 30px 0px rgba(0, 0, 0, 0.1);
+            }
+            &-name {
+                height: 40px;
+                line-height: 40px;
+                cursor: pointer;
+                padding-left: 30px;
+                font-size: 14px;
+                font-weight: 500;
+                color: $base-blue-color;
+            }
+            &-answer {
+                word-wrap: break-word;
+                padding-left: 40px;
+                padding-right: 40px;
+                padding-bottom: 10px;
+                p {
+                    font-size: 14px;
+                    color: $base-black-color;
+                    font-family: "Rubik", sans-serif;
+                    a {
+                        color: $base-blue-color;
+                    }
+                }
+            }
+        }
+        .help {
+            &-category-menu {
+                .bt-icon {
+                    @include bt-icon-size(105px, 105px);
+                    margin: 0 auto;
+                }
+                &-name {
+                    font-size: 16px;
+                    font-weight: 500;
+                    color: $base-blue-color;
+                    line-height: 1.2;
+                }
+            }
+            &-search-form {
+                label {
+                    font-size: 28px;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    line-height: 40px;
+                    margin-bottom: 10px;
+                }
+                .form {
+                    width: 40.66667%;
+                    position: relative;
+                    border-width: 1px;
+                    border-color: $base-gray-color;
+                    border-style: solid;
+                    border-radius: 20px;
+                    background-color: $base-white-color; // width: 466px;
+                    height: 40px; //width: 100%;
+                    @include flex;
+                    padding: 5px;
+                    align-items: center;
+                    .button.bt-icon {
+                        width: 26px;
+                        height: 26px;
+                    }
+                    & input[type='text'] {
+                        width: 100%;
+                        display: flex;
+                        border: none;
+                        outline: none; //width: 100%;
+                        max-width: 450px;
+                        //padding-top: 5px;
+                        height: 22px;
+                        background-color: transparent;
+                        border-radius: 0;
+                        &:-webkit-autofill,
+                        &:-webkit-autofill:hover,
+                        &:-webkit-autofill:focus,
+                        &:-webkit-autofill:active {
+                            -webkit-transition-delay: 9999s;
+                            transition-delay: 9999s;
+                        }
+                    }
+                    &.loading {
+                        .bt-search {
+                            background: transparent;
+                            &:before {
+                                position: absolute;
+                                content: '';
+                                top: 50%;
+                                left: 50%;
+                                margin: -.64285714em 0 0 -.64285714em;
+                                width: 1.28571429em;
+                                height: 1.28571429em;
+                                border-radius: 500rem;
+                                border: 0.2em solid rgba(0, 0, 0, 0.1);
+                            }
+                            &:after {
+                                position: absolute;
+                                content: '';
+                                top: 50%;
+                                left: 50%;
+                                margin: -.64285714em 0 0 -.64285714em;
+                                width: 1.28571429em;
+                                height: 1.28571429em;
+                                -webkit-animation: button-spin .6s linear;
+                                animation: button-spin .6s linear;
+                                -webkit-animation-iteration-count: infinite;
+                                animation-iteration-count: infinite;
+                                border-radius: 500rem;
+                                border-color: #767676 transparent transparent;
+                                border-style: solid;
+                                border-width: .2em;
+                                -webkit-box-shadow: 0 0 0 1px transparent;
+                                box-shadow: 0 0 0 1px transparent;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .test {
+            display: none;
+        }
+    }
+}

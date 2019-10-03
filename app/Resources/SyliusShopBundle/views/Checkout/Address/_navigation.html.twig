@@ -1,0 +1,14 @@
+<div class="grid-x align-middle align-justify margin-left-2">
+    <div class="cell large-5">
+        <a :href="back_to_store" class="bt-link back">Back to store</a>
+    </div>
+    <div class="cell large-5">
+        <div class="button">
+            <div
+                @click="sendForm()" class=" bt-button primary btn btn-checkout">
+                {# {{ 'sylius.ui.payment'|trans }} #}
+                <span>Payment</span>
+            </div>
+        </div>
+    </div>
+</div>

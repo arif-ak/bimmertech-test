@@ -1,0 +1,23 @@
+{% from 'AppBundle:Admin/Blog:_slugField.html.twig' import slugGenerator %}
+{% form_theme form 'SyliusUiBundle:Form:imagesThemeTwoColumn.html.twig' %}
+    {{ form_errors(form) }}
+    {{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ slugGenerator(form) }}
+    {{ form_row(form.blogCategory) }}
+    {{ form_row(form.enabled) }}
+    {{ form_row(form.metaKeywords) }}
+    {{ form_row(form.metaDescription) }}
+    {{ form_row(form.metaTags) }}
+<h3 class="ui dividing header">Post thumbnail</h3>
+{{ form_row(form.blogPostImage) }}
+<h3 class="ui dividing header">Interested in</h3>
+{{ form_row(form.productRelated) }}
+
+{% if blog_post.slug != null %}
+    <div class="ui basic segment">
+        <a href="{{ path('app_blog_show', { slug:  blog_post.slug }) }}" class="ui primary button" target="_blank">
+            Preview
+        </a>
+    </div>
+{% endif %}

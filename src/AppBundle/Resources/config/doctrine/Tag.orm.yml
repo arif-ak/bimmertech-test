@@ -1,0 +1,18 @@
+AppBundle\Entity\Tag:
+   type: entity
+   table: app_tag
+   id:
+       id:
+           type: integer
+           generator:
+               strategy: AUTO
+   fields:
+       name:
+          type: string
+   manyToOne:
+      product:
+          targetEntity: AppBundle\Entity\Product
+          inversedBy: tags
+          joinColumn:
+              name: product_id
+              referencedColumnName: id

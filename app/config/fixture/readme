@@ -1,0 +1,16 @@
+#--------------------Fixture Load--------
+
+# php bin\console   sylius:fixtures:list
+
+# 1. - my
+# 2. - taxons
+# 3. - products
+# 4. - orders
+# 5. - buyersGuideOption
+# 6. - carModel
+# 7. - contactPage
+# 8. - helperPage
+# 9. - aboutUsPage
+# 10. - dropDown
+# 11. - installer
+# 12. - productReview

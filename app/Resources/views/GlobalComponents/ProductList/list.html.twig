@@ -1,0 +1,77 @@
+<div class="product-list grid-x grid-margin-x grid-margin-y">
+    <div class="cell" v-for="product in productList">
+        <transition name="fade">
+            <div class="cui bt-card">
+                <a :href="'/category-' + product.slug" class="image" v-if="product.slug && product.taxons">
+                    <div :style="{background: product.flagColor}" class="bestseller" v-if="product.flagName">
+                        <span>[[product.product.flagName]]</span>
+                    </div>
+                    <img :alt="product.name" :data-src="product.images" class="ui bordered image" src="" style="height: 220px; object-fit: cover; border: none;" v-img-loader/>
+                </a>
+                <a :href="'/products-' + product.slug" class="image" v-else-if="product.slug && !product.taxons">
+                    <div :style="{background: product.flagColor}" class="bestseller" v-if="product.flagName">
+                        <span>[[product.product.flagName]]</span>
+                    </div>
+                    <img :alt="product.name" :data-src="product.images" class="ui bordered image" src="" style="height: 220px; object-fit: cover; border: none;" v-img-loader/>
+
+                </a>
+                <div class="content">
+                    <span class="cui header sylius-product-name">
+                        <a :href="'/category-' + product.slug" v-if="product.taxons">[[product.name]]</a>
+                        <a :href="'/products-' + product.slug" v-else>[[product.name]]</a>&nbsp;
+                        <section-popup :props="{compatibility: product.compatibility}" distance="5" inline-template on="hoverable">
+                            <span>
+                                {# <section-compatibility-icon :id="buttonId" class="cui bt-svg-icon" :value="product.compatibility" inline-template>
+                                                                                                    {% include ':GlobalComponents/Compatibility:compatibilityIcon.html.twig' %}
+                                                                                                </section-compatibility-icon> #}
+                                <span :data-compatibility="propsData.compatibility" :id="buttonId" class="cui bt-svg-icon">
+                                    <section-compatibility-icon :value="propsData.compatibility" class="bt-icon" inline-template>
+                                        {% include ':GlobalComponents/Compatibility:compatibilityIcon.html.twig' %}
+                                    </section-compatibility-icon>
+                                </span>
+
+                                <div :id="popupId" class="cui customPopup compatibiltyPopup ui popup transition">
+                                    <div class="content">
+                                        <section-compatibility-text :value="propsData.compatibility" inline-template>
+                                            {% include ':GlobalComponents/Compatibility:compatibility.html.twig' %}
+                                        </section-compatibility-text>
+                                    </div>
+                                </div>
+
+                                {# <div :id="popupId" class="cui btpopup popup transition hidden" @click="openVinchek">
+                                                                                                    <div class="content" v-html="compRes(product.compatibility).content"></div>
+                                                                                                </div> #}
+                            </span>
+                        </section-popup>
+                    </span>
+                    <div class="grid-x grid-margin-x reviews">
+                        <div class="cell shrink">
+                            <section-stars :value="product.averageRating" disabled inline-template size="mini">
+                                {% include ':GlobalComponents/Stars:stars.html.twig' %}
+                            </section-stars>
+                        </div>
+                        <section-popup boundary='.grid-container.boundary' edge='85' inline-template jitter='20' on="click" position="bottom center">
+                            <span>
+                                <div :id="buttonId" class="ui bt-button cell shrink reviewsArrow">
+                                    <i class="dropdown icon"></i>
+                                </div>
+                                <section-rating :id="popupId" :reviews-props="{averageRating: product.averageRating, ratings: product.ratings}" inline-template>
+                                    {% include ':GlobalComponents/ReviewsRating:reviewsRating.html.twig' %}
+                                </section-rating>
+                            </span>
+                        </section-popup>
+                        <a :href="'/category-'+product.slug+'#scrollToReviews'" class="b cell shrink" v-if="product.taxons">[[product.reviewCount]] customer reviews</a>
+                        <a :href="'/products-'+product.slug+'#scroll-to-reviews'" class="b cell shrink" v-else>[[product.reviewCount]]
+                                                                                    customer reviews</a>
+                    </div>
+                    <div class="sylius-product-price">
+                        <span class="from" v-if="product.taxons">from</span>
+                        <section-price :value="product.price" inline-template>
+                            {% include ':GlobalComponents/Price:price.html.twig' %}
+                        </section-price>
+                    </div>
+                </div>
+            </div>
+        </transition>
+    </div>
+</div>

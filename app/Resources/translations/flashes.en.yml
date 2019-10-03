@@ -1,0 +1,10 @@
+sylius:
+    taxon:
+        create: 'Category/Container has been successfully created.'
+        update: 'Category/Container has been successfully updated.'
+        delete: 'Category/Container has been successfully deleted.'
+
+    product_attribute:
+        create: 'Specification has been successfully created.'
+        update: 'Specification has been successfully updated.'
+        delete: 'Specification has been successfully deleted.'

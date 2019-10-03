@@ -1,0 +1,39 @@
+sylius_grid:
+  grids:
+    app_admin_blog_post:
+      driver:
+        name: doctrine/orm
+        options:
+          class: AppBundle\Entity\BlogPost
+      sorting:
+        id: asc
+      fields:
+        id:
+          type: string
+          label: №
+        title:
+          type: string
+          label: Title
+          sortable: ~
+        enabled:
+          type: twig
+          label: sylius.ui.enabled
+          options:
+            template: "@SyliusUi/Grid/Field/enabled.html.twig"
+      actions:
+        main:
+          create:
+            type: create
+            label:  sylius.ui.create
+            options:
+              link:
+                route: app_admin_blog_post
+        item:
+          update:
+            type: update
+            label:  sylius.ui.update
+            options:
+              link:
+                route: app_admin_blog_post_edit
+          delete:
+            type: delete

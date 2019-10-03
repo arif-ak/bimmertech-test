@@ -1,0 +1,26 @@
+{% if product.description|length > 7 %}
+    <div class="segment margin-vertical-3 product-description js-iframe-resize">
+        <div class="scrollTo" id="scrollToDescription"></div>
+        <section-min-header inline-template label="Description">
+            {% include ':GlobalComponents/MinHeader:minHeader.html.twig' %}
+        </section-min-header>
+        {{ sonata_block_render_event('sylius.shop.product.show.tab_details', {'product': product}) }}
+        <div class="section-custom">
+            {{ ((product.description|postContent())|popup(popup_options))|raw }}
+        </div>
+    </div>
+    {% include 'SyliusShopBundle:Product/Show/Tabs:_carModel.html.twig' %}
+{% endif %}
+
+{% if product.installer|length > 7 %}
+    <div class="segment margin-vertical-3 product-description">
+        <div class="scrollTo" id="scrollToInstallation"></div>
+        <section-min-header inline-template label="Installation">
+            {% include ':GlobalComponents/MinHeader:minHeader.html.twig' %}
+        </section-min-header>
+        {{ sonata_block_render_event('sylius.shop.product.show.tab_details', {'product': product}) }}
+        <div class="section-custom">
+            {{ ((product.installer|postContent())|popup(popup_options))|raw }}
+        </div>
+    </div>
+{% endif %}

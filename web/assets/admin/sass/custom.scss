@@ -1,0 +1,366 @@
+@import "variables";
+@import "scss/foundation";
+
+@include foundation-xy-grid-classes;
+@include foundation-flex-classes;
+@include foundation-prototype-spacing;
+@include foundation-prototype-classes;
+@include foundation-table;
+@include foundation-typography;
+
+@import "popup";
+
+// *****************************************************************************************************************************
+// start pages
+// *****************************************************************************************************************************
+
+@import "pages/order/order";
+@import "pages/post/post";
+@import "pages/category-container/menu";
+@import "pages/product/product";
+@import "pages/media-library/media-library";
+
+// *****************************************************************************************************************************
+// end pages
+// *****************************************************************************************************************************
+
+// *****************************************************************************************************************************
+// start vue-components
+// *****************************************************************************************************************************
+
+@import "vue-components/cropper";
+@import "vue-components/selectMediaLibraryImage";
+@import "vue-components/contextMenu";
+@import "vue-components/media";
+@import "vue-components/checkbox";
+@import "vue-components/field";
+
+// @import "vue-components/content_editor/content_editor";
+
+// *****************************************************************************************************************************
+// end vue-components
+// *****************************************************************************************************************************
+
+body {
+    display: none;
+
+    &.block {
+        display: block;
+    }
+}
+
+input {
+    &.is-danger {
+        border-color: $base-red-color !important;
+    }
+}
+
+.error {
+    &.ui.celled.relaxed.item-list {
+        border-color: $base-red-color !important;
+    }
+
+    &.media {
+        .ui.upload.box.segment {
+            border-color: $base-red-color !important;
+        }
+    }
+}
+
+.admin_support_instruction {
+    display: none;
+}
+
+.admin_logistic_warehouse {
+    display: none;
+}
+
+.admin_coding {
+    display: none;
+}
+
+.order-vin-edit {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    visibility: hidden;
+}
+
+.order-shipping-state-edit {
+    display: none;
+}
+
+.order-payment-state-edit {
+    display: none;
+}
+
+.order-support-state-edit {
+    display: none;
+}
+
+.order-coding-state-edit {
+    display: none;
+}
+
+.w100 {
+    width: 100%;
+}
+
+a.button.mb-15 {
+    margin-bottom: 15px;
+}
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.align-item-center {
+    display: flex;
+    align-items: center;
+}
+
+/* Front-End Developer (roman) */
+/* /admin/orders/n styles*/
+
+.summaryEditBtn {
+    font-size: 10px !important;
+    padding: 3px 5px !important;
+}
+
+.group-refund-inputs {
+    position: relative;
+
+    .message.help.is-danger {
+        position: relative;
+        margin-left: 15px;
+        bottom: initial;
+    }
+}
+
+.loading-text {
+    color: $base-gray-color;
+    margin-left: 15px;
+    font-size: $super-small-font-size;
+}
+
+.ui {
+    &.modal {
+        position: relative;
+        top: 0;
+
+        &.active {
+            position: relative;
+            top: 0;
+        }
+    }
+
+    &.dimmer.modals.page {
+        align-items: center;
+    }
+}
+
+.ui.dimmer.modals.page.transition.visible.active {
+    align-items: center;
+    overflow-y: auto;
+    z-index: 75000;
+}
+
+.returned {
+    &.product {
+        .content {
+            color: $base-red-color !important;
+        }
+
+        color: $base-red-color !important;
+    }
+
+    color: $base-red-color;
+}
+
+.refunded {
+    color: $secound-yellow;
+}
+
+.logisticBoardBtn {
+    margin-top: 5px !important;
+}
+
+.logisticBoardQuantity {
+    align-self: center !important;
+}
+
+.admin_logistic_warehouse_info button {
+    width: 100%;
+    padding: .62em 1em;
+    font-size: 1rem !important;
+    border: 1px solid #CACBCD !important;
+}
+
+/* #editSnippetBlock h4 {
+    margin: calc(2rem - .14285714em) 0.7rem 0.7rem;
+} */
+
+.bt-loading {
+    position: relative;
+    cursor: default;
+    pointer-events: none;
+
+    &::before {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        background: rgba(255, 255, 255, 0.8);
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+    }
+
+    &::after {
+        position: absolute;
+        content: '';
+        top: 50%;
+        left: 50%;
+        margin: -1.5em 0 0 -1.5em;
+        width: 3em;
+        height: 3em;
+        -webkit-animation: form-spin .6s linear;
+        animation: form-spin .6s linear;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        border-radius: 500rem;
+        border-color: #757575 rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1);
+        border-style: solid;
+        border-width: .2em;
+        -webkit-box-shadow: 0 0 0 1px transparent;
+        box-shadow: 0 0 0 1px transparent;
+        visibility: visible;
+        z-index: 101;
+    }
+}
+
+.new-dollar-sign {
+    position: relative;
+
+    &::before {
+        content: "\0024";
+        position: relative;
+        top: 0;
+        left: 0;
+        font-weight: inherit;
+    }
+}
+
+.testClass {
+    text-align: center;
+    float: left;
+}
+
+.mce-widget.mce-notification.mce-notification-warning.mce-has-close.mce-in {
+    display: none;
+}
+
+.product-image {
+    min-height: 50px;
+    min-width: 50px;
+    object-fit: cover;
+}
+
+.ui.sortable.stackable.celled.table {
+    td {
+        > .ui.teal.label {
+            white-space: nowrap;
+        }
+    }
+}
+
+// tinymice ************************************
+
+.mce-container {
+    .mce-reset {
+        .mce-container-body {
+            .mce-custom-textbox,
+            .mce-custom-listbox {
+                left: 41px !important;
+                width: 424px !important;
+            }
+
+            .mce-custom-listbox {
+                width: 431px !important;
+            }
+
+            .mce-custom-button {
+                top: 95px !important;
+                right: 36px !important;
+                left: auto !important;
+
+                &.mce-second {
+                    right: 187px !important;
+                }
+            }
+
+            .mce-btn {
+                min-width: 100px;
+            }
+        }
+    }
+}
+
+.ui.list.sylius-sortable-list {
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    .item {
+        > .icon.folder {
+            & + .content {
+                padding: 0;
+
+                > .list {
+                    margin-left: -5px;
+                }
+            }
+        }
+    }
+}
+
+.menu.product-attributes-btn {
+    > a.item:not(#textarea) {
+        display: none !important;
+    }
+}
+
+.column.channel .field .ui.labeled.input input {
+    width: 50%;
+}
+
+.ui.form .field .label-title {
+    margin-bottom: -10px;
+    margin-top: 10px;
+}
+
+.label-star {
+    color: red;
+    margin-left: 0.3em;
+}
+
+.cui.btpopup {
+    display: none;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    min-width: -webkit-min-content;
+    min-width: -moz-min-content;
+    min-width: min-content;
+    z-index: 15;
+    border: 1px solid #757575;
+    line-height: 1.2;
+    max-width: 270px;
+    background: #fdfdfd;
+    padding: 10px 15px;
+    font-weight: normal;
+    font-style: normal;
+    color: #212121;
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 4px 0px rgba(34, 36, 38, 0.15);
+    box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 4px 0px rgba(34, 36, 38, 0.15);
+}

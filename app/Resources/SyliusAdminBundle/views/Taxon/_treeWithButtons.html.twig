@@ -1,0 +1,176 @@
+{% import '@SyliusUi/Macro/buttons.html.twig' as buttons %}
+{% import _self as tree %}
+
+{#<style>#}
+{#    .draggable-item.over {#}
+{#        border: 2px dashed #000;#}
+{#    }#}
+{#</style>#}
+{% macro render(taxons) %}
+    {% import '@SyliusUi/Macro/buttons.html.twig' as buttons %}
+    {% import _self as tree %}
+
+    {% for taxon in taxons if taxon.id != null %}
+        <div class="item draggable-item" data-id="{{ taxon.id }}" data-position="{{ taxon.position }}">
+            <i class="folder icon"></i>
+            <div class="content">
+                <div class="header">
+                    <a href="{{ path('sylius_admin_product_per_taxon_index', {'taxonId': taxon.id}) }}">
+                        {{ taxon.name }}
+                    </a>
+                    <br>
+                    <div class="ui mini buttons" style="margin-top: 5px;">
+                        {{ buttons.create(path('sylius_admin_taxon_create_for_parent', { 'id': taxon.id }), 'sylius.ui.add') }}
+                        {{ buttons.edit(path('sylius_admin_taxon_update', { 'id': taxon.id }), null, null, false) }}
+                        {{ buttons.delete(path('sylius_admin_taxon_delete', { 'id': taxon.id }), null, false, taxon.id) }}
+                        <a class="ui icon button sylius-taxon-move-up" data-url="{{ path('sylius_admin_ajax_taxon_move', { id :taxon.id }) }}" data-id="{{ taxon.id }}" data-position="{{ taxon.position }}">
+                            <i class="icon arrow up"></i>
+                        </a>
+                        <a class="ui icon button sylius-taxon-move-down" data-url="{{ path('sylius_admin_ajax_taxon_move', { id: taxon.id }) }}" data-id="{{ taxon.id }}" data-position="{{ taxon.position }}">
+                            <i class="icon arrow down"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="list draggable-list">
+                    {{ tree.render(taxon.children) }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endmacro %}
+
+<div class="button_block">
+    <a href="{{ path('app_admin_taxon_pre_create', {'type': 'container'}) }}" class="ui large labeled icon primary button">
+        <i class="plus icon"></i>
+       Create Container
+    </a>
+
+    <a href="{{ path('app_admin_taxon_pre_create', {'type': 'category'}) }}" class="ui large labeled icon primary button">
+        <i class="plus icon"></i>
+        Create Category
+    </a>
+</div>
+
+
+<div class="ui segment">
+    <div class="ui list sylius-sortable-list">
+        {{ tree.render(taxons) }}
+    </div>
+</div>
+
+<script>
+
+    var dragSrcEl = null;
+    var dragSrcElArr = [];
+    var draggableDestinations = [];
+
+    function handleDragStart(e) {
+        // this.style.opacity = '0.4';  // this / e.target is the source node.
+        dragSrcElArr.push(this);
+        dragSrcEl = dragSrcElArr[0];
+
+        var parentList = $(dragSrcEl).closest('.list .draggable-list');
+        draggableDestinations = [];
+        $(parentList).find('.item').each(function(){
+            draggableDestinations.push($(this).data('id'));
+        })
+
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/html', dragSrcElArr[0].innerHTML);
+    }
+
+    function handleDragOver(e) {
+        if (e.preventDefault) {
+            e.preventDefault(); // Necessary. Allows us to drop.
+        }
+
+        e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+
+        return false;
+    }
+
+    function handleDragEnter(e) {
+        // this / e.target is the current hover target.
+        this.classList.add('over');
+    }
+
+    function handleDragLeave(e) {
+        this.classList.remove('over');  // this / e.target is previous target element.
+    }
+
+    function handleDrop(e) {
+
+        // this / e.target is current target element.
+
+        if (e.stopPropagation) {
+            e.stopPropagation(); // stops the browser from redirecting.
+        }
+        // Don't do anything if dropping the same column we're dragging.
+        if (dragSrcEl != this) {
+            // Set the source column's HTML to the HTML of the column we dropped on.
+
+            var currentId = $(this).data('id');
+
+            if( ($.inArray(currentId,draggableDestinations)) != -1)
+            {
+                // dragSrcEl.innerHTML = this.innerHTML;
+                // this.innerHTML = e.dataTransfer.getData('text/html');
+
+                var swapUrl = "{{ path('sylius_admin_ajax_taxon_move', { id : 'taxon_id' }) }}";
+                swapUrl = swapUrl.replace('taxon_id',$(dragSrcEl).data('id'));
+
+                var position = $(this).data('position');
+
+                {#var swapUrl = "{{ path('sylius_admin_ajax_taxon_swap', { 'taxonSource' :'taxon_source','taxonDestination' : 'taxon_destination' }) }}";#}
+                {#swapUrl = swapUrl.replace('taxon_source',191);#}
+                {#swapUrl = swapUrl.replace('taxon_destination',currentId);#}
+
+                $.ajax({
+                    'method': 'put',
+                    'url': swapUrl,
+                    'data': "position=" + position,
+                    'success': function (data) {
+                        // if(data == 'success'){
+                            console.log('Taxon positions changed!Reloading page...');
+                            location.reload();
+                            return true;
+                        // }
+
+                    },
+                    'error': function (data) {
+                        // reloadPage();
+                    }
+                });
+
+            } else {
+                alert("This taxon cannot be dragged to a different category");
+                return false;
+            }
+
+        }
+
+        dragSrcElArr = [];
+        dragSrcEl = null;
+
+        return false;
+    }
+
+    function handleDragEnd(e) {
+
+        [].forEach.call(cols, function (col) {
+            col.classList.remove('over');
+        });
+        dragSrcElArr = [];
+        dragSrcEl = null;
+    }
+
+    var cols = document.querySelectorAll('.draggable-item');
+    [].forEach.call(cols, function(col) {
+        col.addEventListener('dragstart', handleDragStart, false);
+        col.addEventListener('dragenter', handleDragEnter, false);
+        col.addEventListener('dragover', handleDragOver, false);
+        col.addEventListener('dragleave', handleDragLeave, false);
+        col.addEventListener('drop', handleDrop, false);
+        col.addEventListener('dragend', handleDragEnd, false);
+    });
+</script>

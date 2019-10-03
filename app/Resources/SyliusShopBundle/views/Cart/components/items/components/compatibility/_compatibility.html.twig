@@ -1,0 +1,26 @@
+
+<div class="large-auto compatibility">
+    <div class="display-flex align-middle">
+        <div v-if="compatibility=='Yes'" class="bt-icon green bt-yes"></div>
+        <div v-if="compatibility=='No'" class="bt-icon red bt-no"></div>
+        <div v-if="compatibility=='Not sure'" class="bt-icon blue bt-maybe"></div>
+        <div v-if="!compatibility" class="bt-icon yellow bt-attention"></div>
+    </div>
+    <div v-if="compatibility=='Yes'" class="large-auto header-message display-flex align-middle">
+        Compatible with your [[carModel]]
+    </div>
+    <div v-if="compatibility=='No'" class="large-auto header-message display-flex align-middle">
+        Not compatible with your [[carModel]]
+    </div>
+    <div v-if="compatibility=='Not sure'" class="large-auto header-message display-flex align-middle">
+        <p>Compatibility with this product can only be confirmed after
+            <span class="vin-check-message-blue">entering your VIN</span>
+        </p>
+    </div>
+    <div v-if="!compatibility" class="large-auto header-message display-flex align-middle">
+        <div class="text-wrapper">
+            <p class="text-truncate">Identify your car to check compatibility
+            </p>
+        </div>
+    </div>
+</div>

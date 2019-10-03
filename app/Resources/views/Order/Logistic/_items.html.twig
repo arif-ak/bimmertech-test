@@ -1,0 +1,63 @@
+{% import "@SyliusAdmin/Common/Macro/money.html.twig" as money %}
+
+{% set orderPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_PROMOTION_ADJUSTMENT') %}
+{% set itemPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_ITEM_PROMOTION_ADJUSTMENT') %}
+{% set shippingAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::SHIPPING_ADJUSTMENT') %}
+{% set taxAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::TAX_ADJUSTMENT') %}
+{% set shipment = itemTable.shipment %}
+{% set variants = itemTable.items %}
+{% set shipForm = itemTable.shipForm %}
+
+<tr>
+    <td class=" center aligned sylius-table-column-item">{{ key+1 }}</td>
+    <td class=" center aligned sylius-table-column-item">{{ shipment.method.__toString() }}</td>
+    <td class=" center aligned sylius-table-column-item">{{ shipment.tracking }}</td>
+    <td class="six wide sylius-table-column-item">
+        {% for productArr in  itemTable['items'] %}
+            {% set item=  productArr['item'] %}
+            {% set variant=  productArr['item'].variant %}
+            {% set product = variant.product %}
+            {% set warehouseForm = productArr.formWarehouse %}
+            <div class="ui equal width  padded grid">
+                <div class="column  eleven wide left aligned ">
+                    <div>
+                        {% include '@SyliusAdmin/Product/_info.html.twig' %}
+                    </div>
+                    <div>
+                        <div class="column">
+                            <div class="ui  vertical fluid menu">
+                                <div class="header item admin_logistic_warehouse_info item{{ item.id }}">
+                                    {{ item.warehouse.name }}
+                                </div>
+                            </div>
+                            <p>Quantity: {{ productArr['quantity'] }}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+    </td>
+    <td class=" center aligned sylius-table-column-item">
+        <button class="ui mini button" onclick="admin_modal_logistic({{ shipment.id }})">
+            Add photo report
+        </button>
+        <div class="ui divider"></div>
+        <a href="{{ path('app_order_item_prepear_label',{'id':order.id,'shipmentId':shipment.id}) }}">
+            <div class="ui animated mini button" tabindex="0">
+                <div class="visible content">Prepear label</div>
+                <div class="hidden content">
+                    <i class="right arrow icon"></i>
+                </div>
+            </div>
+        </a>
+        <div class="ui divider"></div>
+        <a class="ui mini button" onclick="admin_modal_logistic_shipment({{ shipment.id }})">
+            Edit shipment
+        </a>
+        <div class="ui divider"></div>
+        <a class="ui mini red button" href="{{ path('app_shipment_delete',{'id':shipment.id}) }}" data-method="DELETE">
+            Delete
+        </a>
+    </td>
+</tr>

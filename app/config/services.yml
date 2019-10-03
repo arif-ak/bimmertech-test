@@ -1,0 +1,567 @@
+#parameters for validations
+parameters:
+  sylius.form.type.address.validation_groups: [app_address]
+  webburza_article.controller.article.class: AppBundle\Controller\ArticleController
+  webburza_article.repository.article.class: AppBundle\Repository\ArticleRepository
+  #    webburza_article.form.type.article.class: AppBundle\Form\Extension\AppArticleType
+  #    sylius.form.type.product.validation_groups: [app_address]
+  webburza_wishlist.listener.menu_builder.class: AppBundle\Menu\CustomerMenuBuilderListener
+
+services:
+  bitbag.shipping_export_plugin.menu.shipping_gateway:
+    class: AppBundle\Menu\ShippingGatewayMenuBuilder
+    tags:
+    - { name: kernel.event_listener, event: sylius.menu.admin.main, method: buildMenu }
+
+  bitbag.shipping_export_plugin.menu.shipping_export:
+    class: AppBundle\Menu\ShippingExportMenuBuilder
+    tags:
+    - { name: kernel.event_listener, event: sylius.menu.admin.main, method: buildMenu }
+    arguments: ["@security.authorization_checker"]
+  app.service.checkout_warehouse:
+    class: AppBundle\Service\CheckoutWarehouse
+    arguments: ['@doctrine.orm.entity_manager']
+  app.service.checkout_taxes:
+    class: AppBundle\Service\CheckoutTaxes
+    arguments: ['@service_container', '@sm.factory']
+  app.service.shipping_address_pay_pal:
+    class: AppBundle\Service\ShippingAddressPayPal
+    arguments: ['@service_container']
+  app.service.email_canceled_paid_pay_pal:
+    class: AppBundle\Service\EmailCanceledPaymentPayPal
+    arguments: ['@service_container']
+  app.service.buyers_guide:
+    class: AppBundle\Service\BuyersGuideService
+    arguments: ['@service_container']
+  app.service.car_model:
+    class: AppBundle\Service\CarModelService
+    arguments: ['@doctrine.orm.entity_manager']
+  app.service.order_item_shipment:
+    class: AppBundle\Service\OrderItemShipment
+    arguments: ['@doctrine.orm.entity_manager','@sm.factory']
+
+  app.service.create_shop_user:
+    class: AppBundle\Service\CreateShopUser
+    arguments: [ '@sylius.factory.shop_user', '@doctrine.orm.entity_manager', '@sylius.repository.shop_user', '@sylius.email_sender', '@sylius.repository.customer' ]
+
+  app.service.order_status:
+    class: AppBundle\Service\OrderStatus
+    arguments: ['@service_container']
+
+  app.service.paypal:
+    class: AppBundle\Service\PayPalService
+    arguments: ['@service_container']
+
+  app.service.order_refund:
+    class: AppBundle\Service\OrderRefundService
+    arguments: ['@service_container', '@doctrine.orm.entity_manager']
+
+  app.normalizer.order_balance:
+    class: AppBundle\Serializer\Normalizer\Order\OrderBalanceNormalizer
+    arguments: ['@service_container', '@doctrine.orm.entity_manager']
+
+  app.normalizer.order_item_unit_return:
+    class: AppBundle\Serializer\Normalizer\Order\OrderItemUnitReturnNormalizer
+    arguments: ['@service_container', '@doctrine.orm.entity_manager']
+
+  app.normalizer.order_refund:
+    class: AppBundle\Serializer\Normalizer\Order\OrderRefundNormalizer
+    arguments: ['@service_container', '@doctrine.orm.entity_manager']
+
+  #   OAuth service provider
+  app.oauth.service.user_provider:
+    class: AppBundle\OAuth\UserProvider
+    arguments: ["%sylius.model.shop_user.class%",
+                "@sylius.factory.customer",
+                "@sylius.factory.shop_user",
+                "@sylius.repository.shop_user",
+                "@sylius.factory.oauth_user",
+                "@sylius.repository.oauth_user",
+                "@sylius.manager.shop_user",
+                "@sylius.canonicalizer",
+                "@sylius.repository.customer"]
+
+  #   Services for checkout processors
+  app.processor.warehouse_tax_order_processor:
+    class: AppBundle\Processor\WarehouseTaxOrderProcessor
+    arguments: ['@service_container']
+    tags:
+    - { name: sylius.order_processor }
+
+  #   Services fo resolver
+  app.sylius.shipping_methods_resolver.zones_and_channel_based:
+    class: AppBundle\Resolver\ZoneAndChannelBasedShippingMethodsResolver
+    arguments: ['@sylius.repository.shipping_method', '@sylius.zone_matcher', '@sylius.shipping_eligibility_checker']
+    tags:
+    - { name: sylius.shipping_method_resolver, type: zones_and_channel_based, label: sylius.shipping_methods_resolver.zones_and_channel_based, priority: 1  }
+  app.sylius.payment_methods_resolver.channel_based:
+    class: AppBundle\Resolver\ChannelBasedPaymentMethodsResolver
+    arguments: ['@sylius.repository.payment_method']
+    tags:
+    - { name: sylius.payment_method_resolver, type: channel_based, label: sylius.payment_methods_resolver.channel_based, priority: 1 }
+
+  #   Service for vicnheckservice
+  app.vin_check.vin_check:
+    class: AppBundle\VinCheck\VinCheck
+    arguments: ['@service_container']
+
+  #   Service for check Vat Number
+  app.service.check_vat_number:
+    class: AppBundle\Service\CheckVatNumber
+    arguments: ['@service_container']
+
+  #   Custom Controllers
+  app.controller.tracking_delivery_controller:
+    class: AppBundle\Controller\TrackingDeliveryController
+    arguments: ['@templating']
+
+  app.controller.taxon_product_recomended_controller:
+    class: AppBundle\Controller\TaxonProductRelatedController
+    arguments: ['@templating']
+
+  app.controller.information_in_footer_controller:
+    class: AppBundle\Controller\Shop\InformationInFooterController
+    arguments: ['@templating', '@doctrine.orm.entity_manager']
+
+  app.controller.security_shop_controller:
+    class: AppBundle\Controller\SecurityShopController
+
+  app.controller.vincheck:
+    class: AppBundle\Controller\VinCheckController
+    arguments: ['@templating']
+
+  app.controller.account:
+    class: AppBundle\Controller\AccountController
+    arguments: ['@templating']
+
+  app.service.prepear_label_dhl:
+    class: AppBundle\Service\PrepearLabelDHL
+    arguments: ['@bitbag.repository.shipping_gateway', '@bitbag.repository.shipping_export',
+                '@doctrine.orm.entity_manager']
+
+  app.service.logistic_board_service:
+    class: AppBundle\Service\LogisticBoardService
+    arguments: ['@Doctrine\ORM\EntityManagerInterface', '@service_container']
+
+  app.service.order_item_board_type_service:
+    class: AppBundle\Service\OrderItemBoardTypeService
+    arguments: ['@service_container', '@doctrine.orm.entity_manager']
+
+
+  app.controller.search_elastic_controller:
+    class: AppBundle\Controller\SearchElasticController
+    arguments: ['@app.service.elastic_search', '@app.serializer_normalizer.elastic_search.post']
+
+  app.controller.bopt_controller:
+    class: AppBundle\Controller\BoptController
+
+  api.controller.order_controller:
+    class: AppBundle\Controller\API\OrderController
+    arguments: [ '@app.service.image_upload', '@app.serializer_normalizer.order_product_list_normalizer',
+                 '@app.service.order_api', '@filesystem', '@app.service.order_board_status']
+
+  app.vin_check.vin_check_session:
+    class: AppBundle\VinCheck\VinCheckSession
+    arguments: ['@app.vin_check.vin_check', '@sylius.repository.product']
+
+  app.vin_check.compatibility_products:
+    class: AppBundle\VinCheck\CompatibilityProducts
+
+  app.controller.taxonomy_menu_controller:
+    class: AppBundle\Controller\TaxonomyMenuController
+    arguments: [ '@sylius.repository.taxon', '@sylius.repository.channel', '@sylius.repository.product']
+
+  app.controller.slider_controller:
+    class: AppBundle\Controller\SliderController
+    arguments: ['@doctrine.orm.entity_manager']
+
+  sylius.controller.shop.homepage:
+    class: AppBundle\Controller\Shop\HomepageController
+    arguments: ['@templating', '@sylius.repository.product']
+
+  sylius.repository.taxon:
+    class: AppBundle\Repository\TaxonRepository
+    factory: ['@doctrine.orm.entity_manager', 'getRepository' ]
+    arguments:
+    - 'AppBundle\Entity\Taxon'
+  #        factory: ['@doctrine.orm.entity_manager', 'getRepository']
+
+  #    sylius.context.channel.request_based.resolver:
+  #        class: Sylius\Component\Channel\Context\RequestBased\RequestResolverInterface
+  #        tags:
+  #            - { name: sylius.context.channel,  priority: -64 }
+
+  sylius.repository.order:
+    class: AppBundle\Repository\OrderRepository
+    factory: ['@doctrine.orm.entity_manager', 'getRepository']
+    arguments:
+    - 'AppBundle\Entity\Order'
+    calls:
+    - [ setContainer, [ '@security.authorization_checker'] ]
+  #
+  #  sylius.repository.order_item:
+  #    class: AppBundle\Repository\OrderItemRepository
+  #    arguments:
+  #      - '@doctrine.orm.entity_manager'
+  #      - '@sylius.order_item.class'
+  #
+
+  app.service.create_cart:
+    class: AppBundle\Service\CreateCart
+    arguments:
+    - '@sylius.repository.product_variant'
+    - '@doctrine.orm.entity_manager'
+    - '@sylius.order_item_quantity_modifier'
+    - '@sylius.repository.order'
+    - '@app.repository.drop_down_option'
+    - '@sylius.repository.order_item'
+
+  app.command.order_state_command:
+    class: AppBundle\Command\OrderStateCommand
+    arguments: ['@sylius.repository.order', '@doctrine.orm.entity_manager']
+    tags:
+    - { name: console.command }
+
+  app.command.update_shipment_command:
+    class: AppBundle\Command\UpdateShipmentCommand
+    arguments: ['@sylius.repository.shipment', '@doctrine.orm.entity_manager', '@service_container',
+                '@app.service.order_api']
+    tags:
+    - { name: console.command }
+
+  app.command.update_product_car_models:
+    class: AppBundle\Command\UpdateProductCarModelsCommand
+    arguments: ['@doctrine.orm.entity_manager', '@service_container']
+    tags:
+    - { name: console.command }
+
+  app.command.check_shipment_command:
+    class: AppBundle\Command\CheckShipmentCommand
+    arguments: ['@sylius.repository.shipment', '@doctrine.orm.entity_manager', '@service_container',
+                '@app.service.order_api']
+    tags:
+    - { name: console.command }
+
+  app.command.send_email_command:
+    class: AppBundle\Command\SendEmailCommand
+    arguments: ['@sylius.email_sender', '@app.service.order_email_service','%host%']
+    tags:
+    - { name: console.command }
+
+  app.controller_api.security_shop_controller:
+    class: AppBundle\Controller\API\SecurityShopController
+
+  app.controller_api.car_model_controller:
+    class: AppBundle\Controller\API\CarModelController
+    arguments: ['@app.repository.car_model']
+
+  app.controller_api.product_controller:
+    class: AppBundle\Controller\API\ProductController
+    arguments: ['@sylius.repository.product']
+
+  app.controller_api.product_contaier_controller:
+    class: AppBundle\Controller\API\ProductContainerController
+
+  app.controller_api.category_controller:
+    class: AppBundle\Controller\API\CategoryController
+    arguments: ['@sylius.repository.taxon','@app.vin_check.compatibility_products', '@sylius.repository.product']
+
+  app.controller_api.ask_bmw_expert:
+    class: AppBundle\Controller\API\AskBmwExpertController
+    arguments: ['@sylius.email_sender','@app.repository.general_option']
+
+  app.controller_api.product_review_controller:
+    class: AppBundle\Controller\API\ProductReviewController
+    arguments: ['@sylius.repository.product','@doctrine.orm.entity_manager']
+
+  app.controller_api.product_review_like_controller:
+    class: AppBundle\Controller\API\ProductReviewLikeController
+
+  app.controller_api.installer_controller:
+    class: AppBundle\Controller\API\InstallerController
+
+  app.controller.product_description_controller:
+    class: AppBundle\Controller\ProductDescriptionController
+
+  app.controller_api_admin.product_image_controller:
+    class: AppBundle\Controller\API\Admin\ProductImageController
+    arguments: ['@sylius.repository.product','@doctrine.orm.entity_manager', '@sylius.image_uploader','@sylius.repository.product_image']
+
+  app.controller_api_admin.taxon_image_controller:
+    class: AppBundle\Controller\API\Admin\TaxonImageController
+    arguments: ['@sylius.repository.taxon', '@doctrine.orm.entity_manager', '@sylius.image_uploader', '@sylius.repository.taxon_image']
+
+  app.controller.page_controller:
+    class: AppBundle\Controller\PageController
+    arguments: ['@app.repository.custom_page']
+
+  app.controller.blog_controller:
+    class: AppBundle\Controller\BlogController
+
+  api.controller.blog_controller:
+    class: AppBundle\Controller\API\BlogController
+    arguments: ["@sylius.generator.slug"]
+
+  app.controller.blog_review_controller:
+    class: AppBundle\Controller\BlogReviewController
+
+  app.controller_api.blog_review_controller:
+    class: AppBundle\Controller\API\BlogReviewController
+    arguments: ['@doctrine.orm.entity_manager']
+
+  app.controller_api.blog_review_like_controller:
+    class: AppBundle\Controller\API\BlogReviewLikeController
+
+  app.serializer_normalizer.cart_normalizer:
+    class: AppBundle\Serializer\Normalizer\CartNormalizer
+    arguments:
+    - '@app.vin_check.compatibility_products'
+    - '@app.serializer_normalizer.order_item_included_addons_normalizer'
+
+  app.serializer_normalizer.order_normalizer:
+    class: AppBundle\Serializer\Normalizer\User\OrderNormalizer
+    arguments:
+    - '@service_container'
+
+  app.serializer_normalizer.order_access_normalizer:
+    class: AppBundle\Serializer\Normalizer\Order\OrderAccessNormalizer
+    arguments:
+    - '@security.authorization_checker'
+
+  app.serializer_normalizer.order_product_list_normalizer:
+    class: AppBundle\Serializer\Normalizer\Order\ProductListNormalizer
+    arguments:
+    - '@app.serializer_normalizer.order_item_included_addons_normalizer'
+    - '@app.serializer_normalizer.order_item_normalizer'
+    - '@doctrine.orm.entity_manager'
+    - '@service_container'
+
+  app.serializer_normalizer.order_support_board_list_normalizer:
+    class: AppBundle\Serializer\Normalizer\Order\SupportBoardNormalizer
+    arguments:
+    - '@app.serializer_normalizer.order_item_normalizer'
+
+  app.serializer_normalizer.order_codding_board_list_normalizer:
+    class: AppBundle\Serializer\Normalizer\Order\CoddingBoardNormalizer
+    arguments:
+    - '@app.serializer_normalizer.order_item_normalizer'
+    - '@service_container'
+
+  app.serializer_normalizer.order_item_normalizer:
+    class: AppBundle\Serializer\Normalizer\OrderItem\OrderItemNormalizer
+    arguments: ['@service_container', '@doctrine.orm.entity_manager']
+
+  app.serializer_normalizer.warehouse_order_item_normalizer:
+    class: AppBundle\Serializer\Normalizer\Order\WarehouseOrderItemsNormalizer
+    arguments: ['@service_container', '@doctrine.orm.entity_manager']
+
+  app.serializer_normalizer.warehouse_order_item_usb_coding_normalizer:
+    class: AppBundle\Serializer\Normalizer\Order\WarehouseOrderItemsUsbCodingNormalizer
+    arguments: ['@service_container']
+
+  app.serializer_normalizer.warehouse_order_item_unit_normalizer:
+    class: AppBundle\Serializer\Normalizer\Order\WarehouseOrderItemUnitsNormalizer
+    arguments: ['@service_container']
+
+  app.serializer_normalizer.shipping_detail:
+    class: AppBundle\Serializer\Normalizer\Order\ShippingDetailsNormalizer
+    arguments: ['@service_container']
+
+  app.serializer_normalizer.order_item_included_addons_normalizer:
+    class: AppBundle\Serializer\Normalizer\OrderItemIncludedAddonsNormalizer
+    arguments:
+    - '@app.vin_check.compatibility_products'
+
+  app.serializer_normalizer.elastic_search.post:
+    class: AppBundle\Serializer\Normalizer\ElasticSearch\BlogPostNormalizer
+
+  app.controller_api.checkout_controller:
+    class: AppBundle\Controller\API\CheckoutController
+    arguments:
+    - '@sylius.repository.country'
+    - '@app.repository.user_sale'
+    - '@sylius.repository.order'
+    - '@doctrine.orm.entity_manager'
+    - '@sylius.repository.customer'
+    - '@sylius.repository.channel'
+    - '%host%'
+
+  app.controller.api.user.user_controller:
+    class: AppBundle\Controller\API\User\UserController
+    arguments:
+    - '@doctrine.orm.entity_manager'
+    - '@security.encoder_factory'
+
+  app.controller.system_info:
+    class: AppBundle\Controller\SystemInfoController
+
+  app.api.controller.shop_main_menu:
+    class: AppBundle\Controller\API\ShopMainMenuController
+    arguments:
+    - '@sylius.repository.taxon'
+    - '@sylius.repository.product'
+
+  app.service.after_payment:
+    class: AppBundle\Service\AfterPaymentService
+    arguments:
+    - '@app.service.create_shop_user'
+    - '@jms_job_queue.job_manager'
+    - '@doctrine.orm.entity_manager'
+    - '@service_container'
+
+  app.controller.admin.blog:
+    class: AppBundle\Controller\Admin\BlogController
+
+  app.api.blog_post:
+    class: AppBundle\Controller\API\Admin\BlogPostController
+    arguments:
+    - '@app.repository.blog_post'
+    - '@app.repository.blog_category'
+    - '@doctrine.orm.entity_manager'
+
+  app.controller.media_image_controller:
+    class: AppBundle\Controller\MediaImageController
+    arguments:
+    - '@sylius.image_uploader'
+    - '@doctrine.orm.entity_manager'
+
+  app.controller_api_admin.media_image_controller:
+    class: AppBundle\Controller\API\Admin\MediaImageController
+    arguments:
+    - '@app.repository.media_image'
+
+  app.service.delete_product:
+    class: AppBundle\Service\DeleteProduct
+    arguments:
+    - '@service_container'
+
+  sylius.context.cart.new:
+    class: AppBundle\Context\CartContext
+    tags:
+    - { name: 'sylius.context.cart', priority: -999 }
+
+  sylius.listener.session_cart:
+    class: AppBundle\EventListener\SessionCartSubscriber
+    arguments:
+    - '@sylius.context.cart'
+    - '@sylius.storage.cart_session'
+    - '@app.service.create_cart'
+    - '@sylius.context.customer'
+    tags:
+    - { name: 'kernel.event_subscriber' }
+
+  sylius.context.cart.customer_and_channel_based:
+    class: AppBundle\Context\CustomerAndChannelBasedCartContext
+    arguments:
+    - '@sylius.context.customer'
+    - '@sylius.context.channel'
+    - '@sylius.repository.order'
+    - '@app.service.create_cart'
+    tags:
+    - { name: 'sylius.context.cart', priority: -555 }
+
+  app.controller_api_admin.media_folder:
+    class: AppBundle\Controller\API\Admin\MediaFolderController
+    arguments:
+    - '@app.repository.media_folder'
+    - '@app.repository.media_image'
+
+  app.helper.paginate_helper:
+    class: AppBundle\Helper\PaginateHelper
+
+  sylius.order_processing.order_shipment_processor:
+    class: AppBundle\Service\OrderShipmentProcessor
+
+  app.service.order_shipment_email:
+    class: AppBundle\Service\OrderShipmentEmail
+    arguments: ['@sylius.email_sender','@doctrine.orm.entity_manager',"@security.authorization_checker",'@service_container']
+
+  app.grid_filter.help_header_filter:
+    class: AppBundle\Grid\Filter\HelpHeaderFilter
+    tags:
+    - name: sylius.grid_filter
+      type: help_header
+      form_type: AppBundle\Form\Type\Filter\HelpHeaderFilterType
+
+  app.grid_filter.help_all_fields_filter:
+    class: AppBundle\Grid\Filter\HelpAllFieldsFilter
+    tags:
+    - name: sylius.grid_filter
+      type: help_all_fields
+      form_type: AppBundle\Form\Type\Filter\HelpAllFieldsFilterType
+
+  app.controller.confirmation_page_controller:
+    class: AppBundle\Controller\ConfirmationPageController
+
+  app.controller.join_controller:
+    class: AppBundle\Controller\JoinProductController
+    arguments: ['@doctrine.orm.entity_manager']
+
+  app.controller_api_admin.product_buyers_guide_image_controller:
+    class: AppBundle\Controller\API\Admin\ProductBuyersGuideImageController
+
+  app.controller.server_logs:
+    class: AppBundle\Controller\ServerLogsController
+
+  app.grid_filter.order_role_filter:
+    class: AppBundle\Grid\Filter\OrderRoleFilter
+    #    factory: ['@doctrine.orm.entity_manager', 'getRepository']
+    arguments:
+    - '@sylius.repository.order'
+    calls:
+    - [ setContainer, [ '@security.authorization_checker'] ]
+    tags:
+    - name: sylius.grid_filter
+      type: order_role
+      form_type: AppBundle\Form\Type\Filter\OrderRoleFilterType
+
+  app.grid_filter.order_sort_by_statuses_filter:
+    class: AppBundle\Grid\Filter\OrderSortByStatusesFilter
+    #    factory: ['@doctrine.orm.entity_manager', 'getRepository']
+    arguments:
+    - '@sylius.repository.order'
+    calls:
+    - [ setContainer, [ '@security.authorization_checker'] ]
+    - [ setEm, [ '@doctrine.orm.entity_manager'] ]
+    tags:
+    - name: sylius.grid_filter
+      type: order_sort_by_statuses
+      form_type: AppBundle\Form\Type\Filter\OrderSortByStatusesFilterType
+  app.service.admin_user:
+    class: AppBundle\Service\AdminUserService
+    arguments: ['@sylius.repository.admin_user', '@sylius.email_sender']
+
+  app.service.interesting_in_compatible:
+    class: AppBundle\Service\InterestingInCompatible
+
+  app.controller.site_map_controller:
+    class: AppBundle\Controller\SiteMapController
+
+  app.controller.help_seo_controller:
+    class: AppBundle\Controller\HelpSeoController
+
+  app.controller_api_admin.order_controller:
+    class: AppBundle\Controller\API\Admin\OrderController
+    arguments:
+    - '@sylius.repository.order'
+    - '@security.authorization_checker'
+
+  app.controller_api_admin.history:
+    class: AppBundle\Controller\API\Admin\HistoryController
+    arguments:
+    - '@sylius.repository.order'
+    - '@app.repository.history'
+
+  app.controller.history_controller:
+    class: AppBundle\Controller\HistoryController
+    arguments:
+    - '@sylius.repository.order'
+    - '@app.repository.history'
+
+  app.service.check_item_type:
+    class: AppBundle\Service\CheckItemTypeService
+    arguments: ['@service_container']
+
+  app.service.order_email_service:
+    class: AppBundle\Service\OrderEmailService
+    arguments: ['@sylius.repository.order']

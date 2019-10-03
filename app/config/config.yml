@@ -1,0 +1,555 @@
+# This file is part of the Sylius package.
+# (c) Paweł Jędrzejewski
+
+imports:
+- { resource: "@SyliusCoreBundle/Resources/config/app/config.yml" }
+- { resource: "@SyliusAdminBundle/Resources/config/app/config.yml" }
+- { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
+- { resource: "@SyliusAdminApiBundle/Resources/config/app/config.yml" }
+- { resource: "@BitBagSyliusShippingExportPlugin/Resources/config/config.yml" }
+- { resource: "@WebburzaSyliusWishlistBundle/Resources/config/config.yml" }
+
+- { resource: "grids.yml" }
+- { resource: "parameters.yml" }
+- { resource: "security.yml" }
+- { resource: "grids/grids.yml" }
+- { resource: "resources.yml" }
+- { resource: "services.yml" }
+- { resource: "state_machine.yml" }
+- { resource: "fixture.yml" }
+
+#    - { resource: "@AppBundle/Resources/config/config.yml" }
+
+parameters:
+  locale: en_US
+
+framework:
+  ide: 'phpstorm://open?url=file://%%f&line=%%l'
+  translator: { fallbacks: ["%locale%"] }
+  secret: "%secret%"
+  router:
+    resource: "%kernel.root_dir%/config/routing.yml"
+    strict_requirements: "%kernel.debug%"
+  form: true
+  csrf_protection: true
+  validation: { enable_annotations: true }
+  templating:
+    engines: ['twig']
+  default_locale: "%locale%"
+  trusted_proxies: ~
+  # session:
+  #     handler_id: ~
+  session:
+    gc_probability: 0
+
+doctrine:
+  dbal:
+    driver: "%database_driver%"
+    host: "%database_host%"
+    port: "%database_port%"
+    dbname: "%database_name%"
+    user: "%database_user%"
+    password: "%database_password%"
+    server_version: "5.6"
+    charset: UTF8
+
+doctrine_migrations:
+  dir_name: "%kernel.root_dir%/migrations"
+  namespace: Sylius\Migrations
+  table_name: sylius_migrations
+  name: Sylius Migrations
+
+swiftmailer:
+  transport: "%mailer_transport%"
+  host: "%mailer_host%"
+  username: "%mailer_user%"
+  password: "%mailer_password%"
+
+
+fos_rest:
+  exception: ~
+  view:
+    formats:
+      json: true
+      xml:  true
+    empty_content: 204
+  format_listener:
+    rules:
+    - { path: '^/api', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: true }
+    - { path: '^/', stop: true }
+
+sylius_shop:
+  locale_switcher: storage
+  checkout_resolver:
+    pattern: /checkout/.+
+    route_map:
+      empty_order:
+        route: sylius_shop_cart_summary
+      cart:
+        route: sylius_shop_checkout_address
+      addressed:
+        route: sylius_shop_checkout_taxes_select
+      taxes_select:
+        route: sylius_shop_checkout_select_payment
+      taxes_skip:
+        route: sylius_shop_checkout_select_payment
+      payment_selected:
+        route: sylius_shop_checkout_complete
+      payment_skipped:
+        route: sylius_shop_checkout_complete
+
+
+webburza_sylius_wishlist:
+  multiple: true           # multiple wishlist mode
+  default_public: false    # used for automatically created wishlists
+
+
+eight_points_guzzle:
+  # (de)activate logging/profiler; default: %kernel.debug%
+  logging: true
+  clients:
+    api_vat_number:
+      base_url: "http://apilayer.net"
+      options:
+        headers:
+          Accept: "application/json"
+          User-Agent: "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:11.0) Gecko/20100101 Firefox/11.0"
+    api_vincheck_part:
+      base_url: "%vincheck_base_url_bopt%"
+      options:
+        headers:
+          key: "%vincheck_part_key%"
+          Accept: "application/json"
+          User-Agent: "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:11.0) Gecko/20100101 Firefox/11.0"
+    api_vincheck_products:
+      base_url: "%vincheck_base_url%"
+      options:
+        headers:
+          key: "%vincheck_product_key%"
+          Accept: "application/json"
+          User-Agent: "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:11.0) Gecko/20100101 Firefox/11.0"
+
+sylius_grid:
+  templates:
+    action:
+      apply: "Grid/Action/accept.html.twig"
+      reject: "Grid/Action/reject.html.twig"
+      my: "Grid/Action/my.html.twig"
+      all: "Grid/Action/all.html.twig"
+
+#for override entities
+sylius_payment:
+  resources:
+    payment_method:
+      classes:
+        model: AppBundle\Entity\PaymentMethod
+
+sylius_product:
+  resources:
+    product_variant:
+      classes:
+        model: AppBundle\Entity\ProductVariant
+        repository: AppBundle\Repository\ProductVariantRepository
+    product_association:
+      classes:
+        controller: AppBundle\Controller\ProductAssociationController
+        repository: AppBundle\Repository\ProductAssociationRepository
+
+    product:
+      classes:
+        model: AppBundle\Entity\Product
+        repository: AppBundle\Repository\ProductRepository
+        controller: AppBundle\Controller\ProductController
+sylius_customer:
+  resources:
+    customer:
+      classes:
+        model: AppBundle\Entity\Customer
+sylius_user:
+  resources:
+    admin:
+      user:
+        classes:
+          model: AppBundle\Entity\AdminUser
+    shop:
+      user:
+        classes:
+          model: AppBundle\Entity\ShopUser
+          repository: Sylius\Bundle\CoreBundle\Doctrine\ORM\UserRepository
+
+sylius_taxation:
+  resources:
+    tax_category:
+      classes:
+        model: AppBundle\Entity\TaxCategory
+sylius_review:
+  resources:
+    product:
+      review:
+        classes:
+          repository: AppBundle\Repository\ProductReviewRepository
+          model: AppBundle\Entity\ProductReview
+
+sylius_addressing:
+  resources:
+    zone:
+      classes:
+        model: AppBundle\Entity\Zone
+    address:
+      classes:
+        model: AppBundle\Entity\Address
+        form: AppBundle\Form\Extension\SyliusAddressTypeExtension
+
+sylius_order:
+  resources:
+    order_item:
+      classes:
+        model: AppBundle\Entity\OrderItem
+        controller: AppBundle\Controller\OrderItemController
+        repository: AppBundle\Repository\OrderItemRepository
+    order_item_unit:
+      classes:
+        model: AppBundle\Entity\OrderItemUnit
+    order:
+      classes:
+        model: AppBundle\Entity\Order
+        controller: AppBundle\Controller\OrderController
+        repository: AppBundle\Repository\OrderRepository
+
+sylius_shipping:
+  resources:
+    shipping_method:
+      classes:
+        model: AppBundle\Entity\ShippingMethod
+    shipment:
+      classes:
+        model: AppBundle\Entity\Shipment
+        controller: AppBundle\Controller\ShipmentController
+sylius_channel:
+  resources:
+    channel:
+      classes:
+        repository: AppBundle\Repository\ChannelRepository
+sylius_taxonomy:
+  resources:
+    taxon:
+      classes:
+        model: AppBundle\Entity\Taxon
+        repository: AppBundle\Repository\TaxonRepository
+        controller: AppBundle\Controller\TaxonomyController
+
+
+sylius_resource:
+  resources:
+    bitbag.shipping_export:
+      classes:
+        model: AppBundle\Entity\ShippingExport
+
+sylius_attribute:
+  resources:
+    product:
+      attribute:
+        classes:
+          model: AppBundle\Entity\ProductAttribute
+          controller: Sylius\Bundle\ProductBundle\Controller\ProductAttributeController
+          form: Sylius\Bundle\ProductBundle\Form\Type\ProductAttributeType
+        translation:
+          classes:
+            model: AppBundle\Entity\ProductAttributeTranslation
+            form: Sylius\Bundle\ProductBundle\Form\Type\ProductAssociationTypeTranslationType
+
+fos_elastica:
+  clients:
+    default: { host: '%elastic_host%' , port: '%elastic_port%'  }
+  indexes:
+    app:
+      index_name: sylius3
+      settings:
+        index:
+          analysis:
+            analyzer:
+              autocomplete:
+                type: custom
+                tokenizer: standard
+                filter: [lowercase, standard]
+              autocomplete_search:
+                type: custom
+                tokenizer: standard
+                filter: [lowercase]
+              autocomplete_edge:
+                type: custom
+                tokenizer: edge_ngram
+                filter: [lowercase]
+              autocomplete_search_edge:
+                type: custom
+                tokenizer: lowercase
+                filter: [lowercase]
+            tokenizer:
+              nGram:
+                type: "nGram"
+                min_gram: 3
+                max_gram: 30
+              edge_ngram:
+                type: "edge_ngram"
+                min_gram: 3
+                max_gram: 30
+                token_chars: ["letter", "digit"]
+              whitespace:
+                type: whitespace
+            filter:
+              snowball:
+                type:     snowball
+                language: English
+              app_ngram:
+                type: "nGram"
+                min_gram: 3
+                max_gram: 30
+              worddelimiter:
+                type: word_delimiter
+      #                            whitespace:
+      #                                type: whitespace
+      types:
+        product:
+          properties:
+            name:
+              type: text
+              boost: 3
+              analyzer: autocomplete_edge
+              search_analyzer: autocomplete_search_edge
+            shortDescription:
+              type: text
+              analyzer: autocomplete_edge
+              search_analyzer: autocomplete_search_edge
+            enabled: ~
+            productDescriptions:
+              type: nested
+              properties:
+                description:
+                  type: text
+                  analyzer: autocomplete_edge
+                  search_analyzer: autocomplete_search_edge
+            channels:
+              type: nested
+              properties:
+                code:
+                  type: text
+                  analyzer: autocomplete
+                  search_analyzer: autocomplete_search
+
+          persistence:
+            # the driver can be orm, mongodb or phpcr
+            driver: orm
+            model: AppBundle\Entity\Product
+            listener: { enabled: '%elastic_enable%' }
+            provider: ~
+            finder: ~
+            elastica_to_model_transformer:
+              ignore_missing: true
+
+    app_post:
+      index_name: sylius4
+      settings:
+        index:
+          analysis:
+            analyzer:
+              autocomplete:
+                type: custom
+                tokenizer: standard
+                filter: [lowercase, standard]
+              autocomplete_search:
+                type: custom
+                tokenizer: standard
+                filter: [lowercase]
+              autocomplete_edge:
+                type: custom
+                tokenizer: edge_ngram
+                filter: [lowercase]
+              autocomplete_search_edge:
+                type: custom
+                tokenizer: lowercase
+                filter: [lowercase]
+            tokenizer:
+              nGram:
+                type: "nGram"
+                min_gram: 3
+                max_gram: 30
+              edge_ngram:
+                type: "edge_ngram"
+                min_gram: 3
+                max_gram: 30
+                token_chars: ["letter", "digit"]
+            filter:
+              snowball:
+                type:     snowball
+                language: English
+              app_ngram:
+                type: "nGram"
+                min_gram: 3
+                max_gram: 30
+              worddelimiter:
+                type: word_delimiter
+              edge_ngram:
+                type: "edge_ngram"
+                min_gram: 3
+                max_gram: 30
+                token_chars: ["letter"]
+      types:
+        blog_post:
+          properties:
+            title:
+              type: text
+              boost: 5
+              analyzer: autocomplete_edge
+              search_analyzer: autocomplete_search_edge
+            content:
+              type: text
+              boost: 1
+              analyzer: autocomplete_edge
+              search_analyzer: autocomplete_search_edge
+            enabled: ~
+
+          persistence:
+            # the driver can be orm, mongodb or phpcr
+            driver: orm
+            model: AppBundle\Entity\BlogPost
+            listener: { enabled: '%elastic_enable%' }
+            provider: ~
+            finder: ~
+            elastica_to_model_transformer:
+              ignore_missing: true
+
+sylius_mailer:
+  sender:
+    name: Bimmer-tech
+    address: no-reply@movie-database-example.com
+  emails:
+    instruction_added_notification:
+      subject: Instructions
+      template: "AppBundle:Admin/Email:instructionAddedNotification.html.twig"
+    shop_user_register:
+      subject: User registration
+      template: "AppBundle:Shop/Email:shopUserRegisterEmail.html.twig"
+    shop_user_forgot_password:
+      subject: User forgot password
+      template: "AppBundle:Shop/Email:shopUserForgotPasswordEmail.html.twig"
+    shop_user_restore_account:
+      subject: User restore account
+      template: "AppBundle:Shop/Email:shopUserRestoreAccountEmail.html.twig"
+    shop_user_resend_activation_link:
+      subject: User resend activation link
+      template: "AppBundle:Shop/Email:shopUserResendLinkEmail.html.twig"
+    shop_user_edit_info:
+      subject: Edit personal info
+      template: "AppBundle:User/Email:editPersonalInfoEmail.html.twig"
+    shop_user_close_account:
+      subject: Close account
+      template: "AppBundle:User/Email:closeAccountEmail.html.twig"
+    shop_user_change_password:
+      subject: Change passowrd
+      template: "AppBundle:User/Email:changePasswordEmail.html.twig"
+    shop_user_create_order:
+      subject: Сreate order
+      template: "AppBundle:User/Email:createOrderEmail.html.twig"
+    shop_user_payment_close:
+      subject: Close payment
+      template: "AppBundle:User/Email:closePaymentEmail.html.twig"
+    shop_product_ask_bmw_expert:
+      subject: Support fom
+      template: "AppBundle:Shop/Email:shopProductAskBmwExpertEmail.html.twig"
+    app_abandonded_cart:
+      subject: Abandonded cart
+      template: "AppBundle:User/Email:abandondedCartEmail.html.twig"
+    app_forgot_cart:
+      subject: Forgot cart
+      template: "AppBundle:User/Email:forgotCart.html.twig"
+    app_order_shipment:
+      subject: Product shipped
+      template: "AppBundle:Admin/Email:orderShipment.html.twig"
+    app_order_delivered:
+      subject: Product delovered
+      template: "AppBundle:Admin/Email:orderShipmentDelivered.html.twig"
+    app_order_shipment_expired:
+      subject: Shipment is expaired
+      template: "AppBundle:Admin/Email:orderShipmentExpired.html.twig"
+    app_after_order_created:
+      subject: New order notification
+      template: "AppBundle:Admin/Email:afterOrderCreatedEmail.html.twig"
+    app_product_review_created:
+      subject: Product review email
+      template: "AppBundle:Admin/Email:productReviewCreatedEmail.html.twig"
+    app_blog_review_created:
+      subject: Blog review email
+      template: "AppBundle:Admin/Email:blogReviewCreatedEmail.html.twig"
+    app_change_back_order_status:
+      subject: Order satus
+      template: "AppBundle:Admin/Email:backOrderShipmentEmail.html.twig"
+    app_refund_order:
+      subject: Order refund
+      template: "AppBundle:Admin/Email:orderRefundEmail.html.twig"
+    app_note_order:
+      subject: Order note
+      template: "AppBundle:Admin/Email:orderNoteEmail.html.twig"
+
+
+hwi_oauth:
+  firewall_names: [shop]
+  resource_owners:
+    facebook:
+      type: facebook
+      client_id: 896721440520234
+      client_secret: c4241658744b0e22b01c35317a8fd037
+      scope: "email"
+      infos_url: "https://graph.facebook.com/me?fields=id,name,email,picture.type(square)"
+      paths:
+        email: email
+        profilepicture: picture.data.url
+
+liip_imagine:
+  filter_sets:
+    sylius_admin_product_thumbnail:
+      filters:
+        thumbnail: { size: [75, 75], mode: outbound }
+    sylius_shop_product_large_thumbnail:
+      filters:
+        thumbnail: { size: [570, 367], mode: outbound }
+    product_570_367:
+      filters:
+        resize: { size: [570, 367] }
+    product_70_52:
+      filters:
+        thumbnail: { size: [70, 52], mode: outbound }
+    product_50_25:
+      filters:
+        thumbnail: { size: [50, 25], mode: outbound }
+    library_225_175:
+      filters:
+        thumbnail: { size: [225, 175], mode: outbound }
+    bord_78_50:
+      filters:
+        thumbnail: { size: [70, 52], mode: outbound }
+    logistic_bord_78_50:
+      filters:
+        thumbnail: { size: [70, 52], mode: outbound }
+
+
+
+knp_gaufrette:
+  adapters:
+    sylius_image:
+      local:
+        directory: "%kernel.project_dir%/web/media/image"
+        create: true
+  filesystems:
+    sylius_image:
+      adapter: "%sylius.uploader.filesystem%"
+
+ivory_ck_editor:
+  configs:
+    standard:
+      toolbar: "standard"
+  toolbars:
+    items:
+      standard.basic_styles: ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat',  'Font', 'FontSize', 'TextColor', 'BGColor']
+      standard.insert: [ 'Table', 'HorizontalRule', 'SpecialChar']
+      standard.links:  ['Link', 'Unlink']
+

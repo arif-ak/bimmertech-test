@@ -1,0 +1,8 @@
+{% extends 'SyliusAdminBundle::layout.html.twig' %}
+{% block content %}
+    <div id="MediaLibrary" class="ui form MediaLibrary">
+        <section-media-library inline-template>
+            {% include '@SyliusAdmin/GlobalComponents/MediaLibraryMainContent/MediaLibraryMainContent.html.twig' %}
+        </section-media-library>
+    </div>
+{% endblock %}

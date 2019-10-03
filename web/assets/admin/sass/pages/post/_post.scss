@@ -1,0 +1,46 @@
+#Post {
+    .breadcrumb {
+        margin-bottom: 5px;
+    }
+    .two.fields {
+        &.media {
+            width: 660px;
+            margin-left: 5px;
+            margin-bottom: 20px;
+            .oneToOne {
+                width: 32.65%;
+                margin-right: 10px;
+            }
+            .twoToOne {
+                width: 60.35%;
+            }
+            &:after {
+                display: block;
+                clear: both;
+                content: '';
+            }
+        }
+    }
+    .field {
+        &.textarea {
+            textarea {
+                min-height: 8em;
+                max-height: 24em;
+            }
+        }
+        .toggle.checkbox {
+            margin-top: 30px;
+        }
+        &:after {
+            display: block;
+            clear: both;
+            content: '';
+        }
+    }
+    .buttons {
+        margin: 10px 0;
+    }
+    .mce-tinymce.mce-container.mce-panel {
+        // float: left;
+    }
+}

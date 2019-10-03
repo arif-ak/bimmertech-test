@@ -1,0 +1,31 @@
+@import "components/posts";
+
+#blogs {
+    >h3 {
+        font-weight: 500;
+        margin-top: 55px;
+        line-height: 16px
+    }
+    >h5 {
+        font-size: 21px;
+        line-height: 21px;
+    }
+    .postCategory {
+        margin-top: 80px !important;
+    }
+    .postLatest {
+        .posts {
+            &:last-child {
+                margin-bottom: 27px;
+            }
+        }
+    }
+    .flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .custom-button {
+          min-width: 250px;
+        }
+    }
+}

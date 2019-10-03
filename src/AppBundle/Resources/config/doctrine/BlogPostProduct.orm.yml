@@ -1,0 +1,30 @@
+AppBundle\Entity\BlogPostProduct:
+    type: entity
+    repositoryClass: AppBundle\Repository\BlogPostProductRepository
+    table: app_blog_post_product
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    oneToOne:
+        blogPost:
+            targetEntity: AppBundle\Entity\BlogPost
+            inversedBy: productRelated
+            joinColumn:
+                name: post_id
+                referencedColumnName: id
+
+    manyToMany:
+        products:
+            targetEntity: AppBundle\Entity\Product
+            inversedBy: blogPost
+            joinTable:
+                name: app_blog_post_products
+                joinColumns:
+                    post_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    product_id:
+                        referencedColumnName: id
+

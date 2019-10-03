@@ -1,0 +1,3 @@
+AppBundle\Entity\Zone:
+    type: entity
+    table: sylius_zone

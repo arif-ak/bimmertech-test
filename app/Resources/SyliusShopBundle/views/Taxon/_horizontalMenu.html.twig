@@ -1,0 +1,123 @@
+{% macro item(taxon, products) %}
+    {% set vincheck = app.session.get('vincheck') %}
+    {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+    {% import _self as macros %}
+    {% if taxon.children | length > 0 or products | length > 0 %}
+        <div class="bt dropdown item">
+            <a href="{{ path('sylius_shop_product_index', {'slug': taxon.slug, '_locale': taxon.translation.locale}) }}" class="bt-item" v-menu>
+                {% if taxon.images | length > 0 %}
+                    <img
+                    class="bt-item-icon" src="/media/image/{{ taxon.images.0.path }}">
+                    {# <div class="bt-item-icon" style="background: url(/media/image/{{ taxon.images.0.path }}) no-repeat center;" width="70px" height="52px"></div> #}
+                {% else %}
+                    <img class="bt-item-icon" src="/assets/shop/img/svg/multimedia.svg"/>
+                {% endif %}
+                <div class="text-uppercase">
+                    {{ taxon.name }}
+                </div>
+            </a>
+            <div class="menu product">
+                <div class="grid-x">
+                    <div class="cell auto bt-scroll">
+                        {% if taxon.children | length > 0 %}
+                            {% for childTaxon in taxon.children %}
+                                {% if vincheck is empty or(childTaxon.isContainer == false and vincheck is not empty) %}
+                                    {# {{ macros.item(childTaxon) }} #}
+                                    <a class="menu-item product" href="{{ path('sylius_shop_product_index', {'slug': childTaxon.slug, '_locale': childTaxon.translation.locale}) }}">
+                                        <div class="grid-x align-justify align-middle cell">
+                                            <div class="wrapper grid-x align-justify align-middle large-10 cell">
+                                                <div class="cell large-8 product-description">
+                                                    <h5 class="text-truncate">{{ childTaxon.name }}</h5>
+                                                    <small>{{ childTaxon.description|truncate(50, true) }}
+                                                    </small>
+                                                    {#  <small>{{ (childTaxon.description | slice(0, 50)) ~ (childTaxon.description | length > 50 ? '...' : '') }}
+                                                                                                                                                                                                                 </small> #}
+                                                </div>
+                                                <div class="cell auto product-price">
+                                                    <small>from</small>
+                                                    <h5>
+                                                        {% if childTaxon.price is not  empty %}
+                                                            <span class="new-dollar-sign price">{{ money.format(childTaxon.price, 'USD') }}</span>
+                                                        {% endif %}
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                            <div class="cell shrink product-image">
+                                                {% if childTaxon.images.0 is defined %}
+                                                    {% if app.environment == "dev" %}
+                                                        <img height="52px" src="/assets/shop/img/product-picture-default.png" width="70px">
+                                                    {% else %}
+                                                        <img src="{{ childTaxon.images.0.path|imagine_filter('product_70_52') }}" width="70px" height="52px">
+                                                    {% endif %}
+                                                {% else %}
+                                                    <img height="52px" src="/assets/shop/img/product-picture-default.png" width="70px">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {% if products | length > 0 %}
+                            {% for product in products %}
+                                <a class="menu-item product" href="{{ path('sylius_shop_product_show', {'slug': product.slug }) }}">
+                                    <div class="grid-x align-justify align-middle cell">
+                                        <div class="wrapper grid-x align-justify align-middle large-10 cell">
+                                            <div class="cell large-8 product-description">
+                                                <h5 class="text-truncate">{{ product.name }}</h5>
+                                                <small>
+                                                    {{ product.taxonDescription|truncate(50, true) }}
+                                                </small>
+                                            </div>
+                                            <div class="cell auto product-price">
+                                                <h5>
+                                                    <span class="new-dollar-sign price">{{- money.calculatePrice(product|sylius_resolve_variant) -}}</span>
+                                                </h5>
+                                            </div>
+                                        </div>
+
+                                        <div class="cell shrink product-image">
+                                            {% if product.images | length > 0 %}
+                                                {% if app.environment == "dev" %}
+                                                    <img height="52px" src="/assets/shop/img/product-picture-default.png" width="70px">
+                                                {% else %}
+                                                    <img src="{{ product.images.0.path |imagine_filter('product_70_52') }}" width="70px" height="52px">
+                                                {% endif %}
+                                            {% else %}
+                                                <img height="52px" src="/assets/shop/img/product-picture-default.png" width="70px">
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="cell small-order-1 show-full-view-wrapper">
+                    <a href="{{ path('sylius_shop_product_index', {'slug': taxon.slug, '_locale': taxon.translation.locale}) }}" class="show-full-view vertical-text">show full view</a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="bt dropdown item" >
+            <a href="{{ path('sylius_shop_product_index', {'slug': taxon.slug, '_locale': taxon.translation.locale}) }}" class="bt-item" v-menu>
+                {% if taxon.images | length > 0 %}
+                   <img class="bt-item-icon" src="/media/image/{{ taxon.images.0.path }}">
+                {% else %}
+                    <img class="bt-item-icon" src="/assets/shop/img/svg/multimedia.svg"/>
+                {% endif %}
+                <div class="text-uppercase">
+                    {{ taxon.name }}
+                </div>
+            </a>
+        </div>
+    {% endif %}
+{% endmacro %}
+{% import _self as macros %}
+{% if menu | length > 0 %}
+    <div class="ui bt bt-main-menu vertical icon menu">
+        {% for item in menu %}
+            {{ macros.item(item.taxon,item.products) }}
+        {% endfor %}
+    </div>
+{% endif %}

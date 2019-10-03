@@ -1,0 +1,44 @@
+AppBundle\Entity\Shipment:
+    type: entity
+    table: sylius_shipment
+    fields:
+          dhlNumberOfPieces:
+              type: integer
+              nullable: true
+              options:
+                  default: 1
+          dhlWeight:
+              type: string
+              nullable: true
+              options:
+                  default: '0.5'
+          dhlInsuredAmount:
+              type: string
+              nullable: true
+              options:
+                  default: '0'
+          courier:
+              type: string
+              nullable: true
+          length:
+              type: string
+              nullable: true
+          height:
+              type: string
+              nullable: true
+          width:
+              type: string
+              nullable: true
+
+    oneToOne:
+        shippingExport:
+            targetEntity: AppBundle\Entity\ShippingExport
+            mappedBy: shipment
+            orphanRemoval: false
+    oneToMany:
+        images:
+            targetEntity: AppBundle\Entity\PhotoReport
+            mappedBy: owner
+            orphanRemoval: true
+            cascade:
+                - all

@@ -1,0 +1,42 @@
+AppBundle\Entity\Address:
+    type: entity
+    table: sylius_address
+    attributeOverride:
+        firstName:
+            type: string
+            column: first_name
+        lastName:
+            type: string
+            column: last_name
+        phoneNumber:
+            type: string
+            column: phone_number
+            nullable: true
+        street:
+            type: string
+            column: street
+            nullable: true
+        company:
+            type: string
+            column: company
+            nullable: true
+        city:
+            type: string
+            column: city
+            nullable: true
+        countryCode:
+            type: string
+            column: country_code
+            nullable: true
+        postcode:
+            type: string
+            column: postcode
+            nullable: true
+        provinceCode:
+            type: string
+            column: province_code
+            nullable: true
+        provinceName:
+            type: string
+            column: province_name
+            nullable: true

@@ -1,0 +1,15 @@
+
+{% if orderShippingStateForm is defined %}
+    <div class="order-shipping-state">
+        <b>Shipping state:</b> {{ order.shippingState }}
+        {% if isAdmin or isShowLogisticBoard %}
+            <button class="ui mini button" onclick="edit_order_state_show('shipping')">edit</button>
+        {% endif %}
+    </div>
+    <div class="order-shipping-state-edit">
+    {{ form_start(orderShippingStateForm, {'action': path('app_order_shipping_edit', { 'id': order.id }), 'method': 'POST' }) }}
+        {{ form_row(orderShippingStateForm.shippingState) }}
+        {{ form_widget(orderShippingStateForm.save, { 'label': 'Save' }) }}
+    {{ form_end(orderShippingStateForm) }}
+    </div>
+{% endif %}

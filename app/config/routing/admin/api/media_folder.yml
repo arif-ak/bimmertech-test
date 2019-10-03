@@ -1,0 +1,47 @@
+app_admin_api_media_folder_create:
+  path: /api2/media/library/folder
+  methods: [ POST]
+  defaults:
+    _controller:  app.controller_api_admin.media_folder:create
+
+app_admin_api_media_folder_tree:
+  path: /api2/media/library/folders/tree
+  methods: [ GET]
+  defaults:
+    _controller:  app.controller_api_admin.media_folder:tree
+
+app_admin_api_media_folder_show:
+  path: /api2/media/library/folder/{id}
+  methods: [GET]
+  defaults:
+    _controller:  app.controller_api_admin.media_folder:show
+
+app_admin_api_media_folder_root:
+  path: /api2/media/library/folder
+  methods: [GET]
+  defaults:
+    _controller:  app.controller_api_admin.media_folder:showRoot
+
+app_admin_api_media_folder_move_to:
+  path: /api2/media/library/folder/move-to/{id}
+  methods: [PUT]
+  defaults:
+    _controller:  app.controller_api_admin.media_folder:moveTo
+
+app_admin_api_media_folder_move_to_root:
+  path: /api2/media/library/folder/move-to-root
+  methods: [PUT]
+  defaults:
+    _controller:  app.controller_api_admin.media_folder:moveToRoot
+
+app_admin_api_delete_media_folder:
+  path: /api2/media/library/folder/{id}
+  methods: [DELETE]
+  defaults:
+    _controller:  app.controller_api_admin.media_folder:delete
+
+app_admin_api_delete_media_folder_edit:
+  path: /api2/media/library/folder/{id}
+  methods: [PUT]
+  defaults:
+    _controller:  app.controller_api_admin.media_folder:edit

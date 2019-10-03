@@ -1,0 +1,15 @@
+app_admin_user_support:
+    resource: |
+        alias: app.user_support
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        redirect: index
+        grid: app_admin_user_support
+        vars:
+            all:
+                header: User Support
+                subheader: Manage your Support persons
+                breadcrumbslabel: support
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

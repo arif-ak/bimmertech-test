@@ -1,0 +1,9 @@
+AppBundle\Entity\ProductAttribute:
+  type: entity
+  table: sylius_product_attribute
+  fields:
+    name:
+      type: string
+      nullable: true
+
+

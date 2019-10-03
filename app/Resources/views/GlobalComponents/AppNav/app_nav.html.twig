@@ -1,0 +1,51 @@
+<div>
+    <div class="ui bt bt-main-menu vertical icon menu">
+        <div @mouseenter="loadItems(link.id, j)" class="bt dropdown item" v-for="(link, j) in filteredLinks">
+            <a :href="link.link" class="bt-item">
+                <img :src="link.image" class="bt-item-icon">
+                <div class="text-uppercase">
+                    [[link.name]]
+                </div>
+            </a>
+            <div class="menu product transition hidden">
+                <div class="grid-x">
+                    <div class="cell auto bt-scroll">
+                        <a class="menu-item product" v-if="link.items===false">
+                            <div class="grid-x align-justify align-middle cell">
+                                <div class="wrapper grid-x align-justify align-middle large-10 cell">
+                                    <div class="cell large-8 product-description">
+                                        <h5 class="text-truncate">No products</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="menu-item product bt-loading" href="" v-else-if="link.items.length==0"></a>
+                        <a :href="item.link" class="menu-item product" v-else v-for="item in link.items">
+                            <div class="grid-x align-justify align-middle cell">
+                                <div class="wrapper grid-x align-justify align-middle large-10 cell">
+                                    <div class="cell large-8 product-description">
+                                        <h5 class="text-truncate">[[item.name]]</h5>
+                                        <small v-html="item.description" v-if="item.description && !item.container"></small>
+                                        <small v-html="item.teaser" v-if="item.container"></small>
+                                    </div>
+                                    <div class="cell auto product-price">
+                                        <small v-if="item.container">from</small>
+                                        <h5 class="new-dollar-sign">
+                                            [[item.price | price]]
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="cell shrink product-image">
+                                    <img :src="item.blobUrl" height="52px" width="70px">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="cell small-order-1 show-full-view-wrapper has-scroll" v-if="link.items.length>1">
+                    <a :href="link.link" class="show-full-view vertical-text">show full view</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

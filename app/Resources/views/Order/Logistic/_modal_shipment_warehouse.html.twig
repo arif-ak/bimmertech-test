@@ -1,0 +1,23 @@
+{% set formWar = warehouse['createShipment'] %}
+{% set warId = warehouse['warehouse'].id %}
+<div class="ui modal logisticShipmentWarehouse{{ key }}">
+    <i class="close icon"></i>
+    <div class="header">
+        Prepare label
+    </div>
+    <div class="image content">
+        {#<div class=" ">#}
+            {{ form_start(formWar,{'action': path('app_order_item_shipment_warehouse',
+                {'id':order.id, 'warehouse':warId}),'method': 'POST','attr':{'class': 'ui loadable form w100'}}) }}
+            {{ form_row(formWar.units) }}
+        {#</div>#}
+    </div>
+    <div class="actions">
+        <div class="ui black deny button">
+            Back
+        </div>
+        <input type="submit" class="ui green positiveright button" value="Save"/>
+        <i class="checkmark icon"></i>
+        {{ form_end(formWar) }}
+    </div>
+</div>

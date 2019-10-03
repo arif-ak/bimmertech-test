@@ -1,0 +1,17 @@
+app_search_elastic:
+  path: /search
+  methods: [GET]
+  defaults:
+    _controller: app.controller.search_elastic_controller:search
+
+api_search_all_elastic:
+  path: api2/search
+  methods: [GET]
+  defaults:
+    _controller: app.controller.search_elastic_controller:all
+
+app_search_elastic_product_paginate:
+  path: /search-product
+  methods: [GET]
+  defaults:
+    _controller: app.controller.search_elastic_controller:searchProductPaginate

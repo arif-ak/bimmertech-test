@@ -1,0 +1,33 @@
+AppBundle\Entity\OrderItemDropDownOption:
+  type: entity
+  table: app_order_item_drop_down_option
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    state:
+      type: string
+      nullable: true
+    type:
+      type: string
+      nullable: true
+
+  manyToOne:
+    orderItem:
+      targetEntity: AppBundle\Entity\OrderItem
+      inversedBy: orderItemDropDownOptions
+      joinColumn:
+        name: order_item_id
+        referencedColumnName: id
+        onDelete: "CASCADE"
+      fetch: EXTRA_LAZY
+
+    dropDownOption:
+      targetEntity: AppBundle\Entity\DropDownOption
+      fetch: EXTRA_LAZY
+      inversedBy: orderItemDropDownOptions
+      joinColumn:
+        name: drop_down_option_id
+        referencedColumnName: id

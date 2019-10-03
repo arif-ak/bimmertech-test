@@ -1,0 +1,145 @@
+.reviews {
+  .ui.star.rating .icon {
+    &.selected {
+      color: rgba(0, 0, 0, .15) !important;
+    }
+
+    &.active {
+      color: #fC0 !important;
+    }
+  }
+
+  >div {
+    &.cell {
+      &.shrink {
+        margin-right: 0;
+      }
+    }
+  }
+
+  >a {
+    &.cell {
+      &.shrink {
+        margin-left: 0;
+        font-size: 12px;
+        line-height: 22px;
+        color: $base-btn-color;
+      }
+    }
+  }
+
+  .reviewsArrow {
+    margin: 0;
+    position: static;
+    i {
+      margin: 0;
+      cursor: pointer;
+    }
+  }
+
+  .reviewsArrowPopup {
+    &.customPopup {
+      &.ui {
+        z-index: 40;
+        max-width: 300px;
+        min-width: 300px;
+
+        &.bottom.left {
+          &::before {
+            left: 2em;
+          }
+        }
+
+        .content {
+          font-size: 14px;
+
+          &::before {
+            box-shadow: -1px -1px 0 0 $base-gray-color !important;
+            top: -.55em;
+          }
+
+          h6 {
+            display: block;
+            font-weight: 400;
+            font-size: 14px;
+            width: auto;
+            margin-bottom: 0;
+          }
+
+          .averageRating {
+            display: flex;
+            justify-content: center;
+          }
+
+          .result {
+            width: auto;
+          }
+
+          .starsRow {
+            margin-bottom: 1px;
+            float: left;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &:first-child {
+              margin-bottom: 5px;
+            }
+
+            >div {
+              width: 32%;
+
+              &.stars {
+                width: 27%;
+              }
+
+              &.chart {
+                position: relative;
+                width: 35%;
+                margin-top: -3px;
+
+                .line {
+                  background: rgba(0, 0, 0, .15);
+                  height: 3px;
+                  width: 100%;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                }
+
+                .currentLine {
+                  background: #fC0;
+                  height: 3px;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                }
+              }
+            }
+          }
+
+          &.bt-loading {
+            position: static;
+
+            &::before {
+              position: static;
+            }
+          }
+        }
+      }
+    }
+
+    .ui.star.rating .icon {
+
+      // color: $base-white-color !important;
+      &.selected {
+        // color: $base-white-color !important;
+      }
+
+      &.active {
+        color: #fC0 !important;
+      }
+    }
+  }
+}

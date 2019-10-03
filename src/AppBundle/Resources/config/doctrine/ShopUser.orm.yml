@@ -1,0 +1,12 @@
+AppBundle\Entity\ShopUser:
+    type: entity
+    table: sylius_shop_user
+    fields:
+        path:
+            type: text
+            column: path
+            nullable: true
+        isClosedAccount:
+            type: boolean
+            column: closed_account
+            nullable: true

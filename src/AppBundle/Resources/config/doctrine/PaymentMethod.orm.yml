@@ -1,0 +1,19 @@
+AppBundle\Entity\PaymentMethod:
+    type: entity
+    table: sylius_payment_method
+    manyToMany:
+        warehouse:
+            targetEntity: AppBundle\Entity\Warehouse
+            inversedBy: paymentMethod
+            joinTable:
+                name: warehouse_payment_method
+                joinColumns:
+                    payment_method_id:
+                        referencedColumnName: id
+                        nullable: true
+                inverseJoinColumns:
+                    warehouse_id:
+                        referencedColumnName: id
+            cascade: ['persist', 'remove']
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks: {  }

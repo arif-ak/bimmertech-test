@@ -1,0 +1,14 @@
+app_admin_home:
+    resource: |
+        alias: app.home
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        redirect: index
+        grid: app_admin_home
+        vars:
+            all:
+                header: Home
+                subheader: Manage your home page
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

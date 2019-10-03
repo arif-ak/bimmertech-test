@@ -1,0 +1,47 @@
+{% extends 'SyliusAdminBundle::layout.html.twig' %}
+{% block title %}
+    {{ 'sylius.ui.order'|trans ~' #'~ order.number }}
+    {{ parent() }}
+{% endblock %}
+{% set customer = order.customer %}
+{% block content %}
+    <script>
+        var orderId = {{ order.id}};
+        var vin = '{{ order.vin }}';
+        var customer = '{{ customer.fullName }}';
+    </script>
+    <div id="orders-page">
+        {{ sonata_block_render_event('sylius.admin.order.show.before_header', {'resource': resource}) }}
+        <div class="grid-x cell grid-padding-x">
+            <div class="grid-x cell align-justify">
+                {% include '@SyliusAdmin/Order/Show/_breadcrumb.html.twig' %}
+                {{ sonata_block_render_event('sylius.admin.order.show.after_breadcrumb', {'resource': resource}) }}
+                {% set menu = knp_menu_get('sylius.admin.order.show', [], {'order': order}) %}
+                {{ knp_menu_render(menu, {'template': '@SyliusUi/Menu/top.html.twig'}) }}
+            </div>
+            <div class="grid-x cell">
+                {% include '@SyliusAdmin/Order/Show/_header.html.twig' %}
+            </div>
+        </div>
+        {{ sonata_block_render_event('sylius.admin.order.show.after_header', {'resource': resource}) }}
+        <div class="grid-x cell margin-top-2 grid-padding-x grid-margin-y">
+            {% include '@SyliusAdmin/Order/Show/_comments.html.twig' %}
+            <section-notes @add="sendHistory" @load-notes="loadNotes()" :access="access" :notes="boardData.notes" inline-template>
+                {% include 'SyliusAdminBundle:Order/components/notes:notes.html.twig' %}
+            </section-notes>
+            <section-product-board :access="access" :products-data="boardData.products" inline-template>
+                {% include 'SyliusAdminBundle:Order/components/products:products.html.twig' %}
+            </section-product-board>
+            <section-logistic-board :access="access" inline-template>
+                {% include 'SyliusAdminBundle:Order/components/logistic:logistic.html.twig' %}
+            </section-logistic-board>
+            <section-support-board :access="access" inline-template>
+                {% include 'SyliusAdminBundle:Order/components/support:support.html.twig' %}
+            </section-support-board>
+            <section-coding-board :access="access" inline-template>
+                {% include 'SyliusAdminBundle:Order/components/coding:coding.html.twig' %}
+            </section-coding-board>
+        </div>
+    </div>
+    {{ sonata_block_render_event('sylius.admin.order.show.after_content', {'resource': resource}) }}
+{% endblock %}

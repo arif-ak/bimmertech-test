@@ -1,0 +1,19 @@
+AppBundle\Entity\AdminUser:
+  type: entity
+  table: sylius_admin_user
+  inheritanceType: JOINED
+  discriminatorColumn:
+    name: discr
+    type: string
+  discriminatorMap:
+    adminUser: AppBundle\Entity\AdminUser
+    userSale: AppBundle\Entity\UserSale
+    userLogistic: AppBundle\Entity\UserLogistic
+    userSupport: AppBundle\Entity\UserSupport
+    userCoding: AppBundle\Entity\UserCoding
+    userMarketing: AppBundle\Entity\UserMarketing
+
+  oneToMany:
+    history:
+      targetEntity: AppBundle\Entity\History
+      mappedBy: user

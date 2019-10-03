@@ -1,0 +1,30 @@
+.page {
+    &-email {
+        &-verified {
+            min-height: 36vh;
+            h1.header {
+                margin-top: 0;
+                line-height: 1.2;
+                font-weight: 500;
+                font-family: $body-font-family;
+            }
+
+            img {
+                max-width: 75px;
+                max-height: 71px;
+            }
+
+            p.text {
+                margin-top: 10px;
+
+                .btn-in-text {
+                    &.user-login-btn {
+                        cursor: pointer;
+                        color: $base-blue-color;
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+    }
+}

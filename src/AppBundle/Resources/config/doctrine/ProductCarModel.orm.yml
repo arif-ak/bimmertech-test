@@ -1,0 +1,25 @@
+AppBundle\Entity\ProductCarModel:
+  type: entity
+  table: app_product_car_model
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  manyToOne:
+    product:
+      targetEntity: AppBundle\Entity\Product
+      inversedBy: productCarModel
+      joinColumn:
+        name: product_id
+        onDelete: SET NULL
+        referencedColumnName: id
+    carModel:
+      targetEntity: AppBundle\Entity\CarModel
+      inversedBy: productCarModel
+      joinColumn:
+        name: car_model_id
+        onDelete: SET NULL
+        referencedColumnName: id
+

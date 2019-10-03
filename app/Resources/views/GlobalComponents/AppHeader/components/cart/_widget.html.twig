@@ -1,0 +1,88 @@
+
+<div class="shrink" :class="{'white': menuToggle=='cart'}">
+
+    <section-popup :hide-on-scroll="false" idbutton="sylius-cart-button" idpopup="sylius-cart-popup" on="click" position="bottom center" divider="cart" inline-template>
+        <div>
+            <div :id="buttonId" class="user-cart bt-button">
+                <transition name="fade">
+                    <span id="cartCount" class="bt-cart bt-icon">
+                        <span v-show="uItems > 0" class="bt-badge">
+                            [[uItems]]
+                        </span>
+                    </span>
+                </transition>
+                <transition name="fade">
+                    <span id="sylius-cart-total" v-show="uItems > 0" class="bt-cart-total">
+                        <section-price :value="cartTotal" inline-template>
+                            {% include ':GlobalComponents/Price:price.html.twig' %}
+                        </section-price>
+                    </span>
+                </transition>
+            </div>
+            <div :id="popupId" class="ui cart-popup transition popup hidden">
+                <div class="grid-x" :class="{'empty': uItems == 0}">
+                    <div v-if="uItems == 0" class="message">Your cart is empty</div>
+                    <template v-else="v-else">
+                        <div class="ui list">
+                            <div class="item header">
+                                <div class="item">
+                                    <div class="name">
+                                        Product
+                                    </div>
+                                    <div class="count">
+                                        Qty
+                                    </div>
+                                    <div class="price">
+                                        Price
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="productList">
+                                <div v-for="item in cartList" class="item product">
+                                    <img :src="item.image" />
+                                    <div class="item">
+                                        <div class="name">
+                                            [[item.name]]
+                                        </div>
+                                        <div class="count">
+                                            [[item.quantity]]
+                                            {# <span>[[itemPieces(item.quantity)]]</span> #}
+                                        </div>
+                                        <div class="price">
+                                            <span class="dollar-sign">&#36;</span>[[priceMacro(item.total)]]
+                                        </div>
+                                    </div>
+                                    <div @click="removeProduct(item.id)" class="remove"></div>
+                                    <div v-for="addon in item.addons" class="item-addon">
+                                        <div class="name">
+                                            [[addon.name]]
+                                        </div>
+                                        <div class="count">
+                                            [[addon.quantity]]
+                                            {# <span>[[itemPieces(addon.quantity)]]</span> #}
+                                        </div>
+                                        <div class="price">
+                                            <span class="dollar-sign">&#36;</span>[[priceMacro(addon.total)]]
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="actions grid-x align-justify align-middle large-12">
+                            <div class="cell auto">
+                                <div class="total">
+                                    Order total:
+                                    <span><span class="dollar-sign">&#36;</span>[[priceMacro(cartTotal)]]</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="links cell">
+                            <a href="/cart/" class="cart-link">Go to Cart</a>
+                            <a href="/checkout/address" class="checkout-link bt-button primary hvr-ripple-out">Checkout</a>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </section-popup>
+</div>

@@ -1,0 +1,55 @@
+<!-- Accordion Slider -->
+<div class="accordion-slider" id="main-slider">
+    <div class="as-panels">
+        <div id="sliderComponent">
+            {% for key, slide in slides %}
+                <div
+                    class="as-panel" style="z-index: {{key}};">
+                    <!-- Slide link -->
+                    {% if slide.product is not null %}
+                        <a href="/products-{{ slide.product.slug }}">
+                            <img class="as-background" data-src="/media/image/{{ slide.images.0.path }}" src="assets/shop/images/blank.gif" alt="{{ slide.name }}"/>
+                        </a>
+                        {% else %}
+                        <a href="{{ slide.url }}">
+                            <img class="as-background" data-src="/media/image/{{ slide.images.0.path }}" src="assets/shop/images/blank.gif" alt="{{ slide.name }}"/>
+                        </a>
+                    {% endif %}
+                    <!-- End of Slide link -->
+                    <!-- Slide text -->
+                    <div class="bt-slide">
+                        <div class="bt-slide-title">
+                            {% if slide.product.slug is defined %}
+                                <a href="/products-{{ slide.product.slug }}">
+                                    {% else %}
+                                    <a href="{{ slide.url }}">
+                                    {% endif %}
+                                    {{ slide.description }}
+                                    <br>
+                                        <span class="price">
+                                            <span class="dollar-sign">&#36;</span>
+                                            {{ slide.price }}</span>
+                                    </a>
+                                    <div>
+                                        {% if slide.product is not null %}
+                                            {% set product = slide.product %}
+                                            {% if forms[loop.index0] is not null %}
+                                                {% set form = forms[loop.index0] %}
+                                                <a class="bt-button primary hvr-ripple-out" href="/products-{{ slide.product.slug }}">
+                                                    <span>Shop now</span>
+                                                </a>
+                                                {# {{ include('@SyliusShop/Product/Show/_addToCartSlider.html.twig') }} #}
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <!-- End of Slide text -->
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="sp"></div>
+        <!-- End of Accordion Slider -->
+        

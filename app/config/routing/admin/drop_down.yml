@@ -1,0 +1,15 @@
+app_admin_drop_down:
+    resource: |
+      alias: app.drop_down
+      section: admin
+      templates: SyliusAdminBundle:Crud
+      form: AppBundle\Form\Type\DropDownType
+      grid: app_admin_drop_down
+      except: ['show']
+      vars:
+          all:
+              header: Dropdown
+              subheader: Manage your Dropdown
+          index:
+              icon: 'file image outline'
+    type: sylius.resource

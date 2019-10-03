@@ -1,0 +1,42 @@
+AppBundle\Entity\FAQQuestion:
+    type: entity
+    repositoryClass: AppBundle\Repository\FAQQuestionRepository
+    table: faq_question
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        code:
+            column: code
+            type: string
+            nullable: true
+        position:
+            column: position
+            type: integer
+            nullable: true
+        enabled:
+            column: enabled
+            type: boolean
+            nullable: true
+        question:
+            column: question
+            type: string
+            length: 1500
+            nullable: true
+        answer:
+            column: answer
+            type: text
+            nullable: true
+
+    manyToOne:
+        header:
+            targetEntity: AppBundle\Entity\FaqHeader
+            inversedBy: questions
+            cascade: ['persist']
+            joinColumn:
+                name: header_id
+                referencedColumnName: id
+

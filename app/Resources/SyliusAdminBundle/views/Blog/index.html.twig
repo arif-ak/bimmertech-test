@@ -1,0 +1,77 @@
+{% extends 'SyliusAdminBundle::layout.html.twig' %}
+{% block content %}
+    <script>
+        {% if postId is not null %}
+            var postId = {{ postId }};
+        {% else %}
+            var postId = false;
+        {% endif %}
+    </script>
+
+    <div id="Post" class="fields ui form" :class="{'loading': loading}">
+        <section-success-message @close="successMessage=false" v-if="successMessage" :message="successMessage" inline-template>
+            {% include '@SyliusAdmin/GlobalComponents/successMessage/successMessage.html.twig' %}
+        </section-success-message>
+        <div class="ui stackable two column grid">
+            <div class="ten wide column">
+                {% include '@SyliusAdmin/Blog/components/header/_header.html.twig' %}
+            </div>
+        </div>
+        <div class="three fields">
+            <section-field required :error="errors.title" type="text" label="Title" v-model="title" inline-template>
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <section-field :select="true" label="Blog category" placeholder="Blog category" :options="filteredCategoties" v-model="category" inline-template>
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" v-model="enabled" tabindex="0" class="hidden">
+                    <label for="sylius_product_channels_0">Enabled</label>
+                </div>
+            </div>
+        </div>
+        <div class="three fields">
+            <section-field required :error="errors.slug" type="text" label="Slug" v-model="slug" inline-template>
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <section-field type="text" label="Meta keywords" v-model="metaKeywords" inline-template>
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <section-field type="text" label="Meta tags" v-model="metaTags" inline-template>
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+        </div>
+        {# <div class="fields"> #}
+            
+        {# </div> #}
+        {# <div> #}
+            <section-field :textarea="true" label="Meta description" v-model="metaDescription" inline-template>
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <section-field :textarea="true" label="Seo text" v-model="seoText" inline-template>
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <div class="two fields media">
+                <section-media @change="errors.oneToOne=false" :error="errors.oneToOne" class="oneToOne" :aspect-ratio="2.6968/2.1973" label="1:1" upload once v-model="thumbnail.oneToOne" inline-template>
+                    {% include '@SyliusAdmin/GlobalComponents/media/media.html.twig' %}
+                </section-media>
+                <section-media @change="errors.twoToOne=false" :error="errors.twoToOne" class="twoToOne" :aspect-ratio="5.6979/2.1991" label="2:1" upload once v-model="thumbnail.twoToOne" inline-template>
+                    {% include '@SyliusAdmin/GlobalComponents/media/media.html.twig' %}
+                </section-media>
+            </div>
+        {# </div> #}
+        {# <section-content-editor v-model="content" inline-template>
+            {% include '@SyliusAdmin/GlobalComponents/content_editor/content_editor.html.twig' %}
+        </section-content-editor> #}
+        <tinymce :new-post="id==false" v-model="content"></tinymce>
+        <div class="buttons">
+            <div @click="openPreview()" class="delete ui labeled icon button"><i class="sticky note icon"></i>Preview</div>
+            <div v-if="id" @click="openInBlog()" class="ui labeled icon button"><i class="icon sticky note"></i>Open article</div>
+            <div @click="save()" class="delete ui green labeled icon button"><i class="plus icon"></i>Save</div>
+            
+        </div>
+    </div>
+
+
+{% endblock %}

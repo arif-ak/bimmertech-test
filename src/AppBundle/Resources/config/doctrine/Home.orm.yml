@@ -1,0 +1,38 @@
+AppBundle\Entity\Home:
+  type: entity
+  table: app_home
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    title:
+      type: string
+      length: 500
+      nullable: true
+    subTitle:
+      type: string
+      length: 500
+      column: sub_title
+      nullable: true
+    slug:
+      type: string
+      length: 500
+      nullable: true
+    description:
+      type: text
+      nullable: true
+    metaTitle:
+      type: string
+      column: meta_title
+      nullable: true
+    metaDescription:
+      type: text
+      column: meta_description
+      nullable: true
+    metaKeywords:
+      type: text
+      column: meta_keywords
+      nullable: true
+

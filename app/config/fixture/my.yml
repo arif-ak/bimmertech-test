@@ -1,0 +1,345 @@
+sylius_fixtures:
+    suites:
+        my:
+            listeners:
+                orm_purger: ~
+                logger: ~
+            fixtures:
+                locale:
+                   options:
+                        locales: ~
+                currency:
+                    options:
+                        currencies: ['USD','EUR']
+#                buyers_guide_option:
+#                    options:
+#                        load: true
+#                contact_title:
+#                    options:
+#                        load: true
+                geographical:
+                    options:
+                        countries:   ['CA', 'US', 'PL', 'DE', 'FR', 'IT', 'AE', 'CN', 'ID', 'DZ', 'EG', 'IQ', 'IR', 'AL', 'BB']
+                        zones:
+                            US_Zone:
+                                name: " USA (United State of America)"
+                                countries:
+                                    - "US"
+                                    - "CA"
+                            Zone_tax_Europe:
+                                name: "Tax Europe"
+                                countries:
+                                    - "DE"
+                                    - "AL"
+                                    - "FR"
+                                    - "DZ"
+                                    - "IT"
+
+                channel:
+                    options:
+                        custom:
+                            us_web_store:
+                                name: "Bimmer tech"
+                                code: "bimmer_tech"
+                                locales:
+                                    - "%locale%"
+                                currencies:
+                                    - "USD"
+                                enabled: true
+                                hostname: "localhost"
+
+                            us_i_drive:
+                                name: "Addons"
+                                code: "addons"
+                                locales:
+                                    - "%locale%"
+                                currencies:
+                                    - "USD"
+                                enabled: true
+                                hostname: "addons.bimmer-tech.net"
+
+                            us_speakers:
+                                name: "Speakers"
+                                code: "speakers"
+                                locales:
+                                    - "%locale%"
+                                currencies:
+                                    - "USD"
+                                enabled: true
+                                hostname: "speakers.bimmer-tech.net"
+
+                            us_idrive:
+                                name: "IDrive coding"
+                                code: "idrive_coding"
+                                locales:
+                                    - "%locale%"
+                                currencies:
+                                    - "USD"
+                                enabled: true
+                                hostname: "idrive.bimmer-tech.net"
+
+                shop_user:
+                    name: "shop_user"
+                    options:
+                        random: 2
+                        custom:
+                            -
+                                email: "shop@example.com"
+                                first_name: "John"
+                                last_name: "Doe"
+                                password: "sylius"
+
+                admin_users:
+                    options:
+                         custom:
+                              -
+                                email: "admin@bimmer-tech.net"
+                                username: "admin"
+                                password: "admin"
+                                enabled: true
+                                locale_code: "%locale%"
+                                first_name: "John"
+                                last_name: "Smith"
+                                role: "admin"
+                              -
+                                email: "salesperson@bimmer-tech.net"
+                                username: "sales_user"
+                                password: "sylius"
+                                enabled: true
+                                locale_code: "%locale%"
+                                first_name: "Josh"
+                                last_name: "Cannon"
+                                role: "sale"
+
+                              -
+                                email: "logisticperson@bimmer-tech.net"
+                                username: "logistic_user"
+                                password: "sylius"
+                                enabled: true
+                                locale_code: "%locale%"
+                                first_name: "Michael"
+                                last_name: "Winter"
+                                role: "logistic"
+
+                              -
+                                email: "supportperson@bimmer-tech.net"
+                                username: "support_user"
+                                password: "sylius"
+                                enabled: true
+                                locale_code: "%locale%"
+                                first_name: "Mishel"
+                                last_name: "Summer"
+                                role: "support"
+                              -
+                                email: "codingperson@bimmer-tech.netr"
+                                username: "coding_user"
+                                password: "sylius"
+                                enabled: true
+                                locale_code: "%locale%"
+                                first_name: "Petro"
+                                last_name: "Poroh"
+                                role: "coding"
+                              -
+                                email: "editorperson@bimmer-tech.netr"
+                                username: "editor_user"
+                                password: "sylius"
+                                enabled: true
+                                locale_code: "%locale%"
+                                first_name: "User"
+                                last_name: "Editor"
+                                role: "editor"
+                              -
+                                email: "marketingperson@bimmer-tech.netr"
+                                username: "marketing_user"
+                                password: "sylius"
+                                enabled: true
+                                locale_code: "%locale%"
+                                first_name: "User"
+                                last_name: "Marketing"
+                                role: "marketing"
+
+                payment_method:
+                    options:
+                            custom:
+                                paypal:
+                                    code: "paypal"
+                                    name: "paypal"
+                                    enabled: true
+                                    channels:
+                                        - "bimmer_tech"
+                                    gatewayName: "online"
+                                    gatewayFactory: "paypal_express_checkout"
+                                    gatewayConfig:
+                                       { "username":"taras.terletskij-facilitator_api1.bimmer-tech.net", "password":"B9JRKAJGTRVUUAPF", "signature":"AbVVIgZN-8e3gYTHhH.ethLJ7FkTARLYzxFQrXgNqpuBlvzC1LAtTp86", "sandbox":true}
+                shipping_method:
+                    options:
+                           custom:
+                                dhl_pl:
+                                    code: "dhl_pl"
+                                    name: "DHL Pl"
+                                    zone: US_Zone
+                                    description: "The DHL Pl shipping method"
+                                    enabled: true
+                                    channels:
+                                        - "bimmer_tech"
+                                        - "addons"
+                                        - "speakers"
+                                    calculator:
+                                        type: "flat_rate"
+                                        configuration:
+                                            bimmer_tech:
+                                                amount: 0
+                                            addons:
+                                                 amount: 0
+                                            speakers:
+                                                 amount: 0
+
+                                dhl_ae:
+                                    code: "dhl_ae"
+                                    name: "DHL AE"
+                                    zone: US_Zone
+                                    description: "The DHL AE shipping method"
+                                    enabled: true
+                                    channels:
+                                        - "Bimmer_tech"
+                                    calculator:
+                                        type: "flat_rate"
+                                        configuration:
+                                            bimmer_tech:
+                                                amount: 0
+                                            addons:
+                                                 amount: 0
+                                            speakers:
+                                                 amount: 0
+
+                                usps:
+                                    code: "usps"
+                                    name: "USPS"
+                                    description: "The test shipping method"
+                                    enabled: true
+                                    channels:
+                                        - "Bimmer_tech"
+                                    calculator:
+                                        type: "flat_rate"
+                                        configuration:
+                                            bimmer_tech:
+                                                amount: 0
+                                            addons:
+                                                 amount: 0
+                                            speakers:
+                                                 amount: 0
+                                ems:
+                                    code: "ems"
+                                    name: "EMS"
+                                    description: "The test shipping method"
+                                    enabled: true
+                                    channels:
+                                        - "Bimmer_tech"
+                                    calculator:
+                                        type: "flat_rate"
+                                        configuration:
+                                            bimmer_tech:
+                                                amount: 0
+                                            addons:
+                                                 amount: 0
+                                            speakers:
+                                                 amount: 0
+
+                tax_category:
+                        options:
+                            custom:
+                                tax_category_warehouse_eu:
+                                    code: "tax_category_warehouse_eu"
+                                    name: "Tax Category Warehouse EU"
+                                    description: "The European tax category"
+                tax_rate:
+                        options:
+                            custom:
+                                warehouse_eu_tax:
+                                    code: "tax_eu"
+                                    name: "ax EU"
+                                    zone:  "Zone_tax_Europe"
+                                    category: "tax_category_warehouse_eu"
+                                    amount: 0.23
+                warehouse:
+                    options:
+                        warehouses:
+                              -
+                                name: "Dubai Warehouse"
+                                country: AE
+                                city: "Dubai"
+                                zip: 26534
+                                address: "Lob15 #239, Jafza, Dubai"
+                                phone: "+971521509404"
+                                zone: null
+                                tax_category: null
+                                payment_method: [ "paypal" ]
+                                shipping_method: [ "dhl_ae", "ems" ]
+                              -
+                                name: "Warsaw Warehouse"
+                                country: PL
+                                city: "Warsaw"
+                                zip: 26534
+                                address: "Serwituty 25, Warsaw, Poland"
+                                phone: "+46464397920"
+                                zone: null
+                                tax_category: tax_category_warehouse_eu
+                                payment_method: [ "paypal" ]
+                                shipping_method: [ "dhl_pl", "ems" ]
+                              -
+                                name: "Orlando Warehouse"
+                                country: US
+                                city: "Orlando"
+                                zip: 32839
+                                address: "2641 Dorena Dr, Orlando, Florida state, USA"
+                                phone: "+6464397920"
+                                zone: US_Zone
+                                tax_category: null
+                                payment_method: ["paypal"]
+                                shipping_method: [ "usps"]
+
+                shipping_gateway:
+                    options:
+                        gateways:
+                           dhl_ae:
+                              code: "app_dhl_shipping_gateway"
+                              bitbag_ui_label: "DHL Gateway AE"
+                              shipping_methods: ["dhl_ae"]
+                              gateway_name: "DHL AE"
+                              mode: "staging"
+                              dhl_id: "bimmertech"
+                              password: "AX7SVGkWmi"
+                              shipper_account_number: "954268699"
+                              region_code: "AP"
+                              company_name: "Bimmer Tech"
+                              country_code: "AE"
+                              name: "Bimmer Tech"
+                              phone_number: "+971521509404"
+                              postal_code: "26534"
+                              city: "Dubai"
+                              address: "Lob15 #239, Jafza, Dubai"
+                           dhl_pl:
+                              code: "app_dhl_shipping_gateway"
+                              bitbag_ui_label: "DHL Gateway PL"
+                              shipping_methods: ["dhl_pl"]
+                              gateway_name: "DHL PL"
+                              mode: "staging"
+                              dhl_id: "bimmertech"
+                              password: "AX7SVGkWmi"
+                              shipper_account_number: "954268699"
+                              region_code: "AP"
+                              company_name: "Bimmer Tech"
+                              country_code: "PL"
+                              name: "Bimmer Tech"
+                              phone_number: "+971521509404"
+                              postal_code: "26534"
+                              city: "Warsaw"
+                              address: "Serwituty 25, Warsaw, Poland"
+
+                slider:
+                    options:
+                        code: 'slider_homepage'
+                        name: 'slider homepage'
+                        description: 'Slide description'
+                        slides: [ '/fixture_images/slider/slide1.jpg', '/fixture_images/slider/slide2.jpg', '/fixture_images/slider/slide3.jpg' ]
+

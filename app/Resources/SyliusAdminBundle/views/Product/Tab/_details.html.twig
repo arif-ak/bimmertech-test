@@ -1,0 +1,136 @@
+{% from '@SyliusAdmin/Macro/translationForm.html.twig' import translationFormWithSlug %}
+
+
+<div class="ui active tab" data-tab="details">
+    <h3 class="ui dividing header">
+        {{ 'sylius.ui.details'|trans }}</h3>
+    {#{{ dump(form.translations["en_US"]['name']) }}#}
+    <div class="ui two column stackable grid">
+        <div class="column">
+            <div class="ui segment">
+                {{ form_row(form.code, {'label': 'ID'}) }}
+                {#{{ form.translations['en_US'].name }}#}
+                {#{{ translationFormWithSlug(form.translations, '@SyliusAdmin/Product/_slugField.html.twig', product) }}#}
+
+                <div class="ui two column stackable grid">
+                    <div class="column"> {{ form_row(form.type) }}</div>
+                    <div class="column"> {{ form_row(form.variant.defaultWarehouse) }}</div>
+                </div>
+
+                {# {{ form_row(form.isContainer) }} #}
+
+                {% if product.simple %}
+                    {{ form_row(form.variant.onHand) }}
+                    {#{{ form_row(form.variant.tracked) }}#}
+                    {#{{ form_row(form.variant.shippingRequired) }}#}
+
+                    {{ form_row(form.variant.instruction) }}
+                    {{ form_row(form.variant.version) }}
+                    {{ form_row(form.variant.vincheckserviceId, {'label': 'Vincheckservice ID'}) }}
+                {% else %}
+                    {{ form_row(form.options) }}
+                    {#{{ form_row(form.variantSelectionMethod) }}#}
+                {% endif %}
+                {# Nothing to see here. #}
+                {% if product.simple %}
+                    <div class="ui hidden element"> {{ form_row(form.variant.translations) }} </div>
+                {% endif %}
+                {#{{ form_row(form.variantSelectionMethod) }}#}
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui segment">
+                <div class="ui three column stackable grid  ">
+                    <div class="column">
+                        <b>Channels</b>
+                    </div>
+                    <div class="column">
+                        <b>Price</b>
+
+                    </div>
+                    <div class="column">
+                        <b>Original Price</b>
+                    </div>
+                </div>
+                {% for channel in  form.channels %}
+
+                    <div class="ui three column stackable grid">
+                        <div class="column channel">
+                            {{ form_row(channel,{'attr': { 'onchange':'enableChannelPrice(this)' }}) }}
+                            {% if  channel.vars.checked %}
+                                {% set checkedChannel = false %}
+                            {% else %}
+                                {% set checkedChannel = true %}
+                            {% endif %}
+                        </div>
+                        <div class="column channel">
+                            {{ form_row(form.variant.channelPricings[channel.vars.value].price, {'label': false, 'disabled':checkedChannel}) }}
+                        </div>
+                        <div class="column channel">
+                            {{ form_row(form.variant.channelPricings[channel.vars.value].originalPrice, {'label': false, 'disabled':checkedChannel}) }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+    </div>
+    <div class="ui segment">
+        <div class="ui five column stackable grid">
+            <div class="column">
+                {{ form_row(form.enabled) }}
+
+            </div>
+            <div class="column">
+                {{ form_row(form.recomended) }}
+                {#{{ form_row(form.variant.hasHardware) }}#}
+            </div>
+            <div class="column">
+                {{ form_row(form.variant.instructionRequired) }}
+            </div>
+            <div class="column">
+                {{ form_row(form.variant.imageRequired) }}
+            </div>
+            <div class="column">
+                {{ form_row(form.variant.hasSoftware) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="ui segment">
+        <div class="ui two column stackable grid">
+            <div class="column">
+                {{ form_row(form.taxonDescription) }}
+            </div>
+            <div class="column">
+                {{ form_row(form.addonInformation, {'label': 'Add-on pop-up description'}) }}
+            </div>
+        </div>
+        <div class="ui hidden divider"></div>
+        {{ translationFormWithSlug(form.translations, '@SyliusAdmin/Product/_slugField.html.twig', product) }}
+        {% if product.simple %}
+            <div class="ui hidden divider"></div>
+            {#<div class="ui two column stackable grid">#}
+            {#<div class="column">#}
+            {#<div class="ui segment">#}
+            {#<h4 class="ui dividing header">{{ 'sylius.ui.shipping'|trans }}</h4>#}
+            {#{{ form_row(form.variant.shippingCategory) }}#}
+            {#{{ form_row(form.variant.width) }}#}
+            {#{{ form_row(form.variant.height) }}#}
+            {#{{ form_row(form.variant.depth) }}#}
+            {#{{ form_row(form.variant.weight) }}#}
+            {#</div>#}
+            {#</div>#}
+            {#<div class="column">#}
+            {#<div class="ui segment">#}
+            {#<h4 class="ui dividing header">{{ 'sylius.ui.taxes'|trans }}</h4>#}
+            {#{{ form_row(form.variant.taxCategory) }}#}
+            {#</div>#}
+            {#</div>#}
+            {#</div>#}
+        {% endif %}
+    </div>
+    {{ sonata_block_render_event('sylius.admin.product.' ~ action ~ '.tab_details', {'form': form}) }}
+</div>
+

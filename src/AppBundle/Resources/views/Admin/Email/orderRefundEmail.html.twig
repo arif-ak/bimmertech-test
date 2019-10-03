@@ -1,0 +1,11 @@
+{% block subject %}
+    Refund for BimmerTech order #{{ data.number }}
+{% endblock %}
+
+{% block body %}
+    <p>Hi {{ data.name }},</p>
+    <p>We have sent a refund for BimmerTech order number {{ data.number }}.</p>
+    <p><b>Refund date: </b>{{ data.date }}</p>
+    <p><b>Refund amount: </b>{{ data.cost }}</p>
+    <p>If you do not receive your refund within three working days, please <a href="{{ app.request.getSchemeAndHttpHost()  }}{{ path( 'sylius_shop_contact_request') }}">let us know</a>.</p>
+{% endblock %}

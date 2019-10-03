@@ -1,0 +1,23 @@
+AppBundle\Entity\TaxonBestseller:
+  type: entity
+  table: app_taxon_bestseller
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      nullable: true
+    color:
+      type: string
+      nullable: true
+
+  oneToOne:
+    taxon:
+      targetEntity: AppBundle\Entity\Taxon
+      inversedBy: bestseller
+      joinColumn:
+        name: taxon_id
+        referencedColumnName: id

@@ -1,0 +1,26 @@
+AppBundle\Entity\OrderItemUnit:
+    type: entity
+    table: sylius_order_item_unit
+    repositoryClass: AppBundle\Repository\OrderItemUnitRepository
+    manyToOne:
+#        shipment:
+#            targetEntity: AppBundle\Entity\Shipment
+        warehouse:
+            targetEntity: AppBundle\Entity\Warehouse
+            joinColumn:
+                name: warehouse_id
+                referencedColumnName: id
+    oneToOne:
+      orderItemUnitReturn:
+        targetEntity: AppBundle\Entity\OrderItemUnitReturn
+        mappedBy: orderItemUnit
+        cascade:
+        - all
+
+    oneToMany:
+        orderItemUnitRefund:
+          targetEntity: AppBundle\Entity\OrderItemUnitRefund
+          mappedBy: orderItemUnit
+          cascade: ['persist' , 'remove']
+          orphanRemoval: true
+          onDelete: "CASCADE"

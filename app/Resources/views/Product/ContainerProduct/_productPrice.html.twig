@@ -1,0 +1,27 @@
+
+{% if taxon is defined %}
+    <span>from</span>&nbsp;
+    <span class="dollar-sign">&#36;</span>[[priceMacro({{ product.price }})]]
+{% else %}
+    <span class="dollar-sign">&#36;</span>
+    [[priceMacro(price)]]
+{% endif %}
+<br>
+{% if taxon is not defined %}
+    <div class="bt-addons" v-if="product.savePrice &&  product.savePrice.title">
+        <section-checkbox @change="clacPrice()" v-model="savePrice" inline-template>
+            <div :id="checkboxId" class="bt checkbox item customCheckbox">
+                <label>
+                    <span class="name">
+                        {% if product.savePrice %}
+                            {% if product.savePrice.title %}
+                                {{ (product.savePrice.title|popup(popup_options, true))|raw }}
+                            {% endif %}
+                        {% endif %}
+                    </span>
+                </label>
+                <input @change="handleInput()" v-model="selected" type="checkbox" :value="value">
+            </div>
+        </section-checkbox>
+    </div>
+{% endif %}

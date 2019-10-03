@@ -1,0 +1,19 @@
+AppBundle\Entity\TaxCategory:
+    type: entity
+    table: sylius_tax_category
+    manyToMany:
+        warehouse:
+            targetEntity: AppBundle\Entity\Warehouse
+            inversedBy: taxCategory
+            joinTable:
+                name: warehouse_tax_category
+                joinColumns:
+                    tax_category_id:
+                        referencedColumnName: id
+                        nullable: true
+                inverseJoinColumns:
+                    warehouse_id:
+                        referencedColumnName: id
+            cascade: ['persist', 'remove']
+            fetch: EAGER
+    lifecycleCallbacks: {  }

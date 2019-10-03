@@ -1,0 +1,172 @@
+{% block subject %}
+    {% if data.order.UserSale %}
+        {{ data.order.UserSale.FirstName }} {{ data.order.UserSale.LastName }} has just sold something!
+    {% else %}
+        BimmerTech has just sold something!
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <p>A new BimmerTech order has been placed by {{ data.order.Customer.FullName }} ({{ data.order.Customer.Email }}):</p>
+    <div class="table table_items" style="width: 600px">
+        <div class="table_head text-uppercase">
+            <div class="item1 order_id" style="width: 250px; background-color: #E0E0E0;margin: 5px;float: left; text-align: center;
+        height: 20px;"><b>Item</b>
+            </div>
+            <div class="item1 order_status" style="width: 100px; background-color: #E0E0E0;margin: 5px;float: left; text-align: center;
+        height: 20px;">
+                <b>Unit Price</b>
+            </div>
+            <div class="item1 payment_status" style="width: 100px; background-color: #E0E0E0;margin: 5px;float: left; text-align: center;
+        height: 20px;">
+                <b>Quantity</b>
+            </div>
+            <div class="item1 total_amount" style="width: 100px; background-color: #E0E0E0;margin: 5px;float: left; text-align: center;
+        height: 20px;">
+                <b>Price</b>
+            </div>
+            <div class="clear" style="clear: both;"></div>
+        </div>
+
+        <div class="table_content product_list" style=" float: left;">
+            {% for key, products in data.dataProducts %}
+                <div class="content_item">
+
+                    <div class="item_product">
+                        {% for productItem in products['item'] %}
+                            <div class="item item_number" style="margin: 5px;width: 10px;float: left; font-size: 10pt;">
+                                <b>{{ key+1 }}.</b>
+                            </div>
+                            <div class="item item_name" style="margin: 5px 0; float: left;width: 230px;font-size: 10pt">
+                                <b>{{ productItem['name'] }}</b>
+                            </div>
+                            <div class="item" style="margin: 5px;width: 100px;float: left; font-size: 10pt; text-align:center"><span><span
+                                            class="dollar-sign">$</span>
+                                    {% if  productItem['unitPrice'] != 0 %}
+                                        {{ productItem['unitPrice']/100|number_format(2, '.', ',') }}
+                                    {% else %}
+                                        free
+                                    {% endif %}
+                            </span>
+                            </div>
+                            <div class="item"
+                                 style="margin: 5px;width: 100px;float: left; font-size: 10pt; text-align:center">{{ productItem['quantity'] }}</div>
+                            <div class="item" style="margin: 5px;width: 100px;float: left; font-size: 10pt; text-align:center"><span><span
+                                            class="dollar-sign">$</span>
+                                    {% if  productItem['price'] != 0 %}
+                                        {{ productItem['price']/100|number_format(2, '.', ',') }}
+                                    {% else %}
+                                        free
+                                    {% endif %}
+                            </span>
+                            </div>
+                            <div class="clear" style="clear: both;"></div>
+
+                        {% endfor %}
+                    </div>
+                    <div class="item_product">
+                        {% for optionItem in products['options'] %}
+                            {% if  optionItem | length > 0 %}
+                                <div class="options" style=" margin: 0;width: 230px;float: left; font-size: 10pt">
+                                    <ul style="font-size: 9pt; margin: 1px 0">
+                                        <li style="margin: 0;">{{ optionItem['name'] }}</li>
+                                    </ul>
+                                </div>
+                                <div class="clear" style="clear: both;"></div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <div class="item_product" style="margin-left: 10px">
+                        <div class="bt-label">
+                            {% if  products['addons'] | length > 0 %}
+                                <div class="line" style="font-size: 10pt; margin-left: 10px">Add-ons for this product:</div>
+                            {% endif %}
+                        </div>
+                        <div class="addon">
+                            {% for addonItem in products['addons'] %}
+                                {% if  addonItem | length > 0 %}
+                                    <div class="item addon_item"
+                                         style="margin: 5px;width: 230px;float: left; font-size: 10pt">
+                                        <ul style="font-size: 10pt; margin: 1px">
+                                            <li style="margin: 0;">{{ addonItem['name'] }}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="item" style="margin: 5px;width: 100px;float: left; font-size: 10pt; text-align:center">
+                                        {% if  addonItem['unitPrice'] != 0 %}
+                                            $   {{ addonItem['unitPrice']/100|number_format(2, '.', ',') }}
+                                        {% else %}
+                                            free
+                                        {% endif %}
+                                    </div>
+                                    <div class="item"
+                                         style="margin: 5px;width: 100px;float: left; font-size: 10pt; text-align:center ">{{ addonItem['quantity'] }}</div>
+                                    <div class="item addon_price"
+                                         style="margin: 5px;width: 100px;float: left; font-size: 10pt;text-align:center "><span><span
+                                                    class="dollar-sign">$</span>
+                                            {% if  addonItem['price'] != 0 %}
+                                                {{ addonItem['price']/100|number_format(2, '.', ',') }}
+                                            {% else %}
+                                                free
+                                            {% endif %}
+                            </span>
+                                    </div>
+                                    <div class="clear" style="clear: both;"></div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div>
+                            {% if  products['warranty'] | length > 0 %}
+                                <div style="margin-left: 10px">Secure Your Protection Plan:</div>
+                            {% endif %}
+                            {% for warrantyItem in products['warranty'] %}
+                                {% if  warrantyItem | length > 0 %}
+                                    <div class="item" style="margin: 5px 0 0 10px;width: 250px;float: left; font-size: 10pt">
+                                <span>{{ warrantyItem['name'] }}
+                                    {% if  warrantyItem['price'] != 0 %}
+                                        +$  {{ warrantyItem['price']/100|number_format(2, '.', ',') }}
+                                    {% endif %}
+                                </span>
+                                    </div>
+                                    <div class="clear" style="clear: both;"></div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+
+        <div>
+            <div class="item1" style="width: 500px; margin: 5px;float:left; text-align: right;">
+                <b>Total:</b>
+            </div>
+            <div class="item1" style="margin: 4px;float: left;">
+                {% if  data.order.total != 0 %}
+                    <b>$ {{ data.order.total/100|number_format(2, '.', ',') }}</b>
+                {% else %}
+                    <b>free</b>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="clear" style="clear: both;"></div>
+
+    <div style="float: left; width: 100px; height: 10px"></div>
+    <p><b></b></p>
+
+    {% if data.order.UserSale %}
+        <p>Assisted by: {{ data.order.UserSale.FirstName }} {{ data.order.UserSale.LastName }}.</p>
+    {% else %}
+        <p>Assisted by: BimmerTech.</p>
+    {% endif %}
+
+    {% if data.order.PaymentState == 'awaiting_payment' %}
+        <p>Payment has not been successfully received.</p>
+    {% else %}
+        <p>Payment has been successfully received.</p>
+    {% endif %}
+
+
+{% endblock %}

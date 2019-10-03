@@ -1,0 +1,67 @@
+sylius_grid:
+    grids:
+        app_admin_help_question:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: AppBundle\Entity\FAQQuestion
+            sorting:
+                code: asc
+            fields:
+                header:
+                    type: string
+                    label: Header
+                    sortable: header
+                position:
+                    type: string
+                    label: Position
+                    sortable: ~
+                code:
+                    type: string
+                    label: ID
+                    sortable: ~
+                question:
+                    type: string
+                    label: Question
+                    sortable: ~
+                answer:
+                    type: twig
+                    label: Answer
+                    sortable: ~
+                    options:
+                        template: "GridRow/Help/content.html.twig"
+                enabled:
+                    type: twig
+                    label: sylius.ui.enabled
+                    sortable: ~
+                    options:
+                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+            actions:
+                main:
+                    create:
+                        type: create
+                    seo:
+                        type: create
+                        label: SEO
+                        options:
+                            link:
+                                route: app_admin_help_seo
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+            filters:
+              header:
+                type: help_header
+
+              help_all_fields:
+                  type: help_all_fields
+                  options:
+                    fields: [question, answer, code]
+
+
+    templates:
+        filter:
+            help_header: ':Grid/Filter:help_header_filter.html.twig'
+            help_all_fields: ':Grid/Filter:help_all_fields_filter.html.twig'

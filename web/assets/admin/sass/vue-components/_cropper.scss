@@ -1,0 +1,35 @@
+#backgroundCropper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.342);
+    z-index: 99999;
+    overflow-x: scroll;
+    > #cropper {
+        width: 40%;
+        margin: auto;
+        margin-top: 5%;
+        text-align: center;
+        position: relative;
+        > img {
+            max-width: 100%;
+        }
+        .button {
+            &.crop {
+                margin-top: 10px;
+            }
+        }
+        .custom {
+            position: absolute;
+            right: -160px;
+            top: 0;
+            width: 150px;
+            .button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}

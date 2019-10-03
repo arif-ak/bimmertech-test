@@ -1,0 +1,479 @@
+.bt {
+  &-confirmation {
+    background: url("/assets/shop/img/CONFIRMATION.webp") no-repeat center;
+    @include bt-icon-size(50px, 50px);
+  }
+  &-like {
+    background: url("/assets/shop/img/svg/like.svg") no-repeat center;
+    @include bt-icon-size(22px, 22px);
+  }
+
+  &-liked {
+    background: url("/assets/shop/img/svg/liked.svg") no-repeat center;
+    @include bt-icon-size(22px, 22px);
+  }
+
+  &-user {
+    background: url("/assets/shop/img/svg/user_icon.svg") no-repeat center;
+    @include bt-icon-size(24px,
+    24px);
+  }
+
+  &-yes {
+    -webkit-mask: url("/assets/shop/img/svg/yes.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/yes.svg") no-repeat 50% 50%;
+
+    &.round {
+      background: url("/assets/shop/img/svg/yes.svg") no-repeat 50% 50%;
+      filter: invert(1);
+    }
+  }
+
+  &-no {
+    -webkit-mask: url("/assets/shop/img/svg/no.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/no.svg") no-repeat 50% 50%;
+
+    &.round {
+      background: url("/assets/shop/img/svg/no.svg") no-repeat 50% 50%;
+      filter: invert(1);
+    }
+  }
+
+  &-maybe {
+    -webkit-mask: url("/assets/shop/img/svg/maybe.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/maybe.svg") no-repeat 50% 50%;
+
+    &.round {
+      background: url("/assets/shop/img/svg/maybe.svg") no-repeat 50% 50%;
+      filter: invert(1);
+    }
+  }
+
+  &-attention {
+    -webkit-mask: url("/assets/shop/img/svg/attention.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/attention.svg") no-repeat 50% 50%;
+
+    &.round {
+      background: url("/assets/shop/img/svg/attention.svg") no-repeat 50% 50%;
+      filter: invert(1);
+    }
+  }
+
+  _:-ms-lang(x),
+  &-phone {
+    background-color: transparent !important;
+    background: url("/assets/shop/img/svg/phone.svg") no-repeat 50% 50%;
+    background-size: contain;
+  }
+
+  &-phone {
+    -webkit-mask: url("/assets/shop/img/svg/phone.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/phone.svg") no-repeat 50% 50%;
+
+    &.round {
+      background: url("/assets/shop/img/svg/phone.svg") no-repeat 50% 50%;
+      filter: invert(1);
+    }
+  }
+
+  &-valid {
+    -webkit-mask: url("/assets/shop/img/svg/valid.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/valid.svg") no-repeat 50% 50%;
+
+    &.round {
+      background: url("/assets/shop/img/svg/valid.svg") no-repeat 50% 50%;
+      filter: invert(1);
+    }
+  }
+  &-not-valid {
+    -webkit-mask: url("/assets/shop/img/svg/close.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/close.svg") no-repeat 50% 50%;
+    @include bt-icon-size(16px, 16px);
+    &.round {
+      background: url("/assets/shop/img/svg/close.svg") no-repeat 50% 50%;
+      filter: invert(1);
+    }
+  }
+
+  &-remove {
+    background: url("/assets/shop/img/svg/remove.svg") no-repeat center;
+    width: 14px;
+    height: 14px;
+  }
+
+  &-letter-check {
+    &.mask {
+      -webkit-mask: url("/assets/shop/img/svg/letter-check.svg") no-repeat 50% 50%;
+      mask: url("/assets/shop/img/svg/letter-check.svg") no-repeat 50% 50%;
+    }
+
+    &.round {
+      background: url("/assets/shop/img/svg/letter-check.svg") no-repeat center;
+    }
+  }
+
+  &-trash {
+    -webkit-mask: url("/assets/shop/img/svg/trash.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/trash.svg") no-repeat 50% 50%;
+
+    &.round {
+      background: url("/assets/shop/img/svg/trash.svg") no-repeat 50% 50%;
+      filter: invert(1);
+    }
+  }
+
+  _:-ms-lang(x),
+  &-email-inline {
+    background-color: transparent !important;
+    background: url("/assets/shop/img/svg/email-inline.svg") no-repeat 50% 50%;
+    background-size: contain;
+  }
+
+  &-email-inline {
+    -webkit-mask: url("/assets/shop/img/svg/email-inline.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/email-inline.svg") no-repeat 50% 50%;
+
+    &.round {
+      background: url("/assets/shop/img/svg/email-inline.svg") no-repeat 50% 50%;
+      filter: invert(1);
+    }
+  }
+
+  &-close {
+     -webkit-mask: url("/assets/shop/img/svg/close.svg") no-repeat 50% 50%;
+     mask: url("/assets/shop/img/svg/close.svg") no-repeat 50% 50%;
+
+     &.round {
+       background: url("/assets/shop/img/svg/close.svg") no-repeat 50% 50%;
+       filter: invert(1);
+     }
+   }
+
+  _:-ms-lang(x),
+  &-close-custom {
+    background-color: transparent !important;
+    background: url("/assets/shop/img/svg/close-custom.svg") no-repeat 50% 50%;
+    background-size: contain;
+  }
+
+  &-close-custom {
+    -webkit-mask: url("/assets/shop/img/svg/close-custom.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/close-custom.svg") no-repeat 50% 50%;
+
+    &.round {
+      background: url("/assets/shop/img/svg/close-custom.svg") no-repeat 50% 50%;
+      filter: invert(1);
+    }
+  }
+
+  &-search {
+    background: url("/assets/shop/img/svg/search_icon.svg") no-repeat center;
+    @include bt-icon-size(24px,
+    24px);
+  }
+
+  &-search-custom {
+    -webkit-mask: url("/assets/shop/img/svg/search_icon.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/search_icon.svg") no-repeat 50% 50%;
+
+    &.round {
+      background: url("/assets/shop/img/svg/search_icon.svg") no-repeat 50% 50%;
+      filter: invert(1);
+    }
+  }
+
+  &-cart {
+    background: url("/assets/shop/img/svg/cart_icon.svg") no-repeat center;
+    @include bt-icon-size(24px,
+    24px);
+  }
+
+  &-facebook {
+    background: url("/assets/shop/img/svg/facebook.svg") no-repeat center;
+    @include bt-icon-size(24px,
+    24px);
+
+    _:-ms-lang(x),
+    &-custom {
+      background: url("/assets/shop/img/svg/facebook2.svg") no-repeat center;
+    }
+
+    &-custom {
+      -webkit-mask: url("/assets/shop/img/svg/facebook-custom.svg") no-repeat 50% 50%;
+      mask: url("/assets/shop/img/svg/facebook-custom.svg") no-repeat 50% 50%;
+    }
+  }
+
+  &-facebook2 {
+    background: url("/assets/shop/img/svg/facebook2.svg") no-repeat center;
+    @include bt-icon-size(24px,
+    24px);
+  }
+
+  &-twitter {
+    background: url("/assets/shop/img/svg/twitter.svg") no-repeat center;
+    @include bt-icon-size(24px,
+    24px);
+  }
+
+  &-mail {
+    background: url("/assets/shop/img/svg/mail.svg") no-repeat center;
+    @include bt-icon-size(24px,
+    24px);
+  }
+
+  &-youtube {
+    background: url("/assets/shop/img/svg/youtube.svg") no-repeat center;
+    @include bt-icon-size(36px,
+    24px);
+  }
+
+  &-instagram {
+    background: url("/assets/shop/img/svg/instagram.svg") no-repeat center;
+    @include bt-icon-size(24px,
+    24px);
+  }
+
+  &-linkedin {
+    background: url("/assets/shop/img/svg/linkedin.svg") no-repeat center;
+    @include bt-icon-size(24px,
+    24px);
+  }
+  &-linkedin2 {
+    background: url("/assets/shop/img/svg/linkedin2.svg") no-repeat center;
+    @include bt-icon-size(24px,
+    24px);
+  }
+
+  &-car {
+    background: url("/assets/shop/img/svg/car_icon.svg") no-repeat center;
+    @include bt-icon-size(18px,
+    18px);
+    margin-right: 10px;
+  }
+
+  &-truck {
+    -webkit-mask: url("/assets/shop/img/svg/truck.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/truck.svg") no-repeat 50% 50%;
+    @include bt-icon-size(24px,
+    24px);
+  }
+
+  &-stopwatch {
+    -webkit-mask: url("/assets/shop/img/svg/stopwatch.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/stopwatch.svg") no-repeat 50% 50%;
+    @include bt-icon-size(24px,
+    24px);
+  }
+
+  &-logo {
+    -webkit-mask: url("/assets/shop/img/svg/stopwatch.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/stopwatch.svg") no-repeat 50% 50%;
+
+    &.base {
+      -webkit-mask: url("/assets/shop/img/svg/logo_color.svg") no-repeat 50% 50%;
+      mask: url("/assets/shop/img/svg/logo_color.svg") no-repeat 50% 50%;
+    }
+  }
+
+  &-expand-more {
+    -webkit-mask: url("/assets/shop/img/svg/expand-more.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/expand-more.svg") no-repeat 50% 50%;
+
+    &.base {
+      -webkit-mask: url("/assets/shop/img/svg/expand-more.svg") no-repeat 50% 50%;
+      mask: url("/assets/shop/img/svg/expand-more.svg") no-repeat 50% 50%;
+    }
+  }
+
+  &-order {
+    -webkit-mask: url("/assets/shop/img/svg/order.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/order.svg") no-repeat 50% 50%;
+
+    &.base {
+      -webkit-mask: url("/assets/shop/img/svg/order.svg") no-repeat 50% 50%;
+      mask: url("/assets/shop/img/svg/order.svg") no-repeat 50% 50%;
+    }
+  }
+
+  &-tech-support {
+    -webkit-mask: url("/assets/shop/img/svg/tech-support.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/tech-support.svg") no-repeat 50% 50%;
+
+    &.base {
+      -webkit-mask: url("/assets/shop/img/svg/tech-support.svg") no-repeat 50% 50%;
+      mask: url("/assets/shop/img/svg/tech-support.svg") no-repeat 50% 50%;
+    }
+  }
+
+  &-return {
+    -webkit-mask: url("/assets/shop/img/svg/return.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/return.svg") no-repeat 50% 50%;
+
+    &.base {
+      -webkit-mask: url("/assets/shop/img/svg/return.svg") no-repeat 50% 50%;
+      mask: url("/assets/shop/img/svg/return.svg") no-repeat 50% 50%;
+    }
+  }
+
+  &-shape-1 {
+    background: url("/assets/shop/img/svg/shape-1.svg") no-repeat center;
+  }
+
+  &-shape-2 {
+    background: url("/assets/shop/img/svg/shape-2.svg") no-repeat center;
+  }
+
+  &-shape-3 {
+    background: url("/assets/shop/img/svg/shape-3.svg") no-repeat center;
+  }
+
+  &-coding-2 {
+    background: url("/assets/shop/img/svg/coding-2.svg") no-repeat;
+  }
+
+  &-manual-2 {
+    background: url("/assets/shop/img/svg/manual-2.svg") no-repeat;
+  }
+
+  &-delivery {
+    -webkit-mask: url("/assets/shop/img/svg/delivery.svg") no-repeat 50% 50%;
+    mask: url("/assets/shop/img/svg/delivery.svg") no-repeat 50% 50%;
+
+    &.base {
+      -webkit-mask: url("/assets/shop/img/svg/delivery.svg") no-repeat 50% 50%;
+      mask: url("/assets/shop/img/svg/delivery.svg") no-repeat 50% 50%;
+    }
+  }
+
+  &-prop {
+    &-aftermarket {
+      -webkit-mask: url("/assets/shop/img/svg/prop_aftermarket.svg") no-repeat 50% 50%;
+      mask: url("/assets/shop/img/svg/prop_aftermarket.svg") no-repeat 50% 50%;
+    }
+
+    &-installation {
+      -webkit-mask: url("/assets/shop/img/svg/prop_installation_time.svg") no-repeat 50% 50%;
+      mask: url("/assets/shop/img/svg/prop_installation_time.svg") no-repeat 50% 50%;
+    }
+
+    &-bmw {
+      -webkit-mask: url("/assets/shop/img/svg/prop_bmw.svg") no-repeat 50% 50%;
+      mask: url("/assets/shop/img/svg/prop_bmw.svg") no-repeat 50% 50%;
+    }
+
+    &-new {
+      -webkit-mask: url("/assets/shop/img/svg/prop_new.svg") no-repeat 50% 50%;
+      mask: url("/assets/shop/img/svg/prop_new.svg") no-repeat 50% 50%;
+    }
+
+    &-coding {
+      -webkit-mask: url("/assets/shop/img/svg/prop_coding.svg") no-repeat 50% 50%;
+      mask: url("/assets/shop/img/svg/prop_coding.svg") no-repeat 50% 50%;
+    }
+
+    &-hd {
+      -webkit-mask: url("/assets/shop/img/svg/prop_hd.svg") no-repeat 50% 50%;
+      mask: url("/assets/shop/img/svg/prop_hd.svg") no-repeat 50% 50%;
+    }
+
+    &-plug {
+      -webkit-mask: url("/assets/shop/img/svg/prop_plug_and_play.svg") no-repeat 50% 50%;
+      mask: url("/assets/shop/img/svg/prop_plug_and_play.svg") no-repeat 50% 50%;
+    }
+  }
+
+  &-icon {
+    @include bt-icon-size(24px,
+    24px);
+    @include flex;
+    position: relative;
+
+    /*     &.white {
+      filter: invert(1);
+    } */
+    &.yellow {
+      background-color: $icon-yellow-color;
+    }
+
+    &.black {
+      background-color: $base-black-color;
+    }
+
+    &.white {
+      background-color: $base-white-color;
+    }
+
+    &.gray {
+      background-color: $base-gray-color;
+    }
+
+    &.red {
+      background-color: $icon-red-color;
+    }
+
+    &.blue {
+      background-color: $icon-blue-color;
+    }
+
+    &.primary {
+      background-color: $base-blue-color;
+    }
+
+    &.green {
+      background-color: $icon-green-color;
+    }
+  }
+
+  &-round-icon {
+    &.green:after {
+      background-color: $icon-green-color;
+    }
+
+    &.blue:after {
+      background-color: $icon-blue-color;
+    }
+
+    &.red:after {
+      background-color: $icon-red-color;
+    }
+
+    &.yellow:after {
+      background-color: $icon-yellow-color;
+    }
+  }
+}
+
+.icon-car_icon:before {
+  content: "\e900";
+}
+
+.icon-cart_icon:before {
+  content: "\e901";
+}
+
+.icon-close:before {
+  content: "\e902";
+}
+
+.icon-close-custom:before {
+  content: "\e903";
+}
+
+.icon-email-inline:before {
+  content: "\e904";
+  color: #757575;
+}
+
+.icon-phone:before {
+  content: "\e905";
+  color: #757575;
+}
+
+.icon-search_icon:before {
+  content: "\e906";
+}
+
+.icon-user_icon:before {
+  content: "\e907";
+}

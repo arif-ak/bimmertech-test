@@ -1,0 +1,24 @@
+AppBundle\Entity\OrderItemUsbCoding:
+    type: entity
+    table: app_order_item_usb_coding
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        isCoded:
+            column: enabled
+            type: boolean
+        createdAt:
+            type: datetime
+            column: created_at
+            nullable: true
+    oneToOne:
+        orderItem:
+            targetEntity: AppBundle\Entity\OrderItem
+            inversedBy: orderItemUsbCoding
+            joinColumn:
+                name: order_item_id
+                referencedColumnName: id
+                nullable: true

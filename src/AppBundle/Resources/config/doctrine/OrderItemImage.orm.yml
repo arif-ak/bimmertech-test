@@ -1,0 +1,12 @@
+AppBundle\Entity\OrderItemImage:
+    type: entity
+    table: app_order_item_image
+    manyToOne:
+        owner:
+            targetEntity: AppBundle\Entity\OrderItem
+            inversedBy: images
+            joinColumn:
+                name: owner_id
+                referencedColumnName: id
+                nullable: false
+                onDelete: CASCADE

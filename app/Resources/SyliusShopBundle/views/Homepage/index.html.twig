@@ -1,0 +1,49 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+{% block title %}{{ title }} {% endblock %}
+{% block meta_description %}
+    <meta name="description" content="{{ metaDescription }}"/>{% endblock %}
+{% block meta_keywords %}
+    <meta name="keywords" content="{{ metaKeywords }}"/>{% endblock %}
+{% block headerClass %}
+    "homepage"
+{% endblock %}
+{% block slider %}
+    {{ render(controller('app.controller.slider_controller:index', {'slider':'slider_homepage'} )) }}
+{% endblock %}
+{% block content %}
+    <div id="HomePage">
+    {# <section-min-header v-if="posts.length>0" inline-template label="Blog">
+                {% include ':GlobalComponents/MinHeader:minHeader.html.twig' %}
+            </section-min-header> #}
+    <section-category-list inline-template>
+        {% include '@SyliusShop/Homepage/components/CategoryList/CategoryList.html.twig' %}
+    </section-category-list>
+    <div class="content">
+        <h1 class="title">{{ title }}</h1>
+        <h2 class="sub-title">{{ subTitle }}</h2>
+    </div>
+    <section-swiper :recomended="recomended" inline-template>
+        {% include ':GlobalComponents/Swiper:recomended.html.twig' %}
+    </section-swiper>
+    <div>
+        <div class="blog min-header header grid-x align-middle">
+            <a class="cell shrink" href="/blog">
+                <h3 class="text-uppercase" id="title">
+                    Blog
+                </h3>
+                <h6>BMW UPGRADE
+                    </br>
+                    <span class="bold">TIPS &  TRICKS</span>
+                </h6>
+            </a>
+            <div class="cell large-auto">
+                <span class="divider"></span>
+            </div>
+        </div>
+        <section-posts-row slider :posts="posts" :postskey="0" inline-template v-if="posts.length>0">
+            {% include ':GlobalComponents/postsRow:postsRow.html.twig' %}
+        </section-posts-row>
+    </div>
+    <div class="description">{{ description|raw }}</div>
+
+    </div>{% endblock %}

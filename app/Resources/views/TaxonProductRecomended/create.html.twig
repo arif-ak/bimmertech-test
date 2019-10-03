@@ -1,0 +1,18 @@
+{% extends 'SyliusAdminBundle::layout.html.twig' %}
+
+ {% block content %}
+     <a href="{{ path('app_taxon_product_index_controller_admin') }}" class="ui green button mb-15">Back to list</a>
+
+     {{ form_start(form, {'attr': {'novalidate': 'novalidate',  'class': 'ui large form'}}) }}
+     <div class="two fields">
+         <div class="field">
+             {{ form_row(form.category) }}
+         </div>
+
+         <div class="field">
+             {{ form_row(form.product) }}
+         </div>
+     </div>
+     {{ form_errors(form) }}
+     {{ form_end(form) }}
+ {% endblock %}

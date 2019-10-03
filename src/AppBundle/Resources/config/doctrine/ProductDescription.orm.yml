@@ -1,0 +1,43 @@
+AppBundle\Entity\ProductDescription:
+  type: entity
+  table: app_product_description
+  repositoryClass: AppBundle\Repository\ProductDescriptionRepository
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    header:
+      type: string
+      nullable: true
+    subHeader:
+      type: string
+      nullable: true
+      column: sub_header
+    description:
+      type: text
+      nullable: true
+    video:
+      type: text
+      nullable: true
+
+    type:
+        type: string
+
+  manyToOne:
+      product:
+          targetEntity: AppBundle\Entity\Product
+          inversedBy: productDescriptions
+          joinColumn:
+            name: product_id
+            referencedColumnName: id
+  oneToMany:
+      images:
+          targetEntity: AppBundle\Entity\ProductDescriptionImage
+          mappedBy: owner
+          orphanRemoval: true
+          cascade:
+            - all
+

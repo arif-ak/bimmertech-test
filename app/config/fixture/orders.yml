@@ -1,0 +1,11 @@
+sylius_fixtures:
+    suites:
+        orders:
+            fixtures:
+                orders:
+                    options:
+                        amount: 3
+                        country_code: "PL"
+                        channel_code: "bimmer_tech"
+                        warehouse: "Dubai Warehouse"
+                        vin_number: "KT33030"

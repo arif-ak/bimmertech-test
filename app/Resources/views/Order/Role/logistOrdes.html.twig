@@ -1,0 +1,34 @@
+
+{% import "@SyliusAdmin/Common/Macro/money.html.twig" as money %}
+
+        {% for order in orders %}
+            <tr class="item">
+                <td>
+                    <a href='{{ path('sylius_admin_order_show',{ id: order.id }) }}'>#{{ order.number }}</a></td>
+                <td>
+                    {{ order.checkoutCompletedAt |date("d-m-Y h:m:s") }}</td>
+                <td>
+                    <strong>{{ order.customer.firstName }} {{ order.customer.lastName }}</strong>
+                    <p>{{ order.customer.email }}</p>
+                </td>
+                <td>
+                    {{ money.format(order.total, order.currencyCode) }}
+                </td>
+                <td>
+                    {{ include('SyliusAdminBundle:Order/Label/State:'~ order.state~'.html.twig', { value:order.state }) }}
+                </td>
+                <td>
+                    {{ include('SyliusAdminBundle:Order/Label/PaymentState:'~ order.paymentState~'.html.twig', { value:order.paymentState }) }}
+                </td>
+                <td>
+                    {{ include('SyliusAdminBundle:Order/Label/ShippingState:'~ order.shippingState~'.html.twig', { value:order.shippingState }) }}
+                </td>
+                <td>
+                    {{ include('SyliusAdminBundle:Order/Label/SupportState:'~ order.supportStatus~'.html.twig', { value:order.supportStatus }) }}
+                </td>
+                <td>
+                    {{ include('SyliusAdminBundle:Order/Label/CodingState:'~ order.codingStatus~'.html.twig', { value:order.codingStatus }) }}
+                </td>
+            </tr>
+        {% endfor %}
+

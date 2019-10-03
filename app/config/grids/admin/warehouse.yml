@@ -1,0 +1,28 @@
+sylius_grid:
+    grids:
+        app_admin_warehouse:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: AppBundle\Entity\Warehouse
+            fields:
+                name:
+                    type: string
+                    label: Name
+                country:
+                    type: string
+                    label: Country
+#                enabled:
+#                    type: twig
+#                    label: sylius.ui.enabled
+#                    options:
+#                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

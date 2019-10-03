@@ -1,0 +1,69 @@
+<div :class="{'bt-loading': loading}">
+    <section-success-message @close="successMessage=false" v-if="successMessage" :message="successMessage" inline-template>
+        {% include '@SyliusAdmin/GlobalComponents/successMessage/successMessage.html.twig' %}
+    </section-success-message>
+    <div class="content">
+        <div class="header fields">
+            <section-field @change="loadMedia()" :select="true" label="Sort" placeholder="Sort" :options="sortOptions" v-model="sort" inline-template>
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <section-field @change="loadMedia()" :select="true" label="Sort by" placeholder="Sort" :options="orderOptions" v-model="order" inline-template>
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <section-field @change="loadMedia(true)" :select="true" label="Show" placeholder="Show" :options="limitOptions" v-model="limit" inline-template>
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <section-field @change="loadMedia()" :select="true" label="Page" placeholder="Page" :options="pagesOptions" v-model="page" inline-template>
+                {% include ':GlobalComponents/Field:_field.html.twig' %}
+            </section-field>
+            <div class="field uploadImage">
+                <input @change="changeImage($event)" v-show="false" type="file" id="uploadImageInputMediaLibrary" />
+                <label for="uploadImageInputMediaLibrary">Upload Image</label>
+                <label class="button" for="uploadImageInputMediaLibrary"><div class="delete ui labeled icon button"><i class="sticky note icon"></i>Choose Image</div></label>
+            </div>
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" v-model="selectMode" class="hidden">
+                    <label for="sylius_product_channels_0">Choose items</label>
+                </div>
+            </div>
+        </div>
+
+        <section-folders-tree  @contextmenu='contextMenuHandle' @delete="deleteFolder" @choose="chooseFolder" @renamefolder="renameFolder" @newfolder="addFolder" @move="moveHandle" :value="folders" :selected="currentFolderId" class="left" inline-template>
+            {% include '@SyliusAdmin/GlobalComponents/MediaLibraryMainContent/components/foldersTree/foldersTree.html.twig' %}
+        </section-folders-tree>
+
+        <div class="right">
+            <section-pagination v-model="page" :pages="pages" inline-template>
+                {% include '@SyliusAdmin/GlobalComponents/pagination/pagination.html.twig' %}
+            </section-pagination>
+            <div class="media-library-images-container">
+                <div :title="'Created at '+ item.createdAt" @contextmenu.prevent='openMenu($event, i)' @click="chooseImage(i)" @dblclick="openItem(i, item.type)" v-for="(item, i) in media" class="image" :class="{'selectMode': selectMode, 'active': choosedImage===i && chooseMode}">
+                    <div class="checkbox" v-if="selectMode">
+                        <input :id="'checkbox_'+i" v-if="item.type=='image'" type="checkbox" v-model="selectedImages" :value="item.id">
+                        <input :id="'checkbox_'+i" v-if="item.type=='folder'" type="checkbox" v-model="selectedFolders" :value="item.id">
+                    </div>
+                    <draggable class="dragable" :class="{'disable': checkChecked(item.id, item.type)}" :value="[media[i]]" :options="{group:{ name:'items',  pull:'clone', put:false }}">
+                        <label :for="'checkbox_'+i" class="itemContainer">
+                            <div class="border" :class="{'hover': item.type=='image'}" v-for="im in [media[i]]">
+                                <img v-if="item.type=='image'" :src="im.url" >
+                                <div v-if="item.type=='folder'" class="folder" ></div>
+                            </div>
+                            <div class="name">[[item.name]]</div>
+                        </label>
+                        <label :for="'checkbox_'+i" class="disabledLabel"></label>
+                    </draggable>
+                </div>
+                <div v-if="emptyFolder" class="message">Folder is empty</div>
+            </div>
+            <section-pagination v-show="media.length>0" v-model="page" :pages="pages" inline-template>
+                {% include '@SyliusAdmin/GlobalComponents/pagination/pagination.html.twig' %}
+            </section-pagination>
+        </div>
+    </div>
+
+    
+    <section-image-show :image="selectedImage" inline-template>
+        {% include '@SyliusAdmin/GlobalComponents/MediaLibraryMainContent/components/modalWindow/modalWindow.html.twig' %}
+    </section-image-show>
+</div>

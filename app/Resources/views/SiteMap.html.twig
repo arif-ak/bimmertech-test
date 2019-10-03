@@ -1,0 +1,94 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+{% block content %}
+    <div class="grid-x display-flex align-middle breadcrumb">
+        <a href="{{ path('sylius_shop_homepage') }}" class="section">{{ 'sylius.ui.home'|trans }}</a>
+        <div class="divider display-flex align-middle"><img
+                    src="{{ asset('assets/shop/img/bread_crumb_divider.png') }}"></div>
+        <div class="active section">Sitemap</div>
+    </div>
+
+
+
+
+    {# <h1 id="sylius-product-name" class="ui monster dividing header">Sitemap</h1> #}
+    <div id="Sitemap">
+        <div class="header min-header grid-x align-middle">
+            <div class="cell shrink">
+                <h4 class="text-uppercase">
+                    Sitemap
+                </h4>
+            </div>
+            <div class="cell large-auto">
+                <span class="divider"></span>
+            </div>
+        </div>
+        <div class="ui bulleted list">
+            <h5>Shop</h5>
+            {% for  taxon in shop %}
+                <div class="item">
+                    <div class="title">
+                        {% if taxon.slug == taxon.redirect %}
+                            <a href="{{ path('sylius_shop_product_index', { slug: taxon.slug }) }}">{{ taxon.name }}</a>
+                        {% else %}
+                            <a href="{{ taxon.redirect }}">{{ taxon.name }}</a>
+                        {% endif %}
+                    </div>
+                    {% for product in  taxon.products %}
+                        <div class="list hyphen">
+                            <a class="item"
+                            href="{{ path('sylius_shop_product_show', { slug: product.slug }) }}">{{ product.name }}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <h5>Pages</h5>
+            <div class="item">
+                <div class="title">Our company</div>
+                <div class="list hyphen">
+                    <a class="item" href="{{ path('sylius_shop_contact_request') }}">Contact Us</a>
+                    {% for page in pages.our_company %}
+                        <a class="item" href="{{ path('app_page_slug', { slug: page.slug}) }}">{{ page.title }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="item">
+                <div class="title">Your account</div>
+                <div class="list hyphen">
+                    <a class="item" href="{{ path('sylius_shop_account_dashboard') }}">A Log In / Register</a>
+                    <a class="item" href="{{ path('sylius_shop_cart_summary') }}">Your Cart</a>
+                    <a class="item" href="{{ path('sylius_shop_account_dashboard') }}">Your Order</a>
+                </div>
+            </div>
+            <div class="item">
+                <div class="title">Information</div>
+                <div class="list hyphen">
+                    <a class="item" href="{{ path('app_help') }}">Help</a>
+                    <a class="item" href="{{ path('app_installers') }}">Find Your Installer</a>
+                    <a class="item" href="{{ path('app_for_dealer') }}">For Dealers</a>
+                </div>
+            </div>
+            <div class="item">
+                <div class="title">Policies</div>
+                <div class="list hyphen">
+                    {% for page in pages.information %}
+                        <a class="item" href="{{ path('app_page_slug', { slug: page.slug}) }}">{{ page.title }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <h5><a class="item" href="{{ path('app_blog_index') }}">Our Blog</a></h5>
+            {# {% for  key, category in blogCategories %}
+                <div class="item">
+                    <div>{{ key }}</div>
+
+                    {% for post in  category %}
+                        <div class="list hyphen">
+                            <a class="item"
+                               href="{{ path('app_blog_show', { slug: post.slug, id: post.id }) }}">{{ post.title }}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %} #}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,223 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Sylius\Component\Core\Model\ProductVariant as BaseProductVariant;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class ProductVariant
+ * @package AppBundle\Entity
+ */
+class ProductVariant extends BaseProductVariant
+{
+
+//    protected $defaultWarehouse;
+//
+//
+//    protected $imageRequired;
+//
+//    protected $instruction;
+//
+//    protected $installationTime;
+//
+//    protected $priority;
+//
+//    protected $vincheckserviceId;
+//
+//    protected $hasHardware;
+//
+//    protected $hasSoftware;
+//
+//    /**
+//     * Set defaultWarehouse
+//     *
+//     * @param Warehouse $defaultWarehouse
+//     *
+//     * @return ProductVariant
+//     */
+//    public function setDefaultWarehouse(Warehouse $defaultWarehouse = null)
+//    {
+//        $this->defaultWarehouse = $defaultWarehouse;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get defaultWarehouse
+//     *
+//     * @return Warehouse
+//     */
+//    public function getDefaultWarehouse()
+//    {
+//        return $this->defaultWarehouse;
+//    }
+//
+//    /**
+//     * Set imageRequired
+//     *
+//     * @param boolean $imageRequired
+//     *
+//     * @return ProductVariant
+//     */
+//    public function setImageRequired($imageRequired)
+//    {
+//        $this->imageRequired = $imageRequired;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get imageRequired
+//     *
+//     * @return boolean
+//     */
+//    public function getImageRequired()
+//    {
+//        return $this->imageRequired;
+//    }
+//
+//    /**
+//     * Set instruction
+//     *
+//     * @param string $instruction
+//     *
+//     * @return ProductVariant
+//     */
+//    public function setInstruction($instruction)
+//    {
+//        $this->instruction = $instruction;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get instruction
+//     *
+//     * @return string
+//     */
+//    public function getInstruction()
+//    {
+//        return $this->instruction;
+//    }
+//
+//    /**
+//     * Set installationTime
+//     *
+//     * @param string $installationTime
+//     *
+//     * @return ProductVariant
+//     */
+//    public function setInstallationTime($installationTime)
+//    {
+//        $this->installationTime = $installationTime;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get installationTime
+//     *
+//     * @return string
+//     */
+//    public function getInstallationTime()
+//    {
+//        return $this->installationTime;
+//    }
+//
+//    /**
+//     * Set priority
+//     *
+//     * @param integer $priority
+//     *
+//     * @return ProductVariant
+//     */
+//    public function setPriority($priority)
+//    {
+//        $this->priority = $priority;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get priority
+//     *
+//     * @return integer
+//     */
+//    public function getPriority()
+//    {
+//        return $this->priority;
+//    }
+//
+//    /**
+//     * Set vincheckserviceId
+//     *
+//     * @param integer $vincheckserviceId
+//     *
+//     * @return ProductVariant
+//     */
+//    public function setVincheckserviceId($vincheckserviceId)
+//    {
+//        $this->vincheckserviceId = $vincheckserviceId;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get vincheckserviceId
+//     *
+//     * @return integer
+//     */
+//    public function getVincheckserviceId()
+//    {
+//        return $this->vincheckserviceId;
+//    }
+//
+//    /**
+//     * Set hasHardware
+//     *
+//     * @param boolean $hasHardware
+//     *
+//     * @return ProductVariant
+//     */
+//    public function setHasHardware($hasHardware)
+//    {
+//        $this->hasHardware = $hasHardware;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get hasHardware
+//     *
+//     * @return boolean
+//     */
+//    public function getHasHardware()
+//    {
+//        return $this->hasHardware;
+//    }
+//
+//    /**
+//     * Set hasSoftware
+//     *
+//     * @param boolean $hasSoftware
+//     *
+//     * @return ProductVariant
+//     */
+//    public function setHasSoftware($hasSoftware)
+//    {
+//        $this->hasSoftware = $hasSoftware;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get hasSoftware
+//     *
+//     * @return boolean
+//     */
+//    public function getHasSoftware()
+//    {
+//        return $this->hasSoftware;
+//    }
+}

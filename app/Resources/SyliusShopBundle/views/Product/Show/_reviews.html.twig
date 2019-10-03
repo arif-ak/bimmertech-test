@@ -1,0 +1,26 @@
+<div class="grid-x grid-margin-x reviews">
+    <div class="cell shrink">
+        {% if taxon is not defined %}
+            {% include '@SyliusShop/Product/_starRating.html.twig' %}
+        {% else %}
+            {% include 'Product/ContainerProduct/_starRating.html.twig' %}
+        {% endif %}
+    </div>
+    {% include '@SyliusShop/Product/Show/Tabs/_rating.html.twig' %}
+    {# {% if taxon is not defined %}
+    <a href="#scrollToReviews" class="b cell shrink">{{ product.acceptedReviews|length }} customer reviews</a>
+    {% endif %} #}
+    {% if taxon is not defined %}
+        <a v-show="customersReviews" href="#scrollToReviews" class="b cell shrink">[[customersReviews]] customer reviews</a>
+    {% else %}
+        <a  class="b cell shrink popup bt-popup">[[customersReviews]] customer reviews</a>
+        {# <div class="customPopup ui bt-popup transition hidden popup">
+            <div class="content">
+                <p>
+                    <span class="vin-check-message-blue" @click="openVinchek()">Enter your VIN</span> to check the reviews for the product compatible with your BMW
+                </p>
+            </div>
+        </div> #}
+    {% endif %}
+    {#<a href="{{ path('sylius_shop_product_review_create', {'slug': product.slug, '_locale': product.translation.locale}) }}" class="item">{{ 'sylius.ui.add_your_review'|trans }}</a>#}
+</div>

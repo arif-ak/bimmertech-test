@@ -1,0 +1,98 @@
+<h1>Logistic board</h1>
+<div class="ui equal height width center middle aligned padded grid segments">
+    {% for key, warehouse in warehouseTable %}
+        {% set canEdit = userWareHouseId == warehouse['warehouse'].id ? true : false %}
+        <div class="row ">
+            <div class="three wide column ui segment">
+                {{ warehouse['warehouse'].name }}
+            </div>
+            <div class="eleven wide column ui segment">
+                <div class="ui equal width center aligned padded grid">
+                    {% for key, product in warehouse['products'] %}
+                        {% set warehouseForm=product['formWarehouse'] %}
+                        {% set item=  product['item'] %}
+                        {% set variant=  product['item'].variant %}
+                        {% set product = variant.product %}
+
+                        <div class="row">
+                            <div class="eight wide column left aligned">
+                                <div>
+                                    {% include '@SyliusAdmin/Product/_info.html.twig' %}
+                                </div>
+                            </div>
+                            <div class="three wide column logisticBoardQuantity">
+                                Quantity: {{ item.quantity }}
+                            </div>
+                            <div class="five wide column">
+                                <div class="admin_logistic_warehouse item{{ item.id }}">
+                                    {{ form_start(warehouseForm,{'action': path('app_oder_item_warehouse',{'id':item.id}),'method': 'PUT','attr':{'class': 'ui loadable form'}}) }}
+                                    {{ form_row( warehouseForm.warehouse, { 'label': false }) }}
+                                </div>
+
+                                <div class=" admin_logistic_warehouse_info item{{ item.id }}">
+                                    {% if canEdit or isAdmin %}
+                                        <button onclick="admin_logistic_warehouse(event,{{ item.id }})"
+                                                class="ui mini button">Change
+                                            warehouse
+                                        </button>
+                                    {% endif %}
+                                </div>
+
+                                <div class=" admin_logistic_warehouse_info item{{ item.id }}">
+                                    <a class="ui mini blue button logisticBoardBtn" target="_blank"
+                                       href="{{ path('app_bopt_controller', {'vin':order.vin, 'productId':item.variant.vincheckserviceId }) }}">Bopt</a>
+                                </div>
+
+                                <div class="admin_logistic_warehouse item{{ item.id }} center aligned">
+                                    <input class="ui mini button primary logisticBoardBtn" type="submit" value="Save"/>
+                                </div>
+                                {{ form_end(warehouseForm) }}
+                            </div>
+                        </div>
+                        {% if  warehouse['products']|length > (key+1) %}
+                            <div class="ui divider"></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% if isAdmin or canEdit and not isShowSupportBoard %}
+                <div class="two wide column ui segment">
+                    <div class="ui animated fade button" tabindex="0"
+                         onclick="admin_modal_logistic_shipment_warehouse({{ key }})">
+                        <div class="visible content">Create new</div>
+                        <div class="hidden content">
+                            Shipment
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        {% include ':Order/Logistic:_modal_shipment_warehouse.html.twig' %}
+
+    {% endfor %}
+</div>
+<table class="ui celled compact small table fixed">
+    <thead>
+    <tr>
+        <th class="center aligned one wide aligned sylius-table-column-unit_price">№</th>
+        <th class="center aligned one wide aligned sylius-table-column-unit_price">{{ 'Shipping method' }}</th>
+        <th class="center aligned two wide aligned sylius-table-column-subtotal">{{ 'Tracking number' }}</th>
+        <th class="center aligned six wide sylius-table-column-item">{{ 'sylius.ui.order_item_product'|trans }}</th>
+        <th class="center aligned two wide  sylius-table-column-subtotal">{{ 'Actions' }}</th>
+    </thead>
+    <tbody>
+    {% for key, itemTable in logisticBoard %}
+        {% include ':Order/Logistic:_items.html.twig' %}
+        {% include ':Order/Logistic:_modal_shipment.html.twig' with
+            {'form': itemTable.shipForm, 'shipmentId': itemTable.shipment.id} %}
+
+    {% endfor %}
+    </tbody>
+</table>
+
+{% for key, itemTable in logisticBoard %}
+    {% include ':Order/Logistic:_modal.html.twig' with
+        {'formReport': itemTable.reportForm, 'shipmentId': itemTable.shipment.id} %}
+{% endfor %}
+

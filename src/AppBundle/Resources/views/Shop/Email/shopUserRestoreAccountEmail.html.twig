@@ -1,0 +1,16 @@
+{% block subject %}
+    Your BimmerTech customer account has been restored.
+{% endblock %}
+
+{% block body %}
+
+    <p>Hi {{ data.user.Customer.FullName }},</p>
+    <p>
+        Your BimmerTech customer account has successfully been restored. Your log-in details are:
+    </p>
+    <p><b>Email address: {{ data.user.Email }}</b></p>
+    <p><b>Password: {{ data.password }}</b></p>
+    <p>After logging in to your account, we recommend changing your password.</p>
+    <p>Didn't restore your BimmerTech customer account? Please <a href="{{ app.request.getSchemeAndHttpHost() }}{{ path( 'sylius_shop_contact_request') }}">let us know</a>.</p>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+app_admin_buyers_guide_option:
+    resource: |
+        alias: app.buyers_guide_option
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        redirect: index
+        grid: app_buyers_guide_option
+        vars:
+            all:
+                header: Buyers guide option
+                subheader: Manage your option
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

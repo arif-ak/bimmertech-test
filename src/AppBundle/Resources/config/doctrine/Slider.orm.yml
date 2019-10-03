@@ -1,0 +1,19 @@
+AppBundle\Entity\Slider:
+    type: entity
+    table: slider
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        code:
+            type: string
+        name:
+            type: string
+        enabled:
+            type: boolean
+    oneToMany:
+        slides:
+            targetEntity: AppBundle\Entity\Slide
+            mappedBy: slider

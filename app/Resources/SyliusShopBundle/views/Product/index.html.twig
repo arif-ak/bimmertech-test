@@ -1,0 +1,26 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+{% block title %}{{ taxon.metaTitle }} {% endblock %}
+{% block meta_description %}
+    <meta name="description" content="{{ taxon.metaDescription }}"/>{% endblock %}
+{% block meta_keywords %}
+    <meta name="keywords" content="{{ taxon.metaKeywords }}"/>{% endblock %}
+
+ {% block meta_image %}
+     <meta property="og:image" content="{{ taxon.images|length }}"/>
+     {% if  taxon.images|length >0 %}
+         <meta property="og:image" content="{{ taxon.images.first.path|imagine_filter('product_570_367') }}"/>
+     {% endif %}
+ {% endblock %}
+
+{% block content %}
+    {% include '@SyliusShop/Product/Index/_header.html.twig' %}
+    {# <div class="ui stackable grid"> #}
+    {#<div class="four wide column">#}
+    {#{% include '@SyliusShop/Product/Index/_sidebar.html.twig' %}#}
+    {#</div>#}
+    <div class="cell">
+        {% include '@SyliusShop/Product/Index/_main.html.twig' %}
+    </div>
+    {#</div>#}
+{% endblock %}
+

@@ -1,0 +1,54 @@
+{% form_theme formReport 'SyliusUiBundle:Form:imagesTheme.html.twig' %}
+
+{#<div class="ui modal logistic{{ formReport.vars.value.id }}">#}
+    {#<div class="ui segment">#}
+        {#<h3 class="ui dividing header">{{ 'sylius.ui.media'|trans }}</h3>#}
+        {#<br>#}
+        {#{{ form_row(formReport.images, {'label': false}) }}#}
+    {#</div>#}
+{#</div>#}
+
+
+<div class="ui modal logistic{{ formReport.vars.value.id }}">
+    <i class="close icon"></i>
+    <div class="header">
+        Add Photo Report
+    </div>
+    <div class="scrolling modalForm content">
+        {{ form_start(formReport,{'action': path('app_order_phot_report_add',
+            {'orderId':order.id,'id':shipmentId})}) }}
+        <h4>{{ form_label( formReport.images) }}</h4>
+        <br>
+        {{ form_row(formReport.images, {'label': false}) }}
+
+        {#<div>#}
+            {#{% for image in formReport.images %}#}
+                {#<img src="/media/image/{{ image.vars.value.path }}" height="100px" width="100px">#}
+            {#{% endfor %}#}
+        {#</div>#}
+    </div>
+    <div class="actions">
+        <div class="ui black deny button">
+            Back
+        </div>
+        <input type="submit" class="ui green positiveright button" value="Save"/>
+        <i class="checkmark icon"></i>
+        {{ form_end(formReport) }}
+    </div>
+</div>
+
+{#{% block javascripts %}#}
+    {#{{ parent() }}#}
+
+    {#{{ sonata_block_render_event(event_prefix ~ '.javascripts') }}#}
+
+    {#<script src="{{ asset('bundles/bitbagsyliuscmsplugin/js/bitbag-block-image-preview.js') }}"></script>#}
+{#{% endblock %}>#}
+
+{#{% form_theme form 'SyliusUiBundle:Form:imagesTheme.html.twig' %}#}
+
+{#<div class="ui segment">#}
+    {#<h3 class="ui dividing header">{{ 'sylius.ui.media'|trans }}</h3>#}
+    {#<br>#}
+    {#{{ form_row(form.images, {'label': false}) }}#}
+{#</div>#}

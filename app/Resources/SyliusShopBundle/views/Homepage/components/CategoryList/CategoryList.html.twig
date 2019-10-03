@@ -1,0 +1,10 @@
+<div id="CategoryList">
+    <div class="item" v-for="(link, j) in links">
+        <a :href="link.link">
+            <img :src="link.image" class="bt-item-icon">
+            <div class="name text-uppercase">
+                [[link.name]]
+            </div>
+        </a>
+    </div>
+</div>

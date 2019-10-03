@@ -1,0 +1,15 @@
+app_admin_user_coding:
+    resource: |
+        alias: app.user_coding
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        redirect: index
+        grid: app_admin_user_coding
+        vars:
+            all:
+                header: User Coding
+                subheader: Manage your Support persons
+                breadcrumbslabel: coding
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

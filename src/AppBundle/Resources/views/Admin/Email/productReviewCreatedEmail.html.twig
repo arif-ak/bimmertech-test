@@ -1,0 +1,11 @@
+{% block subject %}
+    New product review for {{ data.product.Name }}
+{% endblock %}
+
+{% block body %}
+
+    <p>A review has been left by {{ data.user.Customer.FullName }}
+        ({{data.user.Customer.Email }}) at {{ app.request.getSchemeAndHttpHost() }}/products-{{ data.product.Slug }}.
+        </p>
+
+{% endblock %}

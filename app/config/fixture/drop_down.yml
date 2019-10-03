@@ -1,0 +1,36 @@
+sylius_fixtures:
+  suites:
+    dropDown:
+      fixtures:
+        drop_down:
+          options:
+            custom:
+              Region:
+                code: 123
+                name: "Region"
+                type: "coding product"
+                dropdown_options:
+                  -
+                    name: "None"
+                    price: 250
+                    position: 1
+                  -
+                    name: "North America"
+                    price: 150
+                    position: 2
+                  -
+                    name: "South America"
+                    price: 150
+                    position: 3
+                  -
+                    name: "Europe"
+                    price: 150
+                    position: 4
+                  -
+                    name: "Middle East"
+                    price: 150
+                    position: 5
+                  -
+                    name: "Japan"
+                    price: 150
+                    position: 6

@@ -1,0 +1,11 @@
+
+image: samueldebruyn/debian-git
+
+pipelines:
+  branches:
+     master:
+      - step:
+          script:
+            - apt-get update
+            - apt-get -qq install git-ftp
+            - git ftp push --user $FTP_USER --passwd $FTP_PASSWORD php00.ftp.tools/phd.com.ua/bt-webshop

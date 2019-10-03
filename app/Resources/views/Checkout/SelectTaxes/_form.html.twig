@@ -1,0 +1,7 @@
+<div class="ui unmargined segments">
+    {% if order.hasTax  is null %}
+        {% include ':Checkout/SelectTaxes:_unavailable.html.twig' %}
+    {% else %}
+        {% include ':Checkout/SelectTaxes:_taxes.html.twig' %}
+    {% endif %}
+</div>

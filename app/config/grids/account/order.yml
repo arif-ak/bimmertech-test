@@ -1,0 +1,13 @@
+# This file is part of the Sylius package.
+# (c) Paweł Jędrzejewski
+
+sylius_grid:
+    grids:
+        sylius_shop_account_order:
+            fields:
+                shippingState:
+                    type: string
+                    label: Shipping State
+                paymentState:
+                    type: string
+                    label: Payment State

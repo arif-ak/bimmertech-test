@@ -1,0 +1,44 @@
+<div :class="{'bt-loading': loading}" class="cell" id="Support" v-if="allInstructions.length > 0">
+    <div class="cell">
+        <h4>Support board</h4>
+        <div class="cell segment-wrapper">
+            <div class="ui">
+                <div class="grid-x">
+                    <div class="cell product grid-x align-middle" v-for="(product, i) in allInstructions" v-ret-state:product="product">
+                        <div class="ten wide column left aligned cell large-4 ">
+                            <div class="ui header">
+                                <popup-ret-ref :access="access" :value="product"></popup-ret-ref>
+                                <img :data-src="product.image" alt="" class="ui bordered image" src="" v-img-loader/>
+                                <div class="content">
+                                    <div :title="product.name" class="sylius-product-name">[[product.name]]</div>
+                                    <span class="sub header sylius-product-drop-downs" v-d-down="{ product: [product.savePrice,product.drop_down] }"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell large-1">
+                            <div class="additional-info date" v-if="!!product.date">
+                                <span>[[new Date(product.date)|date]]</span>
+                            </div>
+                        </div>
+                        <div class="three wide column cell large-5 additional-info">
+                            <span>[[product.support_board.instruction]]</span>
+                        </div>
+                        <div class="two wide column cell large-1 text-center">
+                            <div class=" admin_logistic_warehouse_info item53">
+                                <a :class="{'disabled':!access.support_board}" :href="product.bopt" class="ui mini blue button logisticBoardBtn bopt" target="_blank">Bopt</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom_buttons">
+                        <div :class="{'disabled':!instructions.length>0 || !access.support_board}" @click="updateInstruction(instructions, true)" class="ui mini green button" tabindex="0">
+                            <div class="visible content">Send instructions</div>
+                        </div>
+                        <div :class="{'disabled':!sendedInstructions.length>0 || !access.support_board}" @click="updateInstruction(sendedInstructions)" class="ui mini yellow button" tabindex="0">
+                            <div class="visible content">Edit</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

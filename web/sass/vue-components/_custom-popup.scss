@@ -1,0 +1,17 @@
+.customPopup {
+    background: $base-popup-color;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 20px;
+    border: 1px solid $base-gray-color;
+    z-index: 2;
+    &.compatibiltyPopup {
+        max-width: 300px;
+        min-width: 300px;
+        width: 300px;
+        .vin-check-message-blue {
+            color: $base-blue-color;
+            cursor: pointer;
+        }
+    }
+}

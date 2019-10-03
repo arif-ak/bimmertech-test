@@ -1,0 +1,61 @@
+<div class="ui card cell large-3" id="customer">
+    <div class="content">
+        <a href="{{ path('sylius_admin_customer_show', {'id': customer.id}) }}" class="header sylius-customer-name">
+            {{ customer.fullName }}</a>
+        <div class="meta">
+            <span class="date">
+                {{ 'sylius.ui.customer_since'|trans }}
+                {{ customer.createdAt|format_date }}.</span>
+        </div>
+    </div>
+    <div class="extra content">
+        <a href="mailto:{{ customer.email }}">
+            <i class="envelope icon"></i>
+            {{ customer.email }}
+        </a>
+    </div>
+    {% if customer.phoneNumber is not empty %}
+        <div class="extra content">
+            <span>
+                <i class="phone icon"></i>
+                {{ customer.phoneNumber }}
+            </span>
+        </div>
+    {% endif %}
+    {% if order.customerIp is defined and order.customerIp is not empty %}
+        <div class="extra content" id="ipAddress">
+            <span>
+                <i class="desktop icon"></i>
+                {{ order.customerIp }}
+            </span>
+        </div>
+    {% endif %}
+    {% if app.request.attributes.get('_route') == "sylius_admin_order_show" %}
+        <div class="extra content">
+            <b>Checkout country:</b>
+            {{ order.countryCode|country }}
+        </div>
+        {% if not order.userSale is empty %}
+            <div class="extra content">
+                <b>Sales pesrson:</b>
+                {{ order.userSale.username }}
+            </div>
+        {% endif %}
+    {% endif %}
+    <div @click="editV($event)" class="extra content vin">
+        <div class="block-text" v-show="!edit">
+            <b>VIN:</b>&nbsp;[[vin]]
+        </div>
+        <div class="block-button" v-show="!edit">
+            <button class="ui mini button summaryEditBtn yellow" :class="{'disabled': !access.vin_edit}">Edit</button>
+        </div>
+        <form v-show="edit">
+            <div class="block-text">
+                <b>VIN:</b>&nbsp;<input autocomplete="off" autofocus maxlength="17" minlength="7" name="query" required="required" v-model="vin"/>
+            </div>
+            <div class="block-button">
+                <button class="ui mini button summaryEditBtn blue">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

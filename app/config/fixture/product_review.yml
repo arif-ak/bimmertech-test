@@ -1,0 +1,12 @@
+sylius_fixtures:
+  suites:
+    productReview:
+      fixtures:
+        app_product_review:
+          options:
+            custom:
+              Review:
+                title: "roduct"
+                rating: 4
+                comment: "roduct"
+                status: "new"

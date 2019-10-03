@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="-5 -5 82 82" style="enable-background:new 0 0 72 72;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_3_);}
+	.st1{clip-path:url(#SVGID_4_);fill:#757575;}
+	.st2{clip-path:url(#SVGID_7_);}
+	.st3{clip-path:url(#SVGID_8_);fill:#FFFFFF;}
+</style>
+<g>
+	<g>
+		<defs>
+			<rect id="SVGID_1_" x="-5" y="-5" width="82" height="82"/>
+		</defs>
+		<defs>
+			<path id="SVGID_2_" d="M8,72h56c4.4,0,8-3.6,8-8V8c0-4.4-3.6-8-8-8H8C3.6,0,0,3.6,0,8v56C0,68.4,3.6,72,8,72L8,72z"/>
+		</defs>
+		<clipPath id="SVGID_3_">
+			<use xlink:href="#SVGID_1_" style="overflow:visible;"/>
+		</clipPath>
+		<clipPath id="SVGID_4_" class="st0">
+			<use xlink:href="#SVGID_2_" style="overflow:visible;"/>
+		</clipPath>
+		<rect x="-5" y="-5" class="st1" width="82" height="82"/>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_5_" width="72" height="72"/>
+		</defs>
+		<defs>
+			<path id="SVGID_6_" d="M62,62H51.3V43.8c0-5-1.9-7.8-5.8-7.8c-4.3,0-6.5,2.9-6.5,7.8V62H28.6V27.3h10.3V32c0,0,3.1-5.7,10.5-5.7 c7.4,0,12.6,4.5,12.6,13.8V62L62,62z M16.3,22.8c-3.5,0-6.3-2.9-6.3-6.4s2.8-6.4,6.3-6.4s6.3,2.9,6.3,6.4S19.9,22.8,16.3,22.8 L16.3,22.8z M11,62h10.7V27.3H11V62L11,62z"/>
+		</defs>
+		<clipPath id="SVGID_7_">
+			<use xlink:href="#SVGID_5_" style="overflow:visible;"/>
+		</clipPath>
+		<clipPath id="SVGID_8_" class="st2">
+			<use xlink:href="#SVGID_6_" style="overflow:visible;"/>
+		</clipPath>
+		<rect x="5" y="5" class="st3" width="62" height="62"/>
+	</g>
+</g>
+</svg>

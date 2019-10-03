@@ -1,0 +1,12 @@
+AppBundle\Entity\PhotoReport:
+    type: entity
+    table: app_photo_report
+    manyToOne:
+        owner:
+            targetEntity: AppBundle\Entity\Shipment
+            inversedBy: images
+            joinColumn:
+                name: owner_id
+                referencedColumnName: id
+                nullable: false
+                onDelete: CASCADE

@@ -1,0 +1,29 @@
+AppBundle\Entity\OrderItemUnitReturn:
+  type: entity
+  table: app_order_item_unit_return
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    createdAt:
+      type: datetime
+      column: created_at
+      nullable: true
+
+  oneToOne:
+    orderItemUnit:
+      targetEntity: AppBundle\Entity\OrderItemUnit
+      inversedBy: orderItemUnitReturn
+      joinColumn:
+        name: order_item_unit_id
+        referencedColumnName: id
+
+  manyToOne:
+    orderRefund:
+      targetEntity: AppBundle\Entity\OrderRefund
+      inversedBy: orderItemUnitReturn
+      joinColumn:
+        name: order_refund_id
+        referencedColumnName: id

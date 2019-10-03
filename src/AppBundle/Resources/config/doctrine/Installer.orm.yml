@@ -1,0 +1,33 @@
+AppBundle\Entity\Installer:
+    type: entity
+    table: app_installer
+    repositoryClass: AppBundle\Repository\InstallerRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            column: name
+            nullable: true
+        address:
+            type: text
+            column: address
+            nullable: true
+        link:
+            type: string
+            column: link
+            nullable: true
+        type:
+            type: string
+            nullable: true
+        latitude:
+            type: string
+            column: latitude
+            nullable: true
+        longitude:
+            type: string
+            column: longitude
+            nullable: true

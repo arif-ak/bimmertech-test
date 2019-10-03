@@ -1,0 +1,20 @@
+sylius_grid:
+  grids:
+    sylius_admin_product:
+      actions:
+        main:
+          create:
+            type: create
+            label:  sylius.ui.create
+            options:
+              link:
+                route: sylius_admin_product_create_simple
+        item:
+          update:
+            type: update
+          delete:
+            type: delete
+        bulk:
+          delete:
+            type: delete
+

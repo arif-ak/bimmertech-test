@@ -1,0 +1,63 @@
+{% if products|length %}
+<div class="bt-section-recommended small-12">
+    <div class="header min-header grid-x align-middle">
+        <div class="cell shrink">
+            <h4 class="text-uppercase">
+                You might be interested in
+            </h4>
+        </div>
+        <div class="cell large-auto">
+            <span class="divider"></span>
+        </div>
+    </div>
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for product in products %}
+                <div class="swiper-slide">
+                    {% include ':GlobalComponents/Swiper:item.html.twig' %}
+                </div>
+            {% endfor %}
+        </div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev arrow-prev"></div>
+        <div class="swiper-button-next arrow-next"></div>
+    </div>
+</div>
+
+<!-- Swiper JS -->
+<script src="{{ asset('assets/shop/js/swiper.min.js') }}"></script>
+{# <!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        // Default parameters
+        slidesPerView: 4,
+        spaceBetween: 30,
+        loop: true,
+        roundLengths: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+        },
+        // Responsive breakpoints
+        breakpoints: {
+            // when window width is <= 320px
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 10
+            },
+            // when window width is <= 480px
+            480: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            // when window width is <= 640px
+            640: {
+                slidesPerView: 3,
+                spaceBetween: 30
+            }
+        }
+
+    });
+</script> #}
+{% endif %}
